@@ -17,7 +17,7 @@
    <children>
       <ImageView fx:id="fadeImage" fitHeight="768.0" fitWidth="1280.0" GridPane.columnIndex="3">
          <image>
-            <Image url="@../Logo/mainKYI.png" />
+            <Image url="@../../Logo/mainKYI.png" />
          </image>
       </ImageView>
    </children>

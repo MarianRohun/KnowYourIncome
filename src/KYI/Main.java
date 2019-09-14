@@ -4,20 +4,19 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
-import javax.swing.*;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Fadeaway.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Login/Login.fxml"));
         primaryStage.setTitle("KnowYourIncome");
+        primaryStage.setMinWidth(668);
+        primaryStage.setMinHeight(428);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        primaryStage.setFullScreen(true);
+
 
     }
 

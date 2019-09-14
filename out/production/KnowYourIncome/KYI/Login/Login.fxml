@@ -6,12 +6,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="768.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Login.Login">
+<AnchorPane prefHeight="768.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Login.LoginController">
    <children>
-      <PasswordField fx:id="loginPasswordField" layoutX="548.0" layoutY="366.0" prefHeight="35.0" prefWidth="182.0" promptText="password" />
-      <TextField fx:id="loginEmailField" layoutX="548.0" layoutY="316.0" prefHeight="35.0" prefWidth="182.0" promptText="username" />
-      <Button fx:id="loginButton" layoutX="618.0" layoutY="419.0" mnemonicParsing="false" onAction="#onClickLogin" onKeyPressed="#onClickLogin" text="login" />
-      <Label fx:id="error" layoutX="602.0" layoutY="270.0" prefHeight="26.0" prefWidth="74.0" />
+      <PasswordField fx:id="loginPasswordField" layoutX="548.0" layoutY="366.0" prefHeight="35.0" prefWidth="182.0" promptText="Password" />
+      <TextField fx:id="loginEmailField" layoutX="548.0" layoutY="316.0" prefHeight="35.0" prefWidth="182.0" promptText="E-MAIL" />
+      <Button fx:id="loginButton" layoutX="618.0" layoutY="419.0" mnemonicParsing="false" onAction="#onClickLogin" text="login" />
+      <Label fx:id="error" layoutX="545.0" layoutY="461.0" prefHeight="26.0" prefWidth="182.0" textFill="RED" />
    </children>
 </AnchorPane>

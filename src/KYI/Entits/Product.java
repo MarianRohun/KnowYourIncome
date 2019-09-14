@@ -1,4 +1,4 @@
-package KYI.Entity;
+package KYI.Entits;
 
 import java.util.Date;
 
@@ -6,12 +6,12 @@ public class Product {
     private Integer id;
     private String name;
     private Integer quantity;
-    private String buyingPrice;
-    private String sellingPrice;
+    private Double buyingPrice;
+    private Double sellingPrice;
     private Date dateOfDelivery;
     private Date warranty;
 
-    public Product(Integer id, String name, String buyingPrice, String sellingPrice,Integer quantity, Date dateOfDelivery, Date warranty){
+    public Product(Integer id, String name, Double buyingPrice, Double sellingPrice,Integer quantity, Date dateOfDelivery, Date warranty){
         this.quantity = quantity;
         this.id = id;
         this.name = name;
@@ -37,19 +37,19 @@ public class Product {
         this.name = name;
     }
 
-    public String getBuyingPrice() {
+    public Double getBuyingPrice() {
         return buyingPrice;
     }
 
-    public void setBuyingPrice(String buyingPrice) {
+    public void setBuyingPrice(Double buyingPrice) {
         this.buyingPrice = buyingPrice;
     }
 
-    public String getSellingPrice() {
+    public Double getSellingPrice() {
         return sellingPrice;
     }
 
-    public void setSellingPrice(String sellingPrice) {
+    public void setSellingPrice(Double sellingPrice) {
         this.sellingPrice = sellingPrice;
     }
 

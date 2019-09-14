@@ -1,8 +1,8 @@
 package KYI;
 
-import KYI.Entity.User;
+import KYI.Entits.User;
 
-public class Controller {
+public class UserController {
     public User user = new User();
 
     public User getUser() {

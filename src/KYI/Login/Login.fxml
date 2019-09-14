@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="KYI.Login.Login"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="768.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Login.Login">
+   <children>
+      <PasswordField fx:id="loginPasswordField" layoutX="548.0" layoutY="366.0" prefHeight="35.0" prefWidth="182.0" promptText="password" />
+      <TextField fx:id="loginEmailField" layoutX="548.0" layoutY="316.0" prefHeight="35.0" prefWidth="182.0" promptText="username" />
+      <Button fx:id="loginButton" layoutX="618.0" layoutY="419.0" mnemonicParsing="false" onAction="#onClickLogin" onKeyPressed="#onClickLogin" text="login" />
+      <Label fx:id="error" layoutX="602.0" layoutY="270.0" prefHeight="26.0" prefWidth="74.0" />
+   </children>
 </AnchorPane>

@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AdminController extends Controller implements Initializable {
+public class AdminController implements Initializable {
 
     @FXML
     private Label test;

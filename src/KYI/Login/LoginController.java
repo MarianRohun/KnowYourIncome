@@ -3,6 +3,8 @@ package KYI.Login;
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
 import KYI.Entits.User;
+import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,7 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,6 +22,9 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable { //pridame alert ked niekto neuhadne heslo tak caka 30sec
+
+    @FXML
+    private AnchorPane loginPane;
     @FXML
     private TextField loginEmailField;
     @FXML
@@ -50,8 +57,13 @@ public class LoginController implements Initializable { //pridame alert ked niek
 
             if (result.next()) {
                 System.out.println("Logged Successfully");
+                Controller.generateKey();
 
-                User user = new User(result.getInt(1), result.getString(2),
+
+
+
+
+               /* User user = new User(result.getInt(1), result.getString(2),
                         result.getString(3), result.getString(4),
                         result.getInt(5));
 
@@ -76,7 +88,7 @@ public class LoginController implements Initializable { //pridame alert ked niek
                     Stage stage = (Stage) loginEmailField.getScene().getWindow();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../Employee/Employee.fxml"));
                     Controller.changeSceneUser(stage, user, loader, "LOGGED EMPLOYEE");
-                }
+                }*/
 
             }
 

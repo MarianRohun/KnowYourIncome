@@ -39,21 +39,17 @@ public class FadeawayController implements Initializable {
 
 
         fadeTransition.setOnFinished(actionEvent -> {
-            loadNextScene();
+            try {
+                Stage stage = (Stage) welcomePane.getScene().getWindow();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Login/Login.fxml"));
+                Controller.changeScene(stage, loader, "Know Your Income");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
 
         fadeTransition.play();
-    }
-
-    private void loadNextScene()  {
-        try {
-            Stage stage = (Stage) welcomePane.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Login/Login.fxml"));
-            Controller.changeScene(stage, loader, "Know Your Income");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

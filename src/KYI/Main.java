@@ -4,16 +4,19 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        //Fonty Kristen ITC, FRANKLIN GOTHIC MEDIUM
         Parent root = FXMLLoader.load(getClass().getResource("Fxmls/Fadeaway.fxml"));
         primaryStage.setTitle("KnowYourIncome");
-        primaryStage.setMinWidth(668);
-        primaryStage.setMinHeight(428);
+        primaryStage.getIcons().add(new Image("Logo/icon.png"));
+        primaryStage.setMinWidth(900);
+        primaryStage.setMinHeight(600);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }

@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="welcomePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Css/welcomeScene.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Fxmls.FadeawayController" />
+
+<AnchorPane fx:id="welcomePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/welcomeScene.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Fxmls.FadeawayController">
+   <children>
+      <ImageView fitHeight="488.0" fitWidth="636.0" layoutX="138.0" layoutY="44.0">
+         <image>
+            <Image url="@../../Logo/mainKYI.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

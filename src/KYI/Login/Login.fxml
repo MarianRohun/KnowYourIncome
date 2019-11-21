@@ -51,5 +51,10 @@
             <Font name="Franklin Gothic Book" size="15.0" />
          </font>
       </Button>
+      <Label layoutX="369.0" layoutY="553.0" prefHeight="18.0" prefWidth="179.0" text="www.knowyourincome.com" textFill="WHITE" underline="true" wrapText="true">
+         <font>
+            <Font name="Bookshelf Symbol 7" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

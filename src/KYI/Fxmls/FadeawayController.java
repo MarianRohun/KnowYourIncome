@@ -32,7 +32,7 @@ public class FadeawayController implements Initializable {
 
     private void fadeOut(){
         FadeTransition fadeTransition = new FadeTransition();
-        fadeTransition.setDuration(Duration.millis(2000));
+        fadeTransition.setDuration(Duration.millis(2500));
         fadeTransition.setNode(welcomePane);
         fadeTransition.setFromValue(1);
         fadeTransition.setToValue(0);

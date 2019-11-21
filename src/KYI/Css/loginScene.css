@@ -5,13 +5,13 @@
     -fx-background-color:  #181818;
     /*-fx-background-radius: 15 15 15 15;*/
     -fx-border-width: 0 0 1 0;
-    -fx-border-color: #f50606;
+    -fx-border-color: white;
     -fx-text-fill: white;
     -fx-background-color: none;
 }
 #loginButton:hover {
     -fx-border-width: 1 1 1 1;
-    -fx-border-color: #f50606;
+    -fx-border-color: white;
     -fx-border-radius: 15%;
 }
 #loginButton:pressed {
@@ -21,11 +21,11 @@
     -fx-text-fill: white;
     -fx-background-color: none;
     -fx-border-width: 0 0 1 0;
-    -fx-border-color: #f50606;
+    -fx-border-color: white;
 }
 #loginPasswordField{
     -fx-text-fill: white;
     -fx-border-width: 0 0 1 0;
     -fx-background-color: none;
-    -fx-border-color: #f50606;
+    -fx-border-color: white;
 }

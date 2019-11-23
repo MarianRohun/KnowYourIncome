@@ -6,16 +6,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="165.0" prefWidth="344.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="165.0" prefWidth="344.0" style="-fx-background-color: #181818;" stylesheets="@../Css/SystemGuard.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="105.0" layoutY="14.0" text="Please insert KEY">
+      <Label layoutX="34.0" layoutY="23.0" text="Key was sent to you on your email " textFill="#f0f0f0">
          <font>
-            <Font size="18.0" />
+            <Font name="Bookshelf Symbol 7" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="insertKeyField" layoutX="98.0" layoutY="70.0" />
-      <Button fx:id="confirmButton" layoutX="213.0" layoutY="126.0" mnemonicParsing="false" text="Confirm" />
+      <TextField fx:id="insertKeyField" layoutX="90.0" layoutY="69.0" prefHeight="26.0" prefWidth="167.0" promptText="Enter your key" />
+      <Button fx:id="confirmButton" layoutX="197.0" layoutY="126.0" mnemonicParsing="false" text="Confirm" />
       <Button fx:id="cancelButton" layoutX="278.0" layoutY="126.0" mnemonicParsing="false" text="Cancel" />
    </children>
 </AnchorPane>

@@ -1,0 +1,40 @@
+
+#insertKeyField{
+    -fx-text-fill: #f50606;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: none;
+    -fx-border-color: white;
+}
+#confirmButton{
+    -fx-background-color:  #181818;
+    /*-fx-background-radius: 15 15 15 15;*/
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: white;
+    -fx-text-fill: white;
+    -fx-background-color: none;
+}
+#confirmButton:hover {
+    -fx-border-width: 1 1 1 1;
+    -fx-border-color: white;
+    -fx-border-radius: 15%;
+}
+#confirmButton:pressed {
+    -fx-text-fill: #f50606;
+    -fx-border-color: #f50606;
+}
+#cancelButton{
+    -fx-background-color:  #181818;
+    /*-fx-background-radius: 15 15 15 15;*/
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: white;
+    -fx-text-fill: white;
+    -fx-background-color: none;
+}
+#cancelButton:hover {
+    -fx-border-width: 1 1 1 1;
+    -fx-border-color: white;
+    -fx-border-radius: 15%;
+}
+#cancelButton:pressed {
+    -fx-text-fill:#f50606 ;
+}

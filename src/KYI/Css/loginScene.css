@@ -15,7 +15,8 @@
     -fx-border-radius: 15%;
 }
 #loginButton:pressed {
-    -fx-text-fill:#f50606 ;
+    -fx-text-fill:#f50606;
+    -fx-border-color: #f50606;
 }
 #loginEmailField{
     -fx-text-fill: white;

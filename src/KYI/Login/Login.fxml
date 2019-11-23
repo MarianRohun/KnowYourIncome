@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="loginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/loginScene.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Login.LoginController">
+<AnchorPane fx:id="loginPane" maxHeight="600.0" maxWidth="900.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/loginScene.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Login.LoginController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="900.0">
          <image>
@@ -51,7 +51,7 @@
             <Font name="Franklin Gothic Book" size="15.0" />
          </font>
       </Button>
-      <Label layoutX="369.0" layoutY="553.0" prefHeight="18.0" prefWidth="179.0" text="www.knowyourincome.com" textFill="WHITE" underline="true" wrapText="true">
+      <Label layoutX="392.0" layoutY="540.0" prefHeight="18.0" prefWidth="126.0" text="knowyourincome.sk" textFill="WHITE" underline="true" wrapText="true">
          <font>
             <Font name="Bookshelf Symbol 7" size="14.0" />
          </font>

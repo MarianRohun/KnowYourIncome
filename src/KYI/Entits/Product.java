@@ -3,15 +3,15 @@ package KYI.Entits;
 import java.util.Date;
 
 public class Product {
-    private Integer id;
+    private int id;
     private String name;
-    private Integer quantity;
-    private Double buyingPrice;
-    private Double sellingPrice;
+    private int quantity;
+    private double buyingPrice;
+    private double sellingPrice;
     private Date dateOfDelivery;
     private Date warranty;
 
-    public Product(Integer id, String name, Double buyingPrice, Double sellingPrice,Integer quantity, Date dateOfDelivery, Date warranty){
+    public Product(int id, String name, double buyingPrice, double sellingPrice,int quantity, Date dateOfDelivery, Date warranty){
         this.quantity = quantity;
         this.id = id;
         this.name = name;
@@ -21,11 +21,11 @@ public class Product {
         this.warranty = warranty;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -37,26 +37,26 @@ public class Product {
         this.name = name;
     }
 
-    public Double getBuyingPrice() {
+    public double getBuyingPrice() {
         return buyingPrice;
     }
 
-    public void setBuyingPrice(Double buyingPrice) {
+    public void setBuyingPrice(double buyingPrice) {
         this.buyingPrice = buyingPrice;
     }
 
-    public Double getSellingPrice() {
+    public double getSellingPrice() {
         return sellingPrice;
     }
 
-    public void setSellingPrice(Double sellingPrice) {
+    public void setSellingPrice(double sellingPrice) {
         this.sellingPrice = sellingPrice;
     }
 
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
     public Date getDateOfDelivery() {

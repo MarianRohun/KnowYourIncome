@@ -6,14 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         //FRANKLIN GOTHIC MEDIUM, BOOKSHELF
-        Parent root = FXMLLoader.load(getClass().getResource("Fxmls/Fadeaway.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FadeAway/Fadeaway.fxml"));
         primaryStage.setTitle("KnowYourIncome");
         primaryStage.getIcons().add(new Image("Logo/icon.png"));
         primaryStage.setMinWidth(900);

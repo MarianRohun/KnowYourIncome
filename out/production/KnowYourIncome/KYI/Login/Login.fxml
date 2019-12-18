@@ -23,9 +23,14 @@
       </ImageView>
       <Pane layoutX="272.0" layoutY="41.0" opacity="0.81" prefHeight="482.0" prefWidth="374.0" style="-fx-background-color: #181818;">
          <children>
-            <Label layoutX="98.0" layoutY="52.0" prefHeight="80.0" prefWidth="179.0" text="Welcome" textFill="#fdf7f7">
+            <Label layoutX="98.0" layoutY="14.0" prefHeight="80.0" prefWidth="179.0" text="Welcome" textFill="#fdf7f7">
                <font>
                   <Font name="Bookshelf Symbol 7" size="43.0" />
+               </font>
+            </Label>
+            <Label fx:id="error" layoutX="87.0" layoutY="108.0" prefHeight="32.0" prefWidth="202.0" text="skero" textAlignment="CENTER" textFill="#fa0000">
+               <font>
+                  <Font size="15.0" />
                </font>
             </Label>
          </children></Pane>

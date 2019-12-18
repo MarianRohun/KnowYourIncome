@@ -56,18 +56,23 @@ public class Product {
     public int getQuantity() {
         return quantity;
     }
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
     public Date getDateOfDelivery() {
         return dateOfDelivery;
     }
+
     public void setDateOfDelivery(Date dateOfDelivery) {
         this.dateOfDelivery = dateOfDelivery;
     }
+
     public Date getWarranty() {
         return warranty;
     }
+
     public void setWarranty(Date warranty) {
         this.warranty = warranty;
     }

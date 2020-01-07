@@ -28,7 +28,7 @@
                   <Font name="Bookshelf Symbol 7" size="43.0" />
                </font>
             </Label>
-            <Label fx:id="error" layoutX="87.0" layoutY="108.0" prefHeight="32.0" prefWidth="202.0" text="skero" textAlignment="CENTER" textFill="#fa0000">
+            <Label fx:id="error" layoutX="87.0" layoutY="108.0" prefHeight="32.0" prefWidth="202.0" textFill="#fa0000">
                <font>
                   <Font size="15.0" />
                </font>

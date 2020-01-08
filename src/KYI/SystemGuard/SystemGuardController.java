@@ -22,6 +22,8 @@ import static KYI.Controllers.Controller.user;
 
 public class SystemGuardController implements Initializable {
     @FXML
+    private Label errorField;
+    @FXML
     private TextField insertKeyField;
     @FXML
     private Button confirmButton;
@@ -29,6 +31,7 @@ public class SystemGuardController implements Initializable {
     private Button cancelButton;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Platform.runLater(() -> {
         SendEmail.run(user.getEmail(), "KnowYourIncome LOGIN KEY",
                 "Your LOGIN KEY: \n\n" +
                         key+
@@ -36,7 +39,7 @@ public class SystemGuardController implements Initializable {
                         "Your KNOWYOURINCOME");
         System.out.println("Email sent successfully");
         System.out.println(key);
-
+        });
     }
     public static String key=Controller.generateKey();
 
@@ -55,7 +58,7 @@ public class SystemGuardController implements Initializable {
                          Controller.changeSceneUser(stage, user, loader, "LOGGED EMPLOYEE");
                 }
                 else {
-                    insertKeyField.setText("wrong key");
+                    errorField.setText("Wrong key");
             }
         }
         public void Close (){

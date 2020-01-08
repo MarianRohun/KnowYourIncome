@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -23,10 +24,8 @@ public class Controller {
     public static User user = new User();
 
     public User getUser() {
-
         return user;
     }
-
     public void setUser(User user) {
         this.user = user;
     }
@@ -44,7 +43,7 @@ public class Controller {
 
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        Controller controller = (Controller) loader.getController();
+        Controller controller = loader.getController();
         controller.setUser(user);
         stage.setTitle(title);
         stage.setScene(scene);

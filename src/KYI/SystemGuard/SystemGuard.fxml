@@ -6,15 +6,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="165.0" prefWidth="344.0" style="-fx-background-color: 11111;" stylesheets="@../Css/SystemGuard.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.SystemGuard.SystemGuardController" fx:id="xd">
+<AnchorPane fx:id="guardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="380.0" style="-fx-background-color: 11111;" stylesheets="@../Css/SystemGuard.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.SystemGuard.SystemGuardController">
     <children>
-        <Label layoutX="34.0" layoutY="23.0" text="Key was sent to you on your email ">
+        <Label layoutX="31.0" layoutY="8.0" prefHeight="27.0" prefWidth="317.0" text="Key was sent to you on your email ">
             <font>
-                <Font name="Bookshelf Symbol 7" size="18.0" />
+                <Font name="Bookshelf Symbol 7" size="20.0" />
             </font>
         </Label>
-        <TextField fx:id="insertKeyField" layoutX="90.0" layoutY="69.0" prefHeight="26.0" prefWidth="167.0" promptText="Enter your key" />
-        <Button fx:id="confirmButton" layoutX="197.0" layoutY="126.0" mnemonicParsing="false" onAction="#verifyKey" text="Confirm" />
-        <Button fx:id="cancelButton" layoutX="278.0" layoutY="126.0" mnemonicParsing="false" onAction="#Close" text="Cancel" />
+        <TextField fx:id="insertKeyField" layoutX="107.0" layoutY="106.0" prefHeight="26.0" prefWidth="166.0" promptText="Enter your key" />
+        <Button fx:id="confirmButton" layoutX="183.0" layoutY="165.0" mnemonicParsing="false" onAction="#verifyKey" prefHeight="26.0" prefWidth="83.0" text="Confirm" />
+        <Button fx:id="cancelButton" layoutX="288.0" layoutY="165.0" mnemonicParsing="false" onAction="#Close" prefHeight="26.0" prefWidth="83.0" text="Cancel" />
+      <Label fx:id="errorField" layoutX="149.0" layoutY="52.0" prefHeight="20.0" prefWidth="150.0" textFill="RED">
+         <font>
+            <Font name="Bookshelf Symbol 7" size="18.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

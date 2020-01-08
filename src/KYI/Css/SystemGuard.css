@@ -5,6 +5,7 @@
     -fx-background-color: none;
     -fx-border-color: black;
     -fx-prompt-text-fill: black;
+    -fx-text-alignment: middle;
 }
 #confirmButton{
     -fx-background-color:  #181818;
@@ -37,4 +38,7 @@
 }
 #cancelButton:pressed {
     -fx-text-fill:#f50606 ;
+}
+#guardPane{
+
 }

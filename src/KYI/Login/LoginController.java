@@ -62,7 +62,7 @@ public class LoginController implements Initializable { //pridame alert ked niek
                         result.getString(3), result.getString(4),
                         result.getInt(5));
                 System.out.println(user.getEmail());
-                Controller.openWindow("../SystemGuard/SystemGuard.fxml",user);
+                Controller.openWindowUser("../SystemGuard/SystemGuard.fxml",user);
             }
             else {
                 error.setText("Wrong username or password");

@@ -2,10 +2,12 @@ package KYI.Login;
 
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
+import KYI.Controllers.SendEmail;
 import KYI.Entits.User;
 ;
 import javafx.fxml.FXML;
 
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 import javafx.scene.control.Button;
@@ -17,6 +19,9 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
+
+import static KYI.Controllers.Controller.user;
+import static KYI.SystemGuard.SystemGuardController.key;
 
 public class LoginController implements Initializable { //pridame alert ked niekto neuhadne heslo tak caka 30sec
 
@@ -57,24 +62,13 @@ public class LoginController implements Initializable { //pridame alert ked niek
                         result.getString(3), result.getString(4),
                         result.getInt(5));
                 System.out.println(user.getEmail());
-
-                Controller.sendMail(user.getEmail(), "KnowYourIncome LOGIN KEY",
-                        "Your LOGIN KEY: \n\n" +
-                                Controller.generateKey() +
-                                "\n-------------------------- \n" +
-                                "Your KNOWYOURINCOME"
-                );
-
-
-                Controller.openWindow("../SystemGuard/SystemGuard.fxml");
-
+                Controller.openWindow("../SystemGuard/SystemGuard.fxml",user);
             }
-
-
-
+            else {
+                error.setText("Wrong username or password");
+            }
                 }
 
-                System.out.println("Email sent successfully");
 
 
 

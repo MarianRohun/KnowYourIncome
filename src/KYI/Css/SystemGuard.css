@@ -25,7 +25,6 @@
 }
 #cancelButton{
     -fx-background-color:  #181818;
-    /*-fx-background-radius: 15 15 15 15;*/
     -fx-border-width: 0 0 1 0;
     -fx-border-color: black;
     -fx-text-fill: black;

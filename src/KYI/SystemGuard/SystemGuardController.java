@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 
 import static KYI.Controllers.Controller.user;
 
-public class SystemGuardController implements Initializable {
+public class SystemGuardController extends Controller implements Initializable {
     @FXML
     private Label errorField;
     @FXML
@@ -29,9 +29,13 @@ public class SystemGuardController implements Initializable {
     private Button confirmButton;
     @FXML
     private Button cancelButton;
+
+    String key = "";
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
+            key = generateKey();
         SendEmail.run(user.getEmail(), "KnowYourIncome LOGIN KEY",
                 "Your LOGIN KEY: \n\n" +
                         key+
@@ -41,27 +45,22 @@ public class SystemGuardController implements Initializable {
         System.out.println(key);
         });
     }
-    public static String key=Controller.generateKey();
+
 
     public void verifyKey(javafx.event.ActionEvent actionEvent)  throws IOException {
 
-                if (key.equals(insertKeyField.getText())&&user.getposition()==1){
-                    System.out.println("Owner logged");
-                    Stage stage = (Stage) insertKeyField.getScene().getWindow();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Owner/Owner.fxml"));
-                    Controller.changeSceneUser(stage, user, loader, "LOGGED OWNER");
+                if (key.equals(insertKeyField.getText())){
+                    user.setloginStatus(1);
+                    close();
                 }
-                else if (key.equals(insertKeyField.getText())&&user.getposition()==2){
-                         System.out.println("Employee logged");
-                         Stage stage = (Stage) insertKeyField.getScene().getWindow();
-                         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Employee/Employee.fxml"));
-                         Controller.changeSceneUser(stage, user, loader, "LOGGED EMPLOYEE");
+
+                else {errorField.setText("Wrong key");
+                    System.out.println("Wrong key");
                 }
-                else {
-                    errorField.setText("Wrong key");
+
             }
-        }
-        public void Close (){
+
+        public void close (){
             Stage stage = (Stage) insertKeyField.getScene().getWindow();
             stage.close();
         }

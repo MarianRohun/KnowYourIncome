@@ -18,6 +18,8 @@ import java.util.Properties;
 import java.util.Random;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Controller {
 
@@ -90,6 +92,15 @@ public class Controller {
         System.out.println(key);
 
         return key;
+    }
+
+    public static final Pattern VALIDEMAIL =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+    public static boolean validate(String emailStr) {
+        if (emailStr.isEmpty()) return false;
+        Matcher matcher = VALIDEMAIL.matcher(emailStr);
+        return matcher.find();
     }
 
 }

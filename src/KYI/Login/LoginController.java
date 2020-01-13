@@ -15,15 +15,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
-import static KYI.Controllers.Controller.user;
-import static KYI.SystemGuard.SystemGuardController.key;
 
-public class LoginController implements Initializable { //pridame alert ked niekto neuhadne heslo tak caka 30sec
+
+
+public class LoginController extends Controller implements Initializable { //pridame alert ked niekto neuhadne heslo tak caka 30sec
 
     @FXML
     private AnchorPane loginPane;
@@ -47,12 +48,12 @@ public class LoginController implements Initializable { //pridame alert ked niek
     }
 
     public void onClickLogin(javafx.event.ActionEvent actionEvent) throws Exception {
-        if (loginEmailField.getText().isEmpty()) {
-            error.setText("Please enter your E-MAIL");
+        if (validate(loginEmailField.getText()) == false)  {
+            error.setText("Please enter the correct E-MAIL");
         } else if (loginPasswordField.getText().isEmpty()) {
             error.setText("Please enter your Password");
         } else {
-            Statement statement = connection.createStatement();
+
             String select = "SELECT * FROM users WHERE email = '" + loginEmailField.getText() + "' AND password = '"
                     + loginPasswordField.getText() + "'";
             ResultSet result = connection.prepareStatement(select).executeQuery();
@@ -62,30 +63,31 @@ public class LoginController implements Initializable { //pridame alert ked niek
                         result.getString(3), result.getString(4),
                         result.getInt(5));
                 System.out.println(user.getEmail());
-                Controller.openWindowUser("../SystemGuard/SystemGuard.fxml",user);
-            }
+                Controller.openWindowUser("../SystemGuard/SystemGuard.fxml", user);
+
+                if (user.getloginStatus() == 1) {
+                    if (user.getposition() == 1) {
+                        System.out.println("Owner logged");
+
+                        Stage stage = (Stage) loginEmailField.getScene().getWindow();
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Owner/Owner.fxml"));
+                        Controller.changeSceneUser(stage, user, loader, "LOGGED OWNER");
+                    } else {
+                        System.out.println("Employee logged");
+
+                        Stage stage = (Stage) loginEmailField.getScene().getWindow();
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Employee/Employee.fxml"));
+                        Controller.changeSceneUser(stage, user, loader, "LOGGED EMPLOYEE");
+                    }
+                }
+
+                }
             else {
+                loginPasswordField.clear();
+                loginEmailField.clear();
                 error.setText("Wrong username or password");
             }
                 }
-
-
-
-
-               /* if (user.getposition() == 1) {
-                    System.out.println("Owner logged");
-
-                    Stage stage = (Stage) loginEmailField.getScene().getWindow();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Owner/Owner.fxml"));
-                    Controller.changeSceneUser(stage, user, loader, "LOGGED OWNER");
-
-                } else {
-                    System.out.println("Employee logged");
-
-                    Stage stage = (Stage) loginEmailField.getScene().getWindow();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Employee/Employee.fxml"));
-                    Controller.changeSceneUser(stage, user, loader, "LOGGED EMPLOYEE");
-                } */
 
             }
     }

@@ -45,8 +45,6 @@ public class SystemGuardController extends Controller implements Initializable {
         System.out.println(key);
         });
     }
-
-
     public void verifyKey(javafx.event.ActionEvent actionEvent)  throws IOException {
 
                 if (key.equals(insertKeyField.getText())){
@@ -54,12 +52,11 @@ public class SystemGuardController extends Controller implements Initializable {
                     close();
                 }
 
-                else {errorField.setText("Wrong key");
+                else {
+                    errorField.setText("Wrong key");
                     System.out.println("Wrong key");
                 }
-
             }
-
         public void close (){
             Stage stage = (Stage) insertKeyField.getScene().getWindow();
             stage.close();

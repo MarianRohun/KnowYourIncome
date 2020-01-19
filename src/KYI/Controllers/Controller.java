@@ -52,7 +52,7 @@ public class Controller {
         stage.show();
     }
 
-    public static void openWindow(String stage, User user) throws Exception {
+    public static void openWindow(String stage) throws Exception {
         Stage newstage = new Stage();
         Parent root = FXMLLoader.load(Controller.class.getResource(stage));
         Scene scene = new Scene(root);

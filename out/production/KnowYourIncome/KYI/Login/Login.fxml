@@ -5,8 +5,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
-<?import javafx.scene.effect.DisplacementMap?>
-<?import javafx.scene.effect.FloatMap?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -23,14 +22,14 @@
       </ImageView>
       <Pane layoutX="272.0" layoutY="41.0" opacity="0.81" prefHeight="482.0" prefWidth="374.0" style="-fx-background-color: #181818;">
          <children>
-            <Label layoutX="98.0" layoutY="14.0" prefHeight="80.0" prefWidth="179.0" text="Welcome" textFill="#fdf7f7">
-               <font>
-                  <Font name="Bookshelf Symbol 7" size="43.0" />
-               </font>
-            </Label>
             <Label fx:id="error" layoutX="87.0" layoutY="108.0" prefHeight="32.0" prefWidth="202.0" textFill="#fa0000">
                <font>
                   <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="98.0" layoutY="28.0" prefHeight="80.0" prefWidth="179.0" text="Welcome" textFill="#b38b4d">
+               <font>
+                  <Font name="Bookshelf Symbol 7" size="43.0" />
                </font>
             </Label>
          </children></Pane>
@@ -46,19 +45,15 @@
       </PasswordField>
       <Button fx:id="loginButton" layoutX="379.0" layoutY="372.0" mnemonicParsing="false" onAction="#onClickLogin" prefHeight="38.0" prefWidth="159.0" stylesheets="@../Css/loginScene.css" text="LOGIN" textFill="WHITE">
          <effect>
-            <DisplacementMap>
-               <mapData>
-                  <FloatMap />
-               </mapData>
-            </DisplacementMap>
+            <Bloom />
          </effect>
          <font>
             <Font name="Franklin Gothic Book" size="15.0" />
          </font>
       </Button>
-      <Label layoutX="392.0" layoutY="540.0" prefHeight="18.0" prefWidth="126.0" text="knowyourincome.sk" textFill="WHITE" underline="true" wrapText="true">
+      <Label layoutX="373.0" layoutY="565.0" prefHeight="22.0" prefWidth="169.0" text="knowyourincome.sk" textFill="#ca9039" underline="true" wrapText="true">
          <font>
-            <Font name="Bookshelf Symbol 7" size="14.0" />
+            <Font name="Bookshelf Symbol 7" size="19.0" />
          </font>
       </Label>
    </children>

@@ -15,7 +15,10 @@
         </Label>
         <TextField fx:id="insertKeyField" layoutX="107.0" layoutY="106.0" prefHeight="26.0" prefWidth="166.0" promptText="Enter your key" />
         <Button fx:id="confirmButton" layoutX="183.0" layoutY="165.0" mnemonicParsing="false" onAction="#verifyKey" prefHeight="26.0" prefWidth="83.0" text="Confirm" />
-        <Button fx:id="cancelButton" layoutX="288.0" layoutY="165.0" mnemonicParsing="false" onAction="#close" prefHeight="26.0" prefWidth="83.0" text="Cancel" />
+        <Button fx:id="cancelButton" layoutX="288.0" layoutY="165.0" mnemonicParsing="false" onAction="#close" prefHeight="26.0" prefWidth="83.0" text="Cancel">
+         <font>
+            <Font name="Franklin Gothic Book" size="13.0" />
+         </font></Button>
       <Label fx:id="errorField" layoutX="149.0" layoutY="52.0" prefHeight="20.0" prefWidth="150.0" textFill="RED">
          <font>
             <Font name="Bookshelf Symbol 7" size="18.0" />

@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/EmployeeScene.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Employee.EmployeeController" />
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/EmployeeScene.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Employee.EmployeeController">
+   <children>
+      <ImageView fitHeight="602.0" fitWidth="900.0">
+         <image>
+            <Image url="@../../../../399374-top-black-background-image-1920x1200-for-android-tablet.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -13,7 +13,7 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Label nameLabel;
     @FXML
-    private Button StorageButton;
+    private Button storageButton;
     @FXML
     private Button ordersButton;
     @FXML
@@ -22,6 +22,12 @@ public class OwnerController extends Controller implements Initializable {
     private Button logoutButton;
     @FXML
     private Button homeButton;
+    @FXML
+    private Button soldunitsButton;
+    @FXML
+    private Button incomeButton;
+    @FXML
+    private Button settingsButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -36,10 +42,19 @@ public class OwnerController extends Controller implements Initializable {
     public void onClickEmployees(javafx.event.ActionEvent ActionEvent){
 
     }
-    public void onClickLogout(javafx.event.ActionEvent ActionEvent){
 
-    }
     public void onClickHome(javafx.event.ActionEvent ActionEvent){
 
+    }
+    public void onClickSoldunits(javafx.event.ActionEvent ActionEvent){
+
+    }
+    public void onClickIncome(javafx.event.ActionEvent ActionEvent){
+
+    }
+    public void onClickSettings(javafx.event.ActionEvent ActionEvent){
+
+    }public void onClickLogout(javafx.event.ActionEvent ActionEvent){
+        
     }
 }

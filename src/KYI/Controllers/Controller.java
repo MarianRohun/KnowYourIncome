@@ -39,6 +39,7 @@ public class Controller {
         stage.setScene(scene);
         stage.setTitle(title);
         stage.show();
+
     }
 
     public static void changeSceneUser(Stage stage, User user, FXMLLoader loader, String title) throws IOException {
@@ -50,6 +51,7 @@ public class Controller {
         stage.setTitle(title);
         stage.setScene(scene);
         stage.show();
+        scene.getStylesheets().add("D:\\KnowYourIncome\\src\\KYI\\Css\\Main.css");
     }
 
     public static void openWindow(String stage) throws Exception {

@@ -9,19 +9,19 @@
 
 <AnchorPane fx:id="root" prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.OwnerController">
    <children>
-      <Pane fx:id="sidebarPane" opacity="0.81" prefHeight="603.0" prefWidth="202.0">
+      <Pane fx:id="sidebarPane" opacity="0.81" prefHeight="600.0" prefWidth="202.0">
          <children>
-            <Button fx:id="storageButton" layoutX="1.0" layoutY="320.0" mnemonicParsing="false" onAction="#onClickStorage" prefHeight="37.0" prefWidth="202.0" styleClass="buttons" text="Storage">
+            <Button fx:id="storageButton" layoutX="-7.0" layoutY="320.0" mnemonicParsing="false" onAction="#onClickStorage" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Storage">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="ordersButton" layoutX="1.0" layoutY="283.0" mnemonicParsing="false" onAction="#onClickOrders" prefHeight="37.0" prefWidth="202.0" styleClass="buttons" text="Orders">
+            <Button fx:id="ordersButton" layoutX="-7.0" layoutY="283.0" mnemonicParsing="false" onAction="#onClickOrders" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Orders">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="employeesButton" layoutX="1.0" layoutY="246.0" mnemonicParsing="false" onAction="#onClickEmployees" prefHeight="37.0" prefWidth="202.0" styleClass="buttons" text="Employees">
+            <Button fx:id="employeesButton" layoutX="-7.0" layoutY="246.0" mnemonicParsing="false" onAction="#onClickEmployees" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Employees">
                <font>
                   <Font size="14.0" />
                </font>
@@ -33,27 +33,94 @@
             </Button>
             <Line endX="92.40000915527344" layoutX="110.0" layoutY="150.0" startX="-116.39998626708984" />
             <Label fx:id="nameLabel" layoutX="47.0" layoutY="102.0" prefHeight="32.0" prefWidth="109.0" text="Meno lognuteho" />
-            <Button fx:id="homeButton" layoutX="1.0" layoutY="209.0" mnemonicParsing="false" onAction="#onClickHome" prefHeight="37.0" prefWidth="202.0" styleClass="buttons" text="Home">
+            <Button fx:id="homeButton" layoutX="-7.0" layoutY="209.0" mnemonicParsing="false" onAction="#onClickHome" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Home">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="soldunitsButton" layoutX="1.0" layoutY="357.0" mnemonicParsing="false" onAction="#onClickSoldunits" prefHeight="37.0" prefWidth="202.0" styleClass="buttons" text="Sold units">
+            <Button fx:id="soldunitsButton" layoutX="-7.0" layoutY="357.0" mnemonicParsing="false" onAction="#onClickSoldunits" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Sold units">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="incomeButton" layoutY="394.0" mnemonicParsing="false" onAction="#onClickIncome" prefHeight="37.0" prefWidth="202.0" styleClass="buttons" text="Income">
+            <Button fx:id="incomeButton" layoutX="-8.0" layoutY="394.0" mnemonicParsing="false" onAction="#onClickIncome" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Income">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="settingsButton" layoutX="1.0" layoutY="431.0" mnemonicParsing="false" onAction="#onClickSettings" prefHeight="37.0" prefWidth="202.0" styleClass="buttons" text="Settings">
+            <Button fx:id="settingsButton" layoutX="-7.0" layoutY="431.0" mnemonicParsing="false" onAction="#onClickSettings" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Settings">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
          </children>
       </Pane>
+      <AnchorPane layoutX="203.0" prefHeight="600.0" prefWidth="750.0">
+         <children>
+            <Pane fx:id="settingsPane" layoutX="-2.0" layoutY="-2.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="254.0" layoutY="168.0" prefHeight="152.0" prefWidth="265.0" text="Settings">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="incomePane" layoutX="-2.0" layoutY="-2.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="277.0" layoutY="168.0" prefHeight="152.0" prefWidth="242.0" text="Income">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="soldunitsPane" layoutX="-2.0" layoutY="-2.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="210.0" layoutY="174.0" prefHeight="152.0" prefWidth="323.0" text="Sold units">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="storagePane" layoutX="-1.0" layoutY="-2.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="266.0" layoutY="168.0" prefHeight="152.0" prefWidth="253.0" text="Storage">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="ordersPane" layoutX="-1.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="280.0" layoutY="176.0" prefHeight="152.0" prefWidth="217.0" text="Orders">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="employeesPane" layoutX="-2.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="250.0" layoutY="122.0" prefHeight="334.0" prefWidth="253.0" text="employee">
+                     <font>
+                        <Font size="42.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="homePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="302.0" layoutY="168.0" prefHeight="152.0" prefWidth="217.0" text="HOME">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

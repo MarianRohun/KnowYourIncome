@@ -60,6 +60,7 @@ public class OwnerController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        homePane.toFront();
         if (user.getposition()==1){
             positionLabel.setText("Owner: ");
         }

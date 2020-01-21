@@ -2,15 +2,17 @@ package KYI.Entits;
 
 public class User {
     private int id;
+    private String name;
     private String surname;
     private String email;
+    private int workedHours;
     private String password;
     private int loginStatus;
     private int position;
 
     public User(){
-
     }
+
     public User(int id, String surname, String email, String password, int position) {
         this.id = id;
         this.surname = surname;
@@ -26,6 +28,18 @@ public class User {
         this.loginStatus = loginStatus;
         this.position = position;
     }
+
+    public User(int id, String name, String surname, String email, int workedHours, String password, int loginStatus, int position) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.workedHours = workedHours;
+        this.password = password;
+        this.loginStatus = loginStatus;
+        this.position = position;
+    }
+
     public int getId() { return id; }
 
     public void setId(int id) {
@@ -68,6 +82,22 @@ public class User {
 
     public void setPossition(int position) {
         this.position = position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getWorkedHours() {
+        return workedHours;
+    }
+
+    public void setWorkedHours(int workedHours) {
+        this.workedHours = workedHours;
     }
 }
 

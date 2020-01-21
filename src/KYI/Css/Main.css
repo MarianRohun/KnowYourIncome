@@ -42,3 +42,12 @@
     -fx-font-size: 16;
     -fx-text-fill: black;
 }
+
+#employeeTableHeader{
+    -fx-background-color: #b38b4d;
+}
+
+#headerLabel{
+   -fx-font-style: bold;
+}
+

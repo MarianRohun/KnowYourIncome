@@ -51,7 +51,7 @@ public class Controller {
         stage.setTitle(title);
         stage.setScene(scene);
         stage.show();
-        scene.getStylesheets().add("D:\\KnowYourIncome\\src\\KYI\\Css\\Main.css");
+        scene.getStylesheets().add("../Css/Main.css");
     }
 
     public static void openWindow(String stage) throws Exception {

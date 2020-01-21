@@ -77,11 +77,12 @@ public class OwnerController extends Controller implements Initializable {
     }
     public void onClickHome(javafx.event.ActionEvent ActionEvent){
         homeButton.setStyle("-fx-background-color: #b38b4d; -fx-text-fill: white;");
+        homePane.toFront();
     }
 
     public void onClickSoldunits(javafx.event.ActionEvent ActionEvent){
         soldunitsButton.setStyle("-fx-background-color: #b38b4d; -fx-text-fill: white;");
-        homePane.toFront();
+        soldunitsPane.toFront();
     }
     public void onClickIncome(javafx.event.ActionEvent ActionEvent){
 
@@ -91,6 +92,7 @@ public class OwnerController extends Controller implements Initializable {
 
     public void onClickSettings(javafx.event.ActionEvent ActionEvent){
         settingsButton.setStyle("-fx-background-color: #b38b4d; -fx-text-fill: white;");
+        settingsPane.toFront();
     }
 
     public void onClickLogout(javafx.event.ActionEvent ActionEvent) throws IOException {

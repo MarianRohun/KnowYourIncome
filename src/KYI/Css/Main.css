@@ -47,7 +47,7 @@
     -fx-background-color: #b38b4d;
 }
 
-#headerLabel{
-   -fx-font-style: bold;
+.headerLabel{
+   -fx-font-weight: bold;
 }
 

@@ -61,7 +61,7 @@ public class LoginController extends Controller implements Initializable { //pri
             if (result.next()) {
                 User user = new User(result.getInt(1), result.getString(2),
                         result.getString(3), result.getString(4),
-                        result.getInt(5));
+                        result.getInt(5), result.getString(6), result.getInt(7));
                 System.out.println(user.getEmail());
                 Controller.openWindowUser("../SystemGuard/SystemGuard.fxml", user);
 

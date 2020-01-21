@@ -1,14 +1,19 @@
 package KYI.Owner;
 
+import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
+import KYI.Entits.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,6 +22,10 @@ import javafx.scene.layout.Pane;
 import javax.swing.text.Style;
 import java.awt.*;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
@@ -56,7 +65,13 @@ public class OwnerController extends Controller implements Initializable {
     private Pane incomePane;
     @FXML
     private Pane settingsPane;
+    @FXML
+    private VBox userVBox;
+    @FXML
+    private Label usernameLabel,surnameLabel,emailLabel,workedHoursLabel;
 
+    Connectivity connectivity = new Connectivity();
+    Connection connection = connectivity.getConnection();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -78,10 +93,25 @@ public class OwnerController extends Controller implements Initializable {
         ordersPane.toFront();
         changeColor(ordersButton);
 
+
     }
-    public void onClickEmployees(javafx.event.ActionEvent ActionEvent){
+    public void onClickEmployees(javafx.event.ActionEvent ActionEvent) throws IOException, SQLException {
         employeesPane.toFront();
         changeColor(employeesButton);
+
+        ArrayList<User> employees = new ArrayList<>();
+
+        String select = "SELECT * FROM users";
+        ResultSet result = connection.prepareStatement(select).executeQuery();
+
+        while (result.next()){
+            User user = new User(result.getString(2),result.getString(3),result.getString(4),result.getInt(5),result.getInt(7));
+            if (user.getposition() == 0) {
+                employees.add(user);
+            }
+        }
+
+
     }
     public void onClickHome(javafx.event.ActionEvent ActionEvent){
         homePane.toFront();

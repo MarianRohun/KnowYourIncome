@@ -7,38 +7,30 @@ public class User {
     private String email;
     private int workedHours;
     private String password;
-    private int loginStatus;
     private int position;
+    private int loginStatus;
 
     public User(){
     }
 
-    public User(int id, String surname, String email, String password, int position) {
-        this.id = id;
-        this.surname = surname;
-        this.email = email;
-        this.password = password;
-        this.position = position;
-    }
-    public User(int id, String surname, String email, String password, int loginStatus, int position) {
-        this.id = id;
-        this.surname = surname;
-        this.email = email;
-        this.password = password;
-        this.loginStatus = loginStatus;
-        this.position = position;
-    }
-
-    public User(int id, String name, String surname, String email, int workedHours, String password, int loginStatus, int position) {
+    public User(int id, String name, String surname, String email, int workedHours, String password, int position) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.workedHours = workedHours;
         this.password = password;
-        this.loginStatus = loginStatus;
         this.position = position;
     }
+
+    public User(String name, String surname, String email, int workedHours, int position) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.workedHours = workedHours;
+        this.position = position;
+    }
+
 
     public int getId() { return id; }
 

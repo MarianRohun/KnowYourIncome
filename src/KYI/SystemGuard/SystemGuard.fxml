@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="guardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="380.0" style="-fx-background-color: 11111;" stylesheets="@../Css/SystemGuard.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.SystemGuard.SystemGuardController">
+<AnchorPane fx:id="guardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="380.0" style="-fx-background-color: white;" stylesheets="@../Css/SystemGuard.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.SystemGuard.SystemGuardController">
     <children>
-        <Label layoutX="31.0" layoutY="8.0" prefHeight="27.0" prefWidth="317.0" text="Key was sent to you on your email ">
+        <Label layoutX="31.0" layoutY="8.0" prefHeight="27.0" prefWidth="317.0" text="Key was sent to you on your email " textFill="#b38b4d">
             <font>
                 <Font name="Bookshelf Symbol 7" size="20.0" />
             </font>

@@ -1,16 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/EmployeeScene.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Employee.EmployeeController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Employee.EmployeeController">
    <children>
-      <ImageView fitHeight="602.0" fitWidth="900.0">
-         <image>
-            <Image url="@../../../../399374-top-black-background-image-1920x1200-for-android-tablet.jpg" />
-         </image>
-      </ImageView>
+      <Pane fx:id="sidebarPane" opacity="0.81" prefHeight="606.0" prefWidth="209.0">
+         <children>
+            <Button fx:id="storageButton" layoutX="-7.0" layoutY="282.0" mnemonicParsing="false" onAction="#onClickStorage" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Storage">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="ordersButton" layoutX="-7.0" layoutY="246.0" mnemonicParsing="false" onAction="#onClickOrders" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Orders">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="logoutButton" layoutX="39.0" layoutY="552.0" mnemonicParsing="false" onAction="#onClickLogout" prefHeight="37.0" prefWidth="124.0" text="Log Out">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Line endX="92.40000915527344" layoutX="110.0" layoutY="150.0" startX="-116.39998626708984" />
+            <Label fx:id="nameLabel" layoutX="112.0" layoutY="116.0" prefHeight="26.0" prefWidth="64.0" text="Marian" />
+            <Button fx:id="homeButton" layoutX="-7.0" layoutY="209.0" mnemonicParsing="false" onAction="#onClickHome" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Home">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="sellButton" layoutX="-8.0" layoutY="319.0" mnemonicParsing="false" onAction="#onClickSell" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Sell">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="noteButton" layoutX="-10.0" layoutY="356.0" mnemonicParsing="false" onAction="#onClickNote" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Leave a note">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="settingsButton" layoutX="-8.0" layoutY="393.0" mnemonicParsing="false" onAction="#onClickSettings" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Settings">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="positionLabel" layoutX="14.0" layoutY="116.0" prefHeight="26.0" prefWidth="81.0" text="Owner" />
+         </children>
+      </Pane>
+      <AnchorPane layoutX="208.0" layoutY="2.0" prefHeight="600.0" prefWidth="750.0">
+         <children>
+            <Pane fx:id="ordersPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="275.0" layoutY="170.0" prefHeight="191.0" prefWidth="217.0" text="Orders">
+                     <font>
+                        <Font size="50.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="storagePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="275.0" layoutY="170.0" prefHeight="191.0" prefWidth="217.0" text="Storage">
+                     <font>
+                        <Font size="50.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="sellPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="275.0" layoutY="170.0" prefHeight="191.0" prefWidth="217.0" text="Sell">
+                     <font>
+                        <Font size="50.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="notePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="275.0" layoutY="170.0" prefHeight="191.0" prefWidth="217.0" text="Note">
+                     <font>
+                        <Font size="50.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="settingsPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="275.0" layoutY="170.0" prefHeight="191.0" prefWidth="217.0" text="Settings">
+                     <font>
+                        <Font size="50.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="homePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="275.0" layoutY="170.0" prefHeight="191.0" prefWidth="217.0" text="Home">
+                     <font>
+                        <Font size="50.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

@@ -12,7 +12,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         //FRANKLIN GOTHIC MEDIUM, BOOKSHELF
-        Parent root = FXMLLoader.load(getClass().getResource("owner/owner.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("employee/employee.fxml"));
         primaryStage.setTitle("KnowYourIncome");
         primaryStage.getIcons().add(new Image("Logo/icon.png"));
         primaryStage.setMinWidth(900);

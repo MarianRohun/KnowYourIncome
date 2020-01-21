@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.OwnerController">
+<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.OwnerController">
    <children>
       <Pane fx:id="sidebarPane" opacity="0.81" prefHeight="600.0" prefWidth="202.0">
          <children>
@@ -62,7 +62,7 @@
       </Pane>
       <AnchorPane layoutX="203.0" prefHeight="600.0" prefWidth="750.0">
          <children>
-            <Pane fx:id="settingsPane" layoutX="-2.0" layoutY="-2.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+            <Pane fx:id="settingsPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <Label layoutX="254.0" layoutY="168.0" prefHeight="152.0" prefWidth="265.0" text="Settings">
                      <font>
@@ -71,7 +71,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="incomePane" layoutX="-2.0" layoutY="-2.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+            <Pane fx:id="incomePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <Label layoutX="277.0" layoutY="168.0" prefHeight="152.0" prefWidth="242.0" text="Income">
                      <font>
@@ -80,7 +80,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="soldunitsPane" layoutX="-2.0" layoutY="-2.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+            <Pane fx:id="soldunitsPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <Label layoutX="210.0" layoutY="174.0" prefHeight="152.0" prefWidth="323.0" text="Sold units">
                      <font>
@@ -89,7 +89,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="storagePane" layoutX="-1.0" layoutY="-2.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+            <Pane fx:id="storagePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <Label layoutX="266.0" layoutY="168.0" prefHeight="152.0" prefWidth="253.0" text="Storage">
                      <font>
@@ -98,7 +98,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="ordersPane" layoutX="-1.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+            <Pane fx:id="ordersPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <Label layoutX="280.0" layoutY="176.0" prefHeight="152.0" prefWidth="217.0" text="Orders">
                      <font>
@@ -116,7 +116,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="employeesPane" layoutX="-2.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+            <Pane fx:id="employeesPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <HBox fx:id="employeeTableHeader" alignment="CENTER_LEFT" layoutX="46.0" layoutY="150.0" prefHeight="47.0" prefWidth="660.0">
                      <children>

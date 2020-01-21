@@ -76,12 +76,7 @@ public class OwnerController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         homePane.toFront();
-        if (user.getposition()==1){
-            positionLabel.setText("Owner: ");
-        }
-        else {
-            positionLabel.setText("Employee: ");
-        }
+        positionLabel.setText("Owner: ");
         nameLabel.setText(user.getSurname());
     }
     public void onClickStorage(javafx.event.ActionEvent ActionEvent){
@@ -136,7 +131,6 @@ public class OwnerController extends Controller implements Initializable {
         Stage stage = (Stage) nameLabel.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Login/Login.fxml"));
         Controller.changeScene(stage, loader, "KnowYourIncome");
-        settingsPane.toFront();
     }
     public void changeColor(Button t){
         homeButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");

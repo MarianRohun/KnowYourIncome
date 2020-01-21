@@ -1,6 +1,6 @@
-/*ZMEN NA CLASSU PRE EMPLOYEE,animate jar od Misa*/
+/*ZMEN NA CLASSU PRE EMPLOYEE,animate jar od Misa,Bell notifikacie pre ownera od employee,*/
 #sidebarPane{
- -fx-background-color: #FDFFFF;
+    -fx-background-color: #FDFFFF;
     -fx-opacity: 0.86;
 }
 .buttons{
@@ -48,6 +48,10 @@
 }
 
 .headerLabel{
+<<<<<<< Updated upstream
    -fx-font-weight: bold;
+=======
+   -fx-font-weight:Bold;
+>>>>>>> Stashed changes
 }
 

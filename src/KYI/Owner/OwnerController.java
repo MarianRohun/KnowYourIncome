@@ -25,6 +25,8 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Label nameLabel;
     @FXML
+    private Label positionLabel;
+    @FXML
     private Button storageButton;
     @FXML
     private Button ordersButton;
@@ -58,41 +60,45 @@ public class OwnerController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (user.getposition()==1){
+            positionLabel.setText("Owner: ");
+        }
+        else {
+            positionLabel.setText("Employee: ");
+        }
+        nameLabel.setText(user.getSurname());
     }
-
     public void onClickStorage(javafx.event.ActionEvent ActionEvent){
         storagePane.toFront();
-        storageButton.setStyle("-fx-background-color: #b38b4d; -fx-text-fill: white;");
+        changeColor(storageButton);
     }
 
     public void onClickOrders(javafx.event.ActionEvent ActionEvent){
         ordersPane.toFront();
-        ordersButton.setStyle("-fx-background-color: #b38b4d; -fx-text-fill: white;");
+        changeColor(ordersButton);
 
     }
     public void onClickEmployees(javafx.event.ActionEvent ActionEvent){
-
-        employeesButton.setStyle("-fx-background-color: #b38b4d; -fx-text-fill: white;");
         employeesPane.toFront();
+        changeColor(employeesButton);
     }
     public void onClickHome(javafx.event.ActionEvent ActionEvent){
-        homeButton.setStyle("-fx-background-color: #b38b4d; -fx-text-fill: white;");
         homePane.toFront();
+        changeColor(homeButton);
     }
 
     public void onClickSoldunits(javafx.event.ActionEvent ActionEvent){
-        soldunitsButton.setStyle("-fx-background-color: #b38b4d; -fx-text-fill: white;");
         soldunitsPane.toFront();
+        changeColor(soldunitsButton);
     }
     public void onClickIncome(javafx.event.ActionEvent ActionEvent){
-
-        incomeButton.setStyle("-fx-background-color: #b38b4d; -fx-text-fill: white;");
         incomePane.toFront();
+        changeColor(incomeButton);
     }
 
     public void onClickSettings(javafx.event.ActionEvent ActionEvent){
-        settingsButton.setStyle("-fx-background-color: #b38b4d; -fx-text-fill: white;");
         settingsPane.toFront();
+        changeColor(settingsButton);
     }
 
     public void onClickLogout(javafx.event.ActionEvent ActionEvent) throws IOException {
@@ -100,6 +106,16 @@ public class OwnerController extends Controller implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Login/Login.fxml"));
         Controller.changeScene(stage, loader, "KnowYourIncome");
         settingsPane.toFront();
+    }
+    public void changeColor(Button t){
+        homeButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
+        employeesButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
+        ordersButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
+        storageButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
+        soldunitsButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
+        incomeButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
+        settingsButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
+        t.setStyle("-fx-background-color:#b38b4d; -fx-text-fill: white;");
     }
 
 }

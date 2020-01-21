@@ -32,7 +32,7 @@
                </font>
             </Button>
             <Line endX="92.40000915527344" layoutX="110.0" layoutY="150.0" startX="-116.39998626708984" />
-            <Label fx:id="nameLabel" layoutX="47.0" layoutY="102.0" prefHeight="32.0" prefWidth="109.0" text="Meno lognuteho" />
+            <Label fx:id="nameLabel" layoutX="108.0" layoutY="116.0" prefHeight="26.0" prefWidth="55.0" text="Marian" />
             <Button fx:id="homeButton" layoutX="-7.0" layoutY="209.0" mnemonicParsing="false" onAction="#onClickHome" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Home">
                <font>
                   <Font size="14.0" />
@@ -53,6 +53,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
+            <Label fx:id="positionLabel" layoutX="14.0" layoutY="116.0" prefHeight="26.0" prefWidth="64.0" text="Owner" />
          </children>
       </Pane>
       <AnchorPane layoutX="203.0" prefHeight="600.0" prefWidth="750.0">

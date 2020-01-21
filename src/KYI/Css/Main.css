@@ -1,10 +1,10 @@
-/*ZMEN NA CLASSU PRE EMPLOYEE*/
+/*ZMEN NA CLASSU PRE EMPLOYEE,animate jar od Misa*/
 #sidebarPane{
  -fx-background-color: #FDFFFF;
     -fx-opacity: 0.86;
 }
 .buttons{
-    -fx-background-color:  #181818;
+    -fx-font-size: 15;
     -fx-border-width: 2 2 2 2;
     -fx-text-fill: #b38b4d;
     -fx-background-color: none;
@@ -13,8 +13,11 @@
     -fx-background-color: #b38b4d;
     -fx-text-fill: white;
 }
+.buttons:pressed{
+    -fx-font-size: 12;
+}
 #logoutButton{
-    -fx-background-color:  #181818;
+    -fx-font-size: 15;
     -fx-border-width: 0 0 3 0;
     -fx-border-color: #b38b4d;
     -fx-text-fill: #b38b4d;
@@ -24,7 +27,18 @@
     -fx-background-color: #b38b4d;
     -fx-text-fill: white;
 }
+#logoutButton:pressed{
+ -fx-font-size: 12;
+}
 #homeButton{
     -fx-background-color: #b38b4d;
     -fx-text-fill: white;
+}
+#nameLabel{
+    -fx-font-size: 16;
+    -fx-text-fill: black;
+}
+#positionLabel{
+    -fx-font-size: 16;
+    -fx-text-fill: black;
 }

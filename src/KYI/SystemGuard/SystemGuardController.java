@@ -3,6 +3,7 @@ package KYI.SystemGuard;
 import KYI.Controllers.Controller;
 import KYI.Controllers.SendEmail;
 import KYI.Entits.User;
+import KYI.Login.LoginController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static KYI.Controllers.Controller.user;
+import static KYI.Login.LoginController.key;
 
 public class SystemGuardController extends Controller implements Initializable {
     @FXML
@@ -30,20 +32,10 @@ public class SystemGuardController extends Controller implements Initializable {
     @FXML
     private Button cancelButton;
 
-    String key = "";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Platform.runLater(() -> {
-            key = generateKey();
-        SendEmail.run(user.getEmail(), "KnowYourIncome LOGIN KEY",
-                "Your LOGIN KEY: \n\n" +
-                        key+
-                        "\n-------------------------- \n" +
-                        "Your KNOWYOURINCOME");
-        System.out.println("Email sent successfully");
-        System.out.println(key);
-        });
+
     }
     public void verifyKey(javafx.event.ActionEvent actionEvent)  throws IOException {
 

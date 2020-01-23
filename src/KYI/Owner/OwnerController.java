@@ -100,7 +100,6 @@ public class OwnerController extends Controller implements Initializable {
         employeesPane.toFront();
         changeColor(employeesButton);
 
-
         ObservableList<User> employeesObservableList;
 
         String select = "SELECT * FROM users";
@@ -113,7 +112,6 @@ public class OwnerController extends Controller implements Initializable {
                 employees.add(user);
             }
         }
-
         employeesObservableList = FXCollections.observableArrayList();
         employeesObservableList.addAll(employees);
 

@@ -44,7 +44,6 @@ public class UserCardController extends ListCell<User> {
             if (loader == null) {
                 loader = new FXMLLoader(getClass().getResource("UserCard.fxml"));
                 loader.setController(this);
-
                 try {
                    loader.load();
                 } catch (Exception e) {

@@ -40,7 +40,7 @@ public class LoginController extends Controller implements Initializable { //pri
 
     Connectivity connectivity = new Connectivity();
     Connection connection = connectivity.getConnection();
-
+    public static String key;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,6 +63,18 @@ public class LoginController extends Controller implements Initializable { //pri
                         result.getString(3), result.getString(4),
                         result.getInt(5), result.getString(6), result.getInt(7));
                 System.out.println(user.getEmail());
+
+                new Thread(() -> {
+            key = generateKey();
+            SendEmail.send(user.getEmail(), "KnowYourIncome LOGIN KEY",
+                    "Your LOGIN KEY: \n\n" +
+                            key+
+                            "\n-------------------------- \n" +
+                            "Your KNOWYOURINCOME");
+            System.out.println("Email sent successfully");
+            System.out.println(key);
+            }).start();
+
                 Controller.openWindowUser("../SystemGuard/SystemGuard.fxml", user);
 
                 if (user.getloginStatus() == 1) {

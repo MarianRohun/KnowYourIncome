@@ -9,7 +9,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class SendEmail {
-    public static void run(String ToEmail, String Subject, String Text) {
+    public static void send(String ToEmail, String Subject, String Text) {
             String Msg;
             final String username = "ownerkyi@gmail.com";
             final String password = "maturita2020";

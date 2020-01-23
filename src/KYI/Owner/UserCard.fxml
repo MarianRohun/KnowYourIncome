@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="600.0" stylesheets="@../Css/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="usernameLabel" layoutX="29.0" layoutY="11.0">
          <font>
@@ -42,7 +42,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Label fx:id="fihatralala" layoutX="439.0" layoutY="10.0" text="LOL">
+      <Label fx:id="fihatralala" layoutX="495.0" layoutY="11.0" text="LOL">
          <font>
             <Font size="14.0" />
          </font>

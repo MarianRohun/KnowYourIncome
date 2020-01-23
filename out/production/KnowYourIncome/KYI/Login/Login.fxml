@@ -27,7 +27,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="98.0" layoutY="28.0" prefHeight="80.0" prefWidth="179.0" text="Welcome" textFill="#b38b4d">
+            <Label layoutX="93.0" layoutY="18.0" prefHeight="90.0" prefWidth="190.0" text="Welcome!" textFill="#b38b4d">
                <font>
                   <Font name="Bookshelf Symbol 7" size="43.0" />
                </font>

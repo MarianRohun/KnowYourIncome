@@ -12,11 +12,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         //FRANKLIN GOTHIC MEDIUM, BOOKSHELF
-<<<<<<< Updated upstream
         Parent root = FXMLLoader.load(getClass().getResource("Owner/owner.fxml"));
-=======
-        Parent root = FXMLLoader.load(getClass().getResource("fadeaway/fadeaway.fxml"));
->>>>>>> Stashed changes
         primaryStage.setTitle("KnowYourIncome");
         primaryStage.getIcons().add(new Image("Logo/icon.png"));
         primaryStage.setMinWidth(900);

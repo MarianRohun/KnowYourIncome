@@ -44,7 +44,6 @@ public class UserCardController extends ListCell<User> {
             if (loader == null) {
                 loader = new FXMLLoader(getClass().getResource("UserCard.fxml"));
                 loader.setController(this);
-
                 try {
                    loader.load();
                 } catch (Exception e) {
@@ -53,11 +52,11 @@ public class UserCardController extends ListCell<User> {
 
             }
 
-            /*usernameLabel.setText(user.getName());
+            usernameLabel.setText(user.getName());
             surnameLabel.setText(user.getSurname());
             emailLabel.setText(user.getEmail());
             workedHoursLabel.setText(Integer.toString(user.getWorkedHours()));
-            final int userId = user.getId();*/
+            final int userId = user.getId();
 
             setText(null);
             setGraphic(main);

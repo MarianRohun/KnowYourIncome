@@ -72,6 +72,7 @@ public class Controller {
         Controller controller = new Controller();
         controller.setUser(user);
         newstage.setResizable(false);
+        newstage.initStyle(StageStyle.TRANSPARENT);
         newstage.initModality(Modality.APPLICATION_MODAL);
         newstage.showAndWait();
     }

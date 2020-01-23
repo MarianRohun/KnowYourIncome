@@ -8,14 +8,14 @@
 
 <AnchorPane fx:id="guardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="380.0" style="-fx-background-color: white;" stylesheets="@../Css/SystemGuard.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.SystemGuard.SystemGuardController">
     <children>
-        <Label layoutX="31.0" layoutY="8.0" prefHeight="27.0" prefWidth="317.0" text="Key was sent to you on your email " textFill="#b38b4d">
+        <Label layoutX="27.0" layoutY="14.0" prefHeight="27.0" prefWidth="325.0" text="Key was sent to you, on your email " textFill="#b38b4d">
             <font>
                 <Font name="Bookshelf Symbol 7" size="20.0" />
             </font>
         </Label>
         <TextField fx:id="insertKeyField" layoutX="107.0" layoutY="106.0" prefHeight="26.0" prefWidth="166.0" promptText="Enter your key" />
-        <Button fx:id="confirmButton" layoutX="183.0" layoutY="165.0" mnemonicParsing="false" onAction="#verifyKey" prefHeight="26.0" prefWidth="83.0" text="Confirm" />
-        <Button fx:id="cancelButton" layoutX="288.0" layoutY="165.0" mnemonicParsing="false" onAction="#close" prefHeight="26.0" prefWidth="83.0" text="Cancel">
+        <Button fx:id="confirmButton" layoutX="282.0" layoutY="165.0" mnemonicParsing="false" onAction="#verifyKey" prefHeight="26.0" prefWidth="83.0" text="Confirm" />
+        <Button fx:id="cancelButton" layoutX="14.0" layoutY="165.0" mnemonicParsing="false" onAction="#close" prefHeight="26.0" prefWidth="83.0" text="Cancel">
          <font>
             <Font name="Franklin Gothic Book" size="13.0" />
          </font></Button>

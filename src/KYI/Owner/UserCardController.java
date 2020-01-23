@@ -29,12 +29,12 @@ public class UserCardController extends ListCell<User> {
     private Button deleteUser;
     @FXML
     private FXMLLoader loader;
-    @FXML
-    private Label fihatralala;
+
 
     @Override
     protected void updateItem(User user, boolean empty) {
         super.updateItem(user, empty);
+
         if (empty || user == null) {
 
             setText(null);
@@ -53,11 +53,11 @@ public class UserCardController extends ListCell<User> {
 
             }
 
-            /*usernameLabel.setText(user.getName());
+            usernameLabel.setText(user.getName());
             surnameLabel.setText(user.getSurname());
             emailLabel.setText(user.getEmail());
             workedHoursLabel.setText(Integer.toString(user.getWorkedHours()));
-            final int userId = user.getId();*/
+            final int userId = user.getId();
 
             setText(null);
             setGraphic(main);

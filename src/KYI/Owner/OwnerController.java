@@ -3,6 +3,8 @@ package KYI.Owner;
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
 import KYI.Entits.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -66,12 +69,15 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Pane settingsPane;
     @FXML
-    private VBox userVBox;
-    @FXML
-    private Label usernameLabel,surnameLabel,emailLabel,workedHoursLabel;
+    private ListView employeeListView;
+
+
+
 
     Connectivity connectivity = new Connectivity();
     Connection connection = connectivity.getConnection();
+
+    static ArrayList<User> employees = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -94,19 +100,25 @@ public class OwnerController extends Controller implements Initializable {
         employeesPane.toFront();
         changeColor(employeesButton);
 
-        ArrayList<User> employees = new ArrayList<>();
+
+        ObservableList<User> employeesObservableList;
 
         String select = "SELECT * FROM users";
         ResultSet result = connection.prepareStatement(select).executeQuery();
 
         while (result.next()){
-            User user = new User(result.getString(2),result.getString(3),result.getString(4),result.getInt(5),result.getInt(7));
+            User user = new User(result.getString(2),result.getString(3),result.getString(4),result.getInt(5),
+                    result.getInt(7));
             if (user.getposition() == 0) {
                 employees.add(user);
             }
         }
 
+        employeesObservableList = FXCollections.observableArrayList();
+        employeesObservableList.addAll(employees);
 
+        employeeListView.setItems(employeesObservableList);
+        employeeListView.setCellFactory(employeeListView -> new UserCardController());
     }
     public void onClickHome(javafx.event.ActionEvent ActionEvent){
         homePane.toFront();

@@ -3,50 +3,52 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.OwnerController">
+<AnchorPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="usernameLabel">
+      <Label fx:id="usernameLabel" layoutX="29.0" layoutY="11.0">
          <font>
             <Font size="14.0" />
          </font>
-         <HBox.margin>
-            <Insets left="60.0" />
-         </HBox.margin>
-      </Label>
-      <Label fx:id="surnameLabel">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <HBox.margin>
-            <Insets left="60.0" />
-         </HBox.margin>
-      </Label>
-      <Label fx:id="emailLabel">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <HBox.margin>
-            <Insets left="60.0" />
-         </HBox.margin>
-      </Label>
-      <Label fx:id="workedHoursLabel">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <HBox.margin>
-            <Insets left="60.0" />
-         </HBox.margin>
-      </Label>
-      <Button mnemonicParsing="false" text="Delete">
-         <HBox.margin>
+         <padding>
             <Insets left="70.0" />
-         </HBox.margin>
+         </padding>
+      </Label>
+      <Label fx:id="surnameLabel" layoutX="124.0" layoutY="10.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <padding>
+            <Insets left="70.0" />
+         </padding>
+      </Label>
+      <Label fx:id="emailLabel" layoutX="265.0" layoutY="10.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <padding>
+            <Insets left="70.0" />
+         </padding>
+      </Label>
+      <Label fx:id="workedHoursLabel" layoutX="416.0" layoutY="11.0" prefHeight="20.0" prefWidth="46.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="deleteUser" layoutX="512.0" layoutY="5.0" mnemonicParsing="false" text="Delete" AnchorPane.leftAnchor="512.0">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
+      <Label fx:id="fihatralala" layoutX="439.0" layoutY="10.0" text="LOL">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <padding>
+            <Insets left="70.0" />
+         </padding>
+      </Label>
    </children>
-</HBox>
+</AnchorPane>

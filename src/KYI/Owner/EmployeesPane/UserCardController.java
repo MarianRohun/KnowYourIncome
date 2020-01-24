@@ -1,4 +1,4 @@
-package KYI.Owner;
+package KYI.Owner.EmployeesPane;
 
 import KYI.Entits.User;
 import javafx.fxml.FXML;
@@ -8,9 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 
 public class UserCardController extends ListCell<User> {

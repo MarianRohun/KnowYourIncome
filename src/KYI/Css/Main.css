@@ -45,9 +45,12 @@
 
 #employeeTableHeader{
     -fx-background-color: #b38b4d;
+    -fx-border-width: 2 2 0 2;
+    -fx-border-color: black;
 }
 #employeeListView{
-
+    -fx-border-width: 0 2 2 2;
+    -fx-border-color: black;
 }
 
 .headerLabel{

@@ -1,6 +1,6 @@
 /*ZMEN NA CLASSU PRE EMPLOYEE,animate jar od Misa,Bell notifikacie pre ownera od employee,*/
 #sidebarPane{
-    -fx-background-color: #FDFFFF;
+    -fx-background-color: white;
     -fx-opacity: 0.86;
 }
 .buttons{
@@ -46,8 +46,32 @@
 #employeeTableHeader{
     -fx-background-color: #b38b4d;
 }
+#employeeListView{
+
+}
 
 .headerLabel{
    -fx-font-weight: bold;
 }
+#deleteButton{
+    -fx-font-size: 15;
+    -fx-border-width: 2 2 2 2;
+    -fx-text-fill: #b38b4d;
+    -fx-background-color: none;
+}
+#deleteButton:hover{
+
+}
+#deleteButton:pressed{
+    -fx-font-size: 13;
+}
+.inputs{
+    -fx-font-weight: bold;
+}
+#usercardAnchorPane{
+
+}
+
+
+
 

@@ -22,7 +22,7 @@
       </ImageView>
       <Pane layoutX="272.0" layoutY="41.0" opacity="0.81" prefHeight="482.0" prefWidth="374.0" style="-fx-background-color: #181818;">
          <children>
-            <Label fx:id="error" layoutX="87.0" layoutY="108.0" prefHeight="32.0" prefWidth="202.0" textFill="#fa0000">
+            <Label fx:id="error" layoutX="87.0" layoutY="108.0" prefHeight="32.0" prefWidth="253.0" textFill="#fa0000">
                <font>
                   <Font size="15.0" />
                </font>

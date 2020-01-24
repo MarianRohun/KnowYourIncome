@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 public class UserCardController extends ListCell<User> {
 
     @FXML
-    private AnchorPane main;
+    private AnchorPane usercardAnchorPane;
     @FXML
     private Label usernameLabel;
     @FXML
@@ -59,7 +59,7 @@ public class UserCardController extends ListCell<User> {
             final int userId = user.getId();
 
             setText(null);
-            setGraphic(main);
+            setGraphic(usercardAnchorPane);
         }
     }
 }

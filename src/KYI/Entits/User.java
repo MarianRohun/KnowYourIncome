@@ -31,6 +31,13 @@ public class User {
         this.position = position;
     }
 
+    public User(String name, String surname, String email, int position) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.position = position;
+    }
+
 
     public int getId() { return id; }
 

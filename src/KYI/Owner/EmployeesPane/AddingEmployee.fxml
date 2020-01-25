@@ -5,13 +5,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="286.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="addingPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="286.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.EmployeesPane.AddingEmployeeController">
    <children>
       <Label layoutX="102.0" layoutY="14.0" text="User properties" />
-      <TextField fx:id="employeeNameField" layoutX="70.0" layoutY="69.0" />
-      <TextField fx:id="employeeSurnameField" layoutX="70.0" layoutY="117.0" />
-      <TextField fx:id="employeeEmailField" layoutX="70.0" layoutY="167.0" />
-      <Button fx:id="submitAdding" layoutX="96.0" layoutY="211.0" mnemonicParsing="false" text="Add Employee" />
+      <TextField fx:id="nameTextField" layoutX="70.0" layoutY="69.0" />
+      <TextField fx:id="surnameTextField" layoutX="70.0" layoutY="117.0" />
+      <TextField fx:id="emailTextField" layoutX="70.0" layoutY="167.0" />
+      <Button fx:id="submitButton" layoutX="96.0" layoutY="211.0" mnemonicParsing="false" onAction="#onClickSubmit" text="Add Employee" />
+      <Label fx:id="errorLabel" layoutX="129.0" layoutY="248.0" textFill="RED" />
    </children>
 </AnchorPane>

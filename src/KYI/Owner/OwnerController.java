@@ -68,7 +68,7 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Button addUserButton;
 
-
+    public static ObservableList<User> employeesObservableList;
 
     Connectivity connectivity = new Connectivity();
     Connection connection = connectivity.getConnection();
@@ -95,8 +95,8 @@ public class OwnerController extends Controller implements Initializable {
         employeesPane.toFront();
         changeColor(employeesButton);
 
-        ObservableList<User> employeesObservableList;
         ArrayList<User> employees = new ArrayList<>();
+
 
         String select = "SELECT * FROM users";
         ResultSet result = connection.prepareStatement(select).executeQuery();
@@ -115,8 +115,8 @@ public class OwnerController extends Controller implements Initializable {
         employeeListView.setCellFactory(employeeListView -> new UserCardController());
 
     }
-    public void onClickAddUser(ActionEvent actionEvent) {
-
+    public void onClickAddUser(ActionEvent actionEvent) throws Exception {
+        openWindow("../Owner/EmployeesPane/AddingEmployee.fxml");
     }
 
 
@@ -155,6 +155,7 @@ public class OwnerController extends Controller implements Initializable {
         settingsButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
         t.setStyle("-fx-background-color:#b38b4d; -fx-text-fill: white;");
     }
+
 
 
 }

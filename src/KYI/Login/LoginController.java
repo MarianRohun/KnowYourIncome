@@ -40,6 +40,7 @@ public class LoginController extends Controller implements Initializable { //pri
 
     Connectivity connectivity = new Connectivity();
     Connection connection = connectivity.getConnection();
+
     public static String key;
 
     @Override
@@ -75,7 +76,7 @@ public class LoginController extends Controller implements Initializable { //pri
             System.out.println(key);
             }).start();
 
-                Controller.openWindowUser("../SystemGuard/SystemGuard.fxml", user);
+                openWindowUser("../SystemGuard/SystemGuard.fxml", user);
 
                 if (user.getloginStatus() == 1) {
                     if (user.getposition() == 1) {

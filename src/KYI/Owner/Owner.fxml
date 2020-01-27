@@ -10,21 +10,21 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.OwnerController">
+<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.OwnerController">
    <children>
       <Pane fx:id="sidebarPane" opacity="0.81" prefHeight="600.0" prefWidth="202.0">
          <children>
-            <Button fx:id="storageButton" layoutX="-7.0" layoutY="320.0" mnemonicParsing="false" onAction="#onClickStorage" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Storage">
+            <Button fx:id="storageButton" layoutX="-7.0" layoutY="339.0" mnemonicParsing="false" onAction="#onClickStorage" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Storage">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="ordersButton" layoutX="-7.0" layoutY="283.0" mnemonicParsing="false" onAction="#onClickOrders" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Orders">
+            <Button fx:id="ordersButton" layoutX="-7.0" layoutY="300.0" mnemonicParsing="false" onAction="#onClickOrders" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Orders">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="employeesButton" layoutX="-7.0" layoutY="246.0" mnemonicParsing="false" onAction="#onClickEmployees" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Employees">
+            <Button fx:id="employeesButton" layoutX="-7.0" layoutY="257.0" mnemonicParsing="false" onAction="#onClickEmployees" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Employees">
                <font>
                   <Font size="14.0" />
                </font>
@@ -41,17 +41,17 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="soldunitsButton" layoutX="-7.0" layoutY="357.0" mnemonicParsing="false" onAction="#onClickSoldunits" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Sold units">
+            <Button fx:id="soldunitsButton" layoutX="-7.0" layoutY="383.0" mnemonicParsing="false" onAction="#onClickSoldunits" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Sold units">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="incomeButton" layoutX="-8.0" layoutY="394.0" mnemonicParsing="false" onAction="#onClickIncome" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Income">
+            <Button fx:id="incomeButton" layoutX="-7.0" layoutY="431.0" mnemonicParsing="false" onAction="#onClickIncome" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Income">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="settingsButton" layoutX="-7.0" layoutY="431.0" mnemonicParsing="false" onAction="#onClickSettings" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Settings">
+            <Button fx:id="settingsButton" layoutX="-7.0" layoutY="478.0" mnemonicParsing="false" onAction="#onClickSettings" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Settings">
                <font>
                   <Font size="14.0" />
                </font>
@@ -119,7 +119,23 @@
                <children>
                   <HBox fx:id="employeeTableHeader" alignment="CENTER_LEFT" layoutX="46.0" layoutY="150.0" prefHeight="47.0" prefWidth="660.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="20.0" prefWidth="51.0" styleClass="headerLabel" text="Name" textFill="WHITE">
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="62.0" styleClass="headerLabel" text="Name" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="40.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="70.0" styleClass="headerLabel" text="Surname" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="65.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="114.0" styleClass="headerLabel" text="E-MAIL" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -127,28 +143,12 @@
                               <Insets left="60.0" />
                            </HBox.margin>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="20.0" prefWidth="70.0" styleClass="headerLabel" text="Surname" textFill="WHITE">
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="115.0" styleClass="headerLabel" text="Worked Hours" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="60.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="20.0" prefWidth="51.0" styleClass="headerLabel" text="E-MAIL" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="60.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="20.0" prefWidth="108.0" styleClass="headerLabel" text="Worked Hours" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="60.0" />
+                              <Insets left="50.0" />
                            </HBox.margin>
                         </Label>
                      </children>

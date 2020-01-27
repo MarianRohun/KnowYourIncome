@@ -10,8 +10,8 @@
     -fx-background-color: none;
 }
 .buttons:hover{
-    -fx-background-color: #b38b4d;
-    -fx-text-fill: white;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #b38b4d;
 }
 .buttons:pressed{
     -fx-font-size: 12;
@@ -44,35 +44,95 @@
 }
 
 #employeeTableHeader{
+    -fx-opacity: 0.86;
     -fx-background-color: #b38b4d;
-    -fx-border-width: 2 2 0 2;
-    -fx-border-color: black;
 }
-#employeeListView{
-    -fx-border-width: 0 2 2 2;
-    -fx-border-color: black;
+.list-view {
+    -fx-border-width: 2 2 2 2;
+    -fx-border-color: white;
 }
-
 .headerLabel{
    -fx-font-weight: bold;
 }
+.list-cell:selected{
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+.list-cell:odd{
+    -fx-background-color: white;
+}
 #deleteButton{
     -fx-font-size: 15;
-    -fx-border-width: 2 2 2 2;
-    -fx-text-fill: #b38b4d;
-    -fx-background-color: none;
+    -fx-border-width: 2 2 2 2;;
+    -fx-border-color: black;
+    -fx-text-fill: black;
+    -fx-border-radius: 10%;
+    -fx-background-color: white;
 }
 #deleteButton:hover{
-
+    -fx-background-color: black;
+    -fx-text-fill: white;
 }
 #deleteButton:pressed{
     -fx-font-size: 13;
 }
 .inputs{
+    -fx-text-fill: black;
     -fx-font-weight: bold;
 }
-#usercardAnchorPane{
-
+#insertKeyField{
+    -fx-text-fill: #f50606;
+    -fx-border-radius: 2%;
+    -fx-background-color: none;
+    -fx-border-color: black;
+    -fx-prompt-text-fill: black;
+    -fx-text-alignment: middle;
+}
+#confirmButton{
+    -fx-background-color:  #181818;
+    /*-fx-background-radius: 15 15 15 15;*/
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: black;
+    -fx-text-fill: black;
+    -fx-background-color: none;
+}
+#confirmButton:hover {
+    -fx-border-width: 1 1 1 1;
+    -fx-border-color: black;
+    -fx-border-radius: 15%;
+}
+#confirmButton:pressed {
+    -fx-text-fill: #f50606;
+    -fx-border-color: #f50606;
+}
+#cancelButton{
+    -fx-background-color:  #181818;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: black;
+    -fx-text-fill: black;
+    -fx-background-color: none;
+}
+#cancelButton:hover {
+    -fx-border-width: 1 1 1 1;
+    -fx-border-color: black;
+    -fx-border-radius: 15%;
+}
+#cancelButton:pressed {
+    -fx-text-fill:#f50606;
+    -fx-border-color: #f50606;
+}
+.text-field{
+    -fx-text-fill: #f50606;
+    -fx-border-radius: 2%;
+    -fx-background-color: none;
+    -fx-border-color: black;
+    -fx-prompt-text-fill: black;
+    -fx-text-alignment: middle;
+}
+#addingPane{
+    -fx-border-width: 4 4 4 4;
+    -fx-border-color: #b38b4d;
+    -fx-background-color: white;
 }
 
 

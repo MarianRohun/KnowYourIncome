@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="usercardAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="644.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="usercardAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="634.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="usernameLabel" layoutX="-34.0" layoutY="10.0" prefHeight="20.0" prefWidth="144.0" styleClass="inputs" text="Employee">
+      <Label fx:id="usernameLabel" layoutX="-34.0" layoutY="10.0" prefHeight="20.0" prefWidth="154.0" styleClass="inputs" text="Employee">
          <font>
             <Font size="14.0" />
          </font>
@@ -16,7 +16,7 @@
             <Insets left="70.0" />
          </padding>
       </Label>
-      <Label fx:id="surnameLabel" layoutX="89.0" layoutY="10.0" styleClass="inputs" text="Employee">
+      <Label fx:id="surnameLabel" layoutX="89.0" layoutY="10.0" prefHeight="20.0" prefWidth="166.0" styleClass="inputs" text="Employee">
          <font>
             <Font size="14.0" />
          </font>
@@ -24,7 +24,7 @@
             <Insets left="70.0" />
          </padding>
       </Label>
-      <Label fx:id="emailLabel" layoutX="192.0" layoutY="10.0" prefHeight="20.0" prefWidth="250.0" styleClass="inputs" text="marian.rohun@gmail.com">
+      <Label fx:id="emailLabel" layoutX="192.0" layoutY="10.0" prefHeight="20.0" prefWidth="268.0" styleClass="inputs" text="marian.rohun@gmail.com">
          <font>
             <Font size="14.0" />
          </font>
@@ -37,7 +37,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="deleteButton" layoutX="565.0" layoutY="5.0" mnemonicParsing="false" text="Delete">
+      <Button fx:id="deleteButton" layoutX="566.0" layoutY="4.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="67.0" text="Delete">
          <font>
             <Font size="14.0" />
          </font>

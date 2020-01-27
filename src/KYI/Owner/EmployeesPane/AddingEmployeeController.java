@@ -33,7 +33,9 @@ public class AddingEmployeeController extends Controller implements Initializabl
     @FXML
     private TextField emailTextField;
     @FXML
-    private Button submitButton;
+    private Button confirmButton;
+    @FXML
+    private Button cancelButton;
     @FXML
     private Label errorLabel;
 
@@ -46,7 +48,7 @@ public class AddingEmployeeController extends Controller implements Initializabl
     }
 
 
-    public void onClickSubmit(ActionEvent actionEvent) throws SQLException {
+    public void onClickConfirm(ActionEvent actionEvent) throws SQLException {
         if (nameTextField.getText().isEmpty()){
             errorLabel.setText("Please enter the name");
         }
@@ -61,17 +63,16 @@ public class AddingEmployeeController extends Controller implements Initializabl
             String insert = "INSERT INTO users(name,surname,email,position) VALUES " +
                     "('"+nameTextField.getText()+"','" +surnameTextField.getText()+"','"+emailTextField.getText()+"','"+
                     0+"')";
-            statement.executeUpdate(insert);
+            statement.executeLargeUpdate(insert);
             System.out.println("Employee added successfully");
             User employee = new User(nameTextField.getText(),surnameTextField.getText(),emailTextField.getText(),0);
             employeesObservableList.add(employee);
             connection.close();
-            close();
+            onClickCancel(actionEvent);
 
         }
-
     }
-    public void close (){
+    public void  onClickCancel(javafx.event.ActionEvent ActionEvent){
         Stage stage = (Stage) addingPane.getScene().getWindow();
         stage.close();
     }

@@ -4,14 +4,23 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="addingPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="286.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.EmployeesPane.AddingEmployeeController">
+<AnchorPane fx:id="addingPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="311.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.EmployeesPane.AddingEmployeeController">
    <children>
-      <Label layoutX="102.0" layoutY="14.0" text="User properties" />
-      <TextField fx:id="nameTextField" layoutX="70.0" layoutY="69.0" />
-      <TextField fx:id="surnameTextField" layoutX="70.0" layoutY="117.0" />
-      <TextField fx:id="emailTextField" layoutX="70.0" layoutY="167.0" />
-      <Button fx:id="submitButton" layoutX="96.0" layoutY="211.0" mnemonicParsing="false" onAction="#onClickSubmit" text="Add Employee" />
-      <Label fx:id="errorLabel" layoutX="129.0" layoutY="248.0" textFill="RED" />
+      <Label layoutX="68.0" layoutY="14.0" prefHeight="46.0" prefWidth="178.0" text="USER PROPERTIES" textFill="#b38b4d">
+         <font>
+            <Font size="21.0" />
+         </font></Label>
+      <TextField fx:id="nameTextField" layoutX="81.0" layoutY="93.0" prefHeight="34.0" prefWidth="149.0" promptText="name" />
+      <TextField fx:id="surnameTextField" layoutX="80.0" layoutY="167.0" prefHeight="34.0" prefWidth="150.0" promptText="surname" />
+      <TextField fx:id="emailTextField" layoutX="80.0" layoutY="248.0" prefHeight="34.0" prefWidth="150.0" promptText="email" />
+      <Button fx:id="confirmButton" layoutX="199.0" layoutY="354.0" mnemonicParsing="false" onAction="#onClickConfirm" prefHeight="34.0" prefWidth="98.0" text="Confirm" />
+      <Label fx:id="errorLabel" layoutX="130.0" layoutY="32.0" prefHeight="34.0" prefWidth="27.0" textFill="RED" />
+      <Button fx:id="cancelButton" layoutX="14.0" layoutY="353.0" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="34.0" prefWidth="98.0" text="Cancel">
+         <font>
+            <Font name="Franklin Gothic Book" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -40,5 +40,7 @@
     -fx-text-fill:#f50606 ;
 }
 #guardPane{
-
+    -fx-border-width: 4 4 4 4;
+    -fx-border-color: #b38b4d;
+    -fx-background-color: white;
 }

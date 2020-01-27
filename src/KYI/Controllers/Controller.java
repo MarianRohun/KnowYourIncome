@@ -61,6 +61,7 @@ public class Controller {
         Scene scene = new Scene(root);
         newstage.setScene(scene);
         newstage.setResizable(false);
+        newstage.initStyle(StageStyle.TRANSPARENT);
         newstage.initModality(Modality.APPLICATION_MODAL);
         newstage.showAndWait();
     }

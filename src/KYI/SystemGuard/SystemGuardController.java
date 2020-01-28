@@ -38,7 +38,6 @@ public class SystemGuardController extends Controller implements Initializable {
 
     }
     public void verifyKey(javafx.event.ActionEvent actionEvent)  throws IOException {
-
                 if (key.equals(insertKeyField.getText())){
                     user.setloginStatus(1);
                     close();

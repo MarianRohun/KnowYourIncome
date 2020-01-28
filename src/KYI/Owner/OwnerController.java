@@ -69,6 +69,8 @@ public class OwnerController extends Controller implements Initializable {
     private Button addUserButton;
     @FXML
     private Button noteButton;
+    @FXML
+    private Pane notePane;
 
     public static ObservableList<User> employeesObservableList;
 
@@ -125,7 +127,6 @@ public class OwnerController extends Controller implements Initializable {
         openWindow("../Owner/EmployeesPane/AddingEmployee.fxml");
     }
 
-
     //HOMESCREEN PANE
     public void onClickHome(javafx.event.ActionEvent ActionEvent){
         homePane.toFront();
@@ -141,7 +142,8 @@ public class OwnerController extends Controller implements Initializable {
         changeColor(incomeButton);
     }
     public void onClickNote(javafx.event.ActionEvent ActionEvent){
-
+        notePane.toFront();
+        changeColor(noteButton);
     }
     public void onClickSettings(javafx.event.ActionEvent ActionEvent){
         settingsPane.toFront();
@@ -161,6 +163,7 @@ public class OwnerController extends Controller implements Initializable {
         soldunitsButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
         incomeButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
         settingsButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
+        noteButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
         t.setStyle("-fx-background-color:#b38b4d; -fx-text-fill: white;");
     }
 

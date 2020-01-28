@@ -47,7 +47,6 @@ public class LoginController extends Controller implements Initializable { //pri
     public void initialize(URL location, ResourceBundle resources) {
 
     }
-
     public void onClickLogin(javafx.event.ActionEvent actionEvent) throws Exception {
         if (validate(loginEmailField.getText()) == false)  {
             error.setText("Please enter the correct E-MAIL");
@@ -66,15 +65,15 @@ public class LoginController extends Controller implements Initializable { //pri
                 System.out.println(user.getEmail());
 
                 new Thread(() -> {
-            key = generateKey();
-            SendEmail.send(user.getEmail(), "KnowYourIncome LOGIN KEY",
-                    "Your LOGIN KEY: \n\n" +
-                            key+
-                            "\n-------------------------- \n" +
-                            "Your KNOWYOURINCOME");
-            System.out.println("Email sent successfully");
-            System.out.println(key);
-            }).start();
+                    key = generateKey();
+                    SendEmail.send(user.getEmail(), "KnowYourIncome LOGIN KEY",
+                            "Your LOGIN KEY: \n\n" +
+                                    key+
+                                    "\n-------------------------- \n" +
+                                    "Your KNOWYOURINCOME");
+                    System.out.println("Email sent successfully");
+                    System.out.println(key);
+                }).start();
 
                 openWindowUser("../SystemGuard/SystemGuard.fxml", user);
 
@@ -94,15 +93,15 @@ public class LoginController extends Controller implements Initializable { //pri
                     }
                 }
 
-                }
+            }
             else {
                 loginPasswordField.clear();
                 loginEmailField.clear();
                 error.setText("Wrong username or password");
             }
-                }
+        }
 
-            }
     }
+}
 
 

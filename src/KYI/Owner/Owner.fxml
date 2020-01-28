@@ -113,15 +113,6 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="homePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
-               <children>
-                  <Label layoutX="302.0" layoutY="168.0" prefHeight="152.0" prefWidth="217.0" text="HOME">
-                     <font>
-                        <Font size="69.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
             <Pane fx:id="employeesPane" accessibleRole="BUTTON" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <HBox fx:id="employeeTableHeader" alignment="CENTER_LEFT" layoutX="46.0" layoutY="150.0" prefHeight="47.0" prefWidth="660.0">
@@ -174,6 +165,24 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
+               </children>
+            </Pane>
+            <Pane fx:id="homePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="302.0" layoutY="168.0" prefHeight="152.0" prefWidth="217.0" text="HOME">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="notePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="302.0" layoutY="168.0" prefHeight="152.0" prefWidth="217.0" text="Note">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>

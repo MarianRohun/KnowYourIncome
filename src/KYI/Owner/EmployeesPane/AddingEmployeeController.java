@@ -69,7 +69,6 @@ public class AddingEmployeeController extends Controller implements Initializabl
             employeesObservableList.add(employee);
             connection.close();
             onClickCancel(actionEvent);
-
         }
     }
     public void  onClickCancel(javafx.event.ActionEvent ActionEvent){

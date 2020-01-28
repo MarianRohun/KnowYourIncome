@@ -107,3 +107,7 @@ fabric.properties
 .idea/sonarlint
 
 # End of https://www.gitignore.io/api/intellij
+
+.idea/codeStyles/codeStyleConfig.xml
+
+.idea/misc.xml

@@ -102,7 +102,7 @@ public class OwnerController extends Controller implements Initializable {
         ResultSet result = connection.prepareStatement(select).executeQuery();
 
         while (result.next()){
-            User user = new User(result.getString(2),result.getString(3),result.getString(4),result.getInt(5),
+            User user = new User(result.getInt(1),result.getString(2),result.getString(3),result.getString(4),result.getInt(5),
                     result.getInt(7));
             if (user.getposition() == 0) {
                 employees.add(user);

@@ -72,7 +72,7 @@ public class UserCardController extends ListCell<User> {
             surnameLabel.setText(user.getSurname());
             emailLabel.setText(user.getEmail());
             workedHoursLabel.setText(Integer.toString(user.getWorkedHours()));
-            String userEmail = user.getEmail();
+            int userID = user.getId();
 
             deleteButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -80,9 +80,12 @@ public class UserCardController extends ListCell<User> {
 
                     try {
                         Statement statement = connection.createStatement();
-                        String delete = "DELETE FROM users WHERE u_id = '" + userEmail+ "'";
+                        String delete = "DELETE FROM users WHERE u_id = " + userID;
                         statement.executeLargeUpdate(delete);
-                        System.out.println("Employee deleted successfully");
+                        
+                        connection.close();
+
+                        System.out.println("Employee "+ userID +" deleted successfully");
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }

@@ -112,8 +112,12 @@ public class OwnerController extends Controller implements Initializable {
         employeesObservableList.addAll(employees);
 
         employeeListView.setItems(employeesObservableList);
-        employeeListView.setCellFactory(employeeListView -> new UserCardController());
+        employeeListView.setCellFactory(employeeListView -> new UserCardController(this));
 
+    }
+    public void refreshListView(int userID){
+        employeesObservableList.removeIf(employee -> employee.getId() == userID);
+        employeesPane.toFront();
     }
     public void onClickAddUser(ActionEvent actionEvent) throws Exception {
         openWindow("../Owner/EmployeesPane/AddingEmployee.fxml");

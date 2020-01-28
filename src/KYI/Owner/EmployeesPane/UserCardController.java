@@ -10,9 +10,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 
 
+import java.security.acl.Owner;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -20,8 +22,12 @@ import java.sql.Statement;
 
 public class UserCardController extends ListCell<User> {
 
-
+    private OwnerController ownerController;
     public static User user = new User();
+
+    public UserCardController(OwnerController ownerController) {
+        this.ownerController = ownerController;
+    }
 
     public User getUser() {
         return user;
@@ -73,22 +79,19 @@ public class UserCardController extends ListCell<User> {
             emailLabel.setText(user.getEmail());
             workedHoursLabel.setText(Integer.toString(user.getWorkedHours()));
             int userID = user.getId();
+            deleteButton.setOnAction(actionEvent -> {
 
-            deleteButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
+                try {
+                    Statement statement = connection.createStatement();
+                    String delete = "DELETE FROM users WHERE u_id = " + userID;
+                    statement.executeLargeUpdate(delete);
+                    connection.close();
 
-                    try {
-                        Statement statement = connection.createStatement();
-                        String delete = "DELETE FROM users WHERE u_id = " + userID;
-                        statement.executeLargeUpdate(delete);
-                        
-                        connection.close();
+                    ownerController.refreshListView(userID);
 
-                        System.out.println("Employee "+ userID +" deleted successfully");
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+                    System.out.println("Employee "+ userID +" deleted successfully");
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
             });
 

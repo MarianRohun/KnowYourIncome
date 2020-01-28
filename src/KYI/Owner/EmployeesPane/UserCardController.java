@@ -1,23 +1,14 @@
 package KYI.Owner.EmployeesPane;
 
-import KYI.Controllers.Connectivity;
 import KYI.Entits.User;
 import KYI.Owner.OwnerController;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
-
-
-import java.security.acl.Owner;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import static KYI.Owner.EmployeesPane.ConfirmDeleteController.isDeleted;
 
 
 public class UserCardController extends ListCell<User> {
@@ -51,9 +42,6 @@ public class UserCardController extends ListCell<User> {
     @FXML
     private FXMLLoader loader;
 
-    Connectivity connectivity = new Connectivity();
-    Connection connection = connectivity.getConnection();
-
     @Override
     protected void updateItem(User user, boolean empty) {
         super.updateItem(user, empty);
@@ -82,15 +70,11 @@ public class UserCardController extends ListCell<User> {
             deleteButton.setOnAction(actionEvent -> {
 
                 try {
-                    Statement statement = connection.createStatement();
-                    String delete = "DELETE FROM users WHERE u_id = " + userID;
-                    statement.executeLargeUpdate(delete);
-                    connection.close();
-
-                    ownerController.refreshListView(userID);
-
-                    System.out.println("Employee "+ userID +" deleted successfully");
-                } catch (SQLException e) {
+                    ownerController.openWindowUser("../Owner/EmployeesPane/ConfirmDelete.fxml",user);
+                    if (isDeleted == true) {
+                        ownerController.refreshListView(user.getId());
+                    }
+                }  catch (Exception e) {
                     e.printStackTrace();
                 }
             });

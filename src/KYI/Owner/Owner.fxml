@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.OwnerController">
+<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.OwnerController">
    <children>
       <Pane fx:id="sidebarPane" opacity="0.81" prefHeight="600.0" prefWidth="202.0">
          <children>
@@ -64,19 +64,14 @@
                   <Font size="14.0" />
                </font>
             </Button>
+<<<<<<< HEAD
+=======
+            <ImageView fx:id="profilePicture" fitHeight="81.0" fitWidth="83.0" layoutX="103.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
+>>>>>>> master
          </children>
       </Pane>
       <AnchorPane layoutX="203.0" prefHeight="600.0" prefWidth="750.0">
          <children>
-            <Pane fx:id="settingsPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
-               <children>
-                  <Label layoutX="254.0" layoutY="168.0" prefHeight="152.0" prefWidth="265.0" text="Settings">
-                     <font>
-                        <Font size="69.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
             <Pane fx:id="incomePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <Label layoutX="277.0" layoutY="168.0" prefHeight="152.0" prefWidth="242.0" text="Income">
@@ -113,6 +108,18 @@
                   </Label>
                </children>
             </Pane>
+<<<<<<< HEAD
+=======
+            <Pane fx:id="homePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="302.0" layoutY="168.0" prefHeight="152.0" prefWidth="217.0" text="HOME">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+>>>>>>> master
             <Pane fx:id="employeesPane" accessibleRole="BUTTON" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <HBox fx:id="employeeTableHeader" alignment="CENTER_LEFT" layoutX="46.0" layoutY="150.0" prefHeight="47.0" prefWidth="660.0">
@@ -167,6 +174,7 @@
                   </Button>
                </children>
             </Pane>
+<<<<<<< HEAD
             <Pane fx:id="homePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <Label layoutX="302.0" layoutY="168.0" prefHeight="152.0" prefWidth="217.0" text="HOME">
@@ -183,6 +191,11 @@
                         <Font size="69.0" />
                      </font>
                   </Label>
+=======
+            <Pane fx:id="settingsPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Button fx:id="chooseImageButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onChooseImageClick" text="Change Profile Picture" />
+>>>>>>> master
                </children>
             </Pane>
          </children>

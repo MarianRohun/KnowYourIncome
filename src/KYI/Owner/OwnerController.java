@@ -11,11 +11,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import javafx.scene.layout.Pane;
 
@@ -70,7 +75,14 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Button noteButton;
     @FXML
+<<<<<<< HEAD
     private Pane notePane;
+=======
+    private Button chooseImageButton;
+    @FXML
+    private ImageView profilePicture;
+
+>>>>>>> master
 
     public static ObservableList<User> employeesObservableList;
 
@@ -93,8 +105,9 @@ public class OwnerController extends Controller implements Initializable {
         ordersPane.toFront();
         changeColor(ordersButton);
     }
-
+    //===============================================================
     //EMPLOYEE LIST PANE
+    //================================================================
     public void onClickEmployees(javafx.event.ActionEvent ActionEvent) throws IOException, SQLException {
         employeesPane.toFront();
         changeColor(employeesButton);
@@ -126,8 +139,13 @@ public class OwnerController extends Controller implements Initializable {
     public void onClickAddUser(ActionEvent actionEvent) throws Exception {
         openWindow("../Owner/EmployeesPane/AddingEmployee.fxml");
     }
+<<<<<<< HEAD
 
+=======
+    //============================================================
+>>>>>>> master
     //HOMESCREEN PANE
+    //============================================================
     public void onClickHome(javafx.event.ActionEvent ActionEvent){
         homePane.toFront();
         changeColor(homeButton);
@@ -142,12 +160,30 @@ public class OwnerController extends Controller implements Initializable {
         changeColor(incomeButton);
     }
     public void onClickNote(javafx.event.ActionEvent ActionEvent){
+<<<<<<< HEAD
         notePane.toFront();
         changeColor(noteButton);
     }
+=======
+
+    }
+    //================================================================
+    //SETTINGS PANE
+    //===============================================================
+>>>>>>> master
     public void onClickSettings(javafx.event.ActionEvent ActionEvent){
         settingsPane.toFront();
         changeColor(settingsButton);
+    }
+    public void onChooseImageClick(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        if (selectedFile != null){
+            selectedFile.getAbsolutePath();
+            Image imge = new Image(selectedFile.toURI().toString());
+            profilePicture.setImage(imge);
+        }
     }
 
     public void onClickLogout(javafx.event.ActionEvent ActionEvent) throws IOException {

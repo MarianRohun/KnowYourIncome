@@ -11,12 +11,12 @@
    <children>
       <Pane fx:id="sidebarPane" opacity="0.81" prefHeight="606.0" prefWidth="209.0">
          <children>
-            <Button fx:id="storageButton" layoutX="-7.0" layoutY="282.0" mnemonicParsing="false" onAction="#onClickStorage" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Storage">
+            <Button fx:id="storageButton" layoutX="-7.0" layoutY="253.0" mnemonicParsing="false" onAction="#onClickStorage" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Storage">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="ordersButton" layoutX="-7.0" layoutY="246.0" mnemonicParsing="false" onAction="#onClickOrders" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Orders">
+            <Button fx:id="ordersButton" layoutX="-7.0" layoutY="210.0" mnemonicParsing="false" onAction="#onClickOrders" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Orders">
                <font>
                   <Font size="14.0" />
                </font>
@@ -28,22 +28,22 @@
             </Button>
             <Line endX="92.40000915527344" layoutX="110.0" layoutY="150.0" startX="-116.39998626708984" />
             <Label fx:id="nameLabel" layoutX="112.0" layoutY="116.0" prefHeight="26.0" prefWidth="64.0" text="Marian" />
-            <Button fx:id="homeButton" layoutX="-7.0" layoutY="209.0" mnemonicParsing="false" onAction="#onClickHome" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Home">
+            <Button fx:id="homeButton" layoutX="-7.0" layoutY="167.0" mnemonicParsing="false" onAction="#onClickHome" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Home">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="sellButton" layoutX="-8.0" layoutY="319.0" mnemonicParsing="false" onAction="#onClickSell" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Sell">
+            <Button fx:id="sellButton" layoutX="-7.0" layoutY="296.0" mnemonicParsing="false" onAction="#onClickSell" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Sell">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="noteButton" layoutX="-10.0" layoutY="356.0" mnemonicParsing="false" onAction="#onClickNote" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Leave a note">
+            <Button fx:id="noteButton" layoutX="-7.0" layoutY="339.0" mnemonicParsing="false" onAction="#onClickNote" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Leave a note">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="settingsButton" layoutX="-8.0" layoutY="393.0" mnemonicParsing="false" onAction="#onClickSettings" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Settings">
+            <Button fx:id="settingsButton" layoutX="-7.0" layoutY="382.0" mnemonicParsing="false" onAction="#onClickSettings" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Settings">
                <font>
                   <Font size="14.0" />
                </font>

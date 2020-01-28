@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -14,17 +16,17 @@
    <children>
       <Pane fx:id="sidebarPane" opacity="0.81" prefHeight="600.0" prefWidth="202.0">
          <children>
-            <Button fx:id="storageButton" layoutX="-7.0" layoutY="339.0" mnemonicParsing="false" onAction="#onClickStorage" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Storage">
+            <Button fx:id="storageButton" layoutX="-7.0" layoutY="296.0" mnemonicParsing="false" onAction="#onClickStorage" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Storage">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="ordersButton" layoutX="-7.0" layoutY="300.0" mnemonicParsing="false" onAction="#onClickOrders" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Orders">
+            <Button fx:id="ordersButton" layoutX="-7.0" layoutY="253.0" mnemonicParsing="false" onAction="#onClickOrders" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Orders">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="employeesButton" layoutX="-7.0" layoutY="257.0" mnemonicParsing="false" onAction="#onClickEmployees" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Employees">
+            <Button fx:id="employeesButton" layoutX="-7.0" layoutY="210.0" mnemonicParsing="false" onAction="#onClickEmployees" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Employees">
                <font>
                   <Font size="14.0" />
                </font>
@@ -34,29 +36,34 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Line endX="92.40000915527344" layoutX="110.0" layoutY="150.0" startX="-116.39998626708984" />
+            <Line endX="92.40000915527344" layoutX="110.0" layoutY="150.0" startX="-116.39998626708984" strokeWidth="3.0" />
             <Label fx:id="nameLabel" layoutX="108.0" layoutY="116.0" prefHeight="26.0" prefWidth="55.0" text="Marian" />
-            <Button fx:id="homeButton" layoutX="-7.0" layoutY="209.0" mnemonicParsing="false" onAction="#onClickHome" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Home">
+            <Button fx:id="homeButton" layoutX="-7.0" layoutY="167.0" mnemonicParsing="false" onAction="#onClickHome" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Home">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="soldunitsButton" layoutX="-7.0" layoutY="383.0" mnemonicParsing="false" onAction="#onClickSoldunits" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Sold units">
+            <Button fx:id="soldunitsButton" layoutX="-7.0" layoutY="339.0" mnemonicParsing="false" onAction="#onClickSoldunits" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Sold units">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="incomeButton" layoutX="-7.0" layoutY="431.0" mnemonicParsing="false" onAction="#onClickIncome" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Income">
+            <Button fx:id="incomeButton" layoutX="-7.0" layoutY="382.0" mnemonicParsing="false" onAction="#onClickIncome" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Income">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="settingsButton" layoutX="-7.0" layoutY="478.0" mnemonicParsing="false" onAction="#onClickSettings" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Settings">
+            <Button fx:id="settingsButton" layoutX="-7.0" layoutY="468.0" mnemonicParsing="false" onAction="#onClickSettings" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Settings">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
             <Label fx:id="positionLabel" layoutX="14.0" layoutY="116.0" prefHeight="26.0" prefWidth="64.0" text="Owner" />
+            <Button fx:id="noteButton" layoutX="-7.0" layoutY="425.0" mnemonicParsing="false" onAction="#onClickNote" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Leave a note">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <AnchorPane layoutX="203.0" prefHeight="600.0" prefWidth="750.0">
@@ -115,7 +122,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="employeesPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+            <Pane fx:id="employeesPane" accessibleRole="BUTTON" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <HBox fx:id="employeeTableHeader" alignment="CENTER_LEFT" layoutX="46.0" layoutY="150.0" prefHeight="47.0" prefWidth="660.0">
                      <children>
@@ -151,10 +158,22 @@
                               <Insets left="50.0" />
                            </HBox.margin>
                         </Label>
+                        <ImageView fitHeight="33.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/delete.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </ImageView>
                      </children>
                   </HBox>
                   <ListView fx:id="employeeListView" layoutX="46.0" layoutY="197.0" prefHeight="404.0" prefWidth="660.0" />
-                  <Button fx:id="addUserButton" layoutX="613.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickAddUser" text="Add Employee" />
+                  <Button fx:id="addUserButton" layoutX="585.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickAddUser" text="Add Employee">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>

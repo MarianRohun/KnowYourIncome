@@ -67,6 +67,8 @@ public class OwnerController extends Controller implements Initializable {
     private ListView employeeListView;
     @FXML
     private Button addUserButton;
+    @FXML
+    private Button noteButton;
 
     public static ObservableList<User> employeesObservableList;
 
@@ -138,7 +140,9 @@ public class OwnerController extends Controller implements Initializable {
         incomePane.toFront();
         changeColor(incomeButton);
     }
+    public void onClickNote(javafx.event.ActionEvent ActionEvent){
 
+    }
     public void onClickSettings(javafx.event.ActionEvent ActionEvent){
         settingsPane.toFront();
         changeColor(settingsButton);

@@ -10,24 +10,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.OwnerController">
+<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.OwnerController">
    <children>
-      <Pane fx:id="sidebarPane" opacity="0.81" prefHeight="600.0" prefWidth="202.0" stylesheets="@../Css/Main.css">
+      <Pane fx:id="sidebarPane" opacity="0.81" prefHeight="600.0" prefWidth="202.0">
          <children>
-            <Button fx:id="storageButton" layoutX="-7.0" layoutY="296.0" mnemonicParsing="false" onAction="#onClickStorage" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Storage">
+            <Button fx:id="storageButton" layoutX="-7.0" layoutY="296.0" mnemonicParsing="false" onAction="#onClickStorage" prefHeight="37.0" prefWidth="205.0" styleClass="buttons" text="Storage">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="ordersButton" layoutX="-7.0" layoutY="253.0" mnemonicParsing="false" onAction="#onClickOrders" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Orders">
+            <Button fx:id="ordersButton" layoutX="-7.0" layoutY="253.0" mnemonicParsing="false" onAction="#onClickOrders" prefHeight="37.0" prefWidth="205.0" styleClass="buttons" text="Orders">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="employeesButton" layoutX="-7.0" layoutY="210.0" mnemonicParsing="false" onAction="#onClickEmployees" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Employees">
+            <Button fx:id="employeesButton" layoutX="-7.0" layoutY="210.0" mnemonicParsing="false" onAction="#onClickEmployees" prefHeight="37.0" prefWidth="205.0" styleClass="buttons" text="Employees">
                <font>
                   <Font size="14.0" />
                </font>
@@ -37,38 +36,34 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Line endX="92.40000915527344" layoutX="110.0" layoutY="150.0" startX="-116.39998626708984" strokeWidth="3.0" />
-            <Label fx:id="nameLabel" layoutX="108.0" layoutY="116.0" prefHeight="26.0" prefWidth="55.0" text="Marian" />
-            <Button fx:id="homeButton" layoutX="-7.0" layoutY="167.0" mnemonicParsing="false" onAction="#onClickHome" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Home">
+            <Label fx:id="nameLabel" layoutX="131.0" layoutY="129.0" prefHeight="26.0" prefWidth="64.0" text="Marian" />
+            <Button fx:id="homeButton" layoutX="-5.0" layoutY="166.0" mnemonicParsing="false" onAction="#onClickHome" prefHeight="37.0" prefWidth="203.0" styleClass="buttons" text="Home">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="soldunitsButton" layoutX="-7.0" layoutY="339.0" mnemonicParsing="false" onAction="#onClickSoldunits" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Sold units">
+            <Button fx:id="soldunitsButton" layoutX="-7.0" layoutY="339.0" mnemonicParsing="false" onAction="#onClickSoldunits" prefHeight="37.0" prefWidth="205.0" styleClass="buttons" text="Sold units">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="incomeButton" layoutX="-7.0" layoutY="382.0" mnemonicParsing="false" onAction="#onClickIncome" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Income">
+            <Button fx:id="incomeButton" layoutX="-7.0" layoutY="382.0" mnemonicParsing="false" onAction="#onClickIncome" prefHeight="37.0" prefWidth="205.0" styleClass="buttons" text="Income">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="settingsButton" layoutX="-7.0" layoutY="468.0" mnemonicParsing="false" onAction="#onClickSettings" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Settings">
+            <Button fx:id="settingsButton" layoutX="-7.0" layoutY="468.0" mnemonicParsing="false" onAction="#onClickSettings" prefHeight="37.0" prefWidth="205.0" styleClass="buttons" text="Settings">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Label fx:id="positionLabel" layoutX="14.0" layoutY="116.0" prefHeight="26.0" prefWidth="64.0" text="Owner" />
-            <Button fx:id="noteButton" layoutX="-7.0" layoutY="425.0" mnemonicParsing="false" onAction="#onClickNote" prefHeight="37.0" prefWidth="217.0" styleClass="buttons" text="Leave a note">
+            <Label fx:id="positionLabel" layoutX="8.0" layoutY="129.0" prefHeight="26.0" prefWidth="62.0" text="Owner" />
+            <Button fx:id="noteButton" layoutX="-7.0" layoutY="425.0" mnemonicParsing="false" onAction="#onClickNote" prefHeight="37.0" prefWidth="205.0" styleClass="buttons" text="Leave a note">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-<<<<<<< HEAD
-=======
-            <ImageView fx:id="profilePicture" fitHeight="81.0" fitWidth="83.0" layoutX="103.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
->>>>>>> master
+            <ImageView fx:id="profilePicture" fitHeight="113.0" fitWidth="181.0" layoutX="11.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
       <AnchorPane layoutX="203.0" prefHeight="600.0" prefWidth="750.0">
@@ -109,8 +104,6 @@
                   </Label>
                </children>
             </Pane>
-<<<<<<< HEAD
-=======
             <Pane fx:id="homePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <Label layoutX="302.0" layoutY="168.0" prefHeight="152.0" prefWidth="217.0" text="HOME">
@@ -120,7 +113,15 @@
                   </Label>
                </children>
             </Pane>
->>>>>>> master
+            <Pane fx:id="notePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="302.0" layoutY="168.0" prefHeight="152.0" prefWidth="217.0" text="Note">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
             <Pane fx:id="employeesPane" accessibleRole="BUTTON" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <HBox fx:id="employeeTableHeader" alignment="CENTER_LEFT" layoutX="46.0" layoutY="150.0" prefHeight="47.0" prefWidth="660.0">
@@ -168,47 +169,25 @@
                      </children>
                   </HBox>
                   <ListView fx:id="employeeListView" layoutX="46.0" layoutY="197.0" prefHeight="404.0" prefWidth="660.0" />
-                  <Button fx:id="addUserButton" layoutX="585.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickAddUser" text="Add Employee">
+                  <Button fx:id="addUserButton" layoutX="585.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickAddUser" styleClass="blackButtons" text="Add Employee">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
                </children>
             </Pane>
-<<<<<<< HEAD
-            <Pane fx:id="homePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
-               <children>
-                  <Label layoutX="302.0" layoutY="168.0" prefHeight="152.0" prefWidth="217.0" text="HOME">
-                     <font>
-                        <Font size="69.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane fx:id="notePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
-               <children>
-                  <Label layoutX="302.0" layoutY="168.0" prefHeight="152.0" prefWidth="217.0" text="Note">
-                     <font>
-                        <Font size="69.0" />
-                     </font>
-                  </Label>
-=======
             <Pane fx:id="settingsPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
-                  <Button fx:id="chooseImageButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onChooseImageClick" text="Change Profile Picture" />
-<<<<<<< HEAD
->>>>>>> master
-=======
-                  <Label fx:id="imagePath" layoutX="147.0" layoutY="55.0" />
-                  <Button fx:id="saveButton" layoutX="136.0" layoutY="81.0" mnemonicParsing="false" text="Save" />
-                  <ImageView fx:id="sampleImage" fitHeight="117.0" fitWidth="115.0" layoutX="14.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="changePasswordButton" layoutX="516.0" layoutY="81.0" mnemonicParsing="false" text="Change Password" />
-                  <Button fx:id="confirmPasswordButton" layoutX="546.0" layoutY="275.0" mnemonicParsing="false" text="Button" />
-                  <Label fx:id="errorLabel" layoutX="557.0" layoutY="327.0" textFill="RED" />
-                  <PasswordField fx:id="oldPasswordField" layoutX="495.0" layoutY="151.0" />
-                  <PasswordField fx:id="newPasswordField" layoutX="495.0" layoutY="190.0" />
-                  <PasswordField fx:id="confirmPasswordField" layoutX="496.0" layoutY="230.0" />
->>>>>>> master
+                  <Button fx:id="chooseImageButton" layoutX="285.0" layoutY="111.0" mnemonicParsing="false" onAction="#onChooseImageClick" prefHeight="35.0" prefWidth="181.0" styleClass="blackButtons" text="Change profile picture" />
+                  <Label fx:id="imagePath" layoutX="290.0" layoutY="75.0" prefHeight="20.0" prefWidth="242.0" text="Profile picture path" textFill="#0039f7" />
+                  <Button fx:id="saveButton" layoutX="315.0" layoutY="288.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" styleClass="ccButtons" text="Save " />
+                  <ImageView fx:id="sampleImage" fitHeight="97.0" fitWidth="170.0" layoutX="296.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="changePasswordButton" layoutX="290.0" layoutY="341.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" styleClass="blackButtons" text="Change Password" />
+                  <Button fx:id="confirmPasswordButton" layoutX="315.0" layoutY="552.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" styleClass="ccButtons" text="Confirm" />
+                  <Label fx:id="errorLabel" layoutX="274.0" layoutY="342.0" prefHeight="25.0" prefWidth="234.0" text="error" textFill="RED" />
+                  <PasswordField fx:id="newPasswordField" layoutX="274.0" layoutY="448.0" prefHeight="35.0" prefWidth="202.0" promptText="New password" />
+                  <PasswordField fx:id="confirmPasswordField" layoutX="274.0" layoutY="500.0" prefHeight="35.0" prefWidth="202.0" promptText="Confirm new password" />
+                  <PasswordField fx:id="oldPasswordField" layoutX="274.0" layoutY="391.0" prefHeight="35.0" prefWidth="202.0" promptText="Old password" />
                </children>
             </Pane>
          </children>

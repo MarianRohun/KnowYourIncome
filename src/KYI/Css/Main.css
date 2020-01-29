@@ -38,9 +38,47 @@
     -fx-font-weight: bold;
     -fx-text-fill: black;
 }
+.blackButtons{
+    -fx-font-size: 15;
+    -fx-border-width: 2 2 2 2;;
+    -fx-border-color: black;
+    -fx-text-fill: black;
+    -fx-border-radius: 10%;
+    -fx-background-color: white;
+}
+.blackButtons:hover{
+    -fx-border-radius: 10%;
+    -fx-background-radius: 10;
+    -fx-background-color: black;
+    -fx-text-fill: white;
+
+}
+.blackButtons:pressed{
+    -fx-font-size: 13;
+}
+.ccButtons{
+    -fx-background-color:  #181818;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: black;
+    -fx-text-fill: black;
+    -fx-background-color: none;
+}
+.ccButtons:hover{
+    -fx-border-width: 2 2 2 2;
+    -fx-border-color: black;
+    -fx-border-radius: 15%;
+}
+.ccButtons:pressed{
+    -fx-background-radius: 15;
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-border-color: black;
+}
 #sidebarPane{
     -fx-background-color: white;
     -fx-opacity: 0.86;
+    -fx-border-color: #b38b4d;
+    -fx-border-width: 0 4 0 0 ;
 }
 
 #logoutButton{
@@ -74,23 +112,17 @@
     -fx-opacity: 0.86;
     -fx-background-color: #b38b4d;
 }
-#deleteButton{
-    -fx-font-size: 15;
-    -fx-border-width: 2 2 2 2;;
-    -fx-border-color: black;
-    -fx-text-fill: black;
-    -fx-border-radius: 10%;
+#addingPane{
+    -fx-border-width: 4 4 4 4;
+    -fx-border-color: #b38b4d;
     -fx-background-color: white;
 }
-#deleteButton:hover{
-    -fx-border-radius: 10%;
-    -fx-background-radius: 10;
-    -fx-background-color: black;
-    -fx-text-fill: white;
-
+#addUserButton:pressed{
+    -fx-font-size: 14;
 }
-#deleteButton:pressed{
-    -fx-font-size: 13;
+#sampleImage{
+    -fx-border-width: 2 2 2 2;
+    -fx-border-color: black;
 }
 #insertKeyField{
     -fx-text-fill: #f50606;
@@ -100,49 +132,11 @@
     -fx-prompt-text-fill: black;
     -fx-text-alignment: middle;
 }
-.ccButtons{
-    -fx-background-color:  #181818;
-    -fx-border-width: 0 0 2 0;
-    -fx-border-color: black;
-    -fx-text-fill: black;
-    -fx-background-color: none;
-}
-.ccButtons:hover{
-    -fx-border-width: 2 2 2 2;
-    -fx-border-color: black;
-    -fx-border-radius: 15%;
-}
-.ccButtons:pressed{
-    -fx-background-radius: 15;
-    -fx-background-color: black;
-    -fx-text-fill: white;
-    -fx-border-color: black;
-}
-#addingPane{
+#confirmDeletePane{
     -fx-border-width: 4 4 4 4;
     -fx-border-color: #b38b4d;
     -fx-background-color: white;
 }
-#addUserButton{
-    -fx-font-size: 15;
-    -fx-border-width: 2 2 2 2;;
-    -fx-border-color: black;
-    -fx-text-fill: black;
-    -fx-border-radius: 10;
-    -fx-background-color: white;
-}
-#addUserButton:hover{
-    -fx-text-fill: white;
-    -fx-background-color: black;
-    -fx-background-radius: 10;
-    -fx-border-width: 2 2 2 2;
-    -fx-border-radius: 10;
-
-}
-#addUserButton:pressed{
-    -fx-font-size: 14;
-}
-
 
 
 

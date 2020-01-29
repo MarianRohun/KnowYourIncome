@@ -66,6 +66,8 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Pane incomePane;
     @FXML
+    private Pane notePane;
+    @FXML
     private Pane settingsPane;
     @FXML
     private ListView employeeListView;
@@ -74,14 +76,7 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Button noteButton;
     @FXML
-<<<<<<< HEAD
-<<<<<<< HEAD
-    private Pane notePane;
-=======
-    private Button chooseImageButton;
-=======
     private Button chooseImageButton, saveButton, changePasswordButton, confirmPasswordButton;
->>>>>>> master
     @FXML
     private ImageView profilePicture, sampleImage;
     @FXML
@@ -89,7 +84,7 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private PasswordField oldPasswordField, newPasswordField, confirmPasswordField;
 
->>>>>>> master
+
 
     public static ObservableList<User> employeesObservableList;
 
@@ -152,11 +147,7 @@ public class OwnerController extends Controller implements Initializable {
     public void onClickAddUser(ActionEvent actionEvent) throws Exception {
         openWindow("../Owner/EmployeesPane/AddingEmployee.fxml");
     }
-<<<<<<< HEAD
-
-=======
     //============================================================
->>>>>>> master
     //HOMESCREEN PANE
     //============================================================
     public void onClickHome(javafx.event.ActionEvent ActionEvent){
@@ -173,20 +164,16 @@ public class OwnerController extends Controller implements Initializable {
         changeColor(incomeButton);
     }
     public void onClickNote(javafx.event.ActionEvent ActionEvent){
-<<<<<<< HEAD
         notePane.toFront();
         changeColor(noteButton);
-    }
-=======
-
     }
     //================================================================
     //SETTINGS PANE
     //===============================================================
->>>>>>> master
     public void onClickSettings(javafx.event.ActionEvent ActionEvent){
         settingsPane.toFront();
         changeColor(settingsButton);
+        changePasswordButton.setVisible(true);
         oldPasswordField.setVisible(false);
         newPasswordField.setVisible(false);
         confirmPasswordField.setVisible(false);
@@ -203,7 +190,7 @@ public class OwnerController extends Controller implements Initializable {
             confirmPasswordField.setVisible(true);
             confirmPasswordButton.setVisible(true);
             errorLabel.setVisible(true);
-
+            changePasswordButton.setVisible(false);
             oldPasswordField.clear();
             newPasswordField.clear();
             confirmPasswordField.clear();
@@ -246,11 +233,9 @@ public class OwnerController extends Controller implements Initializable {
                             errorLabel.setText("Old and New password cannot be same");
                         }
                         else {
-
                             String update = "UPDATE users SET password = '" + newPasswordField.getText() +
                                     "' WHERE u_id =" + user.getId();
                             statement.executeLargeUpdate(update);
-
 
                             errorLabel.setText("");
                             oldPasswordField.clear();
@@ -315,6 +300,7 @@ public class OwnerController extends Controller implements Initializable {
         Controller.changeScene(stage, loader, "KnowYourIncome");
     }
     public void changeColor(Button t){
+        noteButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
         homeButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
         employeesButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
         ordersButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
@@ -322,7 +308,6 @@ public class OwnerController extends Controller implements Initializable {
         soldunitsButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
         incomeButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
         settingsButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
-        noteButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
         t.setStyle("-fx-background-color:#b38b4d; -fx-text-fill: white;");
     }
 }

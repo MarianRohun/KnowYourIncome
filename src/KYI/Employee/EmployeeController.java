@@ -48,9 +48,6 @@ public class EmployeeController extends Controller implements Initializable {
         homePane.toFront();
         positionLabel.setText("Employee: ");
         nameLabel.setText(user.getSurname());
-        if (user.getPassword()==null){
-            settingsPane.toFront();
-        }
     }
     public void onClickHome(javafx.event.ActionEvent ActionEvent){
         homePane.toFront();

@@ -4,7 +4,6 @@ import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
 import KYI.Controllers.SendEmail;
 import KYI.Entits.User;
-;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
@@ -61,7 +60,7 @@ public class LoginController extends Controller implements Initializable { //pri
             if (result.next()) {
                 User user = new User(result.getInt(1), result.getString(2),
                         result.getString(3), result.getString(4),
-                        result.getInt(5), result.getString(6), result.getInt(7));
+                        result.getInt(5), result.getString(6), result.getInt(7),result.getString(8));
                 System.out.println(user.getEmail());
 
                 new Thread(() -> {

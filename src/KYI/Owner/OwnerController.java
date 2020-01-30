@@ -102,6 +102,10 @@ public class OwnerController extends Controller implements Initializable {
             Image image = new Image(user.getProfilePicture());
             profilePicture.setImage(image);
         }
+        else {
+            Image avatar = new Image("@../../icons/user.png");
+            profilePicture.setImage(avatar);
+        }
     }
 
     public void onClickStorage(javafx.event.ActionEvent ActionEvent){
@@ -173,24 +177,33 @@ public class OwnerController extends Controller implements Initializable {
     public void onClickSettings(javafx.event.ActionEvent ActionEvent){
         settingsPane.toFront();
         changeColor(settingsButton);
+
         changePasswordButton.setVisible(true);
         oldPasswordField.setVisible(false);
         newPasswordField.setVisible(false);
         confirmPasswordField.setVisible(false);
         confirmPasswordButton.setVisible(false);
         errorLabel.setVisible(false);
+
         if (user.getProfilePicture() != null) {
             Image image = new Image(user.getProfilePicture());
             sampleImage.setImage(image);
             imagePath.setText(user.getProfilePicture());
         }
+
+        else {
+            Image questionmark = new Image("@../../icons/question.png");
+            sampleImage.setImage(questionmark);
+        }
+
         changePasswordButton.setOnAction(actionEvent -> {
             oldPasswordField.setVisible(true);
             newPasswordField.setVisible(true);
             confirmPasswordField.setVisible(true);
             confirmPasswordButton.setVisible(true);
             errorLabel.setVisible(true);
-            changePasswordButton.setVisible(false);
+            changePasswordButton.setDisable(true);
+
             oldPasswordField.clear();
             newPasswordField.clear();
             confirmPasswordField.clear();
@@ -199,6 +212,7 @@ public class OwnerController extends Controller implements Initializable {
         });
 
         confirmPasswordButton.setOnAction(actionEvent -> {
+
             if (oldPasswordField.getText().isEmpty()){
                 errorLabel.setText("Please enter the old password");
             }
@@ -257,6 +271,7 @@ public class OwnerController extends Controller implements Initializable {
                             newPasswordField.setVisible(false);
                             confirmPasswordField.setVisible(false);
                             confirmPasswordButton.setVisible(false);
+                            changePasswordButton.setDisable(false);
                             errorLabel.setVisible(false);
                         }
                 } catch (SQLException e) {
@@ -265,7 +280,6 @@ public class OwnerController extends Controller implements Initializable {
             }
 
         });
-
     }
     public void onChooseImageClick(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
@@ -282,7 +296,7 @@ public class OwnerController extends Controller implements Initializable {
                     Statement statement = connection.createStatement();
                     String update = "UPDATE users SET profilePicture ='" +path+ "' WHERE u_id = "+user.getId();
                     statement.executeLargeUpdate(update);
-                    connection.close();
+                    user.setProfilePicture(path);
                     System.out.println("Profile picture saved successfully");
 
                 } catch (SQLException e) {
@@ -299,6 +313,7 @@ public class OwnerController extends Controller implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Login/Login.fxml"));
         Controller.changeScene(stage, loader, "KnowYourIncome");
     }
+
     public void changeColor(Button t){
         noteButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
         homeButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
@@ -310,4 +325,5 @@ public class OwnerController extends Controller implements Initializable {
         settingsButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
         t.setStyle("-fx-background-color:#b38b4d; -fx-text-fill: white;");
     }
+
 }

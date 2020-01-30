@@ -6,6 +6,8 @@ import KYI.Entits.User;
 import KYI.Owner.EmployeesPane.UserCardController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import javafx.scene.layout.Pane;
 
+import javax.swing.*;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -73,6 +76,8 @@ public class OwnerController extends Controller implements Initializable {
     private ListView employeeListView;
     @FXML
     private Button addUserButton;
+    @FXML
+    private TextField filterField;
     @FXML
     private Button noteButton;
     @FXML
@@ -143,7 +148,10 @@ public class OwnerController extends Controller implements Initializable {
         employeeListView.setItems(employeesObservableList);
         employeeListView.setCellFactory(employeeListView -> new UserCardController(this));
 
-    }
+        FilteredList<User>filteredData = new FilteredList<>(employeesObservableList, b -> true);
+        
+        }
+
     public void refreshListView(int userID){
         employeesObservableList.removeIf(employee -> employee.getId() == userID);
         employeesPane.toFront();

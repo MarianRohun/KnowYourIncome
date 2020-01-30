@@ -2,6 +2,7 @@ package KYI.Owner.EmployeesPane;
 
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
+import KYI.Controllers.SendEmail;
 import KYI.Entits.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,7 +49,7 @@ public class AddingEmployeeController extends Controller implements Initializabl
 
     }
 
-
+    public String passKey=generateKey();
     public void onClickConfirm(ActionEvent actionEvent) throws SQLException {
         if (nameTextField.getText().isEmpty()){
             errorLabel.setText("Please enter the name");
@@ -61,14 +62,25 @@ public class AddingEmployeeController extends Controller implements Initializabl
         } else {
 
             Statement statement = connection.createStatement();
-            String insert = "INSERT INTO users(name,surname,email,position) VALUES " +
+            String insert = "INSERT INTO users(name,surname,email,position,password) VALUES " +
                     "('"+nameTextField.getText()+"','" +surnameTextField.getText()+"','"+emailTextField.getText()+"','"+
-                    0+"')";
+                    0+"','"+passKey+"')";
             statement.executeLargeUpdate(insert);
             System.out.println("Employee added successfully");
-            User employee = new User(nameTextField.getText(),surnameTextField.getText(),emailTextField.getText(),0);
+            User employee = new User(nameTextField.getText(),surnameTextField.getText(),emailTextField.getText(),0,passKey);
             employeesObservableList.add(employee);
             connection.close();
+            new Thread(() -> {
+                SendEmail.send(emailTextField.getText(), "KnowYourIncome REGISTRATION",
+                         "You have been registered into our system." +
+                                 "Change your password after first login! \n\n"
+                                 +"Your password is: \n\n" +
+                                passKey+
+                                "\n-------------------------- \n" +
+                                "Your KNOWYOURINCOME");
+                System.out.println("Email sent successfully");
+                System.out.println("employers new pass: "+passKey);
+            }).start();
             onClickCancel(actionEvent);
         }
     }

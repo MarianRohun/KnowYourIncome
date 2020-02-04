@@ -101,6 +101,11 @@ public class Controller {
 
     public static final Pattern VALIDEMAIL =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    public static String searchValidate(String searchedItem){
+        if (searchedItem.isEmpty()) return "Zadajte co hladate";
+        if (searchedItem.length() < 3) return "Hladany vyraz musi obsahovat minimalne 3 pismena";
+        return null;
+    }
 
     public static boolean validate(String emailStr) {
         if (emailStr.isEmpty()) return false;

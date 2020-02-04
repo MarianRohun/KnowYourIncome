@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.OwnerController">
+<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.OwnerController">
    <children>
       <Pane fx:id="sidebarPane" opacity="0.81" prefHeight="600.0" prefWidth="202.0">
          <children>
@@ -63,7 +64,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <ImageView fx:id="profilePicture" fitHeight="113.0" fitWidth="181.0" layoutX="11.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="profilePicture" fitHeight="103.0" fitWidth="114.0" layoutX="40.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
       <AnchorPane layoutX="203.0" prefHeight="600.0" prefWidth="750.0">
@@ -122,6 +123,20 @@
                   </Label>
                </children>
             </Pane>
+            <Pane fx:id="settingsPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Button fx:id="chooseImageButton" layoutX="285.0" layoutY="111.0" mnemonicParsing="false" onAction="#onChooseImageClick" prefHeight="35.0" prefWidth="181.0" styleClass="blackButtons" text="Change profile picture" />
+                  <Label fx:id="imagePath" layoutX="290.0" layoutY="75.0" prefHeight="20.0" prefWidth="323.0" text="Profile picture path" textFill="#0039f7" />
+                  <Button fx:id="saveButton" layoutX="315.0" layoutY="288.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" styleClass="ccButtons" text="Save " />
+                  <ImageView fx:id="sampleImage" fitHeight="103.0" fitWidth="120.0" layoutX="315.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="changePasswordButton" layoutX="290.0" layoutY="341.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" styleClass="blackButtons" text="Change Password" />
+                  <Button fx:id="confirmPasswordButton" layoutX="315.0" layoutY="552.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" styleClass="ccButtons" text="Confirm" />
+                  <Label fx:id="errorLabel" layoutX="274.0" layoutY="342.0" prefHeight="25.0" prefWidth="234.0" text="error" textFill="RED" />
+                  <PasswordField fx:id="newPasswordField" layoutX="274.0" layoutY="448.0" prefHeight="35.0" prefWidth="202.0" promptText="New password" />
+                  <PasswordField fx:id="confirmPasswordField" layoutX="274.0" layoutY="500.0" prefHeight="35.0" prefWidth="202.0" promptText="Confirm new password" />
+                  <PasswordField fx:id="oldPasswordField" layoutX="274.0" layoutY="391.0" prefHeight="35.0" prefWidth="202.0" promptText="Old password" />
+               </children>
+            </Pane>
             <Pane fx:id="employeesPane" accessibleRole="BUTTON" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <HBox fx:id="employeeTableHeader" alignment="CENTER_LEFT" layoutX="46.0" layoutY="150.0" prefHeight="47.0" prefWidth="660.0">
@@ -169,25 +184,16 @@
                      </children>
                   </HBox>
                   <ListView fx:id="employeeListView" layoutX="46.0" layoutY="197.0" prefHeight="404.0" prefWidth="660.0" />
-                  <Button fx:id="addUserButton" layoutX="585.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickAddUser" styleClass="blackButtons" text="Add Employee">
+                  <Button fx:id="addUserButton" layoutX="573.0" layoutY="95.0" mnemonicParsing="false" onAction="#onClickAddUser" prefHeight="37.0" prefWidth="133.0" styleClass="blackButtons" text="Add Employee">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-               </children>
-            </Pane>
-            <Pane fx:id="settingsPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
-               <children>
-                  <Button fx:id="chooseImageButton" layoutX="285.0" layoutY="111.0" mnemonicParsing="false" onAction="#onChooseImageClick" prefHeight="35.0" prefWidth="181.0" styleClass="blackButtons" text="Change profile picture" />
-                  <Label fx:id="imagePath" layoutX="290.0" layoutY="75.0" prefHeight="20.0" prefWidth="323.0" text="Profile picture path" textFill="#0039f7" />
-                  <Button fx:id="saveButton" layoutX="315.0" layoutY="288.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" styleClass="ccButtons" text="Save " />
-                  <ImageView fx:id="sampleImage" fitHeight="97.0" fitWidth="170.0" layoutX="296.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="changePasswordButton" layoutX="290.0" layoutY="341.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" styleClass="blackButtons" text="Change Password" />
-                  <Button fx:id="confirmPasswordButton" layoutX="315.0" layoutY="552.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" styleClass="ccButtons" text="Confirm" />
-                  <Label fx:id="errorLabel" layoutX="274.0" layoutY="342.0" prefHeight="25.0" prefWidth="234.0" text="error" textFill="RED" />
-                  <PasswordField fx:id="newPasswordField" layoutX="274.0" layoutY="448.0" prefHeight="35.0" prefWidth="202.0" promptText="New password" />
-                  <PasswordField fx:id="confirmPasswordField" layoutX="274.0" layoutY="500.0" prefHeight="35.0" prefWidth="202.0" promptText="Confirm new password" />
-                  <PasswordField fx:id="oldPasswordField" layoutX="274.0" layoutY="391.0" prefHeight="35.0" prefWidth="202.0" promptText="Old password" />
+                  <TextField fx:id="searchTextfield" layoutX="46.0" layoutY="96.0" prefHeight="37.0" prefWidth="217.0" promptText="search employee">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
                </children>
             </Pane>
          </children>

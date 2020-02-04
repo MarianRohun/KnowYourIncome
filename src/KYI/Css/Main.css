@@ -137,6 +137,11 @@
     -fx-border-color: #b38b4d;
     -fx-background-color: white;
 }
+#searchTextfield{
+    -fx-text-fill: black;
+    -fx-border-width: 2 2 2 2;
+}
+
 
 
 

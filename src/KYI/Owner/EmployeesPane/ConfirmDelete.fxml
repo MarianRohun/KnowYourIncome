@@ -5,23 +5,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="confirmDeletePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="234.0" prefWidth="370.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.EmployeesPane.ConfirmDeleteController">
+<AnchorPane fx:id="confirmDeletePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="234.0" prefWidth="370.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.EmployeesPane.ConfirmDeleteController">
    <children>
       <Button fx:id="deleteButton" layoutX="272.0" layoutY="180.0" mnemonicParsing="false" onAction="#onClickDelete" prefHeight="27.0" prefWidth="71.0" styleClass="ccButtons" text="Delete" />
       <Button fx:id="cancelButton" layoutX="14.0" layoutY="180.0" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="27.0" prefWidth="71.0" styleClass="ccButtons" text="Cancel" />
-      <Label layoutX="8.0" layoutY="8.0" prefHeight="27.0" prefWidth="358.0" text="Are you sure you want to delete this user?" textFill="#b38b4d">
+      <Label layoutX="89.0" layoutY="6.0" prefHeight="27.0" prefWidth="218.0" text="Press delete to confirm" textFill="#b38b4d">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
-      <Label fx:id="usernameLabel" layoutX="137.0" layoutY="52.0" prefHeight="27.0" prefWidth="94.0" text="Name">
+      <Label fx:id="usernameLabel" layoutX="138.0" layoutY="47.0" prefHeight="27.0" prefWidth="94.0" text="Name">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <Label fx:id="surnameLabel" layoutX="137.0" layoutY="95.0" prefHeight="27.0" prefWidth="94.0" text="Surname">
+      <Label fx:id="surnameLabel" layoutX="138.0" layoutY="89.0" prefHeight="27.0" prefWidth="94.0" text="Surname">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <Label fx:id="emailLabel" layoutX="103.0" layoutY="139.0" prefHeight="27.0" prefWidth="255.0" text="Label">
+      <Label fx:id="emailLabel" layoutX="104.0" layoutY="131.0" prefHeight="27.0" prefWidth="255.0" text="Label">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font></Label>

@@ -4,6 +4,7 @@ import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
 import KYI.Entits.User;
 import KYI.Owner.EmployeesPane.UserCardController;
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -17,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -78,6 +80,8 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Button addUserButton;
     @FXML
+    private TextField searchTextfield;
+    @FXML
     private Button noteButton;
     @FXML
     private Button chooseImageButton, saveButton, changePasswordButton, confirmPasswordButton;
@@ -99,6 +103,7 @@ public class OwnerController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //searchTextfield
         homePane.toFront();
         positionLabel.setText("Owner: ");
         nameLabel.setText(user.getSurname());
@@ -147,8 +152,35 @@ public class OwnerController extends Controller implements Initializable {
         employeeListView.setItems(employeesObservableList);
         employeeListView.setCellFactory(employeeListView -> new UserCardController(this));
 
-        FilteredList<User>filteredData = new FilteredList<>(employeesObservableList, b -> true);
+        searchTextfield.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                System.out.println("Enter key was pressed");
+                employeesObservableList.clear();
+                if (searchValidate(searchTextfield.getText().toLowerCase()) == null) {
+                    for (User user : employees) {
+                        if (user.getName().toLowerCase().contains(searchTextfield.getText().toLowerCase())) {
+                            employeesObservableList.add(user);
+                        }
+                        else if (user.getSurname().toLowerCase().contains(searchTextfield.getText().toLowerCase())) {
+                            employeesObservableList.add(user);
+                        }
+                        else if (user.getEmail().toLowerCase().contains(searchTextfield.getText().toLowerCase())) {
+                            employeesObservableList.add(user);
+                        }
 
+                    }
+                    if (employeesObservableList.isEmpty()) {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("VAROVANIE");
+                        alert.setHeaderText("Hladanu polozku nemame v ponuke");
+                        alert.showAndWait();
+                        employeesObservableList.addAll(employees);
+                    }
+                } else {
+                    employeesObservableList.addAll(employees);
+                }
+            }
+        });
         }
     public void refreshListView(int userID){
         employeesObservableList.removeIf(employee -> employee.getId() == userID);

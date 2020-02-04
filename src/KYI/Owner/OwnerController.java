@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -76,8 +77,6 @@ public class OwnerController extends Controller implements Initializable {
     private ListView employeeListView;
     @FXML
     private Button addUserButton;
-    @FXML
-    private TextField filterField;
     @FXML
     private Button noteButton;
     @FXML
@@ -149,9 +148,8 @@ public class OwnerController extends Controller implements Initializable {
         employeeListView.setCellFactory(employeeListView -> new UserCardController(this));
 
         FilteredList<User>filteredData = new FilteredList<>(employeesObservableList, b -> true);
-        
-        }
 
+        }
     public void refreshListView(int userID){
         employeesObservableList.removeIf(employee -> employee.getId() == userID);
         employeesPane.toFront();

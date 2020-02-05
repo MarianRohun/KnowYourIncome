@@ -48,7 +48,6 @@ public class AddingEmployeeController extends Controller implements Initializabl
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-
     public String passKey=generateKey();
     public void onClickConfirm(ActionEvent actionEvent) throws SQLException {
         if (nameTextField.getText().isEmpty()){
@@ -71,13 +70,14 @@ public class AddingEmployeeController extends Controller implements Initializabl
             employeesObservableList.add(employee);
             connection.close();
             new Thread(() -> {
-                SendEmail.send(emailTextField.getText(), "KnowYourIncome REGISTRATION",
-                         "You have been registered into our system." +
-                                 "Change your password after first login! \n\n"
-                                 +"Your password is: \n\n" +
-                                passKey+
+                SendEmail.send(emailTextField.getText(), "KNOWYOURINCOME REGISTRATION",
+                            "Hello "+nameTextField.getText()+" "+surnameTextField.getText()+"\n\n"
+                                 +"You have been registered into our system.\n\n"
+                                 +"Change your password immediately!!! \n\n"
+                                 +"Your password is: "
+                                 +passKey+
                                 "\n-------------------------- \n" +
-                                "Your KNOWYOURINCOME");
+                                "Your KYI SUPPORT");
                 System.out.println("Email sent successfully");
                 System.out.println("employers new pass: "+passKey);
             }).start();

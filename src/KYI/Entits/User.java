@@ -10,6 +10,7 @@ public class User {
     private int position;
     private int loginStatus;
     private String profilePicture;
+    private boolean entry;
 
     public User(){
     }
@@ -23,6 +24,7 @@ public class User {
         this.password = password;
         this.position = position;
         this.profilePicture = profilePicture;
+        this.entry = entry;
     }
 
     public User(int id, String name, String surname, String email, int workedHours, int position) {
@@ -111,6 +113,13 @@ public class User {
         this.profilePicture = profilePicture;
     }
 
+    public void setentry(boolean entry) {
+        this.entry = entry;
+    }
+
+    public boolean isentry() {
+        return entry;
+    }
 }
 
 

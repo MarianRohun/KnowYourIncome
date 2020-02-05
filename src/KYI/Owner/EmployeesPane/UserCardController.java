@@ -74,6 +74,7 @@ public class UserCardController extends ListCell<User> {
                     if (isDeleted == true) {
                         ownerController.refreshListView(user.getId());
                     }
+                    isDeleted=false;
                 }  catch (Exception e) {
                     e.printStackTrace();
                 }

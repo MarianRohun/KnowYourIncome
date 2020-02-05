@@ -13,14 +13,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="loginPane" maxHeight="600.0" maxWidth="900.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/loginScene.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Login.LoginController">
+<AnchorPane fx:id="loginPane" maxHeight="600.0" maxWidth="900.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../Css/loginScene.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Login.LoginController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="900.0">
          <image>
             <Image url="@../../Logo/LoginBC.jpg" />
          </image>
       </ImageView>
-      <Pane layoutX="272.0" layoutY="41.0" opacity="0.81" prefHeight="482.0" prefWidth="374.0" style="-fx-background-color: #181818;">
+      <Pane layoutX="268.0" layoutY="51.0" opacity="0.81" prefHeight="482.0" prefWidth="374.0" style="-fx-background-color: #181818;">
          <children>
             <Label fx:id="error" layoutX="87.0" layoutY="108.0" prefHeight="32.0" prefWidth="253.0" textFill="#fa0000">
                <font>
@@ -33,12 +33,12 @@
                </font>
             </Label>
          </children></Pane>
-      <TextField fx:id="loginEmailField" layoutX="348.0" layoutY="211.0" prefHeight="46.0" prefWidth="214.0" promptText="Username">
+      <TextField fx:id="loginEmailField" layoutX="348.0" layoutY="211.0" prefHeight="46.0" prefWidth="214.0" promptText="          Username">
          <effect>
             <Glow />
          </effect>
       </TextField>
-      <PasswordField fx:id="loginPasswordField" cache="true" layoutX="348.0" layoutY="292.0" prefHeight="46.0" prefWidth="214.0" promptText="Password">
+      <PasswordField fx:id="loginPasswordField" cache="true" layoutX="348.0" layoutY="292.0" prefHeight="46.0" prefWidth="214.0" promptText="          Password">
          <effect>
             <Blend />
          </effect>
@@ -56,5 +56,15 @@
             <Font name="Bookshelf Symbol 7" size="19.0" />
          </font>
       </Label>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="300.0" layoutY="308.0" opacity="0.76" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../icons/lock.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="30.0" layoutX="300.0" layoutY="227.0" opacity="0.76" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../icons/user.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -54,7 +54,7 @@ public class ConfirmDeleteController extends Controller implements Initializable
         String delete = "DELETE FROM users WHERE u_id = "+user.getId();
         statement.executeLargeUpdate(delete);
         connection.close();
-        System.out.println("Employee "+user.getId()+"deleted successfully");
+        System.out.println("Employee "+user.getName()+"deleted successfully");
         isDeleted = true;
         Stage stage = (Stage) confirmDeletePane.getScene().getWindow();
         stage.close();

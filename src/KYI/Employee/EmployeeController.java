@@ -56,7 +56,7 @@ public class EmployeeController extends Controller implements Initializable {
     @FXML
     private ImageView profilePicture, sampleImage;
     @FXML
-    private Label imagePath, errorLabel;
+    private Label imagePath, errorLabel,changePassLabel;
     @FXML
     private PasswordField oldPasswordField, newPasswordField, confirmPasswordField;
 
@@ -65,7 +65,127 @@ public class EmployeeController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        homePane.toFront();
+        if (user.isentry()==true){
+            homePane.toFront();
+        }
+        else {
+            settingsPane.toFront();
+            changeColor(settingsButton);
+            changePasswordButton.setVisible(true);
+            oldPasswordField.setVisible(false);
+            newPasswordField.setVisible(false);
+            confirmPasswordField.setVisible(false);
+            confirmPasswordButton.setVisible(false);
+            errorLabel.setVisible(false);
+
+            changePassLabel.setText("Set your password");
+            changePasswordButton.setText("Set password");
+
+            homeButton.setDisable(true);
+            ordersButton.setDisable(true);
+            storageButton.setDisable(true);
+            sellButton.setDisable(true);
+            noteButton.setDisable(true);
+
+            changePasswordButton.setOnAction(actionEvent -> {
+                oldPasswordField.setVisible(true);
+                newPasswordField.setVisible(true);
+                confirmPasswordField.setVisible(true);
+                confirmPasswordButton.setVisible(true);
+                errorLabel.setVisible(true);
+                changePasswordButton.setDisable(true);
+                changePasswordButton.setStyle("-fx-border-color: black;");
+
+                oldPasswordField.clear();
+                newPasswordField.clear();
+                confirmPasswordField.clear();
+                errorLabel.setText("");
+
+            });
+
+            confirmPasswordButton.setOnAction(actionEvent -> {
+
+                if (oldPasswordField.getText().isEmpty()){
+                    errorLabel.setText("Please enter the old password");
+                }
+
+                else if (newPasswordField.getText().isEmpty()){
+                    errorLabel.setText("Please enter the new password");
+                }
+
+                else if (confirmPasswordField.getText().isEmpty()){
+                    errorLabel.setText("Please confirm your new password");
+                }
+
+                else if (!confirmPasswordField.getText().equals(newPasswordField.getText())){
+                    errorLabel.setText("New Passwords dont match");
+                }
+                else {
+                    try {
+                        Statement statement = connection.createStatement();
+                        String select = "SELECT * FROM users WHERE password = '" + oldPasswordField.getText() + "'";
+                        ResultSet result = connection.prepareStatement(select).executeQuery(select);
+
+                        String oldPassword = "";
+
+                        if (result.next()){
+                            oldPassword = result.getString(6);
+                        }
+
+                        if (!oldPasswordField.getText().equals(oldPassword)){
+                            errorLabel.setText("Wrong old password");
+                        }
+                        else if (oldPassword.equals(newPasswordField.getText())) {
+                            errorLabel.setText("Old and New password cannot be same");
+                        }
+                        else {
+                            String update = "UPDATE users SET password = '" + newPasswordField.getText() +
+                                    "' WHERE u_id =" + user.getId();
+                            statement.executeLargeUpdate(update);
+
+                            errorLabel.setText("");
+                            oldPasswordField.clear();
+                            newPasswordField.clear();
+                            confirmPasswordField.clear();
+
+                            System.out.println("Password successfully changed");
+
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("INFORMATION");
+                            alert.setHeaderText("PASSWORD SUCCESSFULLY CHANGED");
+                            alert.showAndWait();
+
+                            oldPasswordField.clear();
+                            newPasswordField.clear();
+                            confirmPasswordField.clear();
+
+                            oldPasswordField.setVisible(false);
+                            newPasswordField.setVisible(false);
+                            confirmPasswordField.setVisible(false);
+                            confirmPasswordButton.setVisible(false);
+                            changePasswordButton.setDisable(false);
+                            errorLabel.setVisible(false);
+
+                            user.setentry(true);
+                            System.out.println("pass updated");
+                            changePassLabel.setText("Password successfully updated");
+                            changePasswordButton.setText("Change password");
+                            homeButton.setDisable(false);
+                            ordersButton.setDisable(false);
+                            storageButton.setDisable(false);
+                            sellButton.setDisable(false);
+                            noteButton.setDisable(false);
+
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            });
+
+        }
+
         positionLabel.setText("Employee: ");
         nameLabel.setText(user.getSurname());
         if (user.getProfilePicture() != null) {
@@ -94,11 +214,13 @@ public class EmployeeController extends Controller implements Initializable {
         changeColor(noteButton);
     }
     public void onClickSettings(javafx.event.ActionEvent ActionEvent){
+        changePasswordButton.setText("Change password");
         settingsPane.toFront();
         changeColor(settingsButton);
         settingsPane.toFront();
         changeColor(settingsButton);
 
+        changePasswordButton.setDisable(false);
         changePasswordButton.setVisible(true);
         oldPasswordField.setVisible(false);
         newPasswordField.setVisible(false);
@@ -124,6 +246,7 @@ public class EmployeeController extends Controller implements Initializable {
             confirmPasswordButton.setVisible(true);
             errorLabel.setVisible(true);
             changePasswordButton.setDisable(true);
+            changePasswordButton.setStyle("-fx-border-color: black;");
 
             oldPasswordField.clear();
             newPasswordField.clear();
@@ -194,6 +317,9 @@ public class EmployeeController extends Controller implements Initializable {
                         confirmPasswordButton.setVisible(false);
                         changePasswordButton.setDisable(false);
                         errorLabel.setVisible(false);
+
+                        user.setentry(true);
+                        System.out.println("pass updated");
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();

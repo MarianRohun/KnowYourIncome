@@ -78,27 +78,9 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="soldunitsPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
-               <children>
-                  <Label layoutX="210.0" layoutY="174.0" prefHeight="152.0" prefWidth="323.0" text="Sold units">
-                     <font>
-                        <Font size="69.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
             <Pane fx:id="storagePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <Label layoutX="266.0" layoutY="168.0" prefHeight="152.0" prefWidth="253.0" text="Storage">
-                     <font>
-                        <Font size="69.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane fx:id="ordersPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
-               <children>
-                  <Label layoutX="280.0" layoutY="176.0" prefHeight="152.0" prefWidth="217.0" text="Orders">
                      <font>
                         <Font size="69.0" />
                      </font>
@@ -137,9 +119,18 @@
                   <PasswordField fx:id="oldPasswordField" layoutX="274.0" layoutY="391.0" prefHeight="35.0" prefWidth="202.0" promptText="Old password" />
                </children>
             </Pane>
+            <Pane fx:id="soldunitsPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="210.0" layoutY="174.0" prefHeight="152.0" prefWidth="323.0" text="Sold units">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
             <Pane fx:id="employeesPane" accessibleRole="BUTTON" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
-                  <HBox fx:id="employeeTableHeader" alignment="CENTER_LEFT" layoutX="46.0" layoutY="150.0" prefHeight="47.0" prefWidth="660.0">
+                  <HBox fx:id="employeeTableHeader" alignment="CENTER_LEFT" layoutX="46.0" layoutY="150.0" prefHeight="47.0" prefWidth="660.0" styleClass="tableHeader">
                      <children>
                         <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="62.0" styleClass="headerLabel" text="Name" textFill="WHITE">
                            <font>
@@ -194,6 +185,63 @@
                         <Font size="14.0" />
                      </font>
                   </TextField>
+               </children>
+            </Pane>
+            <Pane fx:id="ordersPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <HBox fx:id="employeeTableHeader1" alignment="CENTER_LEFT" layoutX="-1.0" layoutY="116.0" prefHeight="47.0" prefWidth="750.0" styleClass="tableHeader">
+                     <children>
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="112.0" styleClass="headerLabel" text="Product Name" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="70.0" styleClass="headerLabel" text="Quantity" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="120.0" styleClass="headerLabel" text="Unit Buying Price" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="114.0" styleClass="headerLabel" text="Summary Price" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label styleClass="headerLabel" text="Warranty">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="headerLabel" text="Date init">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <ListView fx:id="ordersListView" layoutY="163.0" prefHeight="404.0" prefWidth="750.0" />
                </children>
             </Pane>
          </children>

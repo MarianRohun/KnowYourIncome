@@ -2,8 +2,11 @@ package KYI.Owner;
 
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
+import KYI.Entits.Order;
+import KYI.Entits.Product;
 import KYI.Entits.User;
 import KYI.Owner.EmployeesPane.UserCardController;
+import KYI.Owner.OrdersPane.OrderCardController;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,10 +32,7 @@ import javafx.scene.layout.Pane;
 
 import javax.swing.*;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -76,7 +76,7 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Pane settingsPane;
     @FXML
-    private ListView employeeListView;
+    private ListView employeeListView, ordersListView;
     @FXML
     private Button addUserButton;
     @FXML
@@ -95,6 +95,7 @@ public class OwnerController extends Controller implements Initializable {
 
 
     public static ObservableList<User> employeesObservableList;
+    public static ObservableList<Order> ordersObservableList;
 
     Connectivity connectivity = new Connectivity();
     Connection connection = connectivity.getConnection();
@@ -122,9 +123,29 @@ public class OwnerController extends Controller implements Initializable {
         changeColor(storageButton);
     }
 
-    public void onClickOrders(javafx.event.ActionEvent ActionEvent){
+    public void onClickOrders(javafx.event.ActionEvent ActionEvent) throws SQLException {
         ordersPane.toFront();
         changeColor(ordersButton);
+
+        ArrayList<Order> orders = new ArrayList<>();
+
+        String select = "SELECT products.p_id,products.name,products.quantity,products.buyingPrice,products.warranty,orders.dateInit " +
+                "FROM orders_has_products JOIN products ON (products_p_id = p_id) JOIN orders ON (orders_o_id = o_id) ORDER BY dateInit ASC";
+
+        ResultSet result = connection.prepareStatement(select).executeQuery();
+
+        while (result.next()){
+            Order order = new Order(result.getInt(1),result.getString(2),result.getInt(3),result.getDouble(4),
+                    result.getDate(5),result.getDate(6));
+            orders.add(order);
+        }
+
+        ordersObservableList = FXCollections.observableArrayList();
+        ordersObservableList.addAll(orders);
+
+        ordersListView.setItems(ordersObservableList);
+        ordersListView.setCellFactory(ordersListView -> new OrderCardController());
+
     }
     //===============================================================
     //EMPLOYEE LIST PANE
@@ -171,8 +192,8 @@ public class OwnerController extends Controller implements Initializable {
                     }
                     if (employeesObservableList.isEmpty()) {
                         Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("VAROVANIE");
-                        alert.setHeaderText("Hladanu polozku nemame v ponuke");
+                        alert.setTitle("WARNING");
+                        alert.setHeaderText("There is no such an employee");
                         alert.showAndWait();
                         employeesObservableList.addAll(employees);
                     }

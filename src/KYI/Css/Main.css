@@ -108,7 +108,7 @@
     -fx-text-fill: black;
 }
 
-#employeeTableHeader{
+.tableHeader{
     -fx-opacity: 0.86;
     -fx-background-color: #b38b4d;
 }

@@ -8,17 +8,24 @@ public class Product {
     private int quantity;
     private double buyingPrice;
     private double sellingPrice;
-    private Date dateOfDelivery;
     private Date warranty;
 
-    public Product(int id, String name, double buyingPrice, double sellingPrice,int quantity, Date dateOfDelivery, Date warranty){
+    public Product(int id, String name, double buyingPrice, double sellingPrice,int quantity, Date warranty){
         this.id = id;
         this.quantity = quantity;
         this.name = name;
         this.buyingPrice = buyingPrice;
         this.sellingPrice = sellingPrice;
-        this.dateOfDelivery = dateOfDelivery;
+
         this.warranty = warranty;
+    }
+
+    public Product(int id, String name, double buyingPrice, int quantity, Date warranty) {
+        this.id = id;
+        this.name = name;
+        this.buyingPrice = buyingPrice;
+        this.quantity = quantity;
+        this. warranty = warranty;
     }
 
     public int getId() {
@@ -61,20 +68,24 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public Date getDateOfDelivery() {
-        return dateOfDelivery;
-    }
-
-    public void setDateOfDelivery(Date dateOfDelivery) {
-        this.dateOfDelivery = dateOfDelivery;
-    }
-
     public Date getWarranty() {
         return warranty;
     }
 
     public void setWarranty(Date warranty) {
         this.warranty = warranty;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", quantity=" + quantity +
+                ", buyingPrice=" + buyingPrice +
+                ", sellingPrice=" + sellingPrice +
+                ", warranty=" + warranty +
+                '}';
     }
 }
 

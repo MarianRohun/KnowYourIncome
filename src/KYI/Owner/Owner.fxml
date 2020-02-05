@@ -78,27 +78,9 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="soldunitsPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
-               <children>
-                  <Label layoutX="210.0" layoutY="174.0" prefHeight="152.0" prefWidth="323.0" text="Sold units">
-                     <font>
-                        <Font size="69.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
             <Pane fx:id="storagePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <Label layoutX="266.0" layoutY="168.0" prefHeight="152.0" prefWidth="253.0" text="Storage">
-                     <font>
-                        <Font size="69.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane fx:id="ordersPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
-               <children>
-                  <Label layoutX="280.0" layoutY="176.0" prefHeight="152.0" prefWidth="217.0" text="Orders">
                      <font>
                         <Font size="69.0" />
                      </font>
@@ -123,9 +105,38 @@
                   </Label>
                </children>
             </Pane>
+<<<<<<< HEAD
             <Pane fx:id="employeesPane" accessibleRole="BUTTON" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <HBox fx:id="employeeTableHeader" alignment="CENTER_LEFT" layoutX="46.0" layoutY="98.0" prefHeight="47.0" prefWidth="660.0" styleClass="tableHeader">
+=======
+            <Pane fx:id="settingsPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Button fx:id="chooseImageButton" layoutX="285.0" layoutY="111.0" mnemonicParsing="false" onAction="#onChooseImageClick" prefHeight="35.0" prefWidth="181.0" styleClass="blackButtons" text="Change profile picture" />
+                  <Label fx:id="imagePath" layoutX="290.0" layoutY="75.0" prefHeight="20.0" prefWidth="323.0" text="Profile picture path" textFill="#0039f7" />
+                  <Button fx:id="saveButton" layoutX="315.0" layoutY="288.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" styleClass="ccButtons" text="Save " />
+                  <ImageView fx:id="sampleImage" fitHeight="103.0" fitWidth="120.0" layoutX="315.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="changePasswordButton" layoutX="290.0" layoutY="341.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" styleClass="blackButtons" text="Change Password" />
+                  <Button fx:id="confirmPasswordButton" layoutX="315.0" layoutY="552.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" styleClass="ccButtons" text="Confirm" />
+                  <Label fx:id="errorLabel" layoutX="274.0" layoutY="342.0" prefHeight="25.0" prefWidth="234.0" text="error" textFill="RED" />
+                  <PasswordField fx:id="newPasswordField" layoutX="274.0" layoutY="448.0" prefHeight="35.0" prefWidth="202.0" promptText="New password" />
+                  <PasswordField fx:id="confirmPasswordField" layoutX="274.0" layoutY="500.0" prefHeight="35.0" prefWidth="202.0" promptText="Confirm new password" />
+                  <PasswordField fx:id="oldPasswordField" layoutX="274.0" layoutY="391.0" prefHeight="35.0" prefWidth="202.0" promptText="Old password" />
+               </children>
+            </Pane>
+            <Pane fx:id="soldunitsPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="210.0" layoutY="174.0" prefHeight="152.0" prefWidth="323.0" text="Sold units">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="employeesPane" accessibleRole="BUTTON" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <HBox fx:id="employeeTableHeader" alignment="CENTER_LEFT" layoutX="46.0" layoutY="150.0" prefHeight="47.0" prefWidth="660.0" styleClass="tableHeader">
+>>>>>>> master
                      <children>
                         <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="62.0" styleClass="headerLabel" text="Name" textFill="WHITE">
                            <font>
@@ -182,6 +193,7 @@
                   </TextField>
                </children>
             </Pane>
+<<<<<<< HEAD
             <Pane fx:id="settingsPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <Button fx:id="chooseImageButton" layoutX="38.0" layoutY="59.0" mnemonicParsing="false" onAction="#onChooseImageClick" prefHeight="35.0" prefWidth="181.0" styleClass="blackButtons" text="Change profile picture" />
@@ -200,6 +212,63 @@
                   <PasswordField fx:id="newPasswordField" layoutX="496.0" layoutY="213.0" prefHeight="35.0" prefWidth="202.0" promptText="New password" />
                   <PasswordField fx:id="confirmPasswordField" layoutX="496.0" layoutY="275.0" prefHeight="35.0" prefWidth="202.0" promptText="Confirm new password" />
                   <PasswordField fx:id="oldPasswordField" layoutX="496.0" layoutY="154.0" prefHeight="35.0" prefWidth="202.0" promptText="Old password" />
+=======
+            <Pane fx:id="ordersPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <HBox fx:id="employeeTableHeader1" alignment="CENTER_LEFT" layoutX="-1.0" layoutY="116.0" prefHeight="47.0" prefWidth="750.0" styleClass="tableHeader">
+                     <children>
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="112.0" styleClass="headerLabel" text="Product Name" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="70.0" styleClass="headerLabel" text="Quantity" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="120.0" styleClass="headerLabel" text="Unit Buying Price" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="114.0" styleClass="headerLabel" text="Summary Price" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label styleClass="headerLabel" text="Warranty">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="headerLabel" text="Date init">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <ListView fx:id="ordersListView" layoutY="163.0" prefHeight="404.0" prefWidth="750.0" />
+>>>>>>> master
                </children>
             </Pane>
          </children>

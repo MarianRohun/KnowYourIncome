@@ -3,33 +3,24 @@ package KYI.Owner;
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
 import KYI.Entits.Order;
-import KYI.Entits.Product;
 import KYI.Entits.User;
 import KYI.Owner.EmployeesPane.UserCardController;
-<<<<<<< HEAD
-=======
 import KYI.Owner.OrdersPane.OrderCardController;
-import com.jfoenix.controls.JFXTextField;
->>>>>>> master
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.IOException;
 import javafx.scene.layout.Pane;
-
-import javax.swing.*;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;

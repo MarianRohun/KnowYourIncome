@@ -10,6 +10,9 @@ import java.util.ResourceBundle;
 
 public class ConfirmOrderController implements Initializable {
     @FXML
+    private Label namesLabel, quantitysLabel, datesLabel;
+    @FXML
+    private Button cancelOrdersButton, confirmOrdersButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

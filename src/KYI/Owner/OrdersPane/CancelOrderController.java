@@ -11,6 +11,9 @@ import java.util.ResourceBundle;
 
 public class CancelOrderController extends Controller implements Initializable {
     @FXML
+    private Label namesLabel,quantitysLabel,datesLabel;
+    @FXML
+    private Button cancelOrdersButton,deleteOrdersButton;
 
     static boolean isOrderDeleted = false;
 

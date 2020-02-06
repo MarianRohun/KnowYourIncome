@@ -87,6 +87,8 @@ public class EmployeeController extends Controller implements Initializable {
             sellButton.setDisable(true);
             noteButton.setDisable(true);
 
+
+
             changePasswordButton.setOnAction(actionEvent -> {
                 oldPasswordField.setVisible(true);
                 newPasswordField.setVisible(true);

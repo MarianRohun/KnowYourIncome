@@ -327,7 +327,7 @@
                      </children>
                   </HBox>
                   <ListView fx:id="ordersHistoryListView" layoutX="44.0" layoutY="137.0" prefHeight="463.0" prefWidth="641.0" />
-                  <TextField fx:id="searchOrderHistoryTextfield" layoutX="5.0" layoutY="38.0" prefHeight="37.0" prefWidth="217.0" promptText="search order">
+                  <TextField fx:id="searchOrderHistoryTextfield" layoutX="44.0" layoutY="39.0" prefHeight="37.0" prefWidth="217.0" promptText="search order">
                      <font>
                         <Font size="14.0" />
                      </font>

@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="KYI.Owner.OrdersPane.CancelOrderController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="confirmDeleteOrderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="245.0" prefWidth="370.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.OrdersPane.CancelOrderController">
+   <children>
+      <Button fx:id="deleteOrderButton" layoutX="284.0" layoutY="203.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="71.0" styleClass="ccButtons" text="Delete" />
+      <Button fx:id="cancelOrderButton" layoutX="14.0" layoutY="203.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="71.0" styleClass="ccButtons" text="Cancel" />
+      <Label layoutX="58.0" layoutY="8.0" prefHeight="27.0" prefWidth="273.0" text="Press delete to remove order" textFill="#b38b4d">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameLabel" layoutX="118.0" layoutY="55.0" prefHeight="27.0" prefWidth="126.0" text="Name">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="quantityLabel" layoutX="138.0" layoutY="101.0" prefHeight="27.0" prefWidth="94.0" text="Quantity">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="dateLabel" layoutX="138.0" layoutY="144.0" prefHeight="27.0" prefWidth="94.0" text="Date init">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>

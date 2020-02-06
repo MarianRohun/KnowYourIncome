@@ -137,7 +137,7 @@
     -fx-prompt-text-fill: black;
     -fx-text-alignment: middle;
 }
-#confirmDeletePane{
+#confirmDeletePane,#confirmDeleteOrderPane{
     -fx-border-width: 4 4 4 4;
     -fx-border-color: #b38b4d;
     -fx-background-color: white;

@@ -191,6 +191,7 @@
                         <Font size="14.0" />
                      </font>
                   </TextField>
+               </children>
             </Pane>
             <Pane fx:id="ordersPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>

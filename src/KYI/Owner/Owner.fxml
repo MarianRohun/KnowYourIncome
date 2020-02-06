@@ -136,11 +136,8 @@
             </Pane>
             <Pane fx:id="employeesPane" accessibleRole="BUTTON" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
-<<<<<<< HEAD
                   <HBox fx:id="employeeTableHeader" alignment="CENTER_LEFT" layoutX="46.0" layoutY="150.0" prefHeight="47.0" prefWidth="660.0" styleClass="tableHeader">
-=======
-                  <HBox fx:id="employeeTableHeader" alignment="CENTER_LEFT" layoutX="46.0" layoutY="98.0" prefHeight="47.0" prefWidth="660.0" styleClass="tableHeader">
->>>>>>> master
+
                      <children>
                         <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="62.0" styleClass="headerLabel" text="Name" textFill="WHITE">
                            <font>
@@ -190,16 +187,14 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-<<<<<<< HEAD
                   <TextField fx:id="searchTextfield" layoutX="46.0" layoutY="96.0" prefHeight="37.0" prefWidth="217.0" promptText="search employee">
-=======
+
                   <TextField fx:id="searchEmployeeTextfield" layoutX="46.0" layoutY="32.0" prefHeight="37.0" prefWidth="217.0" promptText="search employee">
->>>>>>> master
+
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
-               </children>
             </Pane>
             <Pane fx:id="ordersPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
@@ -271,16 +266,13 @@
                         </ImageView>
                      </children>
                   </HBox>
-<<<<<<< HEAD
-                  <ListView fx:id="ordersListView" layoutY="163.0" prefHeight="404.0" prefWidth="750.0" />
-=======
+
                   <ListView fx:id="ordersListView" layoutY="137.0" prefHeight="463.0" prefWidth="750.0" />
                   <TextField fx:id="searchOrderTextfield" layoutX="5.0" layoutY="38.0" prefHeight="37.0" prefWidth="217.0" promptText="search order">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
->>>>>>> master
                </children>
             </Pane>
          </children>

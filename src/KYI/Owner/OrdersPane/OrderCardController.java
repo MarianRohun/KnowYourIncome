@@ -1,6 +1,7 @@
 package KYI.Owner.OrdersPane;
 
 import KYI.Entits.Order;
+import KYI.Owner.OwnerController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -10,6 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
 import java.sql.Date;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 public class OrderCardController extends ListCell<Order> {
@@ -34,6 +37,8 @@ public class OrderCardController extends ListCell<Order> {
     @FXML
     private FXMLLoader loader;
 
+    private OwnerController ownerController;
+
     @Override
     protected void updateItem(Order order, boolean empty) {
         super.updateItem(order, empty);
@@ -54,6 +59,16 @@ public class OrderCardController extends ListCell<Order> {
                 }
 
             }
+            confirmOrderButton.setOnAction(event -> {
+                try {
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+            cancelOrderButton.setOnAction(event -> {
+
+            });
 
 
 
@@ -81,9 +96,10 @@ public class OrderCardController extends ListCell<Order> {
            else {
                confirmOrderButton.setDisable(true);
            }
-
             setText(null);
             setGraphic(orderCardAnchorPane);
+
+
         }
     }
 }

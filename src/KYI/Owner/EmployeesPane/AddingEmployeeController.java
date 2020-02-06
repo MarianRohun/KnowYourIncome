@@ -69,7 +69,6 @@ public class AddingEmployeeController extends Controller implements Initializabl
             User employee = new User(nameTextField.getText(),surnameTextField.getText(),emailTextField.getText(),0,passKey);
             employeesObservableList.add(employee);
             connection.close();
-
             new Thread(() -> {
                 SendEmail.send(emailTextField.getText(), "KNOWYOURINCOME REGISTRATION",
                             "Hello "+nameTextField.getText()+" "+surnameTextField.getText()+"\n\n"

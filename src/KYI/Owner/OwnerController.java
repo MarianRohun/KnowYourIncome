@@ -3,14 +3,9 @@ package KYI.Owner;
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
 import KYI.Entits.Order;
-import KYI.Entits.Product;
 import KYI.Entits.User;
 import KYI.Owner.EmployeesPane.UserCardController;
-<<<<<<< HEAD
-=======
 import KYI.Owner.OrdersPane.OrderCardController;
-import com.jfoenix.controls.JFXTextField;
->>>>>>> master
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,7 +26,10 @@ import javafx.scene.layout.Pane;
 
 import javax.swing.*;
 import java.net.URL;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -79,7 +77,7 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Button addUserButton;
     @FXML
-    private TextField searchTextfield;
+    private TextField searchEmployeeTextfield,searchOrderTextfield;
     @FXML
     private Button noteButton;
     @FXML
@@ -92,9 +90,8 @@ public class OwnerController extends Controller implements Initializable {
     private PasswordField oldPasswordField, newPasswordField, confirmPasswordField;
 
 
-
-    public static ObservableList<User> employeesObservableList;
     public static ObservableList<Order> ordersObservableList;
+    public static ObservableList<User> employeesObservableList;
 
     Connectivity connectivity = new Connectivity();
     Connection connection = connectivity.getConnection();
@@ -103,7 +100,6 @@ public class OwnerController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //searchTextfield
         homePane.toFront();
         positionLabel.setText("Owner: ");
         nameLabel.setText(user.getSurname());
@@ -122,7 +118,7 @@ public class OwnerController extends Controller implements Initializable {
         changeColor(storageButton);
     }
 
-    public void onClickOrders(javafx.event.ActionEvent ActionEvent) throws SQLException {
+    public void onClickOrders(javafx.event.ActionEvent ActionEvent)throws SQLException{
         ordersPane.toFront();
         changeColor(ordersButton);
 
@@ -144,6 +140,35 @@ public class OwnerController extends Controller implements Initializable {
 
         ordersListView.setItems(ordersObservableList);
         ordersListView.setCellFactory(ordersListView -> new OrderCardController());
+
+        searchOrderTextfield.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                ordersObservableList.clear();
+                if (searchValidate(searchOrderTextfield.getText().toLowerCase()) == null) {
+                    for (Order order : orders) {
+                        if (order.getName().toLowerCase().contains(searchOrderTextfield.getText().toLowerCase())) {
+                            ordersObservableList.add(order);
+                        }
+                        else if (order.getWarranty().toString().contains(searchOrderTextfield.getText().toLowerCase())) {
+                            ordersObservableList.add(order);
+                        }
+                        else if (order.getDateInit().toString().contains(searchOrderTextfield.getText().toLowerCase())) {
+                            ordersObservableList.add(order);
+                        }
+
+                    }
+                    if (ordersObservableList.isEmpty()) {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("VAROVANIE");
+                        alert.setHeaderText("There is no such an Order");
+                        alert.showAndWait();
+                        ordersObservableList.addAll(orders);
+                    }
+                } else {
+                    ordersObservableList.addAll(orders);
+                }
+            }
+        });
 
     }
     //===============================================================
@@ -172,26 +197,25 @@ public class OwnerController extends Controller implements Initializable {
         employeeListView.setItems(employeesObservableList);
         employeeListView.setCellFactory(employeeListView -> new UserCardController(this));
 
-        searchTextfield.setOnKeyPressed(event -> {
+        searchEmployeeTextfield.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                System.out.println("Enter key was pressed");
                 employeesObservableList.clear();
-                if (searchValidate(searchTextfield.getText().toLowerCase()) == null) {
+                if (searchValidate(searchEmployeeTextfield.getText().toLowerCase()) == null) {
                     for (User user : employees) {
-                        if (user.getName().toLowerCase().contains(searchTextfield.getText().toLowerCase())) {
+                        if (user.getName().toLowerCase().contains(searchEmployeeTextfield.getText().toLowerCase())) {
                             employeesObservableList.add(user);
                         }
-                        else if (user.getSurname().toLowerCase().contains(searchTextfield.getText().toLowerCase())) {
+                        else if (user.getSurname().toLowerCase().contains(searchEmployeeTextfield.getText().toLowerCase())) {
                             employeesObservableList.add(user);
                         }
-                        else if (user.getEmail().toLowerCase().contains(searchTextfield.getText().toLowerCase())) {
+                        else if (user.getEmail().toLowerCase().contains(searchEmployeeTextfield.getText().toLowerCase())) {
                             employeesObservableList.add(user);
                         }
 
                     }
                     if (employeesObservableList.isEmpty()) {
                         Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("WARNING");
+                        alert.setTitle("VAROVANIE");
                         alert.setHeaderText("There is no such an employee");
                         alert.showAndWait();
                         employeesObservableList.addAll(employees);

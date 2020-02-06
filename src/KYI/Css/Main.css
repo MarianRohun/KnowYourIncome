@@ -142,13 +142,19 @@
     -fx-border-color: #b38b4d;
     -fx-background-color: white;
 }
-#searchTextfield{
+#searchEmployeeTextfield,#searchOrderTextfield{
     -fx-text-fill: black;
     -fx-border-width: 3 3 3 3;
 }
 #oldPasswordField,#newPasswordField,#confirmPasswordField{
     -fx-border-width: 2 2 2 2;
     -fx-text-fill: black;
+}
+#cancelOrderButton:pressed{
+    -fx-border-width: 2 2 2 2;
+}
+#confirmOrderButton:pressed{
+    -fx-border-width: 2 2 2 2;
 }
 
 

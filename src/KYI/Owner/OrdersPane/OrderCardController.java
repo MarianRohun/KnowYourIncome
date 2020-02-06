@@ -94,6 +94,7 @@ public class OrderCardController extends ListCell<Order> {
                orderCardAnchorPane.setStyle("-fx-background-color:#e06666");
            }
            else {
+               orderCardAnchorPane.setStyle("-fx-border-color: white;");
                confirmOrderButton.setDisable(true);
            }
             setText(null);

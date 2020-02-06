@@ -50,8 +50,12 @@ INSERT INTO users(surname,email,password,position) VALUES ("owner","owner@exampl
 INSERT INTO products(name,quantity,buyingPrice,sellingPrice,warranty) VALUES ("Coca Cola 0,5L flaska","10",1,2,"2020-08-31");
 INSERT INTO products(name,quantity,buyingPrice,sellingPrice,warranty) VALUES ("Pivo Staropramen 11% flaska",35,1.50,2,"2020-08-31");
 
-INSERT INTO orders(dateInit) VALUES ("2020-04-02");
-INSERT INTO orders_has_products(orders_o_id,products_p_id) VALUES (1,3);
+INSERT INTO orders(dateInit) VALUES ("2020-02-04");
+INSERT INTO orders(dateInit) VALUES ("2020-02-06");
+INSERT INTO orders(dateInit) VALUES ("2020-02-07");
+INSERT INTO orders(dateInit) VALUES ("2020-02-08");
+
+INSERT INTO orders_has_products(orders_o_id,products_p_id) VALUES (4,2);
 
 
 DELETE FROM products;

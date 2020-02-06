@@ -142,7 +142,7 @@
     -fx-border-color: #b38b4d;
     -fx-background-color: white;
 }
-#searchEmployeeTextfield,#searchOrderTextfield{
+#searchEmployeeTextfield,#searchOrderTextfield,#searchOrderHistoryTextfield{
     -fx-text-fill: black;
     -fx-border-width: 3 3 3 3;
 }

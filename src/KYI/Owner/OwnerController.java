@@ -59,7 +59,7 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Pane homePane;
     @FXML
-    private Pane employeesPane;
+    private Pane employeesPane, ordersHistoryPane;
     @FXML
     private Pane ordersPane;
     @FXML
@@ -80,6 +80,8 @@ public class OwnerController extends Controller implements Initializable {
     private TextField searchEmployeeTextfield,searchOrderTextfield;
     @FXML
     private Button noteButton;
+    @FXML
+    private Button switchToHistoryButton;
     @FXML
     private Button chooseImageButton, saveButton, changePasswordButton, confirmPasswordButton;
     @FXML
@@ -169,7 +171,14 @@ public class OwnerController extends Controller implements Initializable {
                 }
             }
         });
+        switchToHistoryButton.setOnAction(e -> {
+            ordersHistoryPane.toFront();
+        });
+    }
 
+    public void refreshOrdersListView(int orderID){
+        ordersObservableList.removeIf(order -> order.getId() == orderID);
+        ordersPane.toFront();
     }
     //===============================================================
     //EMPLOYEE LIST PANE
@@ -226,7 +235,7 @@ public class OwnerController extends Controller implements Initializable {
             }
         });
         }
-    public void refreshListView(int userID){
+    public void refreshEmployeesListView(int userID){
         employeesObservableList.removeIf(employee -> employee.getId() == userID);
         employeesPane.toFront();
     }

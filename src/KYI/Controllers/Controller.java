@@ -1,5 +1,6 @@
 package KYI.Controllers;
 
+import KYI.Entits.Order;
 import KYI.Entits.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,17 +8,8 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.security.MessageDigest;
-import java.util.Properties;
 import java.util.Random;
-
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,6 +24,11 @@ public class Controller {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public static Order order = new Order();
+
+    public Order getOrder() { return order;}
+    public void setOrder(Order order) {this.order = order;}
 
 
     public static void changeScene(Stage stage, FXMLLoader loader, String title) throws IOException {
@@ -72,6 +69,19 @@ public class Controller {
         newstage.setScene(scene);
         Controller controller = new Controller();
         controller.setUser(user);
+        newstage.setResizable(false);
+        newstage.initStyle(StageStyle.TRANSPARENT);
+        newstage.initModality(Modality.APPLICATION_MODAL);
+        newstage.showAndWait();
+    }
+
+    public static void openWindowOrder(String stage,Order order) throws Exception {
+        Stage newstage = new Stage();
+        Parent root = FXMLLoader.load(Controller.class.getResource(stage));
+        Scene scene = new Scene(root);
+        newstage.setScene(scene);
+        Controller controller = new Controller();
+        controller.setOrder(order);
         newstage.setResizable(false);
         newstage.initStyle(StageStyle.TRANSPARENT);
         newstage.initModality(Modality.APPLICATION_MODAL);

@@ -38,7 +38,7 @@ public class ConfirmDeleteController extends Controller implements Initializable
     Connection connection = connectivity.getConnection();
 
 
-    static boolean isDeleted = false;
+    static boolean isUserDeleted = false;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -55,7 +55,7 @@ public class ConfirmDeleteController extends Controller implements Initializable
         statement.executeLargeUpdate(delete);
         connection.close();
         System.out.println("Employee "+user.getName()+"deleted successfully");
-        isDeleted = true;
+        isUserDeleted = true;
         Stage stage = (Stage) confirmDeletePane.getScene().getWindow();
         stage.close();
 

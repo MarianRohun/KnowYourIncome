@@ -8,12 +8,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
+
 
 import java.sql.Date;
-import java.text.Format;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+
+import static KYI.Owner.OrdersPane.CancelOrderController.isOrderDeleted;
 
 public class OrderCardController extends ListCell<Order> {
     @FXML
@@ -66,8 +66,17 @@ public class OrderCardController extends ListCell<Order> {
                     e.printStackTrace();
                 }
             });
-            cancelOrderButton.setOnAction(event -> {
 
+            cancelOrderButton.setOnAction(event -> {
+                try {
+                    ownerController.openWindowOrder("../Owner/OrdersPane/CancelOrder.fxml",order);
+                    if (isOrderDeleted == true) {
+                        ownerController.refreshOrdersListView(order.getId());
+                    }
+                    isOrderDeleted = false;
+                }  catch (Exception e) {
+                    e.printStackTrace();
+                }
             });
 
 

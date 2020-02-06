@@ -10,6 +10,10 @@ public class Order extends Product {
         this.dateInit = dateInit;
     }
 
+    public Order() {
+        super();
+    }
+
 
     public Date getDateInit() {
         return dateInit;

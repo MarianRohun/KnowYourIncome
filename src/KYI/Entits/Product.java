@@ -28,6 +28,10 @@ public class Product {
         this. warranty = warranty;
     }
 
+    public Product() {
+
+    }
+
     public int getId() {
         return id;
     }

@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
-import static KYI.Owner.EmployeesPane.ConfirmDeleteController.isDeleted;
+import static KYI.Owner.EmployeesPane.ConfirmDeleteController.isUserDeleted;
 
 
 public class UserCardController extends ListCell<User> {
@@ -71,10 +71,10 @@ public class UserCardController extends ListCell<User> {
 
                 try {
                     ownerController.openWindowUser("../Owner/EmployeesPane/ConfirmDelete.fxml",user);
-                    if (isDeleted == true) {
-                        ownerController.refreshListView(user.getId());
+                    if (isUserDeleted == true) {
+                        ownerController.refreshEmployeesListView(user.getId());
                     }
-                    isDeleted=false;
+                    isUserDeleted=false;
                 }  catch (Exception e) {
                     e.printStackTrace();
                 }

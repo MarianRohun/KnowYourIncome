@@ -1,25 +1,56 @@
 package KYI.Owner.OrdersPane;
 
+import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
+
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class CancelOrderController extends Controller implements Initializable {
     @FXML
-    private Label namesLabel,quantitysLabel,datesLabel;
+    private Label nameLabel,quantityLabel,dateLabel;
     @FXML
-    private Button cancelOrdersButton,deleteOrdersButton;
+    private Button cancelOrderButton,deleteOrderButton;
+    @FXML
+    private Pane confirmDeleteOrderPane;
 
     static boolean isOrderDeleted = false;
+    Connectivity connectivity = new Connectivity();
+    Connection connection = connectivity.getConnection();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        Platform.runLater(()->{
+            nameLabel.setText(order.getName());
+            quantityLabel.setText(order.getQuantity()+"");
+            dateLabel.setText(order.getDateInit().toString());
+        });
+    }
+    public void onClickDelete(ActionEvent actionEvent)throws SQLException {
+        Statement statement = connection.createStatement();
+       // String delete = "DELETE FROM orders WHERE o_id = "+order.getId();
+        //statement.executeLargeUpdate(delete);
+        connection.close();
+        System.out.println("order "+order.getName()+"deleted successfully");
+        isOrderDeleted = true;
+        Stage stage = (Stage) confirmDeleteOrderPane.getScene().getWindow();
+        stage.close();
+    }
+    public void onClickCancel(ActionEvent actionEvent) {
+        Stage stage = (Stage) confirmDeleteOrderPane.getScene().getWindow();
+        stage.close();
     }
 
 }

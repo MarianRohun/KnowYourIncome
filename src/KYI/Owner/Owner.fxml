@@ -193,6 +193,69 @@
                   </TextField>
                </children>
             </Pane>
+            <Pane fx:id="ordersHistoryPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <HBox fx:id="orderHistoryTableHeader" alignment="CENTER_LEFT" layoutX="44.0" layoutY="90.0" prefHeight="47.0" prefWidth="641.0" styleClass="tableHeader">
+                     <children>
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="123.0" styleClass="headerLabel" text="Name" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="70.0" styleClass="headerLabel" text="Quantity" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" right="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="94.0" styleClass="headerLabel" text="Per unit" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="84.0" styleClass="headerLabel" text="Summary" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label styleClass="headerLabel" text="Warranty">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="headerLabel" text="Date init">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="35.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <ListView fx:id="ordersHistoryListView" layoutX="44.0" layoutY="137.0" prefHeight="463.0" prefWidth="641.0" />
+                  <TextField fx:id="searchOrderHistoryTextfield" layoutX="44.0" layoutY="39.0" prefHeight="37.0" prefWidth="217.0" promptText="search order">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="switchToOrdersButton" layoutX="685.0" layoutY="14.0" mnemonicParsing="false" text="Orders" />
+               </children>
+            </Pane>
             <Pane fx:id="ordersPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <HBox fx:id="orderTableHeader" alignment="CENTER_LEFT" layoutX="5.0" layoutY="92.0" prefHeight="47.0" prefWidth="740.0" styleClass="tableHeader">
@@ -270,69 +333,6 @@
                      </font>
                   </TextField>
                   <Button fx:id="switchToHistoryButton" layoutX="674.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0" text="History" />
-               </children>
-            </Pane>
-            <Pane fx:id="ordersHistoryPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
-               <children>
-                  <HBox fx:id="orderHistoryTableHeader" alignment="CENTER_LEFT" layoutX="44.0" layoutY="90.0" prefHeight="47.0" prefWidth="641.0" styleClass="tableHeader">
-                     <children>
-                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="123.0" styleClass="headerLabel" text="Name" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="15.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="70.0" styleClass="headerLabel" text="Quantity" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="15.0" right="15.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="94.0" styleClass="headerLabel" text="Per unit" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="84.0" styleClass="headerLabel" text="Summary" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                        <Label styleClass="headerLabel" text="Warranty">
-                           <HBox.margin>
-                              <Insets left="15.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label styleClass="headerLabel" text="Date init">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="35.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <ListView fx:id="ordersHistoryListView" layoutX="44.0" layoutY="137.0" prefHeight="463.0" prefWidth="641.0" />
-                  <TextField fx:id="searchOrderHistoryTextfield" layoutX="44.0" layoutY="39.0" prefHeight="37.0" prefWidth="217.0" promptText="search order">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <Button fx:id="switchToOrdersButton" layoutX="685.0" layoutY="14.0" mnemonicParsing="false" text="Orders" />
                </children>
             </Pane>
          </children>

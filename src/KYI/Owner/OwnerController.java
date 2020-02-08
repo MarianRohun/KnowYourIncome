@@ -5,7 +5,9 @@ import KYI.Controllers.Controller;
 import KYI.Entits.Order;
 import KYI.Entits.User;
 import KYI.Owner.EmployeesPane.UserCardController;
+import KYI.Owner.OrdersPane.HistoryOrderCardController;
 import KYI.Owner.OrdersPane.OrderCardController;
+import com.mysql.cj.jdbc.CallableStatement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,10 +28,8 @@ import javafx.scene.layout.Pane;
 
 import javax.swing.*;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -73,7 +73,7 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Pane settingsPane;
     @FXML
-    private ListView employeeListView, ordersListView;
+    private ListView employeeListView, ordersListView, ordersHistoryListView;
     @FXML
     private Button addUserButton;
     @FXML
@@ -126,14 +126,15 @@ public class OwnerController extends Controller implements Initializable {
 
         ArrayList<Order> orders = new ArrayList<>();
 
-        String select = "SELECT products.p_id,products.name,products.quantity,products.buyingPrice,products.warranty,orders.dateInit " +
-                "FROM orders_has_products JOIN products ON (products_p_id = p_id) JOIN orders ON (orders_o_id = o_id) ORDER BY dateInit ASC";
+        String select = "SELECT orders.o_id,products.name,orders_has_products.orderedQuantity,products.buyingPrice,products.warranty,orders.dateInit, " +
+                "products.p_id, deliverStatus FROM orders_has_products JOIN products ON (products_p_id = p_id) " +
+                "JOIN orders ON (orders_o_id = o_id) WHERE deliverStatus = FALSE ORDER BY dateInit ASC";
 
         ResultSet result = connection.prepareStatement(select).executeQuery();
 
         while (result.next()){
             Order order = new Order(result.getInt(1),result.getString(2),result.getInt(3),result.getDouble(4),
-                    result.getDate(5),result.getDate(6));
+                    result.getDate(5),result.getDate(6),result.getInt(7),result.getBoolean(8));
             orders.add(order);
         }
 
@@ -141,7 +142,7 @@ public class OwnerController extends Controller implements Initializable {
         ordersObservableList.addAll(orders);
 
         ordersListView.setItems(ordersObservableList);
-        ordersListView.setCellFactory(ordersListView -> new OrderCardController());
+        ordersListView.setCellFactory(ordersListView -> new OrderCardController(this));
 
         searchOrderTextfield.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -173,11 +174,43 @@ public class OwnerController extends Controller implements Initializable {
         });
         switchToHistoryButton.setOnAction(e -> {
             ordersHistoryPane.toFront();
+
+            ArrayList<Order> ordersHistory = new ArrayList<>();
+            ObservableList<Order> ordersHistoryObservableList;
+
+            String selectForHistory = "SELECT orders.o_id,products.name,orderedQuantity,products.buyingPrice,products.warranty,orders.dateInit, " +
+                    "products.p_id,deliverStatus FROM orders_has_products JOIN products ON (products_p_id = p_id) " +
+                    "JOIN orders ON (orders_o_id = o_id) WHERE deliverStatus = TRUE ORDER BY dateInit ASC";
+            try {
+                ResultSet resultSet = connection.prepareStatement(selectForHistory).executeQuery();
+                while (resultSet.next()){
+                    Order order = new Order(resultSet.getInt(1),resultSet.getString(2),resultSet.getInt(3),resultSet.getDouble(4),
+                            resultSet.getDate(5),resultSet.getDate(6),resultSet.getInt(7),resultSet.getBoolean(8));
+
+                    if (order.getDateInit().before(Date.valueOf(LocalDate.ofYearDay(LocalDate.now().getYear(), 1)))) {
+                        Statement statement = connection.createStatement();
+                        String deleteFromorder = "DELETE FROM orders_has_products WHERE orders_o_id = "+order.getId();
+                        statement.executeLargeUpdate(deleteFromorder);
+                        String deleteOrder = "DELETE FROM orders WHERE dateInit = '"+order.getDateInit()+"'";
+                        statement.executeLargeUpdate(deleteOrder);
+                        statement.close();
+                        System.out.println("Order from last year successfully deleted");
+                    }
+                    else ordersHistory.add(order);
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            ordersHistoryObservableList= FXCollections.observableArrayList();
+            ordersHistoryObservableList.addAll(ordersHistory);
+
+            ordersHistoryListView.setItems(ordersHistoryObservableList);
+            ordersHistoryListView.setCellFactory(ordersHistoryListView -> new HistoryOrderCardController());
         });
     }
 
-    public void refreshOrdersListView(int orderID){
-        ordersObservableList.removeIf(order -> order.getId() == orderID);
+    public void refreshOrdersListView(int orderID, int productID){
+        ordersObservableList.removeIf(order -> order.getId() == orderID && order.getProductId() == productID);
         ordersPane.toFront();
     }
     //===============================================================

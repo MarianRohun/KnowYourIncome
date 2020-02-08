@@ -2,7 +2,6 @@ package KYI.Owner.EmployeesPane;
 
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
-import KYI.Entits.User;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,7 +57,6 @@ public class ConfirmDeleteController extends Controller implements Initializable
         isUserDeleted = true;
         Stage stage = (Stage) confirmDeletePane.getScene().getWindow();
         stage.close();
-
     }
 
     public void onClickCancel(ActionEvent actionEvent) {

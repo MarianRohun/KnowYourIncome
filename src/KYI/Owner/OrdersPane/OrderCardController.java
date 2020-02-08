@@ -4,6 +4,7 @@ import KYI.Entits.Order;
 import KYI.Owner.OwnerController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -14,6 +15,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 import static KYI.Owner.OrdersPane.CancelOrderController.isOrderDeleted;
+import static KYI.Owner.OrdersPane.ConfirmOrderController.isOrderConfirmed;
 
 public class OrderCardController extends ListCell<Order> {
     @FXML
@@ -38,6 +40,7 @@ public class OrderCardController extends ListCell<Order> {
     private FXMLLoader loader;
 
     private OwnerController ownerController;
+    public OrderCardController(OwnerController ownerController){this.ownerController = ownerController;}
 
     @Override
     protected void updateItem(Order order, boolean empty) {
@@ -61,7 +64,11 @@ public class OrderCardController extends ListCell<Order> {
             }
             confirmOrderButton.setOnAction(event -> {
                 try {
-
+                    ownerController.openWindowOrder("../Owner/OrdersPane/ConfirmOrder.fxml",order);
+                    if (isOrderConfirmed == true) {
+                        ownerController.refreshOrdersListView(order.getId(),order.getProductId());
+                    }
+                    isOrderConfirmed = false;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -71,7 +78,7 @@ public class OrderCardController extends ListCell<Order> {
                 try {
                     ownerController.openWindowOrder("../Owner/OrdersPane/CancelOrder.fxml",order);
                     if (isOrderDeleted == true) {
-                        ownerController.refreshOrdersListView(order.getId());
+                        ownerController.refreshOrdersListView(order.getId(),order.getProductId());
                     }
                     isOrderDeleted = false;
                 }  catch (Exception e) {
@@ -82,12 +89,12 @@ public class OrderCardController extends ListCell<Order> {
 
 
             orderNameLabel.setText(order.getName());
-            orderQuantityLabel.setText(Integer.toString(order.getQuantity()));
-            orderBuyingPriceLabel.setText(Double.toString(order.getBuyingPrice()));
+            orderQuantityLabel.setText(order.getQuantity()+"pcs");
+            orderBuyingPriceLabel.setText(order.getBuyingPrice()+"€");
 
             double sumPrice = order.getQuantity() * order.getBuyingPrice();
 
-            orderSumPriceLabel.setText(Double.toString(sumPrice));
+            orderSumPriceLabel.setText(sumPrice+"€");
             orderWarrantyLabel.setText(order.getWarranty().toString());
             dateInitLabel.setText(order.getDateInit().toString());
 

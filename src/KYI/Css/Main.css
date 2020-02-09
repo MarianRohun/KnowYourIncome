@@ -80,7 +80,7 @@
     -fx-border-color: #b38b4d;
     -fx-border-width: 0 4 0 0 ;
 }
-#usercardAnchorPane{
+#usercardAnchorPane,#orderHistoryCardAnchorPane{
     -fx-border-width: 0 4 0 4;
     -fx-border-style: dotted;
     -fx-border-color: #b38b4d;
@@ -142,6 +142,11 @@
     -fx-border-color: #b38b4d;
     -fx-background-color: white;
 }
+#employeeTableHeader{
+    -fx-border-width: 2 2 2 2;
+    -fx-border-color: #b38b4d;
+}
+
 #searchEmployeeTextfield,#searchOrderTextfield,#searchOrderHistoryTextfield{
     -fx-text-fill: black;
     -fx-border-width: 3 3 3 3;
@@ -150,13 +155,11 @@
     -fx-border-width: 2 2 2 2;
     -fx-text-fill: black;
 }
-#cancelOrderButton:pressed{
+#cancelOrderButton:pressed,#confirmOrderButton:pressed{
     -fx-border-width: 2 2 2 2;
 }
-#confirmOrderButton:pressed{
-    -fx-border-width: 2 2 2 2;
+#switchToHistoryButton:pressed,#switchToOrdersButton:pressed{
+    -fx-pref-width:32;
+    -fx-pref-height:24;
 }
-
-
-
 

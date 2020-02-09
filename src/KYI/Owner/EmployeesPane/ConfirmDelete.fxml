@@ -7,13 +7,13 @@
 
 <AnchorPane fx:id="confirmDeletePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="234.0" prefWidth="370.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.EmployeesPane.ConfirmDeleteController">
    <children>
-      <Button fx:id="deleteButton" layoutX="272.0" layoutY="180.0" mnemonicParsing="false" onAction="#onClickDelete" prefHeight="27.0" prefWidth="71.0" styleClass="ccButtons" text="Delete" />
-      <Button fx:id="cancelButton" layoutX="14.0" layoutY="180.0" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="27.0" prefWidth="71.0" styleClass="ccButtons" text="Cancel" />
+      <Button fx:id="deleteButton" layoutX="271.0" layoutY="193.0" mnemonicParsing="false" onAction="#onClickDelete" prefHeight="27.0" prefWidth="71.0" styleClass="ccButtons" text="Delete" />
+      <Button fx:id="cancelButton" layoutX="14.0" layoutY="193.0" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="27.0" prefWidth="71.0" styleClass="ccButtons" text="Cancel" />
       <Label layoutX="89.0" layoutY="6.0" prefHeight="27.0" prefWidth="218.0" text="Press delete to confirm" textFill="#b38b4d">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
-      <Label fx:id="usernameLabel" layoutX="138.0" layoutY="47.0" prefHeight="27.0" prefWidth="94.0" text="Name">
+      <Label fx:id="usernameLabel" layoutX="106.0" layoutY="47.0" prefHeight="27.0" prefWidth="184.0" text="Name">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
@@ -21,7 +21,7 @@
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <Label fx:id="emailLabel" layoutX="104.0" layoutY="131.0" prefHeight="27.0" prefWidth="255.0" text="Label">
+      <Label fx:id="emailLabel" layoutX="138.0" layoutY="129.0" prefHeight="27.0" prefWidth="120.0" text="Label">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font></Label>

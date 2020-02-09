@@ -75,13 +75,13 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private ListView employeeListView, ordersListView, ordersHistoryListView;
     @FXML
-    private Button addUserButton;
+    private Button addUserButton,addOrdersButton;
     @FXML
-    private TextField searchEmployeeTextfield,searchOrderTextfield;
+    private TextField searchEmployeeTextfield,searchOrderTextfield,searchOrderHistoryTextfield;
     @FXML
     private Button noteButton;
     @FXML
-    private Button switchToHistoryButton;
+    private Button switchToHistoryButton,switchToOrdersButton;
     @FXML
     private Button chooseImageButton, saveButton, changePasswordButton, confirmPasswordButton;
     @FXML
@@ -174,6 +174,7 @@ public class OwnerController extends Controller implements Initializable {
         });
         switchToHistoryButton.setOnAction(e -> {
             ordersHistoryPane.toFront();
+            ordersButton.setText("Order history");
 
             ArrayList<Order> ordersHistory = new ArrayList<>();
             ObservableList<Order> ordersHistoryObservableList;
@@ -206,7 +207,44 @@ public class OwnerController extends Controller implements Initializable {
 
             ordersHistoryListView.setItems(ordersHistoryObservableList);
             ordersHistoryListView.setCellFactory(ordersHistoryListView -> new HistoryOrderCardController());
+
+            searchOrderHistoryTextfield.setOnKeyPressed(event -> {
+                if (event.getCode() == KeyCode.ENTER) {
+                    ordersHistoryObservableList.clear();
+                    if (searchValidate(searchOrderHistoryTextfield.getText().toLowerCase()) == null) {
+                        for (Order order : ordersHistory) {
+                            if (order.getName().toLowerCase().contains(searchOrderHistoryTextfield.getText().toLowerCase())) {
+                                ordersHistoryObservableList.add(order);
+                            }
+                            else if (order.getWarranty().toString().contains(searchOrderHistoryTextfield.getText().toLowerCase())) {
+                                ordersHistoryObservableList.add(order);
+                            }
+                            else if (order.getDateInit().toString().contains(searchOrderHistoryTextfield.getText().toLowerCase())) {
+                                ordersHistoryObservableList.add(order);
+                            }
+
+                        }
+                        if (ordersHistoryObservableList.isEmpty()) {
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setTitle("VAROVANIE");
+                            alert.setHeaderText("There is no such an Order");
+                            alert.showAndWait();
+                            ordersHistoryObservableList.addAll(ordersHistory);
+                        }
+                    } else {
+                        ordersHistoryObservableList.addAll(ordersHistory);
+                    }
+                }
+            });
+
+            switchToOrdersButton.setOnAction(event -> {
+                ordersPane.toFront();
+                ordersButton.setText("Order");
+            });
         });
+    }
+    public void onClickAddOrder(ActionEvent event) throws Exception{
+        openWindow("../Owner/OrdersPane/AddOrder.fxml");
     }
 
     public void refreshOrdersListView(int orderID, int productID){

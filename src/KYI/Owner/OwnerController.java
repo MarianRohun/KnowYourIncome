@@ -73,11 +73,11 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Pane settingsPane;
     @FXML
-    private ListView employeeListView, ordersListView, ordersHistoryListView;
+    private ListView employeeListView, ordersListView, ordersHistoryListView,storageListView;
     @FXML
-    private Button addUserButton,addOrdersButton;
+    private Button addUserButton,addOrdersButton,addProductToStorage;
     @FXML
-    private TextField searchEmployeeTextfield,searchOrderTextfield,searchOrderHistoryTextfield;
+    private TextField searchEmployeeTextfield,searchOrderTextfield,searchOrderHistoryTextfield,searchStorageTextfield;
     @FXML
     private Button noteButton;
     @FXML
@@ -118,6 +118,7 @@ public class OwnerController extends Controller implements Initializable {
     public void onClickStorage(javafx.event.ActionEvent ActionEvent){
         storagePane.toFront();
         changeColor(storageButton);
+
     }
 
     public void onClickOrders(javafx.event.ActionEvent ActionEvent)throws SQLException{

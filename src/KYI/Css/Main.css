@@ -74,6 +74,9 @@
     -fx-text-fill: white;
     -fx-border-color: black;
 }
+.datePicker{
+    -fx-background-color: transparent;
+}
 #sidebarPane{
     -fx-background-color: white;
     -fx-opacity: 0.86;
@@ -117,7 +120,7 @@
     -fx-opacity: 0.86;
     -fx-background-color: #b38b4d;
 }
-#addingPane{
+#addingPane,#addingOrderPane{
     -fx-border-width: 4 4 4 4;
     -fx-border-color: #b38b4d;
     -fx-background-color: white;
@@ -147,7 +150,7 @@
     -fx-border-color: #b38b4d;
 }
 
-#searchEmployeeTextfield,#searchOrderTextfield,#searchOrderHistoryTextfield{
+.search{
     -fx-text-fill: black;
     -fx-border-width: 3 3 3 3;
 }
@@ -162,4 +165,5 @@
     -fx-pref-width:32;
     -fx-pref-height:24;
 }
+
 

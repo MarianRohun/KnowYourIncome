@@ -6,14 +6,11 @@ import KYI.Entits.Order;
 import KYI.Entits.Product;
 import KYI.Entits.User;
 import KYI.Owner.EmployeesPane.UserCardController;
-import KYI.Owner.OrdersPane.AddOrderController;
 import KYI.Owner.OrdersPane.HistoryOrderCardController;
 import KYI.Owner.OrdersPane.OrderCardController;
-<<<<<<< HEAD
-=======
+
 import KYI.Owner.StoragePane.StorageCardController;
-import com.mysql.cj.jdbc.CallableStatement;
->>>>>>> master
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -129,6 +126,7 @@ public class OwnerController extends Controller implements Initializable {
     public void onClickStorage(javafx.event.ActionEvent ActionEvent) throws SQLException {
         storagePane.toFront();
         changeColor(storageButton,pickedTheme);
+        ordersButton.setText("Orders");
 
         ArrayList<Product> products = new ArrayList<>();
 
@@ -251,7 +249,6 @@ public class OwnerController extends Controller implements Initializable {
                             else if (order.getDateInit().toString().contains(searchOrderHistoryTextfield.getText().toLowerCase())) {
                                 ordersHistoryObservableList.add(order);
                             }
-
                         }
                         if (ordersHistoryObservableList.isEmpty()) {
                             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -286,6 +283,7 @@ public class OwnerController extends Controller implements Initializable {
     public void onClickEmployees(javafx.event.ActionEvent ActionEvent) throws IOException, SQLException {
         employeesPane.toFront();
         changeColor(employeesButton,pickedTheme);
+        ordersButton.setText("Orders");
 
         ArrayList<User> employees = new ArrayList<>();
 
@@ -348,19 +346,23 @@ public class OwnerController extends Controller implements Initializable {
     public void onClickHome(javafx.event.ActionEvent ActionEvent){
         homePane.toFront();
         changeColor(homeButton,pickedTheme);
+        ordersButton.setText("Orders");
     }
 
     public void onClickSoldunits(javafx.event.ActionEvent ActionEvent){
         soldunitsPane.toFront();
         changeColor(soldunitsButton,pickedTheme);
+        ordersButton.setText("Orders");
     }
     public void onClickIncome(javafx.event.ActionEvent ActionEvent){
         incomePane.toFront();
         changeColor(incomeButton,pickedTheme);
+        ordersButton.setText("Orders");
     }
     public void onClickNote(javafx.event.ActionEvent ActionEvent){
         notePane.toFront();
         changeColor(noteButton,pickedTheme);
+        ordersButton.setText("Orders");
     }
     //================================================================
     //SETTINGS PANE
@@ -368,6 +370,7 @@ public class OwnerController extends Controller implements Initializable {
     public void onClickSettings(javafx.event.ActionEvent ActionEvent){
         settingsPane.toFront();
         changeColor(settingsButton,pickedTheme);
+        ordersButton.setText("Orders");
 
         changePasswordButton.setVisible(true);
         oldPasswordField.setVisible(false);

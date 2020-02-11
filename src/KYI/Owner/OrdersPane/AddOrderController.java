@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
@@ -56,7 +57,9 @@ public class AddOrderController extends Controller implements Initializable {
             }
         });
     }
-        public void onClickConfirmOrder (javafx.event.ActionEvent ActionEvent) throws SQLException {
+
+    public void onClickConfirmOrder (javafx.event.ActionEvent ActionEvent) throws SQLException {
+
 
             if (orderNameChoiceBox.getValue() == null) {
                 errorOrderLabel.setText("Please enter the name");

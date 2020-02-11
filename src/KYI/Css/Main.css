@@ -166,5 +166,10 @@
     -fx-pref-width:32;
     -fx-pref-height:24;
 }
+#orderNameChoiceBox{
+    -fx-background-color: transparent;
+    -fx-border-width: 2 2 2 2;
+    -fx-border-color: black;
+}
 
 

@@ -11,6 +11,10 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
+import java.awt.event.ActionEvent;
+
+import static KYI.Controllers.Controller.openWindow;
+
 
 public class StorageCardController extends ListCell<Product> {
 
@@ -19,7 +23,7 @@ public class StorageCardController extends ListCell<Product> {
     @FXML
     private Label storageNameLabel,storageQuantityLabel,storageBuyingPriceLabel,sellingPriceLabel;
     @FXML
-    private Button deleteProductButton;
+    private Button cancelProductButton;
     @FXML
     private FXMLLoader loader;
 
@@ -52,6 +56,13 @@ public class StorageCardController extends ListCell<Product> {
 
             setText(null);
             setGraphic(storageCardAnchorPane);
+            cancelProductButton.setOnAction(event -> {
+                try {
+                    openWindow("../Owner/StoragePane/DeleteProduct.fxml");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
         }
     }
 }

@@ -125,7 +125,7 @@ public class OwnerController extends Controller implements Initializable {
 
     public void onClickStorage(javafx.event.ActionEvent ActionEvent) throws SQLException {
         storagePane.toFront();
-        changeColor(storageButton,pickedTheme);
+        changeColor(storageButton, pickedTheme);
         ordersButton.setText("Orders");
 
         ArrayList<Product> products = new ArrayList<>();
@@ -134,8 +134,8 @@ public class OwnerController extends Controller implements Initializable {
 
         ResultSet result = connection.prepareStatement(select).executeQuery();
 
-        while (result.next()){
-            Product product = new Product (result.getString(1),result.getInt(2),result.getDouble(3),result.getDouble(4));
+        while (result.next()) {
+            Product product = new Product(result.getString(1), result.getInt(2), result.getDouble(3), result.getDouble(4));
             products.add(product);
         }
 
@@ -145,8 +145,28 @@ public class OwnerController extends Controller implements Initializable {
         storageListView.setItems(productsObservableList);
         storageListView.setCellFactory(storageListView -> new StorageCardController());
 
+        searchStorageTextfield.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                productsObservableList.clear();
+                if (searchValidate(searchStorageTextfield.getText().toLowerCase()) == null) {
+                    for (Product product : products) {
+                        if (product.getName().toLowerCase().contains(searchStorageTextfield.getText().toLowerCase())) {
+                            productsObservableList.add(product);
+                        }
+                    }
+                    if (productsObservableList.isEmpty()) {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("VAROVANIE");
+                        alert.setHeaderText("There is no such an Order");
+                        alert.showAndWait();
+                        productsObservableList.addAll(products);
+                    }
+                } else {
+                    productsObservableList.addAll(products);
+                }
+            }
+        });
     }
-
     public void onClickOrders(javafx.event.ActionEvent ActionEvent)throws SQLException{
         ordersPane.toFront();
         changeColor(ordersButton,pickedTheme);

@@ -27,6 +27,6 @@
       <Label layoutX="14.0" layoutY="105.0" prefHeight="18.0" prefWidth="71.0" text="Quantitiy :" />
       <Label layoutX="14.0" layoutY="59.0" prefHeight="18.0" prefWidth="71.0" text="Name :" />
       <Label layoutX="16.0" layoutY="148.0" prefHeight="18.0" prefWidth="84.0" text="Date init :" />
-      <Label fx:id="nameLabel" layoutX="119.0" layoutY="51.0" prefHeight="34.0" prefWidth="131.0" text="Product" />
+      <Label fx:id="nameLabel" layoutX="119.0" layoutY="51.0" prefHeight="34.0" prefWidth="170.0" text="Product" />
    </children>
 </AnchorPane>

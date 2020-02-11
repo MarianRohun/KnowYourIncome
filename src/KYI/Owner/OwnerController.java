@@ -7,7 +7,6 @@ import KYI.Entits.User;
 import KYI.Owner.EmployeesPane.UserCardController;
 import KYI.Owner.OrdersPane.HistoryOrderCardController;
 import KYI.Owner.OrdersPane.OrderCardController;
-import com.mysql.cj.jdbc.CallableStatement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -27,6 +27,7 @@ import java.io.IOException;
 import javafx.scene.layout.Pane;
 
 import javax.swing.*;
+import javax.swing.text.Style;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
@@ -90,8 +91,10 @@ public class OwnerController extends Controller implements Initializable {
     private Label imagePath, errorLabel;
     @FXML
     private PasswordField oldPasswordField, newPasswordField, confirmPasswordField;
+    @FXML
+    private ColorPicker themePicker;
 
-
+    public static Color pickedTheme ;
     public static ObservableList<Order> ordersObservableList;
     public static ObservableList<User> employeesObservableList;
 
@@ -102,6 +105,7 @@ public class OwnerController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        pickedTheme = Color.rgb(179, 139, 77);
         homePane.toFront();
         positionLabel.setText("Owner: ");
         nameLabel.setText(user.getSurname());
@@ -117,13 +121,13 @@ public class OwnerController extends Controller implements Initializable {
 
     public void onClickStorage(javafx.event.ActionEvent ActionEvent){
         storagePane.toFront();
-        changeColor(storageButton);
+        changeColor(storageButton,pickedTheme);
 
     }
 
     public void onClickOrders(javafx.event.ActionEvent ActionEvent)throws SQLException{
         ordersPane.toFront();
-        changeColor(ordersButton);
+        changeColor(ordersButton,pickedTheme);
 
         ArrayList<Order> orders = new ArrayList<>();
 
@@ -257,7 +261,7 @@ public class OwnerController extends Controller implements Initializable {
     //================================================================
     public void onClickEmployees(javafx.event.ActionEvent ActionEvent) throws IOException, SQLException {
         employeesPane.toFront();
-        changeColor(employeesButton);
+        changeColor(employeesButton,pickedTheme);
 
         ArrayList<User> employees = new ArrayList<>();
 
@@ -319,27 +323,27 @@ public class OwnerController extends Controller implements Initializable {
     //============================================================
     public void onClickHome(javafx.event.ActionEvent ActionEvent){
         homePane.toFront();
-        changeColor(homeButton);
+        changeColor(homeButton,pickedTheme);
     }
 
     public void onClickSoldunits(javafx.event.ActionEvent ActionEvent){
         soldunitsPane.toFront();
-        changeColor(soldunitsButton);
+        changeColor(soldunitsButton,pickedTheme);
     }
     public void onClickIncome(javafx.event.ActionEvent ActionEvent){
         incomePane.toFront();
-        changeColor(incomeButton);
+        changeColor(incomeButton,pickedTheme);
     }
     public void onClickNote(javafx.event.ActionEvent ActionEvent){
         notePane.toFront();
-        changeColor(noteButton);
+        changeColor(noteButton,pickedTheme);
     }
     //================================================================
     //SETTINGS PANE
     //===============================================================
     public void onClickSettings(javafx.event.ActionEvent ActionEvent){
         settingsPane.toFront();
-        changeColor(settingsButton);
+        changeColor(settingsButton,pickedTheme);
 
         changePasswordButton.setVisible(true);
         oldPasswordField.setVisible(false);
@@ -441,6 +445,9 @@ public class OwnerController extends Controller implements Initializable {
                     e.printStackTrace();
                 }
             }
+        });
+        themePicker.setOnAction((ActionEvent t) -> {
+            pickedTheme = themePicker.getValue();
 
         });
     }
@@ -476,17 +483,20 @@ public class OwnerController extends Controller implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Login/Login.fxml"));
         Controller.changeScene(stage, loader, "KnowYourIncome");
     }
+    public void changeColor(Button t,Color _c){
+        String c=_c.toString().replace("0x","#");
+        char[] a = c.toCharArray();
+        c =""+a[0]+a[1]+a[2]+a[3]+a[4]+a[5]+a[6]+"";
+        noteButton.setStyle("-fx-background-color:white;-fx-text-fill:" +c);
+        homeButton.setStyle("-fx-background-color:white;-fx-text-fill:" +c);
+        employeesButton.setStyle("-fx-background-color:white;-fx-text-fill:" +c);
+        ordersButton.setStyle("-fx-background-color:white;-fx-text-fill:" +c);
+        storageButton.setStyle("-fx-background-color:white;-fx-text-fill:" +c);
+        soldunitsButton.setStyle("-fx-background-color:white;-fx-text-fill:" +c);
+        incomeButton.setStyle("-fx-background-color:white;-fx-text-fill:" +c);
+        settingsButton.setStyle("-fx-background-color:white;-fx-text-fill:" +c);
+        t.setStyle("-fx-background-color:"+c+"; -fx-text-fill: white;");
 
-    public void changeColor(Button t){
-        noteButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
-        homeButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
-        employeesButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
-        ordersButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
-        storageButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
-        soldunitsButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
-        incomeButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
-        settingsButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
-        t.setStyle("-fx-background-color:#b38b4d; -fx-text-fill: white;");
     }
 
 }

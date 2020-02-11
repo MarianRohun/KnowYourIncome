@@ -28,8 +28,24 @@ public class Product {
         this. warranty = warranty;
     }
 
+    public Product(String name) {
+        this.name = name;
+    }
+
+    public Product(String name, int quantity, double buyingPrice, double sellingPrice) {
+        this.name = name;
+        this.quantity = quantity;
+        this.buyingPrice = buyingPrice;
+        this.sellingPrice = sellingPrice;
+    }
+
     public Product() {
 
+    }
+
+    public Product(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public int getId() {

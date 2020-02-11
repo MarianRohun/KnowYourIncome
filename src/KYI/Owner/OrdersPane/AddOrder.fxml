@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -14,7 +15,6 @@
             <Font size="21.0" />
          </font>
       </Label>
-      <TextField fx:id="orderNameTextField" layoutX="59.0" layoutY="82.0" prefHeight="34.0" prefWidth="191.0" promptText="Product" />
       <TextField fx:id="orderQuantityTextField" layoutX="113.0" layoutY="131.0" prefHeight="34.0" prefWidth="82.0" promptText="Quantity" />
       <TextField fx:id="orderPerUnitTextField" layoutX="113.0" layoutY="178.0" prefHeight="34.0" prefWidth="82.0" promptText="Per unit " />
       <Button fx:id="confirmOrderButton" layoutX="201.0" layoutY="366.0" mnemonicParsing="false" onAction="#onClickConfirmOrder" prefHeight="34.0" prefWidth="98.0" styleClass="ccButtons" text="Confirm" />
@@ -24,7 +24,8 @@
             <Font name="Franklin Gothic Book" size="13.0" />
          </font>
       </Button>
-      <DatePicker fx:id="warantyDatePicker" layoutX="61.0" layoutY="231.0" prefHeight="27.0" prefWidth="191.0" promptText="warrranty " styleClass="datePicker" />
+      <DatePicker fx:id="warrantyDatePicker" layoutX="61.0" layoutY="231.0" prefHeight="27.0" prefWidth="191.0" promptText="warrranty " styleClass="datePicker" />
       <DatePicker fx:id="dateInitDatePicker" layoutX="61.0" layoutY="288.0" prefHeight="27.0" prefWidth="191.0" promptText="date init" styleClass="datePicker" />
+      <ChoiceBox fx:id="orderNameChoiceBox" layoutX="79.0" layoutY="83.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

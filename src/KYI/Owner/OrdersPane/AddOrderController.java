@@ -1,32 +1,33 @@
 package KYI.Owner.OrdersPane;
 
 import KYI.Controllers.Connectivity;
-import KYI.Entits.User;
+import KYI.Controllers.Controller;
+import KYI.Entits.Product;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static KYI.Controllers.Controller.validate;
-import static KYI.Owner.OwnerController.employeesObservableList;
 
-public class AddOrderController implements Initializable {
+
+
+public class AddOrderController extends Controller implements Initializable {
     @FXML
     private DatePicker warrantyDatePicker,dateInitDatePicker;
     @FXML
-    public TextField orderNameTextField, orderQuantityTextField, orderPerUnitTextField;
+    private TextField orderQuantityTextField, orderPerUnitTextField;
+    @FXML
+    private ChoiceBox orderNameChoiceBox;
     @FXML
     private Label errorOrderLabel;
     @FXML
@@ -37,13 +38,27 @@ public class AddOrderController implements Initializable {
     Connectivity connectivity = new Connectivity();
     Connection connection = connectivity.getConnection();
 
+    ArrayList<Product> products = new ArrayList<>();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        Platform.runLater(()->{
+            String select = "SELECT p_id, name FROM products GROUP BY name";
+            try {
+                ResultSet result = connection.prepareStatement(select).executeQuery();
+                while (result.next()){
+                    Product product = new Product(result.getInt(1),result.getString(2));
+                    products.add(product);
+                    orderNameChoiceBox.getItems().add(product.getName());
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
     }
-        public void onClickConfirmOrder (javafx.event.ActionEvent ActionEvent)throws SQLException {
+        public void onClickConfirmOrder (javafx.event.ActionEvent ActionEvent) throws SQLException {
 
-            if (orderNameTextField.getText().isEmpty()) {
+            if (orderNameChoiceBox.getValue() == null) {
                 errorOrderLabel.setText("Please enter the name");
             }
             if (orderQuantityTextField.getText().isEmpty()) {
@@ -52,17 +67,48 @@ public class AddOrderController implements Initializable {
             if (orderPerUnitTextField.getText().isEmpty()) {
                 errorOrderLabel.setText("Please enter Per unit");
             }
-            if (warrantyDatePicker ==null){
+            Double pricePerUnit = null;
+            if (orderPerUnitTextField.getText().contains(",")){
+                pricePerUnit = Double.parseDouble(orderPerUnitTextField.getText().replaceAll(",","."));
+            }
+            if (warrantyDatePicker.getValue() == null){
                 errorOrderLabel.setText("Select date for warranty");
             }
-            if (dateInitDatePicker ==null){
+            if (dateInitDatePicker.getValue() ==null){
                 errorOrderLabel.setText("Select date for date init");
             }
             else {
+
                 Statement statement = connection.createStatement();
-                String insert = "";
+                String insert = "INSERT INTO orders (dateInit) VALUES ('" + dateInitDatePicker.getValue() +"')";
+                String insertProduct = "INSERT INTO products (name,quantity,buyingPrice,warranty) VALUES ('"+orderNameChoiceBox.getValue()+"',"
+                        +Integer.parseInt(orderQuantityTextField.getText())+ ","+pricePerUnit+",'"+warrantyDatePicker.getValue()+"')";
+
                 statement.executeLargeUpdate(insert);
+                statement.executeLargeUpdate(insertProduct);
+
+                String select = "SELECT o_id FROM orders WHERE dateInit = '"+dateInitDatePicker.getValue()+"'";
+                ResultSet result = connection.prepareStatement(select).executeQuery();
+                int orderId = 0;
+                while (result.next()){
+                    orderId = result.getInt(1);
+                }
+                String selectproduct = "SELECT p_id FROM products WHERE name = '"+orderNameChoiceBox.getValue()+"'";
+                result = connection.prepareStatement(selectproduct).executeQuery();
+                int productId = 0;
+                while (result.next()){
+                    productId = result.getInt(1);
+                }
+
+                String insertMN = "INSERT INTO orders_has_products (orders_o_id, products_p_id, orderedQuantity) VALUES " +
+                        "("+orderId+","+productId+","+Double.parseDouble(orderQuantityTextField.getText())+")";
+                statement.executeLargeUpdate(insertMN);
+
                 System.out.println("Order added");
+
+                Stage stage = (Stage) addingOrderPane.getScene().getWindow();
+                stage.close();
+
             }
         }
 

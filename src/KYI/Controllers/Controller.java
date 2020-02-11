@@ -1,6 +1,7 @@
 package KYI.Controllers;
 
 import KYI.Entits.Order;
+import KYI.Entits.Product;
 import KYI.Entits.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,6 +30,11 @@ public class Controller {
 
     public Order getOrder() { return order;}
     public void setOrder(Order order) {this.order = order;}
+
+    public static Product product = new Product();
+
+    public Product getProduct() {return product;}
+    public void setProduct(Product product) {this.product = product;}
 
 
     public static void changeScene(Stage stage, FXMLLoader loader, String title) throws IOException {

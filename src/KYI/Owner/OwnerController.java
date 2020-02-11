@@ -3,10 +3,13 @@ package KYI.Owner;
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
 import KYI.Entits.Order;
+import KYI.Entits.Product;
 import KYI.Entits.User;
 import KYI.Owner.EmployeesPane.UserCardController;
+import KYI.Owner.OrdersPane.AddOrderController;
 import KYI.Owner.OrdersPane.HistoryOrderCardController;
 import KYI.Owner.OrdersPane.OrderCardController;
+import KYI.Owner.StoragePane.StorageCardController;
 import com.mysql.cj.jdbc.CallableStatement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -115,9 +118,26 @@ public class OwnerController extends Controller implements Initializable {
         }
     }
 
-    public void onClickStorage(javafx.event.ActionEvent ActionEvent){
+    public void onClickStorage(javafx.event.ActionEvent ActionEvent) throws SQLException {
         storagePane.toFront();
         changeColor(storageButton);
+
+        ArrayList<Product> products = new ArrayList<>();
+
+        String select = "SELECT name, SUM(quantity), buyingPrice, sellingPrice FROM products GROUP BY NAME";
+
+        ResultSet result = connection.prepareStatement(select).executeQuery();
+
+        while (result.next()){
+            Product product = new Product (result.getString(1),result.getInt(2),result.getDouble(3),result.getDouble(4));
+            products.add(product);
+        }
+
+        ObservableList<Product> productsObservableList = FXCollections.observableArrayList();
+        productsObservableList.addAll(products);
+
+        storageListView.setItems(productsObservableList);
+        storageListView.setCellFactory(storageListView -> new StorageCardController());
 
     }
 
@@ -175,7 +195,7 @@ public class OwnerController extends Controller implements Initializable {
         });
         switchToHistoryButton.setOnAction(e -> {
             ordersHistoryPane.toFront();
-            ordersButton.setText("Order history");
+            ordersButton.setText("Orders History");
 
             ArrayList<Order> ordersHistory = new ArrayList<>();
             ObservableList<Order> ordersHistoryObservableList;
@@ -240,7 +260,7 @@ public class OwnerController extends Controller implements Initializable {
 
             switchToOrdersButton.setOnAction(event -> {
                 ordersPane.toFront();
-                ordersButton.setText("Order");
+                ordersButton.setText("Orders");
             });
         });
     }

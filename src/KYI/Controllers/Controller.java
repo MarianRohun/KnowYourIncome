@@ -145,7 +145,23 @@ public class Controller {
         }
     }
 
-}
+    public static boolean isNumber(String input){
+        try
+        {
+             if (input.contains(".")){
+                Double.parseDouble(input);
+                return true;
+            }
+            Integer.parseInt( input );
+            return true;
+            } catch(Exception e)
+        {
+            return false;
+        }
+
+        }
+    }
+
 
 
 

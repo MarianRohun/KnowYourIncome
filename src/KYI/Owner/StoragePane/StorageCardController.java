@@ -23,7 +23,7 @@ public class StorageCardController extends ListCell<Product> {
     @FXML
     private Label storageNameLabel,storageQuantityLabel,storageBuyingPriceLabel,sellingPriceLabel;
     @FXML
-    private Button cancelProductButton;
+    private Button cancelProductButton,editProductButton;
     @FXML
     private FXMLLoader loader;
 
@@ -60,6 +60,13 @@ public class StorageCardController extends ListCell<Product> {
                 try {
                     openWindow("../Owner/StoragePane/DeleteProduct.fxml");
                 } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+            editProductButton.setOnAction(event -> {
+                try {
+                    openWindow("../owner/StoragePane/EditStorage.fxml");
+                }catch (Exception e){
                     e.printStackTrace();
                 }
             });

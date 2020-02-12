@@ -9,13 +9,13 @@
    <children>
       <Button fx:id="deleteProductButton" layoutX="277.0" layoutY="123.0" mnemonicParsing="false" onAction="#onClickDelete" prefHeight="27.0" prefWidth="78.0" styleClass="ccButtons" text="Delete" />
       <Button fx:id="cancelProductButton" layoutX="14.0" layoutY="123.0" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="27.0" prefWidth="78.0" styleClass="ccButtons" text="Cancel" />
-      <Label layoutX="31.0" layoutY="7.0" prefHeight="27.0" prefWidth="308.0" text="Press delete to remove the product" textFill="#b38b4d">
+      <Label layoutX="31.0" layoutY="7.0" prefHeight="34.0" prefWidth="308.0" text="Press delete to remove the product" textFill="#b38b4d">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="59.0" prefHeight="18.0" prefWidth="71.0" text="Name :" />
-      <Label fx:id="productLabel" layoutX="113.0" layoutY="51.0" prefHeight="34.0" prefWidth="170.0" text="Product">
+      <Label layoutX="17.0" layoutY="72.0" prefHeight="18.0" prefWidth="71.0" text="Name :" />
+      <Label fx:id="productLabel" layoutX="103.0" layoutY="64.0" prefHeight="34.0" prefWidth="219.0" text="Product">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>

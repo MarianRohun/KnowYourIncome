@@ -80,7 +80,7 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private ListView employeeListView, ordersListView, ordersHistoryListView,storageListView;
     @FXML
-    private Button addUserButton,addOrdersButton,addProductToStorage;
+    private Button addUserButton,addOrdersButton,addProductToStorage,createProductButton;
     @FXML
     private TextField searchEmployeeTextfield,searchOrderTextfield,searchOrderHistoryTextfield,searchStorageTextfield;
     @FXML
@@ -167,6 +167,13 @@ public class OwnerController extends Controller implements Initializable {
             }
         });
     }
+    public void onClickCreateProduct(ActionEvent event)throws Exception{
+        openWindow("../Owner/StoragePane/CreateProduct.fxml");
+    }
+    public void onClickAddProductToStorage(javafx.event.ActionEvent actionEvent)throws Exception{
+        openWindow("../Owner/StoragePane/AddProduct.fxml");
+    }
+
     public void onClickOrders(javafx.event.ActionEvent ActionEvent)throws SQLException{
         ordersPane.toFront();
         changeColor(ordersButton,pickedTheme);

@@ -101,6 +101,7 @@ public class OwnerController extends Controller implements Initializable {
     public static Color pickedTheme ;
     public static ObservableList<Order> ordersObservableList;
     public static ObservableList<User> employeesObservableList;
+    public static ObservableList<Product> productsObservableList;
 
     Connectivity connectivity = new Connectivity();
     Connection connection = connectivity.getConnection();
@@ -130,16 +131,16 @@ public class OwnerController extends Controller implements Initializable {
 
         ArrayList<Product> products = new ArrayList<>();
 
-        String select = "SELECT name, SUM(quantity), buyingPrice, sellingPrice FROM products GROUP BY NAME";
+        String select = "SELECT p_id,name, SUM(quantity),sellingPrice FROM products GROUP BY NAME";
 
         ResultSet result = connection.prepareStatement(select).executeQuery();
 
         while (result.next()) {
-            Product product = new Product(result.getString(1), result.getInt(2), result.getDouble(3), result.getDouble(4));
+            Product product = new Product(result.getInt(1),result.getString(2), result.getInt(3), result.getDouble(4));
             products.add(product);
         }
 
-        ObservableList<Product> productsObservableList = FXCollections.observableArrayList();
+        productsObservableList = FXCollections.observableArrayList();
         productsObservableList.addAll(products);
 
         storageListView.setItems(productsObservableList);
@@ -167,6 +168,12 @@ public class OwnerController extends Controller implements Initializable {
             }
         });
     }
+
+    public void refreshStorageListView(int productId){
+        productsObservableList.removeIf(product -> product.getId() == productId);
+        storagePane.toFront();
+    }
+
     public void onClickOrders(javafx.event.ActionEvent ActionEvent)throws SQLException{
         ordersPane.toFront();
         changeColor(ordersButton,pickedTheme);

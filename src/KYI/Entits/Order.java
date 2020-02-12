@@ -14,6 +14,13 @@ public class Order extends Product {
         this.deliverStatus = deliverStatus;
     }
 
+    public Order(String name, int quantity,double buyingPrice, java.util.Date warranty, Date dateInit) {
+        super(name, buyingPrice, quantity, warranty);
+        this.dateInit = dateInit;
+        this.productId = productId;
+        this.deliverStatus = deliverStatus;
+    }
+
     public Order() {
         super();
     }

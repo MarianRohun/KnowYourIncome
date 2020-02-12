@@ -2,6 +2,7 @@ package KYI.Owner.OrdersPane;
 
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
+import KYI.Entits.Order;
 import KYI.Entits.Product;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -18,9 +19,11 @@ import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
-
+import static KYI.Owner.OwnerController.ordersObservableList;
 
 
 public class AddOrderController extends Controller implements Initializable {
@@ -129,6 +132,14 @@ public class AddOrderController extends Controller implements Initializable {
                  statement.executeLargeUpdate(insertMN);
 
                  System.out.println("Order added");
+                 Order order = new Order(orderNameChoiceBox.getValue().toString(),Integer.parseInt(orderQuantityTextField.getText()),pricePerUnit,
+                         Date.valueOf(warrantyDatePicker.getValue()),Date.valueOf(dateInitDatePicker.getValue()));
+                 ordersObservableList.add(order);
+
+                 Comparator<Order> orderComparator = Comparator.comparing(Order::getDateInit);
+                 Collections.sort(ordersObservableList,orderComparator);
+
+
                  Stage stage = (Stage) addingOrderPane.getScene().getWindow();
                  stage.close();
              }

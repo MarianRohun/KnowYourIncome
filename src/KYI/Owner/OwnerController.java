@@ -184,6 +184,7 @@ public class OwnerController extends Controller implements Initializable {
                     result.getDate(5),result.getDate(6),result.getInt(7),result.getBoolean(8));
             orders.add(order);
         }
+        orders.removeIf(order -> order.getDateInit().before(Date.valueOf(LocalDate.now().minusDays(2))));
 
         ordersObservableList = FXCollections.observableArrayList();
         ordersObservableList.addAll(orders);

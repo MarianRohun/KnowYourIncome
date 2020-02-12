@@ -379,20 +379,20 @@
             </Pane>
             <Pane fx:id="storagePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
-                  <TextField fx:id="searchStorageTextfield" layoutX="14.0" layoutY="45.0" prefHeight="37.0" prefWidth="217.0" promptText="search order" styleClass="search" text="Search products">
+                  <TextField fx:id="searchStorageTextfield" layoutX="20.0" layoutY="46.0" prefHeight="37.0" prefWidth="217.0" promptText="search order" styleClass="search" text="Search products">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
                   <ListView fx:id="storageListView" layoutX="8.0" layoutY="142.0" prefHeight="456.0" prefWidth="720.0" />
-                  <Button fx:id="addProductToStorage" layoutX="573.0" layoutY="45.0" mnemonicParsing="false" onAction="#onClickAddOrder" prefHeight="38.0" prefWidth="147.0" styleClass="blackButtons" text="Add product">
+                  <Button fx:id="addProductToStorage" layoutX="596.0" layoutY="50.0" mnemonicParsing="false" onAction="#onClickAddProductToStorage" prefHeight="33.0" prefWidth="124.0" styleClass="blackButtons" text="Add product">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <HBox fx:id="storageTableHeader" alignment="CENTER_LEFT" layoutX="14.0" layoutY="94.0" prefHeight="47.0" prefWidth="706.0" styleClass="tableHeader">
+                  <HBox fx:id="storageTableHeader" alignment="CENTER_LEFT" layoutX="20.0" layoutY="94.0" prefHeight="47.0" prefWidth="700.0" styleClass="tableHeader">
                      <children>
-                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="176.0" styleClass="headerLabel" text="Name" textFill="WHITE">
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="203.0" styleClass="headerLabel" text="Name" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -400,7 +400,7 @@
                               <Insets left="15.0" />
                            </HBox.margin>
                         </Label>
-                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="138.0" styleClass="headerLabel" text="Quantity" textFill="WHITE">
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="177.0" styleClass="headerLabel" text="Quantity" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -408,20 +408,12 @@
                               <Insets />
                            </HBox.margin>
                         </Label>
-                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="132.0" styleClass="headerLabel" text="Per unit" textFill="WHITE">
+                        <Label prefHeight="20.0" prefWidth="137.0" styleClass="headerLabel" text="Selling price">
                            <font>
                               <Font size="14.0" />
                            </font>
                            <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                        <Label prefHeight="20.0" prefWidth="91.0" styleClass="headerLabel" text="Selling price">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="25.0" right="25.0" />
+                              <Insets left="25.0" right="41.0" />
                            </HBox.margin>
                         </Label>
                         <ImageView fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
@@ -442,6 +434,11 @@
                         </ImageView>
                      </children>
                   </HBox>
+                  <Button fx:id="createProductButton" layoutX="596.0" layoutY="7.0" mnemonicParsing="false" onAction="#onClickCreateProduct" prefHeight="28.0" prefWidth="124.0" styleClass="blackButtons" text="Create product">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>

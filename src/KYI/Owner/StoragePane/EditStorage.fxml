@@ -9,7 +9,7 @@
    <children>
       <Button fx:id="confirmEditButton" layoutX="284.0" layoutY="203.0" mnemonicParsing="false" onAction="#onClickEdit" prefHeight="27.0" prefWidth="71.0" styleClass="ccButtons" text="Edit" />
       <Button fx:id="cancelEditButton" layoutX="14.0" layoutY="203.0" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="27.0" prefWidth="71.0" styleClass="ccButtons" text="Cancel" />
-      <Label layoutX="58.0" layoutY="8.0" prefHeight="27.0" prefWidth="273.0" text="Press delete to remove order" textFill="#b38b4d">
+      <Label layoutX="91.0" layoutY="7.0" prefHeight="34.0" prefWidth="188.0" text="Press Edit to confirm " textFill="#b38b4d">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -26,7 +26,7 @@
       </Label>
       <Label layoutX="14.0" layoutY="105.0" prefHeight="18.0" prefWidth="71.0" text="Quantitiy :" />
       <Label layoutX="14.0" layoutY="59.0" prefHeight="18.0" prefWidth="71.0" text="Name :" />
-      <Label layoutX="16.0" layoutY="148.0" prefHeight="18.0" prefWidth="84.0" text="Selling price :" />
+      <Label layoutX="16.0" layoutY="148.0" prefHeight="18.0" prefWidth="94.0" text="Selling price :" />
       <Label fx:id="nameLabel" layoutX="135.0" layoutY="51.0" prefHeight="34.0" prefWidth="194.0" text="Product" />
    </children>
 </AnchorPane>

@@ -48,6 +48,21 @@ public class Product {
         this.name = name;
     }
 
+    public Product(int id, String name, int quantity, double sellingPrice) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.sellingPrice = sellingPrice;
+    }
+
+    public Product(String name, double buyingPrice, int quantity, Date warranty) {
+        this.name = name;
+        this.buyingPrice = buyingPrice;
+        this.quantity = quantity;
+        this.warranty = warranty;
+    }
+
+
     public int getId() {
         return id;
     }

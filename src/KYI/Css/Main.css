@@ -88,7 +88,7 @@
     -fx-border-color: #b38b4d;
     -fx-border-width: 0 4 0 0 ;
 }
-#usercardAnchorPane,#orderHistoryCardAnchorPane{
+#usercardAnchorPane,#orderHistoryCardAnchorPane,#storageCardAnchorPane{
     -fx-border-width: 0 4 0 4;
     -fx-border-style: dotted;
     -fx-border-color: #b38b4d;
@@ -146,7 +146,7 @@
     -fx-prompt-text-fill: black;
     -fx-text-alignment: middle;
 }
-#confirmDeletePane,#confirmDeleteOrderPane,#confirmDeleteStoragePane,#confirmEditStoragePane{
+#confirmDeletePane,#confirmDeleteOrderPane,#confirmDeleteStoragePane,#confirmEditStoragePane,#CreateProductPane,#addProductPane{
     -fx-border-width: 4 4 4 4;
     -fx-border-color: #b38b4d;
     -fx-background-color: white;

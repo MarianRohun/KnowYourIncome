@@ -50,7 +50,6 @@ public class StorageCardController extends ListCell<Product> {
 
             storageNameLabel.setText(product.getName());
             storageQuantityLabel.setText(product.getQuantity() + "pcs");
-            storageBuyingPriceLabel.setText(product.getBuyingPrice() + "€");
             sellingPriceLabel.setText(product.getSellingPrice() + "€");
 
 

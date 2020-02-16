@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -17,7 +18,7 @@ public class CreateProductController implements Initializable {
     @FXML
     private AnchorPane CreateProductPane;
     @FXML
-    private Label nameLabel;
+    private TextField nameTextfield;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

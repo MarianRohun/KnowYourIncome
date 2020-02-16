@@ -11,9 +11,11 @@ import KYI.Owner.OrdersPane.OrderCardController;
 
 import KYI.Owner.StoragePane.StorageCardController;
 
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,6 +24,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -30,8 +33,6 @@ import java.io.File;
 import java.io.IOException;
 import javafx.scene.layout.Pane;
 
-import javax.swing.*;
-import javax.swing.text.Style;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
@@ -62,7 +63,7 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Button settingsButton;
     @FXML
-    private Pane homePane;
+    private Pane homePane,sidebarPane;
     @FXML
     private Pane employeesPane, ordersHistoryPane;
     @FXML
@@ -97,6 +98,8 @@ public class OwnerController extends Controller implements Initializable {
     private PasswordField oldPasswordField, newPasswordField, confirmPasswordField;
     @FXML
     private ColorPicker themePicker;
+    @FXML
+    private Button saveColorButton;
 
     public static Color pickedTheme ;
     public static ObservableList<Order> ordersObservableList;
@@ -112,6 +115,7 @@ public class OwnerController extends Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         pickedTheme = Color.rgb(179, 139, 77);
         homePane.toFront();
+        homeButton.setStyle("-fx-background-color: #b38b4d;");
         positionLabel.setText("Owner: ");
         nameLabel.setText(user.getSurname());
         if (user.getProfilePicture() != null) {
@@ -126,7 +130,7 @@ public class OwnerController extends Controller implements Initializable {
 
     public void onClickStorage(javafx.event.ActionEvent ActionEvent) throws SQLException {
         storagePane.toFront();
-        changeColor(storageButton, pickedTheme);
+        changeColor(storageButton);
         ordersButton.setText("Orders");
 
         ArrayList<Product> products = new ArrayList<>();
@@ -175,14 +179,6 @@ public class OwnerController extends Controller implements Initializable {
         openWindow("../Owner/StoragePane/AddProduct.fxml");
     }
 
-    public void onClickCreateProduct(ActionEvent event)throws Exception{
-        openWindow("../Owner/StoragePane/CreateProduct.fxml");
-    }
-    public void onClickAddProductToStorage(javafx.event.ActionEvent actionEvent)throws Exception{
-        openWindow("../Owner/StoragePane/AddProduct.fxml");
-    }
-
-
     public void refreshStorageListView(int productId){
         productsObservableList.removeIf(product -> product.getId() == productId);
         storagePane.toFront();
@@ -190,29 +186,36 @@ public class OwnerController extends Controller implements Initializable {
 
     public void onClickOrders(javafx.event.ActionEvent ActionEvent)throws SQLException{
         ordersPane.toFront();
-        changeColor(ordersButton,pickedTheme);
+        changeColor(ordersButton);
 
         ArrayList<Order> orders = new ArrayList<>();
-
+        new Thread(() -> {
         String select = "SELECT orders.o_id,products.name,orders_has_products.orderedQuantity,products.buyingPrice,products.warranty,orders.dateInit, " +
                 "products.p_id, deliverStatus FROM orders_has_products JOIN products ON (products_p_id = p_id) " +
                 "JOIN orders ON (orders_o_id = o_id) WHERE deliverStatus = FALSE ORDER BY dateInit ASC";
 
-        ResultSet result = connection.prepareStatement(select).executeQuery();
+            ResultSet result = null;
+            try {
+                result = connection.prepareStatement(select).executeQuery();
 
-        while (result.next()){
+
+            while (result.next()){
             Order order = new Order(result.getInt(1),result.getString(2),result.getInt(3),result.getDouble(4),
                     result.getDate(5),result.getDate(6),result.getInt(7),result.getBoolean(8));
             orders.add(order);
         }
+
         orders.removeIf(order -> order.getDateInit().before(Date.valueOf(LocalDate.now().minusDays(2))));
 
         ordersObservableList = FXCollections.observableArrayList();
         ordersObservableList.addAll(orders);
 
         ordersListView.setItems(ordersObservableList);
-        ordersListView.setCellFactory(ordersListView -> new OrderCardController(this));
-
+        ordersListView.setCellFactory(ordersListView -> new OrderCardController(this));}
+            catch (SQLException e) {
+            e.printStackTrace();
+        }
+        }).start();
         searchOrderTextfield.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 ordersObservableList.clear();
@@ -324,7 +327,7 @@ public class OwnerController extends Controller implements Initializable {
     //================================================================
     public void onClickEmployees(javafx.event.ActionEvent ActionEvent) throws IOException, SQLException {
         employeesPane.toFront();
-        changeColor(employeesButton,pickedTheme);
+        changeColor(employeesButton);
         ordersButton.setText("Orders");
 
         ArrayList<User> employees = new ArrayList<>();
@@ -387,23 +390,23 @@ public class OwnerController extends Controller implements Initializable {
     //============================================================
     public void onClickHome(javafx.event.ActionEvent ActionEvent){
         homePane.toFront();
-        changeColor(homeButton,pickedTheme);
+        changeColor(homeButton);
         ordersButton.setText("Orders");
     }
 
     public void onClickSoldunits(javafx.event.ActionEvent ActionEvent){
         soldunitsPane.toFront();
-        changeColor(soldunitsButton,pickedTheme);
+        changeColor(soldunitsButton);
         ordersButton.setText("Orders");
     }
     public void onClickIncome(javafx.event.ActionEvent ActionEvent){
         incomePane.toFront();
-        changeColor(incomeButton,pickedTheme);
+        changeColor(incomeButton);
         ordersButton.setText("Orders");
     }
     public void onClickNote(javafx.event.ActionEvent ActionEvent){
         notePane.toFront();
-        changeColor(noteButton,pickedTheme);
+        changeColor(noteButton);
         ordersButton.setText("Orders");
     }
     //================================================================
@@ -411,7 +414,7 @@ public class OwnerController extends Controller implements Initializable {
     //===============================================================
     public void onClickSettings(javafx.event.ActionEvent ActionEvent){
         settingsPane.toFront();
-        changeColor(settingsButton,pickedTheme);
+        changeColor(settingsButton);
         ordersButton.setText("Orders");
 
         changePasswordButton.setVisible(true);
@@ -515,11 +518,41 @@ public class OwnerController extends Controller implements Initializable {
                 }
             }
         });
-        themePicker.setOnAction((ActionEvent t) -> {
+        saveColorButton.setOnAction(event -> {
             pickedTheme = themePicker.getValue();
+            String c=pickedTheme.toString().replace("0x","#");
+            char[] a = c.toCharArray();
+            c =""+a[0]+a[1]+a[2]+a[3]+a[4]+a[5]+a[6]+"";
+            logoutButton.setStyle("-fx-border-color:"+c+";-fx-text-fill:"+c);
+            noteButton.setStyle("-fx-text-fill:"+c);
+            homeButton.setStyle("-fx-text-fill:" +c);
+            employeesButton.setStyle("-fx-text-fill:" +c);
+            ordersButton.setStyle("-fx-text-fill:" +c);
+            storageButton.setStyle("-fx-text-fill:" +c);
+            soldunitsButton.setStyle("-fx-text-fill:" +c);
+            incomeButton.setStyle("-fx-text-fill:" +c);
+            settingsButton.setStyle("-fx-text-fill:" +c);
+            changeColor(settingsButton);
+            sidebarPane.setStyle("-fx-border-color: "+c);
 
         });
+        settingsButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+               changeHover(settingsButton);
+            }
+        });
+        settingsButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+            //   settingsButton.setStyle("-fx-border-color:none;"+"-fx-text-fill:white"+";"+"-fx-background-color:"+parseColor(pickedTheme));
+               changeColor(settingsButton);
+            }
+        });
     }
+    //==================================================================================
+    //END OF PANE CONTROLLERS
+    //==================================================================================
     public void onChooseImageClick(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(null);
@@ -544,28 +577,39 @@ public class OwnerController extends Controller implements Initializable {
             });
         }
     }
-    //==================================================================================
-    //END OF PANE CONTROLLERS
-    //==================================================================================
+
     public void onClickLogout(javafx.event.ActionEvent ActionEvent) throws IOException {
         Stage stage = (Stage) nameLabel.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Login/Login.fxml"));
         Controller.changeScene(stage, loader, "KnowYourIncome");
     }
-    public void changeColor(Button t,Color _c){
+    public void changeColor(Button t){
+        noteButton.setStyle("-fx-background-color:white;-fx-text-fill:" +parseColor(pickedTheme));
+        homeButton.setStyle("-fx-background-color:white;-fx-text-fill:" +parseColor(pickedTheme));
+        employeesButton.setStyle("-fx-background-color:white;-fx-text-fill:" +parseColor(pickedTheme));
+        ordersButton.setStyle("-fx-background-color:white;-fx-text-fill:" +parseColor(pickedTheme));
+        storageButton.setStyle("-fx-background-color:white;-fx-text-fill:" +parseColor(pickedTheme));
+        soldunitsButton.setStyle("-fx-background-color:white;-fx-text-fill:" +parseColor(pickedTheme));
+        incomeButton.setStyle("-fx-background-color:white;-fx-text-fill:" +parseColor(pickedTheme));
+        settingsButton.setStyle("-fx-background-color:white;-fx-text-fill:" +parseColor(pickedTheme));
+        t.setStyle("-fx-background-color:"+parseColor(pickedTheme)+"; -fx-text-fill: white;");
+    }
+    public String parseColor(Color _c){
         String c=_c.toString().replace("0x","#");
         char[] a = c.toCharArray();
         c =""+a[0]+a[1]+a[2]+a[3]+a[4]+a[5]+a[6]+"";
-        noteButton.setStyle("-fx-background-color:white;-fx-text-fill:" +c);
-        homeButton.setStyle("-fx-background-color:white;-fx-text-fill:" +c);
-        employeesButton.setStyle("-fx-background-color:white;-fx-text-fill:" +c);
-        ordersButton.setStyle("-fx-background-color:white;-fx-text-fill:" +c);
-        storageButton.setStyle("-fx-background-color:white;-fx-text-fill:" +c);
-        soldunitsButton.setStyle("-fx-background-color:white;-fx-text-fill:" +c);
-        incomeButton.setStyle("-fx-background-color:white;-fx-text-fill:" +c);
-        settingsButton.setStyle("-fx-background-color:white;-fx-text-fill:" +c);
-        t.setStyle("-fx-background-color:"+c+"; -fx-text-fill: white;");
-
+        return c;
+    }
+    public void changeHover (Button t){
+        homeButton.setStyle("-fx-background-color: white;"+"-fx-text-fill:"+parseColor(pickedTheme));
+        employeesButton.setStyle("-fx-background-color: white;"+"-fx-text-fill:"+parseColor(pickedTheme));
+        ordersButton.setStyle("-fx-background-color: white;"+"-fx-text-fill:"+parseColor(pickedTheme));
+        storageButton.setStyle("-fx-background-color: white;"+"-fx-text-fill:"+parseColor(pickedTheme));
+        soldunitsButton.setStyle("-fx-background-color: white;"+"-fx-text-fill:"+parseColor(pickedTheme));
+        incomeButton.setStyle("-fx-background-color: white;"+"-fx-text-fill:"+parseColor(pickedTheme));
+        noteButton.setStyle("-fx-background-color: white;"+"-fx-text-fill:"+parseColor(pickedTheme));
+        settingsButton.setStyle("-fx-background-color: white;"+"-fx-text-fill:"+parseColor(pickedTheme));
+        t.setStyle("-fx-border-color:"+parseColor(pickedTheme)+";"+"-fx-text-fill:"+parseColor(pickedTheme));
     }
 
 }

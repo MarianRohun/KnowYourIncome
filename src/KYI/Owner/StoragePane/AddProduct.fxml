@@ -3,31 +3,26 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="addProductPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="234.0" prefWidth="370.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.StoragePane.AddProductController">
+<AnchorPane fx:id="addProductPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="370.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.StoragePane.AddProductController">
    <children>
-      <Button fx:id="confirmButton" layoutX="277.0" layoutY="193.0" mnemonicParsing="false" onAction="#onClickConfirm" prefHeight="27.0" prefWidth="78.0" styleClass="ccButtons" text="Confirm" />
-      <Button fx:id="cancelButton" layoutX="14.0" layoutY="193.0" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="27.0" prefWidth="78.0" styleClass="ccButtons" text="Cancel" />
+      <Button fx:id="confirmButton" layoutX="284.0" layoutY="238.0" mnemonicParsing="false" onAction="#onClickConfirm" prefHeight="27.0" prefWidth="78.0" styleClass="ccButtons" text="Confirm" />
+      <Button fx:id="cancelButton" layoutX="10.0" layoutY="238.0" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="27.0" prefWidth="78.0" styleClass="ccButtons" text="Cancel" />
       <Label layoutX="89.0" layoutY="6.0" prefHeight="27.0" prefWidth="218.0" text="Confirm to add product" textFill="#b38b4d">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="quantityLabel" layoutX="138.0" layoutY="89.0" prefHeight="34.0" prefWidth="146.0" text="Quantity">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label fx:id="sellingPriceLabel" layoutX="138.0" layoutY="146.0" prefHeight="27.0" prefWidth="146.0" text="Selling Price">
-         <font>
-            <Font name="Arial Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="22.0" layoutY="48.0" prefHeight="18.0" prefWidth="54.0" text="Name :" />
-      <Label layoutX="22.0" layoutY="94.0" prefHeight="27.0" prefWidth="71.0" text="Quantity :" />
-      <Label layoutX="22.0" layoutY="151.0" prefHeight="18.0" prefWidth="78.0" text="Selling price :" />
-      <ChoiceBox fx:id="nameChoiceBox" layoutX="136.0" layoutY="44.0" prefWidth="150.0" />
+      <Label layoutX="17.0" layoutY="47.0" prefHeight="18.0" prefWidth="53.0" text="Name :" />
+      <Label layoutX="18.0" layoutY="92.0" prefHeight="27.0" prefWidth="64.0" text="Quantity :" />
+      <Label layoutX="18.0" layoutY="186.0" prefHeight="18.0" prefWidth="78.0" text="Selling price :" />
+      <ChoiceBox fx:id="nameChoiceBox" layoutX="123.0" layoutY="43.0" prefWidth="150.0" />
+      <Label layoutX="18.0" layoutY="140.0" prefHeight="18.0" prefWidth="78.0" text="Buying price :" />
+      <TextField fx:id="quantityTextfield" layoutX="152.0" layoutY="92.0" prefHeight="18.0" prefWidth="91.0" />
+      <TextField fx:id="buyingPriceTextfield" layoutX="152.0" layoutY="135.0" prefHeight="18.0" prefWidth="91.0" />
+      <TextField fx:id="sellingPriceTextfield" layoutX="152.0" layoutY="181.0" prefHeight="18.0" prefWidth="91.0" />
    </children>
 </AnchorPane>

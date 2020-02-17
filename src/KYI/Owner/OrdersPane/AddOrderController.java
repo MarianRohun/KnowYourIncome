@@ -15,8 +15,10 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.awt.event.ActionEvent;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -106,10 +108,14 @@ public class AddOrderController extends Controller implements Initializable {
              else {
 
                  pricePerUnit = Double.parseDouble(orderPerUnitTextField.getText().replace(",","."));
+                 DecimalFormat df = new DecimalFormat("#.##");
+                 df.setRoundingMode(RoundingMode.DOWN);
+
                  Statement statement = connection.createStatement();
+
                  String insert = "INSERT INTO orders (dateInit) VALUES ('" + dateInitDatePicker.getValue() + "')";
-                 String insertProduct = "INSERT INTO products (name,quantity,buyingPrice,warranty) VALUES ('" + orderNameChoiceBox.getValue() + "',"
-                         + Integer.parseInt(orderQuantityTextField.getText()) + "," + pricePerUnit + ",'" + warrantyDatePicker.getValue() + "')";
+                 String insertProduct = "INSERT INTO products (name,buyingPrice,warranty) VALUES ('" + orderNameChoiceBox.getValue() + "',"
+                         + df.format(pricePerUnit) + ",'" + warrantyDatePicker.getValue() + "')";
 
                  statement.executeLargeUpdate(insert);
                  statement.executeLargeUpdate(insertProduct);
@@ -132,7 +138,7 @@ public class AddOrderController extends Controller implements Initializable {
                  statement.executeLargeUpdate(insertMN);
 
                  System.out.println("Order added");
-                 Order order = new Order(orderNameChoiceBox.getValue().toString(),Integer.parseInt(orderQuantityTextField.getText()),pricePerUnit,
+                 Order order = new Order(orderNameChoiceBox.getValue().toString(),Integer.parseInt(orderQuantityTextField.getText()),Double.parseDouble(df.format(pricePerUnit)),
                          Date.valueOf(warrantyDatePicker.getValue()),Date.valueOf(dateInitDatePicker.getValue()));
                  ordersObservableList.add(order);
 

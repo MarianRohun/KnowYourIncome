@@ -170,7 +170,7 @@ public class OwnerController extends Controller implements Initializable {
         productsObservableList.addAll(products);
 
         storageListView.setItems(productsObservableList);
-        storageListView.setCellFactory(storageListView -> new StorageCardController());
+        storageListView.setCellFactory(storageListView -> new StorageCardController(this));
 
         searchStorageTextfield.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {

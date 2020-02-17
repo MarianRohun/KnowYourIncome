@@ -7,8 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 
-import java.sql.Date;
-import java.time.LocalDate;
 
 public class HistoryOrderCardController extends ListCell<Order> {
 

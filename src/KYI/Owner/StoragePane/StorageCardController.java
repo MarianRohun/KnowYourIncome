@@ -2,18 +2,19 @@ package KYI.Owner.StoragePane;
 
 import KYI.Entits.Order;
 import KYI.Entits.Product;
+import KYI.Owner.OwnerController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 
-import java.awt.event.ActionEvent;
 
 import static KYI.Controllers.Controller.openWindow;
+import static KYI.Controllers.Controller.openWindowProduct;
+import static KYI.Owner.StoragePane.DeleteProductController.isProductDeleted;
 
 
 public class StorageCardController extends ListCell<Product> {
@@ -26,6 +27,9 @@ public class StorageCardController extends ListCell<Product> {
     private Button cancelProductButton,editProductButton;
     @FXML
     private FXMLLoader loader;
+
+    private OwnerController ownerController;
+    public StorageCardController(OwnerController ownerController){this.ownerController = ownerController;}
 
     @Override
     protected void updateItem(Product product, boolean empty) {
@@ -57,7 +61,11 @@ public class StorageCardController extends ListCell<Product> {
             setGraphic(storageCardAnchorPane);
             cancelProductButton.setOnAction(event -> {
                 try {
-                    openWindow("../Owner/StoragePane/DeleteProduct.fxml");
+                    openWindowProduct("../Owner/StoragePane/DeleteProduct.fxml",product);
+                   if (isProductDeleted == true){
+                       ownerController.refreshStorageListView(product.getId());
+                   }
+                   isProductDeleted = false;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -93,6 +93,18 @@ public class Controller {
         newstage.initModality(Modality.APPLICATION_MODAL);
         newstage.showAndWait();
     }
+    public static void openWindowProduct(String stage,Product product) throws Exception {
+        Stage newstage = new Stage();
+        Parent root = FXMLLoader.load(Controller.class.getResource(stage));
+        Scene scene = new Scene(root);
+        newstage.setScene(scene);
+        Controller controller = new Controller();
+        controller.setProduct(product);
+        newstage.setResizable(false);
+        newstage.initStyle(StageStyle.TRANSPARENT);
+        newstage.initModality(Modality.APPLICATION_MODAL);
+        newstage.showAndWait();
+    }
 
 
     public static String generateKey() {

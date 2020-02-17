@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ConfirmOrderController extends Controller implements Initializable {
@@ -43,6 +44,9 @@ public class ConfirmOrderController extends Controller implements Initializable 
         String update = "UPDATE orders_has_products SET deliverStatus = TRUE WHERE orders_o_id ="+order.getId()+" AND " +
                 "products_p_id = "+order.getProductId();
         statement.executeLargeUpdate(update);
+        String insert = "INSERT INTO products (name,quantity,buyingPrice,warranty) VALUES ('"+order.getName()+"',"+order.getQuantity()+
+                ","+order.getBuyingPrice()+",'"+order.getWarranty()+"')";
+        statement.executeLargeUpdate(insert);
         System.out.println("Order delivered successfully");
         isOrderConfirmed = true;
         Stage stage = (Stage) nameLabel.getScene().getWindow();

@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="addingPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="311.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.EmployeesPane.AddingEmployeeController">
+<AnchorPane fx:id="addingPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="311.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.EmployeesPane.AddingEmployeeController">
    <children>
-      <Label layoutX="37.0" layoutY="9.0" prefHeight="46.0" prefWidth="240.0" text="SIGN UP NEW EMPLOYEE" textFill="#b38b4d">
+      <Label layoutX="37.0" layoutY="9.0" prefHeight="46.0" prefWidth="240.0" styleClass="colorlabel" text="SIGN UP NEW EMPLOYEE" textFill="#b38b4d">
          <font>
             <Font size="21.0" />
          </font></Label>

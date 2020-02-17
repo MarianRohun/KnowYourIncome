@@ -9,7 +9,7 @@
    <children>
       <Button fx:id="deleteOrderButton" layoutX="284.0" layoutY="203.0" mnemonicParsing="false" onAction="#onClickDelete" prefHeight="27.0" prefWidth="71.0" styleClass="ccButtons" text="Delete" />
       <Button fx:id="cancelOrderButton" layoutX="14.0" layoutY="203.0" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="27.0" prefWidth="71.0" styleClass="ccButtons" text="Cancel" />
-      <Label layoutX="58.0" layoutY="8.0" prefHeight="27.0" prefWidth="273.0" text="Press delete to remove order" textFill="#b38b4d">
+      <Label layoutX="58.0" layoutY="8.0" prefHeight="27.0" prefWidth="273.0" styleClass="colorlabel" text="Press delete to remove order" textFill="#b38b4d">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

@@ -9,7 +9,7 @@
    <children>
       <Button fx:id="confirmEditButton" layoutX="284.0" layoutY="203.0" mnemonicParsing="false" onAction="#onClickEdit" prefHeight="27.0" prefWidth="71.0" styleClass="ccButtons" text="Edit" />
       <Button fx:id="cancelEditButton" layoutX="14.0" layoutY="203.0" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="27.0" prefWidth="71.0" styleClass="ccButtons" text="Cancel" />
-      <Label layoutX="91.0" layoutY="7.0" prefHeight="34.0" prefWidth="188.0" text="Press Edit to confirm " textFill="#b38b4d">
+      <Label layoutX="91.0" layoutY="7.0" prefHeight="34.0" prefWidth="188.0" styleClass="colorlabel" text="Press Edit to confirm " textFill="#b38b4d">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

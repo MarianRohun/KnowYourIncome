@@ -28,8 +28,9 @@
     -fx-background-color: none;
 }
 .buttons:hover{
+    /*buttons hover*/
+-fx-border-color: #999900;
     -fx-border-width: 0 0 2 0;
-    -fx-border-color: #b38b4d;
 }
 .buttons:pressed{
     -fx-font-size: 12;
@@ -86,6 +87,10 @@
     -fx-text-fill: black;
     -fx-border-width: 3 3 3 3;
 }
+.colorlabel{
+    /*label text*/
+ -fx-text-fill: #999900;
+}
 #sidebarPane{
     -fx-background-color: white;
     -fx-opacity: 0.86;
@@ -93,24 +98,21 @@
     -fx-border-width: 0 4 0 0 ;
 }
 #usercardAnchorPane,#orderHistoryCardAnchorPane,#storageCardAnchorPane{
+    /*card dots*/
+-fx-border-color: #999900;
     -fx-border-width: 0 4 0 4;
     -fx-border-style: dotted;
-    -fx-border-color: #b38b4d;
     -fx-border-radius: 1%;
 }
 #logoutButton{
     -fx-font-size: 15;
     -fx-border-width: 0 0 3 0;
-    -fx-border-color: #b38b4d;
+    -fx-border-color: transparent;
     -fx-text-fill: #b38b4d;
     -fx-background-color: none;
 }
-#logoutButton:hover{
-    -fx-background-color: #b38b4d;
-    -fx-text-fill: white;
-}
 #logoutButton:pressed{
- -fx-font-size: 12;
+    -fx-font-size: 12;
 }
 #homeButton{
     -fx-text-fill: white;
@@ -129,11 +131,6 @@
     -fx-opacity: 0.86;
     -fx-background-color: #b38b4d;
 }
-#addingPane,#addingOrderPane{
-    -fx-border-width: 4 4 4 4;
-    -fx-border-color: #b38b4d;
-    -fx-background-color: white;
-}
 #addUserButton:pressed{
     -fx-font-size: 14;
 }
@@ -149,9 +146,10 @@
     -fx-prompt-text-fill: black;
     -fx-text-alignment: middle;
 }
-#confirmDeletePane,#confirmDeleteOrderPane,#confirmDeleteStoragePane,#confirmEditStoragePane,#CreateProductPane,#addProductPane{
+#confirmDeletePane,#confirmDeleteOrderPane,#confirmDeleteStoragePane,#confirmEditStoragePane,#CreateProductPane,#addProductPane,#addingPane,#addingOrderPane{
+     /*window border*/
+-fx-border-color: #999900;
     -fx-border-width: 4 4 4 4;
-    -fx-border-color: #b38b4d;
     -fx-background-color: white;
 }
 #employeeTableHeader{
@@ -180,5 +178,3 @@
     -fx-background-color: transparent;
     -fx-font-size: 14;
 }
-
-

@@ -10,7 +10,7 @@
    <children>
       <Button fx:id="confirmEditButton" layoutX="277.0" layoutY="123.0" mnemonicParsing="false" onAction="#onClickConfirm" prefHeight="27.0" prefWidth="78.0" styleClass="ccButtons" text="Confirm" />
       <Button fx:id="cancelProductButton" layoutX="10.0" layoutY="123.0" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="27.0" prefWidth="78.0" styleClass="ccButtons" text="Cancel" />
-      <Label layoutX="68.0" layoutY="6.0" prefHeight="42.0" prefWidth="234.0" text="Confirm to create product" textFill="#b38b4d">
+      <Label layoutX="68.0" layoutY="6.0" prefHeight="42.0" prefWidth="234.0" styleClass="colorlabel" text="Confirm to create product" textFill="#b38b4d">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

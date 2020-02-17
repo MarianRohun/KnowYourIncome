@@ -10,12 +10,13 @@ public class User {
     private int position;
     private int loginStatus;
     private String profilePicture;
+    private String theme;
     private boolean entry;
 
     public User(){
     }
 
-    public User(int id, String name, String surname, String email, int workedHours, String password, int position, String profilePicture) {
+    public User(int id, String name, String surname, String email, int workedHours, String password, int position, String profilePicture,String theme) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -24,6 +25,7 @@ public class User {
         this.password = password;
         this.position = position;
         this.profilePicture = profilePicture;
+        this.theme = theme;
         this.entry = entry;
     }
 
@@ -119,6 +121,14 @@ public class User {
 
     public boolean isentry() {
         return entry;
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
     }
 }
 

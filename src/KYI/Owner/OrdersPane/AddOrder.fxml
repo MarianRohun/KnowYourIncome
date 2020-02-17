@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="addingOrderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="311.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.OrdersPane.AddOrderController">
    <children>
-      <Label layoutX="82.0" prefHeight="46.0" prefWidth="146.0" text="Add new order" textFill="#b38b4d">
+      <Label layoutX="82.0" prefHeight="46.0" prefWidth="146.0" styleClass="colorlabel" text="Add new order" textFill="#b38b4d">
          <font>
             <Font size="21.0" />
          </font>

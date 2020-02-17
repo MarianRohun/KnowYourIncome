@@ -12,6 +12,7 @@ import KYI.Owner.OrdersPane.OrderCardController;
 import KYI.Owner.StoragePane.StorageCardController;
 
 
+import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,12 +26,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
@@ -42,6 +45,8 @@ import java.util.ResourceBundle;
 
 public class OwnerController extends Controller implements Initializable {
 
+    @FXML
+    private AnchorPane root;
     @FXML
     private Label nameLabel;
     @FXML
@@ -100,6 +105,9 @@ public class OwnerController extends Controller implements Initializable {
     private ColorPicker themePicker;
     @FXML
     private Button saveColorButton;
+    @FXML
+    private HBox orderTableHeader,storageTableHeader,orderHistoryTableHeader,employeeTableHeader;
+
 
     public static Color pickedTheme ;
     public static ObservableList<Order> ordersObservableList;
@@ -113,9 +121,23 @@ public class OwnerController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        pickedTheme = Color.rgb(179, 139, 77);
+        pickedTheme = Color.valueOf(parseColor(Color.valueOf(user.getTheme())));
+        logoutButton.setStyle("-fx-border-color:"+parseColor(pickedTheme)+";-fx-text-fill:"+parseColor(pickedTheme));
+        noteButton.setStyle("-fx-text-fill:"+parseColor(pickedTheme));
+        homeButton.setStyle("-fx-text-fill:" +parseColor(pickedTheme));
+        employeesButton.setStyle("-fx-text-fill:" +parseColor(pickedTheme));
+        ordersButton.setStyle("-fx-text-fill:" +parseColor(pickedTheme));
+        storageButton.setStyle("-fx-text-fill:"+parseColor(pickedTheme));
+        soldunitsButton.setStyle("-fx-text-fill:"+parseColor(pickedTheme));
+        incomeButton.setStyle("-fx-text-fill:"+parseColor(pickedTheme));
+        settingsButton.setStyle("-fx-text-fill:" +parseColor(pickedTheme));
+        sidebarPane.setStyle("-fx-border-color: "+parseColor(pickedTheme));
+        homeButton.setStyle("-fx-background-color:"+parseColor(pickedTheme)+";");
         homePane.toFront();
-        homeButton.setStyle("-fx-background-color: #b38b4d;");
+        orderTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
+        storageTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
+        orderHistoryTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
+        employeeTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";"+"-fx-border-color:"+parseColor(pickedTheme)+";");
         positionLabel.setText("Owner: ");
         nameLabel.setText(user.getSurname());
         if (user.getProfilePicture() != null) {
@@ -408,6 +430,7 @@ public class OwnerController extends Controller implements Initializable {
         notePane.toFront();
         changeColor(noteButton);
         ordersButton.setText("Orders");
+
     }
     //================================================================
     //SETTINGS PANE
@@ -518,37 +541,27 @@ public class OwnerController extends Controller implements Initializable {
                 }
             }
         });
+
         saveColorButton.setOnAction(event -> {
             pickedTheme = themePicker.getValue();
-            String c=pickedTheme.toString().replace("0x","#");
-            char[] a = c.toCharArray();
-            c =""+a[0]+a[1]+a[2]+a[3]+a[4]+a[5]+a[6]+"";
-            logoutButton.setStyle("-fx-border-color:"+c+";-fx-text-fill:"+c);
-            noteButton.setStyle("-fx-text-fill:"+c);
-            homeButton.setStyle("-fx-text-fill:" +c);
-            employeesButton.setStyle("-fx-text-fill:" +c);
-            ordersButton.setStyle("-fx-text-fill:" +c);
-            storageButton.setStyle("-fx-text-fill:" +c);
-            soldunitsButton.setStyle("-fx-text-fill:" +c);
-            incomeButton.setStyle("-fx-text-fill:" +c);
-            settingsButton.setStyle("-fx-text-fill:" +c);
-            changeColor(settingsButton);
-            sidebarPane.setStyle("-fx-border-color: "+c);
+            String update = "UPDATE users SET theme = '"+parseColor(pickedTheme)+"' WHERE u_id ="+user.getId()+";";
+            changeHoverColor(pickedTheme);
+            try {
+                Statement statement = connection.createStatement();
+                statement.executeLargeUpdate(update);
 
-        });
-        settingsButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent t) {
-               changeHover(settingsButton);
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        });
-        settingsButton.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent t) {
-            //   settingsButton.setStyle("-fx-border-color:none;"+"-fx-text-fill:white"+";"+"-fx-background-color:"+parseColor(pickedTheme));
-               changeColor(settingsButton);
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
+
+            System.exit(1);
         });
+
     }
     //==================================================================================
     //END OF PANE CONTROLLERS
@@ -600,16 +613,46 @@ public class OwnerController extends Controller implements Initializable {
         c =""+a[0]+a[1]+a[2]+a[3]+a[4]+a[5]+a[6]+"";
         return c;
     }
-    public void changeHover (Button t){
-        homeButton.setStyle("-fx-background-color: white;"+"-fx-text-fill:"+parseColor(pickedTheme));
-        employeesButton.setStyle("-fx-background-color: white;"+"-fx-text-fill:"+parseColor(pickedTheme));
-        ordersButton.setStyle("-fx-background-color: white;"+"-fx-text-fill:"+parseColor(pickedTheme));
-        storageButton.setStyle("-fx-background-color: white;"+"-fx-text-fill:"+parseColor(pickedTheme));
-        soldunitsButton.setStyle("-fx-background-color: white;"+"-fx-text-fill:"+parseColor(pickedTheme));
-        incomeButton.setStyle("-fx-background-color: white;"+"-fx-text-fill:"+parseColor(pickedTheme));
-        noteButton.setStyle("-fx-background-color: white;"+"-fx-text-fill:"+parseColor(pickedTheme));
-        settingsButton.setStyle("-fx-background-color: white;"+"-fx-text-fill:"+parseColor(pickedTheme));
-        t.setStyle("-fx-border-color:"+parseColor(pickedTheme)+";"+"-fx-text-fill:"+parseColor(pickedTheme));
-    }
 
+    public void changeHoverColor(Color color){
+        BufferedReader reader = null;
+        StringBuffer inputBuffer = null;
+        String line;
+
+        try {
+            reader = new BufferedReader(new FileReader("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css\\Main.css"));
+             inputBuffer = new StringBuffer();
+
+            while ((line = reader.readLine()) != null) {
+                inputBuffer.append(line);
+                inputBuffer.append('\n');
+            }
+            reader.close();
+            String[] inputArray = inputBuffer.toString().split("\n");
+            for (int i = 0; i < inputArray.length; i++){
+                if (inputArray[i].contains("/*buttons hover*/")){
+                    inputArray[i+1] = "-fx-border-color: " +parseColor(color) +";";
+                }
+                if (inputArray[i].contains("/*card dots*/")) {
+                    inputArray[i + 1] = "-fx-border-color: " + parseColor(color) + ";";
+                }
+                if (inputArray[i].contains("/*window border*/")){
+                    inputArray[i + 1] = "-fx-border-color: " + parseColor(color) + ";";
+                }
+                if (inputArray[i].contains("/*label text*/")){
+                    inputArray[i + 1] = " -fx-text-fill: " + parseColor(color) + ";";
+                }
+            }
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css\\Main.css", false));
+            for (String item : inputArray) {
+                writer.write(item);
+                writer.newLine();
+            }
+            writer.close();
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 }

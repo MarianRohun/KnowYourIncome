@@ -34,7 +34,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="logoutButton" layoutX="39.0" layoutY="552.0" mnemonicParsing="false" onAction="#onClickLogout" prefHeight="37.0" prefWidth="124.0" text="Log Out">
+            <Button fx:id="logoutButton" layoutX="39.0" layoutY="552.0" mnemonicParsing="false" onAction="#onClickLogout" prefHeight="37.0" prefWidth="124.0" styleClass="buttons" text="Log Out">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -66,7 +66,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <ImageView fx:id="profilePicture" fitHeight="103.0" fitWidth="133.0" layoutX="35.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="profilePicture" fitHeight="112.0" fitWidth="133.0" layoutX="39.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
       <AnchorPane layoutX="203.0" prefHeight="600.0" prefWidth="750.0">
@@ -423,10 +423,7 @@
             <Pane fx:id="settingsPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <Button fx:id="chooseImageButton" layoutX="38.0" layoutY="59.0" mnemonicParsing="false" onAction="#onChooseImageClick" prefHeight="35.0" prefWidth="181.0" styleClass="blackButtons" text="Change profile picture" />
-                  <Label fx:id="imagePath" layoutX="38.0" layoutY="25.0" prefHeight="20.0" prefWidth="323.0" text="Profile picture path" textFill="#0039f7">
-                     <font>
-                        <Font size="13.0" />
-                     </font></Label>
+                  <Label fx:id="imagePath" layoutX="28.0" layoutY="309.0" prefHeight="20.0" prefWidth="323.0" text="Profile picture path" textFill="#0039f7" />
                   <Button fx:id="saveButton" layoutX="69.0" layoutY="329.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" styleClass="ccButtons" text="Save " />
                   <ImageView fx:id="sampleImage" fitHeight="212.0" fitWidth="181.0" layoutX="39.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
                   <Button fx:id="changePasswordButton" layoutX="512.0" layoutY="59.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" styleClass="blackButtons" text="Change Password" />
@@ -438,8 +435,14 @@
                   <PasswordField fx:id="newPasswordField" layoutX="496.0" layoutY="213.0" prefHeight="35.0" prefWidth="202.0" promptText="New password" />
                   <PasswordField fx:id="confirmPasswordField" layoutX="496.0" layoutY="275.0" prefHeight="35.0" prefWidth="202.0" promptText="Confirm new password" />
                   <PasswordField fx:id="oldPasswordField" layoutX="496.0" layoutY="154.0" prefHeight="35.0" prefWidth="202.0" promptText="Old password" />
-                  <ColorPicker fx:id="themePicker" layoutX="283.0" layoutY="59.0" prefHeight="35.0" prefWidth="150.0" />
-                  <Button fx:id="saveColorButton" layoutX="298.0" layoutY="125.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" styleClass="ccButtons" text="Save " />
+                  <ColorPicker fx:id="themePicker" layoutX="283.0" layoutY="90.0" prefHeight="35.0" prefWidth="150.0" />
+                  <Button fx:id="saveColorButton" layoutX="298.0" layoutY="141.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" styleClass="ccButtons" text="Save " />
+                  <Label layoutX="258.0" layoutY="27.0" prefHeight="17.0" prefWidth="234.0" text="APP WILL RESTART AFTER SAVING " textFill="#e50c0c" />
+                  <Label layoutX="301.0" layoutY="59.0" prefHeight="20.0" prefWidth="124.0" text="Change theme">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>

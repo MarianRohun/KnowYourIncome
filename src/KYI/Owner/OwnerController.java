@@ -205,12 +205,11 @@ public class OwnerController extends Controller implements Initializable {
     public void onClickAddProductToStorage(javafx.event.ActionEvent actionEvent)throws Exception{
         openWindow("../Owner/StoragePane/AddProduct.fxml");
         productsObservableList.sort(Comparator.comparing(Product::getQuantity));
+        storagePane.toFront();
     }
     public void refreshStorageListView(int productId){
         productsObservableList.removeIf(product -> product.getId() == productId);
-    }
-    public void refresh() {
-
+        storagePane.toFront();
     }
 
 
@@ -353,6 +352,7 @@ public class OwnerController extends Controller implements Initializable {
 
     public void refreshOrdersListView(int orderID, int productID){
         ordersObservableList.removeIf(order -> order.getId() == orderID && order.getProductId() == productID);;
+        storagePane.toFront();
     }
     //===============================================================
     //EMPLOYEE LIST PANE

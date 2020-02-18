@@ -2,6 +2,7 @@ package KYI.Owner.StoragePane;
 
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
+import KYI.Entits.Product;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,10 +14,7 @@ import javafx.stage.Stage;
 
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class DeleteProductController extends Controller implements Initializable {
@@ -39,27 +37,33 @@ public class DeleteProductController extends Controller implements Initializable
             productLabel.setText(product.getName());
         });
     }
-    public void onClickDelete(javafx.event.ActionEvent event) throws SQLException {
+    public void onClickDelete(javafx.event.ActionEvent event) throws SQLException, SQLIntegrityConstraintViolationException {
         Statement statement = connection.createStatement();
-        String delete = "DELETE FROM products WHERE name = '"+product.getName()+"'";
+        String select = "SELECT products.name FROM orders JOIN products WHERE deliverStatus = 0";
+        ResultSet resultSet = connection.prepareStatement(select).executeQuery();
+        while (resultSet.next()){
+            Product product = new Product (resultSet.getString(1));
+            if (product.getName().equals(product.getName())){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("WARNING");
+                alert.setHeaderText("You have upcoming order with this product");
+                alert.setContentText("You have to PROCEED/DELETE order to remove product");
+                alert.showAndWait();
+                isProductDeleted = false;
+                break;
+            }
+        }
 
-        try {
+        if (isProductDeleted) {
+            String delete = "DELETE FROM products WHERE name = '" + product.getName() + "'";
             statement.executeLargeUpdate(delete);
             connection.close();
-        } catch (SQLIntegrityConstraintViolationException e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("WARNING");
-            alert.setHeaderText("You have upcoming order with this product");
-            alert.setContentText("You have to PROCEED/DELETE order to remove product");
-            alert.showAndWait();
-            isProductDeleted = false;
+            System.out.println("Product "+product.getName()+" deleted successfully");
             Stage stage = (Stage) confirmDeleteStoragePane.getScene().getWindow();
             stage.close();
         }
 
-        Stage stage = (Stage) confirmDeleteStoragePane.getScene().getWindow();
-        stage.close();
-        System.out.println("Product "+product.getName()+" deleted successfully");
+
     }
 
     public void onClickCancel(javafx.event.ActionEvent event){

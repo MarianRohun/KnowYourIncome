@@ -159,20 +159,24 @@ public class OwnerController extends Controller implements Initializable {
 
         ArrayList<Product> products = new ArrayList<>();
 
+        new Thread(() ->{
         String select = "SELECT p_id,name,SUM(quantity),sellingPrice FROM products GROUP BY name ORDER BY SUM(quantity)";
+            ResultSet result = null;
+            try {
+                result = connection.prepareStatement(select).executeQuery();
 
-        ResultSet result = connection.prepareStatement(select).executeQuery();
-
-        while (result.next()) {
-            Product product = new Product(result.getInt(1),result.getString(2), result.getInt(3), result.getDouble(4));
-            products.add(product);
-        }
-
-        productsObservableList = FXCollections.observableArrayList();
-        productsObservableList.addAll(products);
-
+            while (result.next()) {
+                 Product product = new Product(result.getInt(1),result.getString(2), result.getInt(3), result.getDouble(4));
+                 products.add(product);
+            }
+            productsObservableList = FXCollections.observableArrayList();
+            productsObservableList.addAll(products);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         storageListView.setItems(productsObservableList);
         storageListView.setCellFactory(storageListView -> new StorageCardController(this));
+        }).start();
 
         searchStorageTextfield.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -635,7 +639,7 @@ public class OwnerController extends Controller implements Initializable {
         String line;
 
         try {
-            reader = new BufferedReader(new FileReader("D:\\KnowYourIncome\\src\\KYI\\Css\\Main.css"));
+            reader = new BufferedReader(new FileReader("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css"));
              inputBuffer = new StringBuffer();
 
             while ((line = reader.readLine()) != null) {
@@ -659,7 +663,7 @@ public class OwnerController extends Controller implements Initializable {
                 }
             }
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter("D:\\KnowYourIncome\\src\\KYI\\Css\\Main.css", false));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css", false));
             for (String item : inputArray) {
                 writer.write(item);
                 writer.newLine();

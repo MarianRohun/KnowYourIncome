@@ -29,11 +29,7 @@
 }
 .buttons:hover{
     /*buttons hover*/
-<<<<<<< Updated upstream
 -fx-border-color: #80334d;
-=======
--fx-border-color: #994d00;
->>>>>>> Stashed changes
     -fx-border-width: 0 0 2 0;
 }
 .buttons:pressed{
@@ -93,11 +89,7 @@
 }
 .colorlabel{
     /*label text*/
-<<<<<<< Updated upstream
  -fx-text-fill: #80334d;
-=======
- -fx-text-fill: #994d00;
->>>>>>> Stashed changes
 }
 #sidebarPane{
     -fx-background-color: white;
@@ -107,11 +99,7 @@
 }
 #usercardAnchorPane,#orderHistoryCardAnchorPane,#storageCardAnchorPane{
     /*card dots*/
-<<<<<<< Updated upstream
 -fx-border-color: #80334d;
-=======
--fx-border-color: #994d00;
->>>>>>> Stashed changes
     -fx-border-width: 0 4 0 4;
     -fx-border-style: dotted;
     -fx-border-radius: 1%;
@@ -160,11 +148,7 @@
 }
 #confirmDeletePane,#confirmDeleteOrderPane,#confirmDeleteStoragePane,#confirmEditStoragePane,#CreateProductPane,#addProductPane,#addingPane,#addingOrderPane{
      /*window border*/
-<<<<<<< Updated upstream
 -fx-border-color: #80334d;
-=======
--fx-border-color: #994d00;
->>>>>>> Stashed changes
     -fx-border-width: 4 4 4 4;
     -fx-background-color: white;
 }
@@ -193,4 +177,15 @@
     -fx-border-color: black;
     -fx-background-color: transparent;
     -fx-font-size: 14;
+}
+#nameChoiceBox{
+    -fx-border-width: 1 1 1 1;
+    -fx-border-color: black;
+    -fx-background-color: transparent;
+    -fx-mark-color: black;
+}
+#nameChoiceBox .context-menu {
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 1 1 1 1;
 }

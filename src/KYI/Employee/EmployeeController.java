@@ -10,11 +10,11 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -52,21 +52,40 @@ public class EmployeeController extends Controller implements Initializable {
     @FXML
     private Pane settingsPane;
     @FXML
-    private Button chooseImageButton, saveButton, changePasswordButton,confirmPasswordButton;
+    private Button chooseImageButton, saveButton, changePasswordButton,confirmPasswordButton,logoutButton;
     @FXML
     private ImageView profilePicture, sampleImage;
     @FXML
     private Label imagePath, errorLabel,changePassLabel;
     @FXML
     private PasswordField oldPasswordField, newPasswordField, confirmPasswordField;
+    @FXML
+    private ColorPicker themePicker;
+    @FXML
+    private Button saveColorButton;
 
+    public static Color pickedTheme ;
     Connectivity connectivity = new Connectivity();
     Connection connection = connectivity.getConnection();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        pickedTheme = Color.valueOf(parseColor(Color.valueOf(user.getTheme())));
+        logoutButton.setStyle("-fx-border-color:"+parseColor(pickedTheme)+";-fx-text-fill:"+parseColor(pickedTheme));
+        noteButton.setStyle("-fx-text-fill:"+parseColor(pickedTheme));
+        homeButton.setStyle("-fx-text-fill:" +parseColor(pickedTheme));
+        ordersButton.setStyle("-fx-text-fill:" +parseColor(pickedTheme));
+        storageButton.setStyle("-fx-text-fill:"+parseColor(pickedTheme));
+        settingsButton.setStyle("-fx-text-fill:" +parseColor(pickedTheme));
+        sellButton.setStyle("-fx-text-fill:" +parseColor(pickedTheme));
         if (user.isentry()==true){
             homePane.toFront();
+            changeColor(homeButton);
+            homeButton.setDisable(false);
+            ordersButton.setDisable(false);
+            storageButton.setDisable(false);
+            sellButton.setDisable(false);
+            noteButton.setDisable(false);
         }
         else {
             settingsPane.toFront();
@@ -86,8 +105,6 @@ public class EmployeeController extends Controller implements Initializable {
             storageButton.setDisable(true);
             sellButton.setDisable(true);
             noteButton.setDisable(true);
-
-
 
             changePasswordButton.setOnAction(actionEvent -> {
                 oldPasswordField.setVisible(true);
@@ -187,13 +204,13 @@ public class EmployeeController extends Controller implements Initializable {
             });
 
         }
-
         positionLabel.setText("Employee: ");
         nameLabel.setText(user.getSurname());
         if (user.getProfilePicture() != null) {
             Image image = new Image(user.getProfilePicture());
             profilePicture.setImage(image);
         }
+
     }
     public void onClickHome(javafx.event.ActionEvent ActionEvent){
         homePane.toFront();
@@ -319,8 +336,17 @@ public class EmployeeController extends Controller implements Initializable {
                         confirmPasswordButton.setVisible(false);
                         changePasswordButton.setDisable(false);
                         errorLabel.setVisible(false);
-
                         user.setentry(true);
+                        try {
+                            String updateEntry = "UPDATE users SET isEntry ='true' WHERE u_id = "+user.getId();
+                            statement.executeLargeUpdate(update);
+                            System.out.println("user entered KYI");
+                            statement.executeLargeUpdate(updateEntry);
+
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+
                         System.out.println("pass updated");
                     }
                 } catch (SQLException e) {
@@ -328,6 +354,25 @@ public class EmployeeController extends Controller implements Initializable {
                 }
             }
 
+        });
+        saveColorButton.setOnAction(event -> {
+            pickedTheme = themePicker.getValue();
+            String update = "UPDATE users SET theme = '"+parseColor(pickedTheme)+"' WHERE u_id ="+user.getId()+";";
+            changeHoverColor(pickedTheme);
+            try {
+                Statement statement = connection.createStatement();
+                statement.executeLargeUpdate(update);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            System.exit(1);
         });
     }
     public void onChooseImageClick(ActionEvent actionEvent) {
@@ -360,13 +405,61 @@ public class EmployeeController extends Controller implements Initializable {
         Controller.changeScene(stage, loader, "KnowYourIncome");
     }
     public void changeColor(Button t){
-        homeButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
-        sellButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
-        ordersButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
-        storageButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
-        noteButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
-        settingsButton.setStyle("-fx-background-color:white;-fx-text-fill: #b38b4d;");
-        t.setStyle("-fx-background-color:#b38b4d; -fx-text-fill: white;");
+        homeButton.setStyle("-fx-background-color:white;-fx-text-fill:"+parseColor(pickedTheme));
+        sellButton.setStyle("-fx-background-color:white;-fx-text-fill:"+parseColor(pickedTheme));
+        ordersButton.setStyle("-fx-background-color:white;-fx-text-fill:"+parseColor(pickedTheme));
+        storageButton.setStyle("-fx-background-color:white;-fx-text-fill:"+parseColor(pickedTheme));
+        noteButton.setStyle("-fx-background-color:white;-fx-text-fill:"+parseColor(pickedTheme));
+        settingsButton.setStyle("-fx-background-color:white;-fx-text-fill:"+parseColor(pickedTheme));
+        t.setStyle("-fx-background-color:"+parseColor(pickedTheme)+"; -fx-text-fill: white;");
+    }
+    public String parseColor(Color _c){
+        String c=_c.toString().replace("0x","#");
+        char[] a = c.toCharArray();
+        c =""+a[0]+a[1]+a[2]+a[3]+a[4]+a[5]+a[6]+"";
+        return c;
+    }
+
+    public void changeHoverColor(Color color){
+        BufferedReader reader = null;
+        StringBuffer inputBuffer = null;
+        String line;
+
+        try {
+            reader = new BufferedReader(new FileReader("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css"));
+            inputBuffer = new StringBuffer();
+
+            while ((line = reader.readLine()) != null) {
+                inputBuffer.append(line);
+                inputBuffer.append('\n');
+            }
+            reader.close();
+            String[] inputArray = inputBuffer.toString().split("\n");
+            for (int i = 0; i < inputArray.length; i++){
+                if (inputArray[i].contains("/*buttons hover*/")){
+                    inputArray[i+1] = "-fx-border-color: " +parseColor(color) +";";
+                }
+                if (inputArray[i].contains("/*card dots*/")) {
+                    inputArray[i + 1] = "-fx-border-color: " + parseColor(color) + ";";
+                }
+                if (inputArray[i].contains("/*window border*/")){
+                    inputArray[i + 1] = "-fx-border-color: " + parseColor(color) + ";";
+                }
+                if (inputArray[i].contains("/*label text*/")){
+                    inputArray[i + 1] = " -fx-text-fill: " + parseColor(color) + ";";
+                }
+            }
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css", false));
+            for (String item : inputArray) {
+                writer.write(item);
+                writer.newLine();
+            }
+            writer.close();
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
 }

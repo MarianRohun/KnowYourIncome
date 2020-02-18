@@ -15,6 +15,7 @@ import KYI.Owner.StoragePane.StorageCardController;
 
 import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -41,6 +42,8 @@ import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 
@@ -201,22 +204,15 @@ public class OwnerController extends Controller implements Initializable {
     }
     public void onClickAddProductToStorage(javafx.event.ActionEvent actionEvent)throws Exception{
         openWindow("../Owner/StoragePane/AddProduct.fxml");
+        productsObservableList.sort(Comparator.comparing(Product::getQuantity));
     }
-    public void addProduct(Product addedProduct){
-        for (Product product : productsObservableList){
-            int quantity = product.getQuantity();
-            if (product.getName().equals(addedProduct.getName())){
-                quantity += addedProduct.getQuantity();
-                break;
-            }
-        }
-        storagePane.toFront();
-    }
-
     public void refreshStorageListView(int productId){
         productsObservableList.removeIf(product -> product.getId() == productId);
-        storagePane.toFront();
     }
+    public void refresh() {
+
+    }
+
 
 
 
@@ -356,8 +352,7 @@ public class OwnerController extends Controller implements Initializable {
     }
 
     public void refreshOrdersListView(int orderID, int productID){
-        ordersObservableList.removeIf(order -> order.getId() == orderID && order.getProductId() == productID);
-        ordersPane.toFront();
+        ordersObservableList.removeIf(order -> order.getId() == orderID && order.getProductId() == productID);;
     }
     //===============================================================
     //EMPLOYEE LIST PANE

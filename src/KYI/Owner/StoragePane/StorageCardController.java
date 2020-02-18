@@ -3,6 +3,7 @@ package KYI.Owner.StoragePane;
 import KYI.Entits.Order;
 import KYI.Entits.Product;
 import KYI.Owner.OwnerController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
@@ -12,9 +13,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 
 
-import static KYI.Controllers.Controller.openWindow;
 import static KYI.Controllers.Controller.openWindowProduct;
 import static KYI.Owner.StoragePane.DeleteProductController.isProductDeleted;
+import static KYI.Owner.StoragePane.EditStorageController.isProductChanged;
 
 
 public class StorageCardController extends ListCell<Product> {
@@ -30,6 +31,7 @@ public class StorageCardController extends ListCell<Product> {
 
     private OwnerController ownerController;
     public StorageCardController(OwnerController ownerController){this.ownerController = ownerController;}
+
 
     @Override
     protected void updateItem(Product product, boolean empty) {
@@ -80,7 +82,13 @@ public class StorageCardController extends ListCell<Product> {
             });
             editProductButton.setOnAction(event -> {
                 try {
-                    openWindow("../owner/StoragePane/EditStorage.fxml");
+                    openWindowProduct("../owner/StoragePane/EditStorage.fxml",product);
+                    if (isProductChanged) {
+                        ActionEvent ActionEvent = null;
+                        ownerController.onClickStorage(ActionEvent);
+                    }
+
+
                 }catch (Exception e){
                     e.printStackTrace();
                 }

@@ -54,6 +54,11 @@ public class Product {
         this.quantity = quantity;
         this.sellingPrice = sellingPrice;
     }
+    public Product(String name, int quantity, double buyingPrice){
+        this.name = name;
+        this.quantity = quantity;
+        this.buyingPrice = buyingPrice;
+    }
 
     public Product(String name, double buyingPrice, int quantity, Date warranty) {
         this.name = name;

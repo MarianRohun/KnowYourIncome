@@ -56,16 +56,24 @@ public class StorageCardController extends ListCell<Product> {
             storageQuantityLabel.setText(product.getQuantity() + "pcs");
             sellingPriceLabel.setText(product.getSellingPrice() + "€");
 
+            if (product.getQuantity() < 20){
+                storageCardAnchorPane.setStyle("-fx-background-color: #ffae19");
+            }
+            if (product.getQuantity() < 5){
+                storageCardAnchorPane.setStyle("-fx-background-color: #e06666");
+            }
+
+
 
             setText(null);
             setGraphic(storageCardAnchorPane);
             cancelProductButton.setOnAction(event -> {
                 try {
                     openWindowProduct("../Owner/StoragePane/DeleteProduct.fxml",product);
-                   if (isProductDeleted == true){
+                   if (isProductDeleted){
                        ownerController.refreshStorageListView(product.getId());
                    }
-                   isProductDeleted = false;
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

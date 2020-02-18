@@ -9,6 +9,7 @@ import KYI.Owner.EmployeesPane.UserCardController;
 import KYI.Owner.OrdersPane.HistoryOrderCardController;
 import KYI.Owner.OrdersPane.OrderCardController;
 
+import KYI.Owner.StoragePane.AddProductController;
 import KYI.Owner.StoragePane.StorageCardController;
 
 
@@ -114,6 +115,7 @@ public class OwnerController extends Controller implements Initializable {
     public static ObservableList<User> employeesObservableList;
     public static ObservableList<Product> productsObservableList;
 
+
     Connectivity connectivity = new Connectivity();
     Connection connection = connectivity.getConnection();
 
@@ -139,7 +141,7 @@ public class OwnerController extends Controller implements Initializable {
         orderHistoryTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
         employeeTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";"+"-fx-border-color:"+parseColor(pickedTheme)+";");
         positionLabel.setText("Owner: ");
-        nameLabel.setText(user.getSurname());
+        nameLabel.setText(user.getName()+" "+user.getSurname());
         if (user.getProfilePicture() != null) {
             Image image = new Image(user.getProfilePicture());
             profilePicture.setImage(image);
@@ -157,7 +159,7 @@ public class OwnerController extends Controller implements Initializable {
 
         ArrayList<Product> products = new ArrayList<>();
 
-        String select = "SELECT p_id,name, SUM(quantity),sellingPrice FROM products GROUP BY NAME";
+        String select = "SELECT p_id,name,SUM(quantity),sellingPrice FROM products GROUP BY name ORDER BY SUM(quantity)";
 
         ResultSet result = connection.prepareStatement(select).executeQuery();
 
@@ -184,7 +186,7 @@ public class OwnerController extends Controller implements Initializable {
                     if (productsObservableList.isEmpty()) {
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("VAROVANIE");
-                        alert.setHeaderText("There is no such an Order");
+                        alert.setHeaderText("There is no such an Product");
                         alert.showAndWait();
                         productsObservableList.addAll(products);
                     }
@@ -200,17 +202,30 @@ public class OwnerController extends Controller implements Initializable {
     public void onClickAddProductToStorage(javafx.event.ActionEvent actionEvent)throws Exception{
         openWindow("../Owner/StoragePane/AddProduct.fxml");
     }
+    public void addProduct(Product addedProduct){
+        for (Product product : productsObservableList){
+            int quantity = product.getQuantity();
+            if (product.getName().equals(addedProduct.getName())){
+                quantity += addedProduct.getQuantity();
+                break;
+            }
+        }
+        storagePane.toFront();
+    }
 
     public void refreshStorageListView(int productId){
         productsObservableList.removeIf(product -> product.getId() == productId);
         storagePane.toFront();
     }
 
+
+
     public void onClickOrders(javafx.event.ActionEvent ActionEvent)throws SQLException{
         ordersPane.toFront();
         changeColor(ordersButton);
 
         ArrayList<Order> orders = new ArrayList<>();
+
         new Thread(() -> {
         String select = "SELECT orders.o_id,products.name,orders_has_products.orderedQuantity,products.buyingPrice,products.warranty,orders.dateInit, " +
                 "products.p_id, deliverStatus FROM orders_has_products JOIN products ON (products_p_id = p_id) " +
@@ -620,7 +635,7 @@ public class OwnerController extends Controller implements Initializable {
         String line;
 
         try {
-            reader = new BufferedReader(new FileReader("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css\\Main.css"));
+            reader = new BufferedReader(new FileReader("D:\\KnowYourIncome\\src\\KYI\\Css\\Main.css"));
              inputBuffer = new StringBuffer();
 
             while ((line = reader.readLine()) != null) {
@@ -644,7 +659,7 @@ public class OwnerController extends Controller implements Initializable {
                 }
             }
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css\\Main.css", false));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("D:\\KnowYourIncome\\src\\KYI\\Css\\Main.css", false));
             for (String item : inputArray) {
                 writer.write(item);
                 writer.newLine();

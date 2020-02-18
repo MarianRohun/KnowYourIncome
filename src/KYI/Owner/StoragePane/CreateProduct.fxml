@@ -17,5 +17,6 @@
       </Label>
       <Label layoutX="13.0" layoutY="74.0" prefHeight="18.0" prefWidth="71.0" text="Name :" />
       <TextField fx:id="nameTextfield" layoutX="105.0" layoutY="69.0" prefHeight="27.0" prefWidth="160.0" />
+      <Label fx:id="errorLabel" layoutX="171.0" layoutY="106.0" />
    </children>
 </AnchorPane>

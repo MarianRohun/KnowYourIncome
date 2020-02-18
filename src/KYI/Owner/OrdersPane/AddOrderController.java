@@ -97,13 +97,19 @@ public class AddOrderController extends Controller implements Initializable {
                  errorOrderLabel.setText("Enter price per unit");
              }
              else if (!isNumber(orderPerUnitTextField.getText().replace(",", "."))){
-                 errorOrderLabel.setText("Incorret price per unit format");
+                 errorOrderLabel.setText("Incorrect price per unit format");
              }
              else if (warrantyDatePicker.getValue() == null){
                  errorOrderLabel.setText("Select warranty date");
              }
              else if (dateInitDatePicker.getValue() == null){
                  errorOrderLabel.setText("Select date init");
+             }
+             else if (orderQuantityTextField.getText().equals("0")){
+                 errorOrderLabel.setText("Quantity cannot be 0");
+             }
+             else if(orderPerUnitTextField.getText().equals("0")){
+                 errorOrderLabel.setText("Price per unit cannot be 0");
              }
              else {
 

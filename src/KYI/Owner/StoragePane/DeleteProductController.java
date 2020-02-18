@@ -57,6 +57,8 @@ public class DeleteProductController extends Controller implements Initializable
             stage.close();
         }
 
+        Stage stage = (Stage) confirmDeleteStoragePane.getScene().getWindow();
+        stage.close();
         System.out.println("Product "+product.getName()+" deleted successfully");
     }
 
@@ -64,7 +66,6 @@ public class DeleteProductController extends Controller implements Initializable
         isProductDeleted = false;
         Stage stage = (Stage) confirmDeleteStoragePane.getScene().getWindow();
         stage.close();
-
 
     }
 }

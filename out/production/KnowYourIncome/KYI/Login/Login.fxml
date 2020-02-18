@@ -33,12 +33,12 @@
                </font>
             </Label>
          </children></Pane>
-      <TextField fx:id="loginEmailField" layoutX="348.0" layoutY="211.0" prefHeight="46.0" prefWidth="214.0" promptText="          Username">
+      <TextField fx:id="loginEmailField" layoutX="348.0" layoutY="211.0" prefHeight="46.0" prefWidth="214.0" promptText="Username">
          <effect>
             <Glow />
          </effect>
       </TextField>
-      <PasswordField fx:id="loginPasswordField" cache="true" layoutX="348.0" layoutY="292.0" prefHeight="46.0" prefWidth="214.0" promptText="          Password">
+      <PasswordField fx:id="loginPasswordField" cache="true" layoutX="348.0" layoutY="292.0" prefHeight="46.0" prefWidth="214.0" promptText="Password">
          <effect>
             <Blend />
          </effect>

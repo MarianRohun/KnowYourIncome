@@ -241,70 +241,6 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="storagePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
-               <children>
-                  <TextField fx:id="searchStorageTextfield" layoutX="20.0" layoutY="46.0" prefHeight="37.0" prefWidth="217.0" promptText="search order" styleClass="search" text="Search products">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <ListView fx:id="storageListView" layoutX="8.0" layoutY="142.0" prefHeight="456.0" prefWidth="720.0" />
-                  <Button fx:id="addProductToStorage" layoutX="596.0" layoutY="50.0" mnemonicParsing="false" onAction="#onClickAddProductToStorage" prefHeight="33.0" prefWidth="124.0" styleClass="blackButtons" text="Add product">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <HBox fx:id="storageTableHeader" alignment="CENTER_LEFT" layoutX="20.0" layoutY="94.0" prefHeight="47.0" prefWidth="700.0" styleClass="tableHeader">
-                     <children>
-                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="203.0" styleClass="headerLabel" text="Name" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="15.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="177.0" styleClass="headerLabel" text="Quantity" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                        <Label prefHeight="20.0" prefWidth="137.0" styleClass="headerLabel" text="Selling price">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="25.0" right="41.0" />
-                           </HBox.margin>
-                        </Label>
-                        <ImageView fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <HBox.margin>
-                              <Insets left="5.0" right="5.0" />
-                           </HBox.margin>
-                           <image>
-                              <Image url="@../../icons/editHeader.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="41.0" fitWidth="50.0">
-                           <image>
-                              <Image url="@../../icons/delete.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </ImageView>
-                     </children>
-                  </HBox>
-                  <Button fx:id="createProductButton" layoutX="596.0" layoutY="7.0" mnemonicParsing="false" onAction="#onClickCreateProduct" prefHeight="28.0" prefWidth="124.0" styleClass="blackButtons" text="Create product">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-               </children>
-            </Pane>
             <Pane fx:id="ordersPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <HBox fx:id="orderTableHeader" alignment="CENTER_LEFT" layoutX="13.0" layoutY="90.0" prefHeight="47.0" prefWidth="706.0" styleClass="tableHeader">
@@ -420,25 +356,89 @@
                   </Label>
                </children>
             </Pane>
+            <Pane fx:id="storagePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <TextField fx:id="searchStorageTextfield" layoutX="20.0" layoutY="46.0" prefHeight="37.0" prefWidth="217.0" promptText="search order" styleClass="search" text="Search products">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <ListView fx:id="storageListView" layoutX="8.0" layoutY="142.0" prefHeight="456.0" prefWidth="720.0" />
+                  <Button fx:id="addProductToStorage" layoutX="596.0" layoutY="50.0" mnemonicParsing="false" onAction="#onClickAddProductToStorage" prefHeight="33.0" prefWidth="124.0" styleClass="blackButtons" text="Add product">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <HBox fx:id="storageTableHeader" alignment="CENTER_LEFT" layoutX="20.0" layoutY="94.0" prefHeight="47.0" prefWidth="700.0" styleClass="tableHeader">
+                     <children>
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="203.0" styleClass="headerLabel" text="Name" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="177.0" styleClass="headerLabel" text="Quantity" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="20.0" prefWidth="137.0" styleClass="headerLabel" text="Selling price">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" right="41.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ImageView fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                           <image>
+                              <Image url="@../../icons/editHeader.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="41.0" fitWidth="50.0">
+                           <image>
+                              <Image url="@../../icons/delete.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Button fx:id="createProductButton" layoutX="596.0" layoutY="7.0" mnemonicParsing="false" onAction="#onClickCreateProduct" prefHeight="28.0" prefWidth="124.0" styleClass="blackButtons" text="Create product">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
             <Pane fx:id="settingsPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
-                  <Button fx:id="chooseImageButton" layoutX="38.0" layoutY="59.0" mnemonicParsing="false" onAction="#onChooseImageClick" prefHeight="35.0" prefWidth="181.0" styleClass="blackButtons" text="Change profile picture" />
-                  <Label fx:id="imagePath" layoutX="28.0" layoutY="309.0" prefHeight="20.0" prefWidth="323.0" text="Profile picture path" textFill="#0039f7" />
-                  <Button fx:id="saveButton" layoutX="69.0" layoutY="329.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" styleClass="ccButtons" text="Save " />
-                  <ImageView fx:id="sampleImage" fitHeight="212.0" fitWidth="181.0" layoutX="39.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="changePasswordButton" layoutX="512.0" layoutY="59.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" styleClass="blackButtons" text="Change Password" />
-                  <Button fx:id="confirmPasswordButton" layoutX="537.0" layoutY="329.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" styleClass="ccButtons" text="Confirm" />
-                  <Label fx:id="errorLabel" layoutX="480.0" layoutY="113.0" prefHeight="25.0" prefWidth="234.0" textFill="RED">
+                  <Button fx:id="chooseImageButton" layoutX="24.0" layoutY="20.0" mnemonicParsing="false" onAction="#onChooseImageClick" prefHeight="35.0" prefWidth="181.0" styleClass="blackButtons" text="Change profile picture" />
+                  <Label fx:id="imagePath" layoutX="14.0" layoutY="270.0" prefHeight="20.0" prefWidth="323.0" text="Profile picture path" textFill="#0039f7" />
+                  <Button fx:id="saveButton" layoutX="55.0" layoutY="290.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" styleClass="ccButtons" text="Save " />
+                  <ImageView fx:id="sampleImage" fitHeight="212.0" fitWidth="181.0" layoutX="25.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="changePasswordButton" layoutX="548.0" layoutY="26.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" styleClass="blackButtons" text="Change Password" />
+                  <Button fx:id="confirmPasswordButton" layoutX="573.0" layoutY="296.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" styleClass="ccButtons" text="Confirm" />
+                  <Label fx:id="errorLabel" layoutX="516.0" layoutY="80.0" prefHeight="25.0" prefWidth="234.0" textFill="RED">
                      <font>
                         <Font size="13.0" />
                      </font></Label>
-                  <PasswordField fx:id="newPasswordField" layoutX="496.0" layoutY="213.0" prefHeight="35.0" prefWidth="202.0" promptText="New password" />
-                  <PasswordField fx:id="confirmPasswordField" layoutX="496.0" layoutY="275.0" prefHeight="35.0" prefWidth="202.0" promptText="Confirm new password" />
-                  <PasswordField fx:id="oldPasswordField" layoutX="496.0" layoutY="154.0" prefHeight="35.0" prefWidth="202.0" promptText="Old password" />
-                  <ColorPicker fx:id="themePicker" layoutX="283.0" layoutY="90.0" prefHeight="35.0" prefWidth="150.0" />
-                  <Button fx:id="saveColorButton" layoutX="298.0" layoutY="141.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" styleClass="ccButtons" text="Save " />
-                  <Label layoutX="258.0" layoutY="27.0" prefHeight="17.0" prefWidth="234.0" text="APP WILL RESTART AFTER SAVING " textFill="#e50c0c" />
-                  <Label layoutX="301.0" layoutY="59.0" prefHeight="20.0" prefWidth="124.0" text="Change theme">
+                  <PasswordField fx:id="newPasswordField" layoutX="532.0" layoutY="180.0" prefHeight="35.0" prefWidth="202.0" promptText="New password" />
+                  <PasswordField fx:id="confirmPasswordField" layoutX="532.0" layoutY="242.0" prefHeight="35.0" prefWidth="202.0" promptText="Confirm new password" />
+                  <PasswordField fx:id="oldPasswordField" layoutX="532.0" layoutY="121.0" prefHeight="35.0" prefWidth="202.0" promptText="Old password" />
+                  <ColorPicker fx:id="themePicker" layoutX="40.0" layoutY="404.0" prefHeight="35.0" prefWidth="150.0" />
+                  <Button fx:id="saveColorButton" layoutX="55.0" layoutY="455.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" styleClass="ccButtons" text="Save " />
+                  <Label layoutX="25.0" layoutY="511.0" prefHeight="17.0" prefWidth="234.0" text="APP WILL RESTART AFTER SAVING " textFill="#e50c0c" />
+                  <Label layoutX="58.0" layoutY="373.0" prefHeight="20.0" prefWidth="124.0" text="Change theme">
                      <font>
                         <Font size="15.0" />
                      </font>

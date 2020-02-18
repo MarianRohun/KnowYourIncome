@@ -15,8 +15,8 @@
     -fx-border-radius: 15%;
 }
 #loginButton:pressed {
-    -fx-text-fill:#f50606;
-    -fx-border-color: #f50606;
+    -fx-text-fill:#b38b4d;
+    -fx-border-color: #b38b4d;
 }
 #loginEmailField{
     -fx-text-fill: white;
@@ -29,4 +29,10 @@
     -fx-border-width: 0 0 1 0;
     -fx-background-color: none;
     -fx-border-color: white;
+}
+#loginPasswordField:focused{
+    -fx-border-color: #b38b4d;
+}
+#loginEmailField:focused{
+    -fx-border-color: #b38b4d;
 }

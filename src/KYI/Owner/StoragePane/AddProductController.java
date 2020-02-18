@@ -92,9 +92,17 @@ public class AddProductController extends OwnerController implements Initializab
             statement.executeLargeUpdate(insert);
             System.out.println("Product added successfully");
 
-            Product product = new Product((String) nameChoiceBox.getValue(),Integer.parseInt(quantityTextfield.getText()),pricePerUnit);
+            Product addedProduct = new Product((String) nameChoiceBox.getValue(),Integer.parseInt(quantityTextfield.getText()),pricePerUnit);
 
-            addProduct(product);
+            for (Product product : productsObservableList){
+                int quantity = product.getQuantity();
+                if (product.getName().equals(addedProduct.getName())){
+                    quantity += addedProduct.getQuantity();
+                    product.setQuantity(quantity);
+                    break;
+                }
+            }
+
 
             Stage stage = (Stage) addProductPane.getScene().getWindow();
             stage.close();

@@ -163,7 +163,7 @@ public class OwnerController extends Controller implements Initializable {
         ArrayList<Product> products = new ArrayList<>();
 
         new Thread(() ->{
-        String select = "SELECT p_id,name,SUM(quantity),sellingPrice FROM products GROUP BY name ORDER BY SUM(quantity)";
+        String select = "SELECT p_id,name,quantity,sellingPrice FROM products GROUP BY name ORDER BY quantity";
             ResultSet result = null;
             try {
                 result = connection.prepareStatement(select).executeQuery();
@@ -227,8 +227,8 @@ public class OwnerController extends Controller implements Initializable {
 
         new Thread(() -> {
         String select = "SELECT orders.o_id,products.name,orders_has_products.orderedQuantity,products.buyingPrice,products.warranty,orders.dateInit, " +
-                "products.p_id, deliverStatus FROM orders_has_products JOIN products ON (products_p_id = p_id) " +
-                "JOIN orders ON (orders_o_id = o_id) WHERE deliverStatus = FALSE ORDER BY dateInit ASC";
+                "products.p_id FROM orders_has_products JOIN products ON (products_p_id = p_id) " +
+                "JOIN orders ON (orders_o_id = o_id) ORDER BY dateInit ASC";
 
             ResultSet result = null;
             try {
@@ -237,7 +237,7 @@ public class OwnerController extends Controller implements Initializable {
 
             while (result.next()){
             Order order = new Order(result.getInt(1),result.getString(2),result.getInt(3),result.getDouble(4),
-                    result.getDate(5),result.getDate(6),result.getInt(7),result.getBoolean(8));
+                    result.getDate(5),result.getDate(6),result.getInt(7));
             orders.add(order);
         }
 
@@ -287,23 +287,21 @@ public class OwnerController extends Controller implements Initializable {
             ArrayList<Order> ordersHistory = new ArrayList<>();
             ObservableList<Order> ordersHistoryObservableList;
 
-            String selectForHistory = "SELECT orders.o_id,products.name,orderedQuantity,products.buyingPrice,products.warranty,orders.dateInit, " +
-                    "products.p_id,deliverStatus FROM orders_has_products JOIN products ON (products_p_id = p_id) " +
-                    "JOIN orders ON (orders_o_id = o_id) WHERE deliverStatus = TRUE ORDER BY dateInit ASC";
+            String selectForHistory = "SELECT * FROM ordersHistory ORDER BY dateInit ASC";
             try {
                 ResultSet resultSet = connection.prepareStatement(selectForHistory).executeQuery();
                 while (resultSet.next()){
-                    Order order = new Order(resultSet.getInt(1),resultSet.getString(2),resultSet.getInt(3),resultSet.getDouble(4),
-                            resultSet.getDate(5),resultSet.getDate(6),resultSet.getInt(7),resultSet.getBoolean(8));
+                    Order order = new Order(resultSet.getString(2),resultSet.getInt(3),resultSet.getDouble(4),
+                            resultSet.getDate(5),resultSet.getDate(6));
 
-                    if (order.getDateInit().before(Date.valueOf(LocalDate.ofYearDay(LocalDate.now().getYear(), 1)))) {
+                    if (order.getDateInit().before(Date.valueOf(LocalDate.now().minusYears(5)))) {
                         Statement statement = connection.createStatement();
-                        String deleteFromorder = "DELETE FROM orders_has_products WHERE orders_o_id = "+order.getId();
+                        String deleteFromorder = "DELETE FROM ordersHistory WHERE dateInit = '"+order.getDateInit()+"'";
                         statement.executeLargeUpdate(deleteFromorder);
                         String deleteOrder = "DELETE FROM orders WHERE dateInit = '"+order.getDateInit()+"'";
                         statement.executeLargeUpdate(deleteOrder);
                         statement.close();
-                        System.out.println("Order from last year successfully deleted");
+                        System.out.println("Orders older than 5 years successfully deleted");
                     }
                     else ordersHistory.add(order);
                 }

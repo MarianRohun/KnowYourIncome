@@ -140,13 +140,15 @@ public class AddOrderController extends Controller implements Initializable {
                  }
 
                  String insertMN = "INSERT INTO orders_has_products (orders_o_id, products_p_id, orderedQuantity) VALUES " +
-                         "(" + orderId + "," + productId + "," + Double.parseDouble(orderQuantityTextField.getText()) + ")";
+                         "(" + orderId + "," + productId + "," + Integer.parseInt(orderQuantityTextField.getText()) + ")";
                  statement.executeLargeUpdate(insertMN);
 
                  System.out.println("Order added");
-                 Order order = new Order(orderNameChoiceBox.getValue().toString(),Integer.parseInt(orderQuantityTextField.getText()),Double.parseDouble(df.format(pricePerUnit)),
-                         Date.valueOf(warrantyDatePicker.getValue()),Date.valueOf(dateInitDatePicker.getValue()));
+                 Order order = new Order(orderId,orderNameChoiceBox.getValue().toString(),Integer.parseInt(orderQuantityTextField.getText()),Double.parseDouble(df.format(pricePerUnit)),
+                         Date.valueOf(warrantyDatePicker.getValue()),Date.valueOf(dateInitDatePicker.getValue()),productId);
                  ordersObservableList.add(order);
+
+
 
                  Comparator<Order> orderComparator = Comparator.comparing(Order::getDateInit);
                  Collections.sort(ordersObservableList,orderComparator);

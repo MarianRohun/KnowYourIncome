@@ -66,6 +66,14 @@ public class Product {
         this.quantity = quantity;
         this.warranty = warranty;
     }
+    public Product(int id,String name,int quantity,double buyingPrice,double sellingPrice, Date warranty){
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.buyingPrice = buyingPrice;
+        this.sellingPrice = sellingPrice;
+        this.warranty = warranty;
+    }
 
 
     public int getId() {

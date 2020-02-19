@@ -40,6 +40,7 @@ public class EditStorageController extends Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
             nameTextfield.setText(product.getName());
+            quantityTextfield.setText(String.valueOf(product.getQuantity()));
             sellingPriceTextfield.setText(String.valueOf(product.getSellingPrice()));
         });
 
@@ -49,13 +50,19 @@ public class EditStorageController extends Controller implements Initializable {
         if (nameTextfield.getText().isEmpty()){
             errorLabel.setText("Enter product name");
         }
+        else if (quantityTextfield.getText().isEmpty()){
+            errorLabel.setText("Enter quantity");
+        }
+        else if (isNumber(quantityTextfield.getText()) == false){
+            errorLabel.setText("Incorrect quantity format");
+        }
         else if (sellingPriceTextfield.getText().isEmpty()){
             errorLabel.setText("Enter selling price");
         }  else if (!isNumber(sellingPriceTextfield.getText().replace(",", "."))){
             errorLabel.setText("Incorrect selling price format");
         } else {
             sellingPrice = Double.parseDouble(sellingPriceTextfield.getText().replace(",","."));
-            String update = "UPDATE products SET name = '" +nameTextfield.getText()+ "', sellingPrice ="+sellingPrice
+            String update = "UPDATE products SET name = '" +nameTextfield.getText()+"',quantity ="+Integer.parseInt(quantityTextfield.getText())+",sellingPrice ="+sellingPrice
                     +" WHERE name = '"+product.getName()+"'";
 
             Statement statement = connection.createStatement();

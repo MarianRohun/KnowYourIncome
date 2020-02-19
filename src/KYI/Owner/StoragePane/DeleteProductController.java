@@ -2,7 +2,7 @@ package KYI.Owner.StoragePane;
 
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
-import KYI.Entits.Product;
+import KYI.Entits.Order;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,31 +37,40 @@ public class DeleteProductController extends Controller implements Initializable
             productLabel.setText(product.getName());
         });
     }
-    public void onClickDelete(javafx.event.ActionEvent event) throws SQLException, SQLIntegrityConstraintViolationException {
+    public void onClickDelete(javafx.event.ActionEvent event) throws SQLException {
         Statement statement = connection.createStatement();
-        String select = "SELECT products.name FROM orders_has_products JOIN products WHERE deliverStatus = 0";
-        ResultSet resultSet = connection.prepareStatement(select).executeQuery();
-        while (resultSet.next()){
-            Product product = new Product (resultSet.getString(1));
-            if (product.getName().equals(product.getName())){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("WARNING");
-                alert.setHeaderText("You have upcoming order with this product");
-                alert.setContentText("You have to PROCEED/DELETE order to remove product");
-                alert.showAndWait();
-                isProductDeleted = false;
-                break;
-            }
-        }
+        String select = "SELECT orders.o_id,products.name,orders_has_products.orderedQuantity,products.buyingPrice,products.warranty,orders.dateInit, " +
+                "products.p_id FROM orders_has_products JOIN products ON (products_p_id = p_id) " +
+                "JOIN orders ON (orders_o_id = o_id) ORDER BY dateInit ASC";
 
-        if (isProductDeleted) {
-            String delete = "DELETE FROM products WHERE name = '" + product.getName() + "'";
-            statement.executeLargeUpdate(delete);
-            connection.close();
-            System.out.println("Product "+product.getName()+" deleted successfully");
-            Stage stage = (Stage) confirmDeleteStoragePane.getScene().getWindow();
-            stage.close();
-        }
+            ResultSet result = connection.prepareStatement(select).executeQuery();
+            while (result.next()){
+                Order order = new Order(result.getInt(1),result.getString(2),result.getInt(3),result.getDouble(4),
+                        result.getDate(5),result.getDate(6),result.getInt(7));
+                if (order.getName().equals(product.getName())){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("WARNING");
+                    alert.setHeaderText("You have upcoming order with this product");
+                    alert.setContentText("You have to PROCEED/DELETE order to remove product");
+                    alert.showAndWait();
+                    isProductDeleted = false;
+                    break;
+                }
+            }
+            if (isProductDeleted){
+                String delete = "DELETE FROM products WHERE name = '"+product.getName()+"'";
+                statement.executeLargeUpdate(delete);
+                connection.close();
+                System.out.println("Product deleted successfully");
+                Stage stage = (Stage) confirmDeleteStoragePane.getScene().getWindow();
+                stage.close();
+            }
+            else {
+                isProductDeleted = false;
+                Stage stage = (Stage) confirmDeleteStoragePane.getScene().getWindow();
+                stage.close();
+            }
+
     }
 
     public void onClickCancel(javafx.event.ActionEvent event){

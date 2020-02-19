@@ -352,7 +352,7 @@ public class OwnerController extends Controller implements Initializable {
 
     public void refreshOrdersListView(int orderID, int productID){
         ordersObservableList.removeIf(order -> order.getId() == orderID && order.getProductId() == productID);;
-        storagePane.toFront();
+        ordersPane.toFront();
     }
     //===============================================================
     //EMPLOYEE LIST PANE

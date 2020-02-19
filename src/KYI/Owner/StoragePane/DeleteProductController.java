@@ -39,7 +39,7 @@ public class DeleteProductController extends Controller implements Initializable
     }
     public void onClickDelete(javafx.event.ActionEvent event) throws SQLException, SQLIntegrityConstraintViolationException {
         Statement statement = connection.createStatement();
-        String select = "SELECT products.name FROM orders JOIN products WHERE deliverStatus = 0";
+        String select = "SELECT products.name FROM orders_has_products JOIN products WHERE deliverStatus = 0";
         ResultSet resultSet = connection.prepareStatement(select).executeQuery();
         while (resultSet.next()){
             Product product = new Product (resultSet.getString(1));
@@ -62,8 +62,6 @@ public class DeleteProductController extends Controller implements Initializable
             Stage stage = (Stage) confirmDeleteStoragePane.getScene().getWindow();
             stage.close();
         }
-
-
     }
 
     public void onClickCancel(javafx.event.ActionEvent event){

@@ -6,19 +6,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="confirmEditStoragePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="245.0" prefWidth="370.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.StoragePane.EditStorageController">
+<AnchorPane fx:id="confirmEditStoragePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="264.0" prefWidth="370.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.StoragePane.EditStorageController">
    <children>
-      <Button fx:id="confirmEditButton" layoutX="284.0" layoutY="203.0" mnemonicParsing="false" onAction="#onClickEdit" prefHeight="27.0" prefWidth="71.0" styleClass="ccButtons" text="Edit" />
-      <Button fx:id="cancelEditButton" layoutX="14.0" layoutY="203.0" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="27.0" prefWidth="71.0" styleClass="ccButtons" text="Cancel" />
+      <Button fx:id="confirmEditButton" layoutX="289.0" layoutY="222.0" mnemonicParsing="false" onAction="#onClickEdit" prefHeight="27.0" prefWidth="71.0" styleClass="ccButtons" text="Edit" />
+      <Button fx:id="cancelEditButton" layoutX="14.0" layoutY="220.0" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="27.0" prefWidth="71.0" styleClass="ccButtons" text="Cancel" />
       <Label layoutX="91.0" layoutY="7.0" prefHeight="34.0" prefWidth="188.0" styleClass="colorlabel" text="Press Edit to confirm " textFill="#b38b4d">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="59.0" prefHeight="18.0" prefWidth="71.0" text="Name :" />
-      <Label layoutX="14.0" layoutY="113.0" prefHeight="18.0" prefWidth="94.0" text="Selling price :" />
-      <TextField fx:id="nameTextfield" layoutX="91.0" layoutY="54.0" prefHeight="27.0" prefWidth="201.0" />
-      <TextField fx:id="sellingPriceTextfield" layoutX="108.0" layoutY="108.0" prefHeight="27.0" prefWidth="60.0" />
-      <Label fx:id="errorLabel" layoutX="171.0" layoutY="186.0" />
+      <Label layoutX="14.0" layoutY="81.0" prefHeight="18.0" prefWidth="71.0" text="Name :" />
+      <Label layoutX="14.0" layoutY="134.0" prefHeight="18.0" prefWidth="94.0" text="Selling price :" />
+      <TextField fx:id="nameTextfield" layoutX="87.0" layoutY="76.0" prefHeight="27.0" prefWidth="201.0" />
+      <TextField fx:id="sellingPriceTextfield" layoutX="152.0" layoutY="129.0" prefHeight="27.0" prefWidth="65.0" />
+      <Label fx:id="errorLabel" layoutX="100.0" layoutY="47.0" prefHeight="18.0" prefWidth="170.0" textFill="#f50000" />
+      <Label layoutX="14.0" layoutY="185.0" prefHeight="18.0" prefWidth="94.0" text="Quantity :" />
+      <TextField fx:id="quantityTextfield" layoutX="152.0" layoutY="182.0" prefHeight="27.0" prefWidth="65.0" />
    </children>
 </AnchorPane>

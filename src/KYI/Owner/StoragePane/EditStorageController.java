@@ -23,7 +23,7 @@ import static KYI.Owner.OwnerController.productsObservableList;
 
 public class EditStorageController extends Controller implements Initializable {
     @FXML
-    private TextField nameTextfield, sellingPriceTextfield;
+    private TextField nameTextfield, sellingPriceTextfield,quantityTextfield;
     @FXML
     private Button confirmEditButton,cancelEditButton;
     @FXML

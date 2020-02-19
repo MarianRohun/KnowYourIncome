@@ -634,8 +634,7 @@ public class OwnerController extends Controller implements Initializable {
         String line;
 
         try {
-            File file = new File("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css");
-            reader = new BufferedReader(new FileReader(file));
+            reader = new BufferedReader(new FileReader("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css"));
              inputBuffer = new StringBuffer();
 
             while ((line = reader.readLine()) != null) {
@@ -658,7 +657,8 @@ public class OwnerController extends Controller implements Initializable {
                     inputArray[i + 1] = " -fx-text-fill: " + parseColor(color) + ";";
                 }
             }
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file, false));
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css", false));
             for (String item : inputArray) {
                 writer.write(item);
                 writer.newLine();

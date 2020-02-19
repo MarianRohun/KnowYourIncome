@@ -29,7 +29,7 @@
 }
 .buttons:hover{
     /*buttons hover*/
--fx-border-color: #ffcc99;
+-fx-border-color: #1a0068;
     -fx-border-width: 0 0 2 0;
 }
 .buttons:pressed{
@@ -89,7 +89,7 @@
 }
 .colorlabel{
     /*label text*/
- -fx-text-fill: #ffcc99;
+ -fx-text-fill: #1a0068;
 }
 #sidebarPane{
     -fx-background-color: white;
@@ -99,7 +99,7 @@
 }
 #usercardAnchorPane,#orderHistoryCardAnchorPane,#storageCardAnchorPane{
     /*card dots*/
--fx-border-color: #ffcc99;
+-fx-border-color: #1a0068;
     -fx-border-width: 0 4 0 4;
     -fx-border-style: dotted;
     -fx-border-radius: 1%;
@@ -148,7 +148,7 @@
 }
 #confirmDeletePane,#confirmDeleteOrderPane,#confirmDeleteStoragePane,#confirmEditStoragePane,#CreateProductPane,#addProductPane,#addingPane,#addingOrderPane{
      /*window border*/
--fx-border-color: #ffcc99;
+-fx-border-color: #1a0068;
     -fx-border-width: 4 4 4 4;
     -fx-background-color: white;
 }
@@ -178,14 +178,36 @@
     -fx-background-color: transparent;
     -fx-font-size: 14;
 }
-#nameChoiceBox{
+#nameChoiceBox,#productChoiceBox{
     -fx-border-width: 1 1 1 1;
     -fx-border-color: black;
     -fx-background-color: transparent;
     -fx-mark-color: black;
 }
-#nameChoiceBox .context-menu {
+#nameChoiceBox .context-menu,#productChoiceBox .context-menu{
     -fx-background-color: white;
     -fx-border-color: black;
     -fx-border-width: 1 1 1 1;
+}
+#stornoButton{
+    -fx-background-color: red;
+    -fx-text-fill: white;
+    -fx-background-radius: 12%;
+}
+#confirmButton,#confirmShiftButton{
+    -fx-background-color: green;
+    -fx-text-fill: white;
+    -fx-background-radius: 12%;
+}
+#stornoButton:pressed{
+    -fx-font-size: 12;
+}
+#confirmButton:pressed,#confirmShiftButton:pressed{
+    -fx-font-size: 12;
+}
+#stornoButton{
+    -fx-cursor: hand;
+}
+#confirmButton,#confirmShiftButton{
+    -fx-cursor: hand;
 }

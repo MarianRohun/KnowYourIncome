@@ -2,6 +2,12 @@ package KYI.Employee;
 
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
+import KYI.Employee.SellPane.SellCardController;
+import KYI.Entits.Product;
+import KYI.Entits.User;
+import KYI.Owner.EmployeesPane.UserCardController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +26,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class EmployeeController extends Controller implements Initializable {
@@ -40,13 +47,13 @@ public class EmployeeController extends Controller implements Initializable {
     @FXML
     private Button settingsButton;
     @FXML
-    private Pane homePane;
+    private Pane homePane,sidebarPane;
     @FXML
     private Pane ordersPane;
     @FXML
     private Pane storagePane;
     @FXML
-    private Pane sellPane;
+    private Pane sellPane,ShiftSalesPane;
     @FXML
     private Pane notePane;
     @FXML
@@ -63,11 +70,15 @@ public class EmployeeController extends Controller implements Initializable {
     private ColorPicker themePicker;
     @FXML
     private Button saveColorButton;
+    @FXML
+    private ListView sellListView,shiftSaleListView;
+    @FXML
+    private Button stornoButton,confirmButton,confirmShiftButton,switchToShiftSalesButton,switchToSellButton,addsellButton;
 
     public static Color pickedTheme ;
     Connectivity connectivity = new Connectivity();
     Connection connection = connectivity.getConnection();
-
+    public static ObservableList<Product> sellObservableList;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         pickedTheme = Color.valueOf(parseColor(Color.valueOf(user.getTheme())));
@@ -78,6 +89,7 @@ public class EmployeeController extends Controller implements Initializable {
         storageButton.setStyle("-fx-text-fill:"+parseColor(pickedTheme));
         settingsButton.setStyle("-fx-text-fill:" +parseColor(pickedTheme));
         sellButton.setStyle("-fx-text-fill:" +parseColor(pickedTheme));
+        sidebarPane.setStyle("-fx-border-color: "+parseColor(pickedTheme));
         if (user.isentry()==true){
             homePane.toFront();
             changeColor(homeButton);
@@ -210,27 +222,52 @@ public class EmployeeController extends Controller implements Initializable {
             Image image = new Image(user.getProfilePicture());
             profilePicture.setImage(image);
         }
+        else {
+            Image avatar = new Image("@../../icons/user.png");
+            profilePicture.setImage(avatar);
+        }
 
     }
     public void onClickHome(javafx.event.ActionEvent ActionEvent){
         homePane.toFront();
         changeColor(homeButton);
+        sellButton.setText("Sell");
     }
     public void onClickOrders(javafx.event.ActionEvent ActionEvent){
         ordersPane.toFront();
         changeColor(ordersButton);
+        sellButton.setText("Sell");
     }
     public void onClickStorage(javafx.event.ActionEvent ActionEvent){
         storagePane.toFront();
         changeColor(storageButton);
+        sellButton.setText("Sell");
     }
-    public void onClickSell(javafx.event.ActionEvent ActionEvent){
+    public void onClickSell(javafx.event.ActionEvent ActionEvent)throws SQLException{
         sellPane.toFront();
+        sellButton.setText("Sell");
         changeColor(sellButton);
+        switchToShiftSalesButton.setOnAction(event -> {
+            ShiftSalesPane.toFront();
+            sellButton.setText("Shift Sales");
+        });
+        switchToSellButton.setOnAction(event -> {
+            sellPane.toFront();
+            sellButton.setText("Sell");
+        });
+
+        ArrayList<Product> products = new ArrayList<>();
+
+        sellObservableList = FXCollections.observableArrayList();
+        sellObservableList.addAll(products);
+        sellListView.setItems(sellObservableList);
+        sellListView.setCellFactory(sellListView -> new SellCardController(this));
+
     }
     public void onClickNote(javafx.event.ActionEvent ActionEvent){
         notePane.toFront();
         changeColor(noteButton);
+        sellButton.setText("Sell");
     }
     public void onClickSettings(javafx.event.ActionEvent ActionEvent){
         changePasswordButton.setText("Change password");
@@ -238,6 +275,7 @@ public class EmployeeController extends Controller implements Initializable {
         changeColor(settingsButton);
         settingsPane.toFront();
         changeColor(settingsButton);
+        sellButton.setText("Sell");
 
         changePasswordButton.setDisable(false);
         changePasswordButton.setVisible(true);
@@ -426,7 +464,7 @@ public class EmployeeController extends Controller implements Initializable {
         String line;
 
         try {
-            reader = new BufferedReader(new FileReader("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css"));
+            reader = new BufferedReader(new FileReader("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css\\main.css"));
             inputBuffer = new StringBuffer();
 
             while ((line = reader.readLine()) != null) {
@@ -450,7 +488,7 @@ public class EmployeeController extends Controller implements Initializable {
                 }
             }
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css", false));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css\\main.css", false));
             for (String item : inputArray) {
                 writer.write(item);
                 writer.newLine();

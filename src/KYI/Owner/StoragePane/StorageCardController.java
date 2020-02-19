@@ -72,10 +72,9 @@ public class StorageCardController extends ListCell<Product> {
             cancelProductButton.setOnAction(event -> {
                 try {
                     openWindowProduct("../Owner/StoragePane/DeleteProduct.fxml",product);
-                   if (isProductDeleted){
+                   if (isProductDeleted) {
                        ownerController.refreshStorageListView(product.getId());
                    }
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

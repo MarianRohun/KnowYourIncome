@@ -29,7 +29,7 @@
 }
 .buttons:hover{
     /*buttons hover*/
--fx-border-color: #ffcc99;
+-fx-border-color: #804d80;
     -fx-border-width: 0 0 2 0;
 }
 .buttons:pressed{
@@ -89,7 +89,7 @@
 }
 .colorlabel{
     /*label text*/
- -fx-text-fill: #ffcc99;
+ -fx-text-fill: #804d80;
 }
 #sidebarPane{
     -fx-background-color: white;
@@ -99,7 +99,7 @@
 }
 #usercardAnchorPane,#orderHistoryCardAnchorPane,#storageCardAnchorPane{
     /*card dots*/
--fx-border-color: #ffcc99;
+-fx-border-color: #804d80;
     -fx-border-width: 0 4 0 4;
     -fx-border-style: dotted;
     -fx-border-radius: 1%;
@@ -148,7 +148,7 @@
 }
 #confirmDeletePane,#confirmDeleteOrderPane,#confirmDeleteStoragePane,#confirmEditStoragePane,#CreateProductPane,#addProductPane,#addingPane,#addingOrderPane{
      /*window border*/
--fx-border-color: #ffcc99;
+-fx-border-color: #804d80;
     -fx-border-width: 4 4 4 4;
     -fx-background-color: white;
 }

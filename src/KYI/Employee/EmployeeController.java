@@ -7,6 +7,7 @@ import KYI.Entits.Order;
 import KYI.Entits.Product;
 import KYI.Employee.OrdersPane.OrderCardController;
 import KYI.Employee.StoragePane.StorageCardController;
+import KYI.Entits.SellCard;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -373,7 +374,8 @@ public class EmployeeController extends Controller implements Initializable {
         storagePane.toFront();
     }
 
-    public void onClickSell(javafx.event.ActionEvent ActionEvent)throws SQLException{
+    public void onClickSell(javafx.event.ActionEvent ActionEvent) throws SQLException{
+        ArrayList<SellCard> sellCards = new ArrayList<>();
         sellPane.toFront();
         sellButton.setText("Sell");
         changeColor(sellButton);
@@ -386,16 +388,17 @@ public class EmployeeController extends Controller implements Initializable {
             sellButton.setText("Sell");
         });
         addsellButton.setOnAction(event -> {
-            ArrayList<Product> products = new ArrayList<>();
-            Product primitiv = new Product();
-            products.add(primitiv);
+
+            ChoiceBox productName = null;
+            TextField quantity = null;
+            SellCard sellCard = new SellCard(productName,quantity);
+            sellCards.add(sellCard);
+
             sellObservableList = FXCollections.observableArrayList();
-            sellObservableList.add(product);
+            sellObservableList.addAll(sellCards);
             sellListView.setItems(sellObservableList);
             sellListView.setCellFactory(sellListView -> new SellCardController(this));
         });
-
-
 
     }
     public void onClickNote(javafx.event.ActionEvent ActionEvent){

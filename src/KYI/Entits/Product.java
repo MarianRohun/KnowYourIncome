@@ -1,5 +1,7 @@
 package KYI.Entits;
 
+import javafx.scene.control.TextField;
+
 import java.util.Date;
 
 public class Product {

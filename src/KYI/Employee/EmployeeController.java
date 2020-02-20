@@ -3,9 +3,10 @@ package KYI.Employee;
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
 import KYI.Employee.SellPane.SellCardController;
+import KYI.Entits.Order;
 import KYI.Entits.Product;
-import KYI.Entits.User;
-import KYI.Owner.EmployeesPane.UserCardController;
+import KYI.Employee.OrdersPane.OrderCardController;
+import KYI.Employee.StoragePane.StorageCardController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,6 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -22,11 +25,10 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class EmployeeController extends Controller implements Initializable {
@@ -71,14 +73,25 @@ public class EmployeeController extends Controller implements Initializable {
     @FXML
     private Button saveColorButton;
     @FXML
-    private ListView sellListView,shiftSaleListView;
+    private ListView sellListView,shiftSaleListView,ordersListView,storageListView;
     @FXML
-    private Button stornoButton,confirmButton,confirmShiftButton,switchToShiftSalesButton,switchToSellButton,addsellButton;
+    private Button stornoButton,confirmSellButton,confirmShiftButton,switchToShiftSalesButton,switchToSellButton,addsellButton,addProductToStorage,createProductButton;
+    @FXML
+    private TextField searchOrderTextfield,searchStorageTextfield;
+    @FXML
+    private HBox orderTableHeader,storageTableHeader;
+
 
     public static Color pickedTheme ;
+
     Connectivity connectivity = new Connectivity();
     Connection connection = connectivity.getConnection();
+
     public static ObservableList<Product> sellObservableList;
+    public static ObservableList<Order> ordersObservableList;
+    public static ObservableList<Product> productsObservableList;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         pickedTheme = Color.valueOf(parseColor(Color.valueOf(user.getTheme())));
@@ -90,6 +103,8 @@ public class EmployeeController extends Controller implements Initializable {
         settingsButton.setStyle("-fx-text-fill:" +parseColor(pickedTheme));
         sellButton.setStyle("-fx-text-fill:" +parseColor(pickedTheme));
         sidebarPane.setStyle("-fx-border-color: "+parseColor(pickedTheme));
+        orderTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
+        storageTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
         if (user.isentry()==true){
             homePane.toFront();
             changeColor(homeButton);
@@ -237,12 +252,127 @@ public class EmployeeController extends Controller implements Initializable {
         ordersPane.toFront();
         changeColor(ordersButton);
         sellButton.setText("Sell");
+        ArrayList<Order> orders = new ArrayList<>();
+
+        String select = "SELECT orders.o_id,products.name,orders_has_products.orderedQuantity,products.buyingPrice,products.warranty,orders.dateInit, " +
+                "products.p_id FROM orders_has_products JOIN products ON (products_p_id = p_id) " +
+                "JOIN orders ON (orders_o_id = o_id) ORDER BY dateInit ASC";
+
+        ResultSet result = null;
+        try {
+            result = connection.prepareStatement(select).executeQuery();
+
+
+            while (result.next()){
+                Order order = new Order(result.getInt(1),result.getString(2),result.getInt(3),result.getDouble(4),
+                        result.getDate(5),result.getDate(6),result.getInt(7));
+                orders.add(order);
+            }
+
+            orders.removeIf(order -> order.getDateInit().before(Date.valueOf(LocalDate.now().minusDays(2))));
+
+            ordersObservableList = FXCollections.observableArrayList();
+            ordersObservableList.addAll(orders);
+
+            ordersListView.setItems(ordersObservableList);
+            ordersListView.setCellFactory(ordersListView -> new OrderCardController(this));}
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        searchOrderTextfield.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                ordersObservableList.clear();
+                if (searchValidate(searchOrderTextfield.getText().toLowerCase()) == null) {
+                    for (Order order : orders) {
+                        if (order.getName().toLowerCase().contains(searchOrderTextfield.getText().toLowerCase())) {
+                            ordersObservableList.add(order);
+                        }
+                        else if (order.getWarranty().toString().contains(searchOrderTextfield.getText().toLowerCase())) {
+                            ordersObservableList.add(order);
+                        }
+                        else if (order.getDateInit().toString().contains(searchOrderTextfield.getText().toLowerCase())) {
+                            ordersObservableList.add(order);
+                        }
+
+                    }
+                    if (ordersObservableList.isEmpty()) {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("VAROVANIE");
+                        alert.setHeaderText("There is no such an Order");
+                        alert.showAndWait();
+                        ordersObservableList.addAll(orders);
+                    }
+                } else {
+                    ordersObservableList.addAll(orders);
+                }
+            }
+        });
+    }
+    public void onClickAddOrder(ActionEvent event) throws Exception{
+        openWindow("../Employee/OrdersPane/AddOrder.fxml");
+    }
+    public void refreshOrdersListView(int orderID, int productID){
+        ordersObservableList.removeIf(order -> order.getId() == orderID && order.getProductId() == productID);;
+        ordersPane.toFront();
     }
     public void onClickStorage(javafx.event.ActionEvent ActionEvent){
         storagePane.toFront();
         changeColor(storageButton);
         sellButton.setText("Sell");
+        ArrayList<Product> products = new ArrayList<>();
+
+        String select = "SELECT p_id,name,quantity,sellingPrice FROM products GROUP BY name ORDER BY quantity";
+        ResultSet result = null;
+        try {
+            result = connection.prepareStatement(select).executeQuery();
+
+            while (result.next()) {
+                Product product = new Product(result.getInt(1),result.getString(2), result.getInt(3), result.getDouble(4));
+                products.add(product);
+            }
+            productsObservableList = FXCollections.observableArrayList();
+            productsObservableList.addAll(products);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        storageListView.setItems(productsObservableList);
+        storageListView.setCellFactory(storageListView -> new StorageCardController(this));
+
+        searchStorageTextfield.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                productsObservableList.clear();
+                if (searchValidate(searchStorageTextfield.getText().toLowerCase()) == null) {
+                    for (Product product : products) {
+                        if (product.getName().toLowerCase().contains(searchStorageTextfield.getText().toLowerCase())) {
+                            productsObservableList.add(product);
+                        }
+                    }
+                    if (productsObservableList.isEmpty()) {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("VAROVANIE");
+                        alert.setHeaderText("There is no such an Product");
+                        alert.showAndWait();
+                        productsObservableList.addAll(products);
+                    }
+                } else {
+                    productsObservableList.addAll(products);
+                }
+            }
+        });
     }
+    public void onClickCreateProduct(ActionEvent event)throws Exception{
+        openWindow("../Employee/StoragePane/CreateProduct.fxml");
+    }
+    public void onClickAddProductToStorage(javafx.event.ActionEvent actionEvent)throws Exception{
+        openWindow("../Employee/StoragePane/AddProduct.fxml");
+        productsObservableList.sort(Comparator.comparing(Product::getQuantity));
+        storagePane.toFront();
+    }
+    public void refreshStorageListView(int productId){
+        productsObservableList.removeIf(product -> product.getId() == productId);
+        storagePane.toFront();
+    }
+
     public void onClickSell(javafx.event.ActionEvent ActionEvent)throws SQLException{
         sellPane.toFront();
         sellButton.setText("Sell");
@@ -255,13 +385,17 @@ public class EmployeeController extends Controller implements Initializable {
             sellPane.toFront();
             sellButton.setText("Sell");
         });
+        addsellButton.setOnAction(event -> {
+            ArrayList<Product> products = new ArrayList<>();
+            Product primitiv = new Product();
+            products.add(primitiv);
+            sellObservableList = FXCollections.observableArrayList();
+            sellObservableList.add(product);
+            sellListView.setItems(sellObservableList);
+            sellListView.setCellFactory(sellListView -> new SellCardController(this));
+        });
 
-        ArrayList<Product> products = new ArrayList<>();
 
-        sellObservableList = FXCollections.observableArrayList();
-        sellObservableList.addAll(products);
-        sellListView.setItems(sellObservableList);
-        sellListView.setCellFactory(sellListView -> new SellCardController(this));
 
     }
     public void onClickNote(javafx.event.ActionEvent ActionEvent){
@@ -270,148 +404,6 @@ public class EmployeeController extends Controller implements Initializable {
         sellButton.setText("Sell");
     }
     public void onClickSettings(javafx.event.ActionEvent ActionEvent){
-        changePasswordButton.setText("Change password");
-        settingsPane.toFront();
-        changeColor(settingsButton);
-        settingsPane.toFront();
-        changeColor(settingsButton);
-        sellButton.setText("Sell");
-
-        changePasswordButton.setDisable(false);
-        changePasswordButton.setVisible(true);
-        oldPasswordField.setVisible(false);
-        newPasswordField.setVisible(false);
-        confirmPasswordField.setVisible(false);
-        confirmPasswordButton.setVisible(false);
-        errorLabel.setVisible(false);
-
-        if (user.getProfilePicture() != null) {
-            Image image = new Image(user.getProfilePicture());
-            sampleImage.setImage(image);
-            imagePath.setText(user.getProfilePicture());
-        }
-
-        else {
-            Image questionmark = new Image("@../../icons/question.png");
-            sampleImage.setImage(questionmark);
-        }
-
-        changePasswordButton.setOnAction(actionEvent -> {
-            oldPasswordField.setVisible(true);
-            newPasswordField.setVisible(true);
-            confirmPasswordField.setVisible(true);
-            confirmPasswordButton.setVisible(true);
-            errorLabel.setVisible(true);
-            changePasswordButton.setDisable(true);
-            changePasswordButton.setStyle("-fx-border-color: black;");
-
-            oldPasswordField.clear();
-            newPasswordField.clear();
-            confirmPasswordField.clear();
-            errorLabel.setText("");
-
-        });
-
-        confirmPasswordButton.setOnAction(actionEvent -> {
-
-            if (oldPasswordField.getText().isEmpty()){
-                errorLabel.setText("Please enter the old password");
-            }
-
-            else if (newPasswordField.getText().isEmpty()){
-                errorLabel.setText("Please enter the new password");
-            }
-
-            else if (confirmPasswordField.getText().isEmpty()){
-                errorLabel.setText("Please confirm your new password");
-            }
-
-            else if (!confirmPasswordField.getText().equals(newPasswordField.getText())){
-                errorLabel.setText("New Passwords dont match");
-            }
-            else {
-                try {
-                    Statement statement = connection.createStatement();
-                    String select = "SELECT * FROM users WHERE password = '" + oldPasswordField.getText() + "'";
-                    ResultSet result = connection.prepareStatement(select).executeQuery(select);
-
-                    String oldPassword = "";
-
-                    if (result.next()){
-                        oldPassword = result.getString(6);
-                    }
-
-                    if (!oldPasswordField.getText().equals(oldPassword)){
-                        errorLabel.setText("Wrong old password");
-                    }
-                    else if (oldPassword.equals(newPasswordField.getText())) {
-                        errorLabel.setText("Old and New password cannot be same");
-                    }
-                    else {
-                        String update = "UPDATE users SET password = '" + newPasswordField.getText() +
-                                "' WHERE u_id =" + user.getId();
-                        statement.executeLargeUpdate(update);
-
-                        errorLabel.setText("");
-                        oldPasswordField.clear();
-                        newPasswordField.clear();
-                        confirmPasswordField.clear();
-
-                        System.out.println("Password successfully changed");
-
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("INFORMATION");
-                        alert.setHeaderText("PASSWORD SUCCESSFULLY CHANGED");
-                        alert.showAndWait();
-
-                        oldPasswordField.clear();
-                        newPasswordField.clear();
-                        confirmPasswordField.clear();
-
-                        oldPasswordField.setVisible(false);
-                        newPasswordField.setVisible(false);
-                        confirmPasswordField.setVisible(false);
-                        confirmPasswordButton.setVisible(false);
-                        changePasswordButton.setDisable(false);
-                        errorLabel.setVisible(false);
-                        user.setentry(true);
-                        try {
-                            String updateEntry = "UPDATE users SET isEntry ='true' WHERE u_id = "+user.getId();
-                            statement.executeLargeUpdate(update);
-                            System.out.println("user entered KYI");
-                            statement.executeLargeUpdate(updateEntry);
-
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-
-                        System.out.println("pass updated");
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        });
-        saveColorButton.setOnAction(event -> {
-            pickedTheme = themePicker.getValue();
-            String update = "UPDATE users SET theme = '"+parseColor(pickedTheme)+"' WHERE u_id ="+user.getId()+";";
-            changeHoverColor(pickedTheme);
-            try {
-                Statement statement = connection.createStatement();
-                statement.executeLargeUpdate(update);
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-            System.exit(1);
-        });
     }
     public void onChooseImageClick(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();

@@ -11,11 +11,11 @@ import javafx.scene.layout.AnchorPane;
 
 public class SellCardController extends ListCell<Product> {
     @FXML
-    private Button addCardButton,cancelSellButton;
+    static private Button cancelSellButton;
     @FXML
-    private ChoiceBox productChoiceBox;
+    static private ChoiceBox productChoiceBox;
     @FXML
-    private TextField quantityTextfield;
+    static private TextField quantityTextfield;
     @FXML
     private AnchorPane sellCardAnchorPane;
 
@@ -45,9 +45,7 @@ public class SellCardController extends ListCell<Product> {
                 }
 
             }
-            cancelSellButton.setOnAction(event -> {
 
-            });
             setText(null);
             setGraphic(sellCardAnchorPane);
         }

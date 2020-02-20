@@ -11,7 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        //FRANKLIN GOTHIC MEDIUM, BOOKSHELF, podmienky pre rovnkych userov, reset hesla, pridat update na usera/viac panov pre storage :potraviny, palenky atd,PRIDAT BUYING PRICE DO STORAGE LEBO NEBUDEME VEDIET KOLKO ZA TO ZAPLATIL
+        //FRANKLIN GOTHIC MEDIUM, BOOKSHELF, podmienky pre rovnkych userov, reset hesla, pridat update na usera/viac panov pre storage :potraviny, palenky atd,order,storage na employee nerefreshuje
         Parent root = FXMLLoader.load(getClass().getResource("login/login.fxml"));
         primaryStage.setTitle("KnowYourIncome");
         primaryStage.getIcons().add(new Image("Logo/icon.png"));

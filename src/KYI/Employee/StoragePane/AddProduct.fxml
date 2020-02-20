@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane fx:id="addProductPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="224.0" prefWidth="370.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Employee.StoragePane.AddProductController">
+   <children>
+      <Button fx:id="confirmButton" layoutX="277.0" layoutY="183.0" mnemonicParsing="false" onAction="#onClickConfirm" prefHeight="27.0" prefWidth="78.0" styleClass="ccButtons" text="Confirm" />
+      <Button fx:id="cancelButton" layoutX="12.0" layoutY="183.0" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="27.0" prefWidth="78.0" styleClass="ccButtons" text="Cancel" />
+      <Label layoutX="89.0" layoutY="6.0" prefHeight="27.0" prefWidth="218.0" styleClass="colorlabel" text="Confirm to add product" textFill="#b38b4d">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="16.0" layoutY="60.0" prefHeight="18.0" prefWidth="69.0" text="Name :" />
+      <Label layoutX="18.0" layoutY="100.0" prefHeight="34.0" prefWidth="111.0" text="Quantity :" />
+      <ChoiceBox fx:id="nameChoiceBox" layoutX="122.0" layoutY="56.0" prefWidth="150.0" />
+      <Label layoutX="18.0" layoutY="153.0" prefHeight="18.0" prefWidth="111.0" text="Buying price :" />
+      <TextField fx:id="quantityTextfield" layoutX="152.0" layoutY="100.0" prefHeight="27.0" prefWidth="91.0" />
+      <TextField fx:id="buyingPriceTextfield" layoutX="152.0" layoutY="149.0" prefHeight="18.0" prefWidth="91.0" />
+      <Label fx:id="errorLabel" layoutX="122.0" layoutY="33.0" prefHeight="18.0" prefWidth="150.0" textFill="#f20404" />
+   </children>
+</AnchorPane>

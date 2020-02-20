@@ -162,7 +162,6 @@ public class OwnerController extends Controller implements Initializable {
 
         ArrayList<Product> products = new ArrayList<>();
 
-        new Thread(() ->{
         String select = "SELECT p_id,name,quantity,sellingPrice FROM products GROUP BY name ORDER BY quantity";
             ResultSet result = null;
             try {
@@ -179,7 +178,6 @@ public class OwnerController extends Controller implements Initializable {
             }
         storageListView.setItems(productsObservableList);
         storageListView.setCellFactory(storageListView -> new StorageCardController(this));
-        }).start();
 
         searchStorageTextfield.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -225,7 +223,6 @@ public class OwnerController extends Controller implements Initializable {
 
         ArrayList<Order> orders = new ArrayList<>();
 
-        new Thread(() -> {
         String select = "SELECT orders.o_id,products.name,orders_has_products.orderedQuantity,products.buyingPrice,products.warranty,orders.dateInit, " +
                 "products.p_id FROM orders_has_products JOIN products ON (products_p_id = p_id) " +
                 "JOIN orders ON (orders_o_id = o_id) ORDER BY dateInit ASC";
@@ -249,9 +246,8 @@ public class OwnerController extends Controller implements Initializable {
         ordersListView.setItems(ordersObservableList);
         ordersListView.setCellFactory(ordersListView -> new OrderCardController(this));}
             catch (SQLException e) {
-            e.printStackTrace();
-        }
-        }).start();
+                e.printStackTrace();
+            }
         searchOrderTextfield.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 ordersObservableList.clear();

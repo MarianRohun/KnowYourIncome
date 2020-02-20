@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane fx:id="CreateProductPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="166.0" prefWidth="370.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Employee.StoragePane.CreateProductController">
+   <children>
+      <Button fx:id="confirmEditButton" layoutX="277.0" layoutY="123.0" mnemonicParsing="false" onAction="#onClickConfirm" prefHeight="27.0" prefWidth="78.0" styleClass="ccButtons" text="Confirm" />
+      <Button fx:id="cancelProductButton" layoutX="10.0" layoutY="123.0" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="27.0" prefWidth="78.0" styleClass="ccButtons" text="Cancel" />
+      <Label layoutX="68.0" layoutY="6.0" prefHeight="42.0" prefWidth="234.0" styleClass="colorlabel" text="Confirm to create product" textFill="#b38b4d">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="13.0" layoutY="74.0" prefHeight="18.0" prefWidth="71.0" text="Name :" />
+      <TextField fx:id="nameTextfield" layoutX="105.0" layoutY="69.0" prefHeight="27.0" prefWidth="160.0" />
+      <Label fx:id="errorLabel" layoutX="171.0" layoutY="106.0" />
+   </children>
+</AnchorPane>

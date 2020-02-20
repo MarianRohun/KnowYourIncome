@@ -29,7 +29,7 @@
 }
 .buttons:hover{
     /*buttons hover*/
--fx-border-color: #1a0068;
+-fx-border-color: #003300;
     -fx-border-width: 0 0 2 0;
 }
 .buttons:pressed{
@@ -89,7 +89,7 @@
 }
 .colorlabel{
     /*label text*/
- -fx-text-fill: #ffcc99;
+ -fx-text-fill: #003300;
 }
 #sidebarPane{
     -fx-background-color: white;
@@ -99,7 +99,7 @@
 }
 #usercardAnchorPane,#orderHistoryCardAnchorPane,#storageCardAnchorPane{
     /*card dots*/
--fx-border-color: #ffcc99;
+-fx-border-color: #003300;
     -fx-border-width: 0 4 0 4;
     -fx-border-style: dotted;
     -fx-border-radius: 1%;
@@ -148,7 +148,7 @@
 }
 #confirmDeletePane,#confirmDeleteOrderPane,#confirmDeleteStoragePane,#confirmEditStoragePane,#CreateProductPane,#addProductPane,#addingPane,#addingOrderPane{
      /*window border*/
--fx-border-color: #ffcc99;
+-fx-border-color: #003300;
     -fx-border-width: 4 4 4 4;
     -fx-background-color: white;
 }
@@ -194,7 +194,7 @@
     -fx-text-fill: white;
     -fx-background-radius: 12%;
 }
-#confirmButton,#confirmShiftButton{
+#confirmSellButton,#confirmShiftButton{
     -fx-background-color: green;
     -fx-text-fill: white;
     -fx-background-radius: 12%;
@@ -202,12 +202,12 @@
 #stornoButton:pressed{
     -fx-font-size: 12;
 }
-#confirmButton:pressed,#confirmShiftButton:pressed{
+#confirmSellButton:pressed,#confirmShiftButton:pressed{
     -fx-font-size: 12;
 }
 #stornoButton{
     -fx-cursor: hand;
 }
-#confirmButton,#confirmShiftButton{
+#confirmSellButton,#confirmShiftButton{
     -fx-cursor: hand;
 }

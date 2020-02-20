@@ -1,21 +1,18 @@
-package KYI.Owner.StoragePane;
+package KYI.Employee.StoragePane;
 
-import KYI.Entits.Order;
+import KYI.Employee.EmployeeController;
 import KYI.Entits.Product;
-import KYI.Owner.OwnerController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 
-
 import static KYI.Controllers.Controller.openWindowProduct;
-import static KYI.Owner.StoragePane.DeleteProductController.isProductDeleted;
-import static KYI.Owner.StoragePane.EditStorageController.isProductChanged;
+import static KYI.Employee.StoragePane.DeleteProductController.isProductDeleted;
+import static KYI.Employee.StoragePane.EditStorageController.isProductChanged;
 
 
 public class StorageCardController extends ListCell<Product> {
@@ -29,8 +26,8 @@ public class StorageCardController extends ListCell<Product> {
     @FXML
     private FXMLLoader loader;
 
-    private OwnerController ownerController;
-    public StorageCardController(OwnerController ownerController){this.ownerController = ownerController;}
+    private EmployeeController employeeController;
+    public StorageCardController(EmployeeController employeeController){this.employeeController = employeeController;}
 
 
     @Override
@@ -68,15 +65,13 @@ public class StorageCardController extends ListCell<Product> {
                 storageCardAnchorPane.setStyle("-fx-background-color: #e06666;"+"-fx-border-style: none;"+"-fx-border-color: none;");
             }
 
-
-
             setText(null);
             setGraphic(storageCardAnchorPane);
             cancelProductButton.setOnAction(event -> {
                 try {
-                    openWindowProduct("../Owner/StoragePane/DeleteProduct.fxml",product);
+                    openWindowProduct("../Employee/StoragePane/DeleteProduct.fxml",product);
                    if (isProductDeleted) {
-                       ownerController.refreshStorageListView(product.getId());
+                       employeeController.refreshStorageListView(product.getId());
                    }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -84,10 +79,10 @@ public class StorageCardController extends ListCell<Product> {
             });
             editProductButton.setOnAction(event -> {
                 try {
-                    openWindowProduct("../owner/StoragePane/EditStorage.fxml",product);
+                    openWindowProduct("../Employee/StoragePane/EditStorage.fxml",product);
                     if (isProductChanged) {
                         ActionEvent ActionEvent = null;
-                        ownerController.onClickStorage(ActionEvent);
+                        employeeController.onClickStorage(ActionEvent);
                     }
 
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane fx:id="addingOrderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="311.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Employee.OrdersPane.AddOrderController">
+   <children>
+      <Label layoutX="82.0" prefHeight="46.0" prefWidth="146.0" styleClass="colorlabel" text="Add new order" textFill="#b38b4d">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <TextField fx:id="orderQuantityTextField" layoutX="113.0" layoutY="131.0" prefHeight="34.0" prefWidth="82.0" promptText="Quantity" />
+      <TextField fx:id="orderPerUnitTextField" layoutX="113.0" layoutY="178.0" prefHeight="34.0" prefWidth="82.0" promptText="Per unit " />
+      <Button fx:id="confirmOrderButton" layoutX="201.0" layoutY="366.0" mnemonicParsing="false" onAction="#onClickConfirmOrder" prefHeight="34.0" prefWidth="98.0" styleClass="ccButtons" text="Confirm" />
+      <Label fx:id="errorOrderLabel" layoutX="65.0" layoutY="46.0" prefHeight="26.0" prefWidth="177.0" textFill="RED" />
+      <Button fx:id="cancelOrderButton" layoutX="9.0" layoutY="366.0" mnemonicParsing="false" onAction="#onClickCancelOrder" prefHeight="34.0" prefWidth="98.0" styleClass="ccButtons" text="Cancel">
+         <font>
+            <Font name="Franklin Gothic Book" size="13.0" />
+         </font>
+      </Button>
+      <DatePicker fx:id="warrantyDatePicker" layoutX="61.0" layoutY="231.0" prefHeight="27.0" prefWidth="191.0" promptText="warrranty " styleClass="datePicker" />
+      <DatePicker fx:id="dateInitDatePicker" layoutX="61.0" layoutY="288.0" prefHeight="27.0" prefWidth="191.0" promptText="date init" styleClass="datePicker" />
+      <ChoiceBox fx:id="orderNameChoiceBox" layoutX="52.0" layoutY="76.0" prefHeight="30.0" prefWidth="205.0" value="product" />
+      <ImageView fitHeight="34.0" fitWidth="43.0" layoutX="9.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../icons/product.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

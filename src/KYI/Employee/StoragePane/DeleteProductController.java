@@ -1,4 +1,4 @@
-package KYI.Owner.StoragePane;
+package KYI.Employee.StoragePane;
 
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
@@ -12,9 +12,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-
 import java.net.URL;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class DeleteProductController extends Controller implements Initializable {

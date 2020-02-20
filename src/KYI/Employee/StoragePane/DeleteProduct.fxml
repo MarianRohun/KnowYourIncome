@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane fx:id="confirmDeleteStoragePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="162.0" prefWidth="370.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Employee.StoragePane.DeleteProductController">
+   <children>
+      <Button fx:id="deleteProductButton" layoutX="277.0" layoutY="123.0" mnemonicParsing="false" onAction="#onClickDelete" prefHeight="27.0" prefWidth="78.0" styleClass="ccButtons" text="Delete" />
+      <Button fx:id="cancelProductButton" layoutX="14.0" layoutY="123.0" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="27.0" prefWidth="78.0" styleClass="ccButtons" text="Cancel" />
+      <Label layoutX="31.0" layoutY="7.0" prefHeight="34.0" prefWidth="308.0" styleClass="colorlabel" text="Press delete to remove the product" textFill="#b38b4d">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="17.0" layoutY="72.0" prefHeight="18.0" prefWidth="71.0" text="Name :" />
+      <Label fx:id="productLabel" layoutX="103.0" layoutY="64.0" prefHeight="34.0" prefWidth="219.0" text="Product">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+   </children>
+</AnchorPane>

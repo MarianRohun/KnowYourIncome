@@ -1,10 +1,8 @@
-package KYI.Owner.StoragePane;
+package KYI.Employee.StoragePane;
 
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
-import KYI.Entits.Order;
 import KYI.Entits.Product;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -21,7 +19,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
-import static KYI.Owner.OwnerController.productsObservableList;
+import static KYI.Employee.EmployeeController.productsObservableList;
+
 
 public class CreateProductController extends Controller implements Initializable {
     @FXML

@@ -12,16 +12,6 @@ public class Product {
     private double sellingPrice;
     private Date warranty;
 
-    public Product(int id, String name, double buyingPrice, double sellingPrice,int quantity, Date warranty){
-        this.id = id;
-        this.quantity = quantity;
-        this.name = name;
-        this.buyingPrice = buyingPrice;
-        this.sellingPrice = sellingPrice;
-
-        this.warranty = warranty;
-    }
-
     public Product(int id, String name, double buyingPrice, int quantity, Date warranty) {
         this.id = id;
         this.name = name;

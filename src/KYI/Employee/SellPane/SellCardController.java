@@ -9,21 +9,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
+import java.util.ArrayList;
+
 public class SellCardController extends ListCell<Product> {
     @FXML
-    static private Button cancelSellButton;
+    private Button cancelSellButton;
     @FXML
-    static private ChoiceBox productChoiceBox;
+    private ChoiceBox productChoiceBox;
     @FXML
-    static private TextField quantityTextfield;
+    private TextField quantityTextfield;
     @FXML
     private AnchorPane sellCardAnchorPane;
 
+    private ArrayList<Product> products;
     private FXMLLoader loader;
 
     private EmployeeController employeeController;
 
-    public SellCardController(EmployeeController employeeController){this.employeeController = employeeController;}
+    public SellCardController(EmployeeController employeeController, ArrayList<Product> products){this.employeeController = employeeController;
+    this.products = products;}
 
     @Override
     protected void updateItem(Product product, boolean empty) {
@@ -44,6 +48,9 @@ public class SellCardController extends ListCell<Product> {
                     e.printStackTrace();
                 }
 
+            }
+            for (Product prod : products){
+                productChoiceBox.getItems().add(prod.getName());
             }
 
             setText(null);

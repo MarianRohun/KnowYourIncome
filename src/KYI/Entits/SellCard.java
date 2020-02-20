@@ -11,7 +11,7 @@ public class SellCard extends Product {
     private TextField quantity;
 
     public SellCard(int id, String name, double buyingPrice, double sellingPrice, int quantity, Date warranty, ChoiceBox productName, TextField quantity1) {
-        super(id, name, buyingPrice, sellingPrice, quantity, warranty);
+        super(id, name,quantity, buyingPrice, sellingPrice, warranty);
         this.productName = productName;
         this.quantity = quantity1;
     }

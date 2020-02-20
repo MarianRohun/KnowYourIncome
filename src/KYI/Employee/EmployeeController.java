@@ -376,6 +376,17 @@ public class EmployeeController extends Controller implements Initializable {
 
     public void onClickSell(javafx.event.ActionEvent ActionEvent) throws SQLException{
         ArrayList<SellCard> sellCards = new ArrayList<>();
+        ArrayList<Product> products = new ArrayList<>();
+        String select = "SELECT * FROM products GROUP BY name";
+        ResultSet resultSet = connection.prepareStatement(select).executeQuery();
+
+        while (resultSet.next()){
+            Product product = new Product(resultSet.getInt(1),resultSet.getString(2),resultSet.getInt(3),resultSet.getDouble(4),
+                    resultSet.getDouble(5),resultSet.getDate(6));
+            products.add(product);
+
+        }
+
         sellPane.toFront();
         sellButton.setText("Sell");
         changeColor(sellButton);
@@ -396,8 +407,9 @@ public class EmployeeController extends Controller implements Initializable {
 
             sellObservableList = FXCollections.observableArrayList();
             sellObservableList.addAll(sellCards);
+
             sellListView.setItems(sellObservableList);
-            sellListView.setCellFactory(sellListView -> new SellCardController(this));
+            sellListView.setCellFactory(sellListView -> new SellCardController(this, products));
         });
 
     }

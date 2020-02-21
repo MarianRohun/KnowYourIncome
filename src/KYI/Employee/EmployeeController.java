@@ -26,13 +26,18 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.net.PortUnreachableException;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
+
+import static KYI.Employee.SellPane.SellCardController.*;
 
 public class EmployeeController extends Controller implements Initializable {
     @FXML
@@ -377,8 +382,9 @@ public class EmployeeController extends Controller implements Initializable {
     }
 
     public void onClickSell(javafx.event.ActionEvent ActionEvent) throws SQLException{
-        ArrayList<SellCard> sellCards = new ArrayList<>();
+        ArrayList<Product> sellCards = new ArrayList<>();
         ArrayList<Product> products = new ArrayList<>();
+
         String select = "SELECT * FROM products GROUP BY name";
         ResultSet resultSet = connection.prepareStatement(select).executeQuery();
 
@@ -400,18 +406,34 @@ public class EmployeeController extends Controller implements Initializable {
             sellPane.toFront();
             sellButton.setText("Sell");
         });
-        addsellButton.setOnAction(event -> {
 
-            ChoiceBox productName = null;
-            TextField quantity = null;
-            SellCard sellCard = new SellCard(productName,quantity);
-            sellCards.add(sellCard);
+            Product product = new Product();
+
+            sellCards.add(product);
 
             sellObservableList = FXCollections.observableArrayList();
-            sellObservableList.addAll(sellCards);
+            sellObservableList.setAll(products);
 
             sellListView.setItems(sellObservableList);
             sellListView.setCellFactory(sellListView -> new SellCardController(this, products));
+            addsellButton.setDisable(true);
+
+        confirmSellButton.setOnAction(e -> {
+            ArrayList<Product> soldProducts = new ArrayList<>();
+
+            Iterator<ChoiceBox> itChoice = choiceBoxes.iterator();
+            Iterator<TextField> itText = textFields.iterator();
+
+            while (itChoice.hasNext() && itText.hasNext()){
+                if (itChoice.next().getValue() != null && !itText.next().getText().isEmpty()) {
+                    Product soldProduct = new Product((String) itChoice.next().getValue(), Integer.parseInt(itText.next().getText()));
+                    soldProducts.add(soldProduct);
+                }
+            }
+
+            for (Product soldProduct : soldProducts){
+                System.out.println(soldProduct.getName() + " " + soldProduct.getQuantity());
+            }
         });
 
     }

@@ -2,32 +2,40 @@ package KYI.Employee.SellPane;
 
 import KYI.Employee.EmployeeController;
 import KYI.Entits.Product;
-import KYI.Entits.User;
-import KYI.Owner.OwnerController;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-
 import java.util.ArrayList;
 
+
 public class SellCardController extends ListCell<Product> {
+
     @FXML
     private Button cancelSellButton;
     @FXML
-    private ChoiceBox productChoiceBox;
+    private ChoiceBox<String> productChoiceBox;
     @FXML
     private TextField quantityTextfield;
     @FXML
     private AnchorPane sellCardAnchorPane;
-
-    private ArrayList<Product> products;
+    @FXML
     private FXMLLoader loader;
+    private ArrayList<Product> products;
+
+    public static ArrayList<ChoiceBox> choiceBoxes = new ArrayList<>();
+    public static ArrayList<TextField> textFields = new ArrayList<>();
+
 
     private EmployeeController employeeController;
 
     public SellCardController(EmployeeController employeeController, ArrayList<Product> products){this.employeeController = employeeController;
     this.products = products;}
+
+
+
 
     @Override
     protected void updateItem(Product product, boolean empty) {
@@ -47,11 +55,20 @@ public class SellCardController extends ListCell<Product> {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
+
+            productChoiceBox.getSelectionModel().clearSelection();
+            productChoiceBox.getItems().clear();
+
+            choiceBoxes.add(productChoiceBox);
+            textFields.add(quantityTextfield);
+
             for (Product prod : products){
                 productChoiceBox.getItems().add(prod.getName());
             }
+
+
+
 
             setText(null);
             setGraphic(sellCardAnchorPane);

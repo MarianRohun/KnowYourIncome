@@ -67,6 +67,11 @@ public class Product {
         this.warranty = warranty;
     }
 
+    public Product(String name, int quantity) {
+        this.name = name;
+        this.quantity = quantity;
+    }
+
 
     public int getId() {
         return id;

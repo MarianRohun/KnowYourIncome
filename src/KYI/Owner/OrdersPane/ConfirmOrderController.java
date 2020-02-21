@@ -3,6 +3,7 @@ package KYI.Owner.OrdersPane;
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
 import KYI.Entits.Product;
+import KYI.Owner.OwnerController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,6 +47,7 @@ public class ConfirmOrderController extends Controller implements Initializable 
         String insert = "INSERT INTO ordersHistory (name,quantity,buyingPrice,warranty,dateInit) VALUES ('"+order.getName()+"',"+
                 order.getQuantity()+","+order.getBuyingPrice()+",'"+order.getWarranty()+"','"+order.getDateInit()+"')";
         statement.executeLargeUpdate(insert);
+        OwnerController.expenses +=order.getQuantity()*order.getBuyingPrice();
         System.out.println("Order delivered successfully");
         String delete = "DELETE FROM orders_has_products WHERE orders_o_id = " +order.getId()+ " AND products_p_id = "+order.getProductId();
         statement.executeLargeUpdate(delete);

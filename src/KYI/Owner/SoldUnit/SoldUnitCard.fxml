@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="SoldUnitsAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="699.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="soldUnitsNameLabel" layoutX="14.0" layoutY="13.0" prefHeight="20.0" prefWidth="198.0" styleClass="inputs" text="Product">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="soldUnitsQuantityLabel" layoutX="282.0" layoutY="9.0" prefHeight="27.0" prefWidth="62.0" styleClass="inputs" text="quantity" textOverrun="CLIP">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="soldUnitsSellingPriceLabel" layoutX="379.0" layoutY="12.0" prefHeight="22.0" prefWidth="70.0" styleClass="inputs" text="selling">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="SoldUnitsDateLabel" layoutX="449.0" layoutY="11.0" prefHeight="22.0" prefWidth="70.0" styleClass="inputs" text="Date">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="SoldUnitsCashierLabel" layoutX="525.0" layoutY="12.0" prefHeight="22.0" prefWidth="90.0" styleClass="inputs" text="Cashier name">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

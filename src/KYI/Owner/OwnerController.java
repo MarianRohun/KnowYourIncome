@@ -150,7 +150,6 @@ public class OwnerController extends Controller implements Initializable {
         orderHistoryTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
         soldunitsTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
         employeeTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";"+"-fx-border-color:"+parseColor(pickedTheme)+";");
-        positionLabel.setText("Owner: ");
         nameLabel.setText(user.getName()+" "+user.getSurname());
         if (user.getProfilePicture() != null) {
             Image image = new Image(user.getProfilePicture());

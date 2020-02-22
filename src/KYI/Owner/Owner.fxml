@@ -484,7 +484,17 @@
             </Pane>
             <Pane fx:id="incomePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
-                  <PieChart fx:id="pieInvestment" layoutX="14.0" layoutY="14.0" prefHeight="310.0" prefWidth="423.0" title="Expenses" />
+                  <PieChart fx:id="pieInvestment" layoutY="39.0" prefHeight="561.0" prefWidth="750.0" />
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="33.0" prefWidth="234.0" text="Expenses for month :">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="caption" layoutX="236.0" layoutY="14.0" prefHeight="33.0" prefWidth="234.0">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>

@@ -47,6 +47,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
+import static java.time.Month.FEBRUARY;
+
 
 public class OwnerController extends Controller implements Initializable {
 
@@ -103,7 +105,7 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private ImageView profilePicture, sampleImage;
     @FXML
-    private Label imagePath, errorLabel;
+    private Label imagePath, errorLabel,caption;
     @FXML
     private PasswordField oldPasswordField, newPasswordField, confirmPasswordField;
     @FXML
@@ -126,7 +128,7 @@ public class OwnerController extends Controller implements Initializable {
     Connection connection = connectivity.getConnection();
 
     User user = getUser();
-    public static double expenses;
+    public static double expenses[] = new double[12];
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -438,7 +440,46 @@ public class OwnerController extends Controller implements Initializable {
         incomePane.toFront();
         changeColor(incomeButton);
         ordersButton.setText("Orders");
-        System.out.println(expenses);
+        expenses[0]=100;
+        expenses[2]=100;
+        expenses[3]=100;
+        expenses[4]=100;
+        expenses[5]=100;
+        expenses[6]=100;
+        expenses[7]=100;
+        expenses[8]=100;
+        expenses[9]=100;
+        expenses[10]=100;
+        expenses[11]=100;
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                        new PieChart.Data("JANUARY", expenses[0]),
+                        new PieChart.Data("FEBRUARY", expenses[1]),
+                        new PieChart.Data("MARCH", expenses[2]),
+                        new PieChart.Data("APRIL", expenses[3]),
+                        new PieChart.Data("MAY", expenses[4]),
+                        new PieChart.Data("JUNE", expenses[5]),
+                        new PieChart.Data("JULY", expenses[6]),
+                        new PieChart.Data("AUGUST", expenses[7]),
+                        new PieChart.Data("SEPTEMBER", expenses[8]),
+                        new PieChart.Data("OCTOBER", expenses[9]),
+                        new PieChart.Data("NOVEMBER", expenses[10]),
+                        new PieChart.Data("DECEMBER", expenses[11]));
+        pieInvestment.setData(pieChartData);
+
+        caption.setTextFill(Color.BLACK);
+        caption.setStyle("-fx-font-size: 19");
+        caption.setStyle("-fx-background-color: WHITE");
+
+        for (final PieChart.Data data : pieInvestment.getData()) {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED,
+                    e -> {
+                        caption.setText(data.getName()+" "+data.getPieValue()+ "");
+            });
+            data.getNode().addEventHandler(MouseEvent.MOUSE_EXITED, e->{
+                caption.setText("");
+            });
+        }
     }
     public void onClickNote(javafx.event.ActionEvent ActionEvent){
         notePane.toFront();

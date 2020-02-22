@@ -18,7 +18,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ResourceBundle;
+
+import static java.time.Month.*;
 
 public class ConfirmOrderController extends Controller implements Initializable {
     @FXML
@@ -47,7 +51,45 @@ public class ConfirmOrderController extends Controller implements Initializable 
         String insert = "INSERT INTO ordersHistory (name,quantity,buyingPrice,warranty,dateInit) VALUES ('"+order.getName()+"',"+
                 order.getQuantity()+","+order.getBuyingPrice()+",'"+order.getWarranty()+"','"+order.getDateInit()+"')";
         statement.executeLargeUpdate(insert);
-        OwnerController.expenses +=order.getQuantity()*order.getBuyingPrice();
+
+        if (LocalDate.now().getMonth().equals(JANUARY)){
+            OwnerController.expenses[0] +=order.getQuantity()*order.getBuyingPrice();
+        }
+        if (LocalDate.now().getMonth().equals(FEBRUARY)){
+            OwnerController.expenses[1] +=order.getQuantity()*order.getBuyingPrice();
+        }
+        if (LocalDate.now().getMonth().equals(MARCH)){
+            OwnerController.expenses[2] +=order.getQuantity()*order.getBuyingPrice();
+        }
+        if (LocalDate.now().getMonth().equals(APRIL)){
+            OwnerController.expenses[3] +=order.getQuantity()*order.getBuyingPrice();
+        }
+        if (LocalDate.now().getMonth().equals(MAY)){
+            OwnerController.expenses[4] +=order.getQuantity()*order.getBuyingPrice();
+        }
+        if (LocalDate.now().getMonth().equals(JUNE)){
+            OwnerController.expenses[5] +=order.getQuantity()*order.getBuyingPrice();
+        }
+        if (LocalDate.now().getMonth().equals(JULY)){
+            OwnerController.expenses[6] +=order.getQuantity()*order.getBuyingPrice();
+        }
+        if (LocalDate.now().getMonth().equals(AUGUST)){
+            OwnerController.expenses[7] +=order.getQuantity()*order.getBuyingPrice();
+        }
+        if (LocalDate.now().getMonth().equals(SEPTEMBER)){
+            OwnerController.expenses[8] +=order.getQuantity()*order.getBuyingPrice();
+        }
+        if (LocalDate.now().getMonth().equals(OCTOBER)){
+            OwnerController.expenses[9] +=order.getQuantity()*order.getBuyingPrice();
+        }
+        if (LocalDate.now().getMonth().equals(NOVEMBER)){
+            OwnerController.expenses[10] +=order.getQuantity()*order.getBuyingPrice();
+        }
+        if (LocalDate.now().getMonth().equals(DECEMBER)){
+            OwnerController.expenses[11] +=order.getQuantity()*order.getBuyingPrice();
+        }
+
+
         System.out.println("Order delivered successfully");
         String delete = "DELETE FROM orders_has_products WHERE orders_o_id = " +order.getId()+ " AND products_p_id = "+order.getProductId();
         statement.executeLargeUpdate(delete);

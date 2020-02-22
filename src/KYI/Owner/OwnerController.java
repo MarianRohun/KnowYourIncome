@@ -9,22 +9,14 @@ import KYI.Entits.User;
 import KYI.Owner.EmployeesPane.UserCardController;
 import KYI.Owner.OrdersPane.HistoryOrderCardController;
 import KYI.Owner.OrdersPane.OrderCardController;
-
 import KYI.Owner.SoldUnit.SoldUnitCardController;
-import KYI.Owner.StoragePane.AddProductController;
 import KYI.Owner.StoragePane.StorageCardController;
-
-
-import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -36,21 +28,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.*;
-
 import javafx.scene.layout.Pane;
-
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.ResourceBundle;
-
-import static java.time.Month.FEBRUARY;
-
 
 public class OwnerController extends Controller implements Initializable {
 
@@ -59,7 +44,7 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Label nameLabel;
     @FXML
-    private Label positionLabel;
+    private Label positionLabel,incomeLabel;
     @FXML
     private Button storageButton;
     @FXML
@@ -87,7 +72,7 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Pane soldunitsPane;
     @FXML
-    private Pane incomePane,incomeGraphPane;
+    private Pane incomePane,incomeGraphPane,overAllPane;
     @FXML
     private Pane notePane;
     @FXML
@@ -101,13 +86,13 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Button noteButton;
     @FXML
-    private Button switchToHistoryButton,switchToOrdersButton,fromExpensesToIncomeButton,switchToExpensesButton;
+    private Button switchToHistoryButton,switchToOrdersButton,fromExpensesToIncomeButton,switchToExpensesButton,fromIncomeToOverAllButton,switchFromOverAllToIncomeButton;
     @FXML
     private Button chooseImageButton, saveButton, changePasswordButton, confirmPasswordButton;
     @FXML
     private ImageView profilePicture, sampleImage;
     @FXML
-    private Label imagePath, errorLabel,captionExpensesLabel,captionIncomeLabel;
+    private Label imagePath, errorLabel,captionExpensesLabel,captionIncomeLabel,captionOverAllLabel;
     @FXML
     private PasswordField oldPasswordField, newPasswordField, confirmPasswordField;
     @FXML
@@ -117,7 +102,7 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private HBox orderTableHeader,storageTableHeader,orderHistoryTableHeader,employeeTableHeader,soldunitsTableHeader;
     @FXML
-    private PieChart pieExpenses,pieIncome;
+    private PieChart pieExpenses,pieIncome,pieOverAll;
 
 
     public static Color pickedTheme ;
@@ -201,7 +186,7 @@ public class OwnerController extends Controller implements Initializable {
                     if (productsObservableList.isEmpty()) {
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Warning");
-                        alert.setHeaderText("There is no such an Product");
+                        alert.setHeaderText("There is no such Product");
                         alert.showAndWait();
                         productsObservableList.addAll(products);
                     }
@@ -457,6 +442,33 @@ public class OwnerController extends Controller implements Initializable {
         soldunitsListView.setItems(soldUnitsObservableList);
         soldunitsListView.setCellFactory(soldunitsListView -> new SoldUnitCardController());
 
+        searchSoldUnitTextfield.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                soldUnitsObservableList.clear();
+                if (searchValidate(searchSoldUnitTextfield.getText().toLowerCase()) == null) {
+                    for (SoldUnit soldUnit : soldUnits) {
+                        if (soldUnit.getName().toLowerCase().contains(searchSoldUnitTextfield.getText().toLowerCase())) {
+                            soldUnitsObservableList.add(soldUnit);
+                        }
+                        else if (soldUnit.getDate().toString().contains(searchSoldUnitTextfield.getText().toLowerCase())) {
+                            soldUnitsObservableList.add(soldUnit);
+                        }
+                        else if (soldUnit.getCashier().contains(searchSoldUnitTextfield.getText().toLowerCase())){
+                            soldUnitsObservableList.add(soldUnit);
+                        }
+                    }
+                    if (soldUnitsObservableList.isEmpty()) {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Warning");
+                        alert.setHeaderText("There is no such an Product");
+                        alert.showAndWait();
+                        soldUnitsObservableList.addAll(soldUnits);
+                    }
+                } else {
+                    soldUnitsObservableList.addAll(soldUnits);
+                }
+            }
+        });
 
     }
     public void onClickIncome(javafx.event.ActionEvent ActionEvent){
@@ -490,14 +502,14 @@ public class OwnerController extends Controller implements Initializable {
                         new PieChart.Data("DECEMBER", expenses[11]));
         pieExpenses.setData(pieChartexpensesData);
 
-        captionExpensesLabel.setTextFill(Color.BLACK);
+        captionExpensesLabel.setTextFill(Color.RED);
         captionExpensesLabel.setStyle("-fx-font-size: 19");
         captionExpensesLabel.setStyle("-fx-background-color: WHITE");
 
         for (final PieChart.Data data : pieExpenses.getData()) {
             data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED,
                     e -> {
-                        captionExpensesLabel.setText(data.getName()+" "+data.getPieValue()+ "");
+                        captionExpensesLabel.setText(data.getName() + " " + data.getPieValue()+ " €");
             });
             data.getNode().addEventHandler(MouseEvent.MOUSE_EXITED, e->{
                 captionExpensesLabel.setText("");
@@ -532,23 +544,97 @@ public class OwnerController extends Controller implements Initializable {
                             new PieChart.Data("DECEMBER",  income[11]));
             pieIncome.setData(pieIncomeData);
 
-            captionIncomeLabel.setTextFill(Color.BLACK);
+            captionIncomeLabel.setTextFill(Color.GREEN);
             captionIncomeLabel.setStyle("-fx-font-size: 19");
             captionIncomeLabel.setStyle("-fx-background-color: WHITE");
 
             for (final PieChart.Data data : pieIncome.getData()) {
                 data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED,
                         e -> {
-                            captionIncomeLabel.setText(data.getName()+" "+data.getPieValue()+ "");
+                            captionIncomeLabel.setText(data.getName()+" "+data.getPieValue()+ " €");
                         });
                 data.getNode().addEventHandler(MouseEvent.MOUSE_EXITED, e->{
                     captionIncomeLabel.setText("");
                 });
             }
         });
-        
         switchToExpensesButton.setOnAction(event -> {
            onClickIncome(ActionEvent);
+        });
+        fromIncomeToOverAllButton.setOnAction(event -> {
+            overAllPane.toFront();
+            double graphExpenses=0.0;
+            double graphIncome =0.0;
+            for (int i = 0; i < expenses.length; i++) {
+               graphExpenses+=expenses[i];
+            }
+            for (int i = 0; i < income.length; i++) {
+                graphIncome+=income[i];
+            }
+            double overAllIncome = graphIncome - graphExpenses;
+            incomeLabel.setText(String.valueOf(overAllIncome)+" €");
+            ObservableList<PieChart.Data> pieOverAllData =
+                    FXCollections.observableArrayList(
+                            new PieChart.Data("STORAGE",  income[0]),
+                            new PieChart.Data("EXPENSES",graphExpenses),
+                            new PieChart.Data("INCOME",graphIncome));
+            pieOverAll.setData(pieOverAllData);
+
+            captionOverAllLabel.setStyle("-fx-font-size: 19");
+            captionOverAllLabel.setStyle("-fx-background-color: WHITE");
+
+            for (final PieChart.Data data : pieOverAll.getData()) {
+                data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED,
+                        e -> {
+                            captionOverAllLabel.setText(data.getName()+" is "+data.getPieValue()+ " €");
+                        });
+                data.getNode().addEventHandler(MouseEvent.MOUSE_EXITED, e->{
+                    captionOverAllLabel.setText("");
+                });
+            }
+        });
+        switchFromOverAllToIncomeButton.setOnAction(event -> {
+            incomeGraphPane.toFront();
+            income[0]=200;
+            income[2]=200;
+            income[3]=200;
+            income[4]=200;
+            income[5]=200;
+            income[6]=200;
+            income[7]=200;
+            income[8]=200;
+            income[9]=200;
+            income[10]=200;
+            income[11]=200;
+            ObservableList<PieChart.Data> pieIncomeData =
+                    FXCollections.observableArrayList(
+                            new PieChart.Data("JANUARY",  income[0]),
+                            new PieChart.Data("FEBRUARY",  income[1]),
+                            new PieChart.Data("MARCH",  income[2]),
+                            new PieChart.Data("APRIL", income[3]),
+                            new PieChart.Data("MAY",  income[4]),
+                            new PieChart.Data("JUNE",  income[5]),
+                            new PieChart.Data("JULY",  income[6]),
+                            new PieChart.Data("AUGUST",  income[7]),
+                            new PieChart.Data("SEPTEMBER",  income[8]),
+                            new PieChart.Data("OCTOBER",  income[9]),
+                            new PieChart.Data("NOVEMBER",  income[10]),
+                            new PieChart.Data("DECEMBER",  income[11]));
+            pieIncome.setData(pieIncomeData);
+
+            captionIncomeLabel.setTextFill(Color.GREEN);
+            captionIncomeLabel.setStyle("-fx-font-size: 19");
+            captionIncomeLabel.setStyle("-fx-background-color: WHITE");
+
+            for (final PieChart.Data data : pieIncome.getData()) {
+                data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED,
+                        e -> {
+                            captionIncomeLabel.setText(data.getName()+" "+data.getPieValue()+ " €");
+                        });
+                data.getNode().addEventHandler(MouseEvent.MOUSE_EXITED, e->{
+                    captionIncomeLabel.setText("");
+                });
+            }
         });
     }
     public void onClickNote(javafx.event.ActionEvent ActionEvent){

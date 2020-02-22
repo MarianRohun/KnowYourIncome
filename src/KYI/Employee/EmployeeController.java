@@ -6,6 +6,7 @@ import KYI.Entits.Order;
 import KYI.Entits.Product;
 import KYI.Employee.OrdersPane.OrderCardController;
 import KYI.Employee.StoragePane.StorageCardController;
+import KYI.Owner.OwnerController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,6 +33,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.ResourceBundle;
+
+import static java.time.Month.*;
+import static java.time.Month.DECEMBER;
 
 public class EmployeeController extends Controller implements Initializable {
     @FXML
@@ -384,7 +388,6 @@ public class EmployeeController extends Controller implements Initializable {
 
         String select = "SELECT * FROM products GROUP BY name ORDER BY quantity";
         ResultSet resultSet = connection.prepareStatement(select).executeQuery();
-
         while (resultSet.next()){
             Product product = new Product(resultSet.getInt(1),resultSet.getString(2),resultSet.getInt(3),resultSet.getDouble(4),
                     resultSet.getDouble(5),resultSet.getDate(6));
@@ -392,7 +395,6 @@ public class EmployeeController extends Controller implements Initializable {
                 products.add(product);
             }
         }
-
 
         ObservableList<Product> sellObservableList = FXCollections.observableArrayList();
         sellObservableList.setAll(products);
@@ -403,9 +405,10 @@ public class EmployeeController extends Controller implements Initializable {
         for (int i = 0; i < products.size(); i++){
             ChoiceBox choiceBox = new ChoiceBox(FXCollections.observableArrayList(sellObservableList.get(i).getName()));
             choiceBox.getSelectionModel().selectFirst();
-            choiceBox.setPrefWidth(150);
-            choiceBox.setLayoutX(29);
+            choiceBox.setPrefWidth(185);
+            choiceBox.setLayoutX(150);
             choiceBox.setLayoutY(layoutY);
+            choiceBox.setStyle("-fx-background-color: transparent;"+"-fx-border-width: 1 1 1 1;"+"-fx-border-color: black");
             choiceBoxes.add(choiceBox);
             sellPane.getChildren().add(choiceBox);
             layoutY += 42;
@@ -417,7 +420,7 @@ public class EmployeeController extends Controller implements Initializable {
         ArrayList<TextField> textFields = new ArrayList<>(products.size());
         for (int i = 0; i < products.size(); i++){
             TextField textField = new TextField();
-            textField.setLayoutX(215);
+            textField.setLayoutX(400);
             textField.setLayoutY(layoutY);
             textFields.add(textField);
             sellPane.getChildren().add(textField);
@@ -465,11 +468,46 @@ public class EmployeeController extends Controller implements Initializable {
                                 soldProducts.get(i).getName()+"',"+soldProducts.get(i).getQuantity()+","+products.get(i).getSellingPrice()+",'"+
                                 Date.valueOf(LocalDate.now())+"','"+user.getName()+"')";
                         statement.executeLargeUpdate(insert);
-
                         products.get(i).setQuantity(products.get(i).getQuantity() - soldProducts.get(i).getQuantity());
-
                         String update = "UPDATE products SET quantity = "+products.get(i).getQuantity()+" WHERE name = '"+products.get(i).getName()+"'";
                         statement.executeLargeUpdate(update);
+
+                        if (LocalDate.now().getMonth().equals(JANUARY)){
+                            OwnerController.income[0] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
+                        }
+                        if (LocalDate.now().getMonth().equals(FEBRUARY)){
+                            OwnerController.income[1] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
+                        }
+                        if (LocalDate.now().getMonth().equals(MARCH)){
+                            OwnerController.income[2] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
+                        }
+                        if (LocalDate.now().getMonth().equals(APRIL)){
+                            OwnerController.income[3] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
+                        }
+                        if (LocalDate.now().getMonth().equals(MAY)){
+                            OwnerController.income[4] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
+                        }
+                        if (LocalDate.now().getMonth().equals(JUNE)){
+                            OwnerController.income[5] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
+                        }
+                        if (LocalDate.now().getMonth().equals(JULY)){
+                            OwnerController.income[6] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
+                        }
+                        if (LocalDate.now().getMonth().equals(AUGUST)){
+                            OwnerController.income[7] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
+                        }
+                        if (LocalDate.now().getMonth().equals(SEPTEMBER)){
+                            OwnerController.income[8] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
+                        }
+                        if (LocalDate.now().getMonth().equals(OCTOBER)){
+                            OwnerController.income[9] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
+                        }
+                        if (LocalDate.now().getMonth().equals(NOVEMBER)){
+                            OwnerController.income[10] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
+                        }
+                        if (LocalDate.now().getMonth().equals(DECEMBER)){
+                            OwnerController.income[11] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
+                        }
 
                         System.out.println("Product sold successfully");
                     } catch (SQLException ex) {

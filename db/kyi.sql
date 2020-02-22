@@ -94,10 +94,12 @@ SELECT * FROM products;
 SELECT * FROM orders;
 SELECT * FROM orders_has_products;
 
+
 SELECT orders_o_id,products.name,products.buyingPrice,orders_has_products.orderedQuantity,products.warranty,orders.dateInit FROM orders_has_products JOIN products  ON (products_p_id = p_id) JOIN orders ON (orders_o_id = o_id) ORDER BY dateInit ASC;
 
 UPDATE  products SET name = "", quantity = 1;
 
-DELETE FROM products WHERE name = fanta;
 
-SELECT name,quantity,sellingPrice FROM products
+UPDATE orders_has_products JOIN orders ON (orders_o_id = o_id) JOIN products ON (products_p_id = p_id) SET deliverStatus = TRUE WHERE orders_o_id = 1 AND products_p_id = 1;
+
+DELETE FROM orders_has_products WHERE orders_o_id = ;

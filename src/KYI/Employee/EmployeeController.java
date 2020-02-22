@@ -2,15 +2,13 @@ package KYI.Employee;
 
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
+import KYI.Employee.SellPane.SellCardController;
 import KYI.Entits.Order;
 import KYI.Entits.Product;
 import KYI.Employee.OrdersPane.OrderCardController;
 import KYI.Employee.StoragePane.StorageCardController;
-<<<<<<< HEAD
-=======
 import KYI.Entits.SellCard;
 import KYI.Main;
->>>>>>> master
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,9 +16,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -31,6 +26,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.net.PortUnreachableException;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
@@ -41,7 +37,7 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
-
+import static KYI.Employee.SellPane.SellCardController.*;
 
 public class EmployeeController extends Controller implements Initializable {
     @FXML
@@ -99,6 +95,7 @@ public class EmployeeController extends Controller implements Initializable {
     Connectivity connectivity = new Connectivity();
     Connection connection = connectivity.getConnection();
 
+    public static ObservableList<Product> sellObservableList;
     public static ObservableList<Order> ordersObservableList;
     public static ObservableList<Product> productsObservableList;
 
@@ -329,6 +326,7 @@ public class EmployeeController extends Controller implements Initializable {
     public void onClickStorage(javafx.event.ActionEvent ActionEvent){
         storagePane.toFront();
         changeColor(storageButton);
+        sellButton.setText("Sell");
         ArrayList<Product> products = new ArrayList<>();
 
         String select = "SELECT p_id,name,quantity,sellingPrice FROM products GROUP BY name ORDER BY quantity";
@@ -468,6 +466,7 @@ public class EmployeeController extends Controller implements Initializable {
                 textField.clear();
             }
         });
+
     }
     public void onClickNote(javafx.event.ActionEvent ActionEvent){
         notePane.toFront();

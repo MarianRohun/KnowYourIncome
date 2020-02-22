@@ -4,11 +4,13 @@ import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
 import KYI.Entits.Order;
 import KYI.Entits.Product;
+import KYI.Entits.SoldUnit;
 import KYI.Entits.User;
 import KYI.Owner.EmployeesPane.UserCardController;
 import KYI.Owner.OrdersPane.HistoryOrderCardController;
 import KYI.Owner.OrdersPane.OrderCardController;
 
+import KYI.Owner.SoldUnit.SoldUnitCardController;
 import KYI.Owner.StoragePane.AddProductController;
 import KYI.Owner.StoragePane.StorageCardController;
 
@@ -91,7 +93,7 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Pane settingsPane;
     @FXML
-    private ListView employeeListView, ordersListView, ordersHistoryListView,storageListView;
+    private ListView employeeListView, ordersListView, ordersHistoryListView,storageListView,soldunitsListView;
     @FXML
     private Button addUserButton,addOrdersButton,addProductToStorage,createProductButton;
     @FXML
@@ -122,6 +124,7 @@ public class OwnerController extends Controller implements Initializable {
     public static ObservableList<Order> ordersObservableList;
     public static ObservableList<User> employeesObservableList;
     public static ObservableList<Product> productsObservableList;
+    public static ObservableList<SoldUnit> soldUnitsObservableList;
 
 
     Connectivity connectivity = new Connectivity();
@@ -430,10 +433,30 @@ public class OwnerController extends Controller implements Initializable {
         ordersButton.setText("Orders");
     }
 
-    public void onClickSoldunits(javafx.event.ActionEvent ActionEvent){
+    public void onClickSoldunits(javafx.event.ActionEvent ActionEvent) throws SQLException {
         soldunitsPane.toFront();
         changeColor(soldunitsButton);
         ordersButton.setText("Orders");
+
+        ArrayList<SoldUnit> soldUnits = new ArrayList<>();
+
+        String select = "SELECT * FROM soldunits";
+
+        ResultSet resultSet = connection.prepareStatement(select).executeQuery();
+
+        while (resultSet.next()){
+            SoldUnit soldUnit = new SoldUnit(resultSet.getInt(1),resultSet.getString(2),resultSet.getInt(3),resultSet.getDouble(4),
+                    resultSet.getDate(5),resultSet.getString(6));
+            soldUnits.add(soldUnit);
+        }
+
+        soldUnitsObservableList = FXCollections.observableArrayList();
+        soldUnitsObservableList.addAll(soldUnits);
+
+        soldunitsListView.setItems(soldUnitsObservableList);
+        soldunitsListView.setCellFactory(soldunitsListView -> new SoldUnitCardController());
+
+
     }
     public void onClickIncome(javafx.event.ActionEvent ActionEvent){
         incomePane.toFront();
@@ -697,6 +720,7 @@ public class OwnerController extends Controller implements Initializable {
                     inputArray[i + 1] = "-fx-border-color: " + parseColor(color) + ";";
                 }
                 if (inputArray[i].contains("/*label text*/")){
+                    inputArray[i + 1] = " -fx-text-fill: " + parseColor(color) + ";";
                     inputArray[i + 1] = " -fx-text-fill: " + parseColor(color) + ";";
                 }
             }

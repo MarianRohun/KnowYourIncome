@@ -6,6 +6,7 @@ import KYI.Entits.Product;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -33,7 +34,7 @@ public class EditStorageController extends Controller implements Initializable {
 
     Connectivity connectivity = new Connectivity();
     Connection connection = connectivity.getConnection();
-
+    public int quantityTemp;
     static boolean isProductChanged = false;
 
     @Override
@@ -42,11 +43,13 @@ public class EditStorageController extends Controller implements Initializable {
             nameTextfield.setText(product.getName());
             quantityTextfield.setText(String.valueOf(product.getQuantity()));
             sellingPriceTextfield.setText(String.valueOf(product.getSellingPrice()));
+            quantityTemp=Integer.parseInt(quantityTextfield.getText());
         });
 
     }
     public void onClickEdit(javafx.event.ActionEvent actionEvent) throws SQLException {
         Double sellingPrice = null;
+
         if (nameTextfield.getText().isEmpty()){
             errorLabel.setText("Enter product name");
         }
@@ -55,6 +58,14 @@ public class EditStorageController extends Controller implements Initializable {
         }
         else if (isNumber(quantityTextfield.getText()) == false){
             errorLabel.setText("Incorrect quantity format");
+        }
+        else if (quantityTemp<Integer.parseInt(quantityTextfield.getText())){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("To add quantity use Add product button");
+            alert.showAndWait();
+            Stage stage = (Stage) confirmEditStoragePane.getScene().getWindow();
+            stage.close();
         }
         else if (sellingPriceTextfield.getText().isEmpty()){
             errorLabel.setText("Enter selling price");

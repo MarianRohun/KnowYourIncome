@@ -96,16 +96,16 @@ public class AddProductController extends OwnerController implements Initializab
             String select = "SELECT * FROM products";
             ResultSet resultSet = connection.prepareStatement(select).executeQuery();
 
-            int quantityV = 0;
+            int quantityTemp = 0;
             while (resultSet.next()) {
                 Product product = new Product(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getDouble(4), resultSet.getDouble(5), resultSet.getDate(6));
-                if (product.getName().equals(order.getName())) {
-                    quantityV = product.getQuantity();
+                if (product.getName().equals(product.getName())) {
+                    quantityTemp = product.getQuantity();
                     break;
                 }
             }
-            quantityV += Integer.parseInt(quantityTextfield.getText());
-            String update = "UPDATE products SET quantity = " + quantityV + " WHERE name = '" + nameChoiceBox.getValue() + "'";
+            quantityTemp += Integer.parseInt(quantityTextfield.getText());
+            String update = "UPDATE products SET quantity = " + quantityTemp + " WHERE name = '" + nameChoiceBox.getValue() + "'";
             statement.executeLargeUpdate(update);
 
             Product addedProduct = new Product((String) nameChoiceBox.getValue(),Integer.parseInt(quantityTextfield.getText()),pricePerUnit);

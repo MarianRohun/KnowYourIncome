@@ -484,17 +484,59 @@
             </Pane>
             <Pane fx:id="incomePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
-                  <PieChart fx:id="pieInvestment" layoutY="39.0" prefHeight="561.0" prefWidth="750.0" />
+                  <PieChart fx:id="pieExpenses" layoutY="39.0" prefHeight="561.0" prefWidth="750.0" />
                   <Label layoutX="14.0" layoutY="14.0" prefHeight="33.0" prefWidth="234.0" text="Expenses for month :">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </Label>
-                  <Label fx:id="caption" layoutX="236.0" layoutY="14.0" prefHeight="33.0" prefWidth="234.0">
+                  <Label fx:id="captionExpensesLabel" layoutX="236.0" layoutY="14.0" prefHeight="33.0" prefWidth="234.0">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </Label>
+                  <Button fx:id="fromExpensesToIncomeButton" layoutX="699.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="48.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/right.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane fx:id="incomeGraphPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <PieChart fx:id="pieIncome" layoutY="39.0" prefHeight="561.0" prefWidth="750.0" />
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="33.0" prefWidth="234.0" text="Income for month :">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="captionIncomeLabel" layoutX="236.0" layoutY="14.0" prefHeight="33.0" prefWidth="234.0">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="fromExpensesToIncomeButton1" layoutX="699.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="48.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/right.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="switchToExpensesButton" layoutX="664.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="48.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/left.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </Pane>
          </children>

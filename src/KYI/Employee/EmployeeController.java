@@ -2,13 +2,10 @@ package KYI.Employee;
 
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
-import KYI.Employee.SellPane.SellCardController;
 import KYI.Entits.Order;
 import KYI.Entits.Product;
 import KYI.Employee.OrdersPane.OrderCardController;
 import KYI.Employee.StoragePane.StorageCardController;
-import KYI.Entits.SellCard;
-import KYI.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,8 +33,6 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
-
-import static KYI.Employee.SellPane.SellCardController.*;
 
 public class EmployeeController extends Controller implements Initializable {
     @FXML

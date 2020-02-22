@@ -285,7 +285,6 @@
                      </font>
                   </Button>
                   <Button fx:id="switchToShiftSalesButton" layoutX="696.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="48.0" style="-fx-background-color: transparent;" />
-                  <Button fx:id="addsellButton" layoutX="29.0" layoutY="4.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="blackButtons" text="Add product" />
                </children>
             </Pane>
          </children>

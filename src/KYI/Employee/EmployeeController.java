@@ -22,8 +22,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.swing.plaf.nimbus.State;
 import java.io.*;
-import java.net.PortUnreachableException;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
@@ -32,7 +32,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
 
 public class EmployeeController extends Controller implements Initializable {
     @FXML
@@ -234,8 +233,7 @@ public class EmployeeController extends Controller implements Initializable {
             });
 
         }
-        positionLabel.setText("Employee: ");
-        nameLabel.setText(user.getSurname());
+        nameLabel.setText(user.getName() + " " + user.getSurname());
         if (user.getProfilePicture() != null) {
             Image image = new Image(user.getProfilePicture());
             profilePicture.setImage(image);
@@ -451,10 +449,37 @@ public class EmployeeController extends Controller implements Initializable {
             for (TextField textField : textFields){
                 textField.clear();
             }
-            for (Product soldProduct : soldProducts){
-                System.out.println(soldProduct.getName() + " " + soldProduct.getQuantity());
-            }
+           for (int i = 0; i < soldProducts.size(); i++){
+                if (products.get(i).getQuantity() < soldProducts.get(i).getQuantity()){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("WARNING");
+                    alert.setHeaderText("YOU DON'T HAVE ENOUGH " +products.get(i).getName().toUpperCase()+ " IN STOCK");
+                    alert.showAndWait();
+                    break;
+                }
+                else {
+
+                    try {
+                        Statement statement = connection.createStatement();
+                        String insert = "INSERT INTO soldunits (name,quantity,sellingPrice,date,cashier) VALUES ('"+
+                                soldProducts.get(i).getName()+"',"+soldProducts.get(i).getQuantity()+","+products.get(i).getSellingPrice()+",'"+
+                                Date.valueOf(LocalDate.now())+"','"+user.getName()+"')";
+                        statement.executeLargeUpdate(insert);
+
+                        products.get(i).setQuantity(products.get(i).getQuantity() - soldProducts.get(i).getQuantity());
+
+                        String update = "UPDATE products SET quantity = "+products.get(i).getQuantity()+" WHERE name = '"+products.get(i).getName()+"'";
+                        statement.executeLargeUpdate(update);
+
+                        System.out.println("Product sold successfully");
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+           }
+
         });
+
 
         stornoButton.setOnAction(e -> {
             for (TextField textField : textFields){

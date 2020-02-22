@@ -99,7 +99,8 @@ public class AddProductController extends OwnerController implements Initializab
                 if (product.getName().equals(addedProduct.getName())){
                     quantity += addedProduct.getQuantity();
                     product.setQuantity(quantity);
-                    break;
+                    OwnerController.expenses +=addedProduct.getQuantity()*addedProduct.getBuyingPrice();
+                break;
                 }
             }
 

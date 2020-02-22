@@ -6,6 +6,11 @@ import KYI.Entits.Order;
 import KYI.Entits.Product;
 import KYI.Employee.OrdersPane.OrderCardController;
 import KYI.Employee.StoragePane.StorageCardController;
+<<<<<<< HEAD
+=======
+import KYI.Entits.SellCard;
+import KYI.Main;
+>>>>>>> master
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 
 
@@ -468,7 +474,141 @@ public class EmployeeController extends Controller implements Initializable {
         changeColor(noteButton);
         sellButton.setText("Sell");
     }
-    public void onClickSettings(javafx.event.ActionEvent ActionEvent){
+    public void onClickSettings(javafx.event.ActionEvent ActionEvent) {
+        changePasswordButton.setText("Change password");
+        settingsPane.toFront();
+        changeColor(settingsButton);
+        settingsPane.toFront();
+        changeColor(settingsButton);
+
+        changePasswordButton.setDisable(false);
+        changePasswordButton.setVisible(true);
+        oldPasswordField.setVisible(false);
+        newPasswordField.setVisible(false);
+        confirmPasswordField.setVisible(false);
+        confirmPasswordButton.setVisible(false);
+        errorLabel.setVisible(false);
+
+        if (user.getProfilePicture() != null) {
+            Image image = new Image(user.getProfilePicture());
+            sampleImage.setImage(image);
+            imagePath.setText(user.getProfilePicture());
+        }
+        changePasswordButton.setOnAction(actionEvent -> {
+            oldPasswordField.setVisible(true);
+            newPasswordField.setVisible(true);
+            confirmPasswordField.setVisible(true);
+            confirmPasswordButton.setVisible(true);
+            errorLabel.setVisible(true);
+            changePasswordButton.setDisable(true);
+
+            oldPasswordField.clear();
+            newPasswordField.clear();
+            confirmPasswordField.clear();
+            errorLabel.setText("");
+
+        });
+
+        confirmPasswordButton.setOnAction(actionEvent -> {
+
+            if (oldPasswordField.getText().isEmpty()){
+                errorLabel.setText("Please enter the old password");
+            }
+
+            else if (newPasswordField.getText().isEmpty()){
+                errorLabel.setText("Please enter the new password");
+            }
+
+            else if (confirmPasswordField.getText().isEmpty()){
+                errorLabel.setText("Please confirm your new password");
+            }
+
+            else if (!confirmPasswordField.getText().equals(newPasswordField.getText())){
+                errorLabel.setText("New Passwords dont match");
+            }
+            else {
+                try {
+                    Statement statement = connection.createStatement();
+                    String select = "SELECT * FROM users WHERE password = '" + oldPasswordField.getText() + "'";
+                    ResultSet result = connection.prepareStatement(select).executeQuery(select);
+
+                    String oldPassword = "";
+
+                    if (result.next()){
+                        oldPassword = result.getString(6);
+                    }
+
+                    if (!oldPasswordField.getText().equals(oldPassword)){
+                        errorLabel.setText("Wrong old password");
+                    }
+                    else if (oldPassword.equals(newPasswordField.getText())) {
+                        errorLabel.setText("Old and New password cannot be same");
+                    }
+                    else {
+                        String update = "UPDATE users SET password = '" + newPasswordField.getText() +
+                                "' WHERE u_id =" + user.getId();
+                        statement.executeLargeUpdate(update);
+
+                        errorLabel.setText("");
+                        oldPasswordField.clear();
+                        newPasswordField.clear();
+                        confirmPasswordField.clear();
+
+                        System.out.println("Password successfully changed");
+
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("INFORMATION");
+                        alert.setHeaderText("PASSWORD SUCCESSFULLY CHANGED");
+                        alert.showAndWait();
+
+                        oldPasswordField.clear();
+                        newPasswordField.clear();
+                        confirmPasswordField.clear();
+
+                        oldPasswordField.setVisible(false);
+                        newPasswordField.setVisible(false);
+                        confirmPasswordField.setVisible(false);
+                        confirmPasswordButton.setVisible(false);
+                        changePasswordButton.setDisable(false);
+                        errorLabel.setVisible(false);
+                    }
+                    if (user.getProfilePicture() != null) {
+                        Image image = new Image(user.getProfilePicture());
+                        sampleImage.setImage(image);
+                        imagePath.setText(user.getProfilePicture());
+                    }
+                    else {
+                        Image questionmark = new Image("@../../icons/question.png");
+                        sampleImage.setImage(questionmark);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        saveColorButton.setOnAction(event -> {
+            pickedTheme = themePicker.getValue();
+            String update = "UPDATE users SET theme = '"+parseColor(pickedTheme)+"' WHERE u_id ="+user.getId()+";";
+            changeHoverColor(pickedTheme);
+            try {
+                Statement statement = connection.createStatement();
+                statement.executeLargeUpdate(update);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("KYI. will reset\n to set your theme");
+            alert.showAndWait();
+            System.exit(1);
+        });
     }
     public void onChooseImageClick(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();

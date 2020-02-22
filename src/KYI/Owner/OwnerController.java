@@ -23,6 +23,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -92,7 +93,7 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Button addUserButton,addOrdersButton,addProductToStorage,createProductButton;
     @FXML
-    private TextField searchEmployeeTextfield,searchOrderTextfield,searchOrderHistoryTextfield,searchStorageTextfield;
+    private TextField searchEmployeeTextfield,searchOrderTextfield,searchOrderHistoryTextfield,searchStorageTextfield,searchSoldUnitTextfield;
     @FXML
     private Button noteButton;
     @FXML
@@ -110,7 +111,9 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private Button saveColorButton;
     @FXML
-    private HBox orderTableHeader,storageTableHeader,orderHistoryTableHeader,employeeTableHeader;
+    private HBox orderTableHeader,storageTableHeader,orderHistoryTableHeader,employeeTableHeader,soldunitsTableHeader;
+    @FXML
+    private PieChart pieInvestment;
 
 
     public static Color pickedTheme ;
@@ -123,6 +126,7 @@ public class OwnerController extends Controller implements Initializable {
     Connection connection = connectivity.getConnection();
 
     User user = getUser();
+    public static double expenses;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -142,6 +146,7 @@ public class OwnerController extends Controller implements Initializable {
         orderTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
         storageTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
         orderHistoryTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
+        soldunitsTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
         employeeTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";"+"-fx-border-color:"+parseColor(pickedTheme)+";");
         positionLabel.setText("Owner: ");
         nameLabel.setText(user.getName()+" "+user.getSurname());
@@ -433,6 +438,7 @@ public class OwnerController extends Controller implements Initializable {
         incomePane.toFront();
         changeColor(incomeButton);
         ordersButton.setText("Orders");
+        System.out.println(expenses);
     }
     public void onClickNote(javafx.event.ActionEvent ActionEvent){
         notePane.toFront();
@@ -566,7 +572,10 @@ public class OwnerController extends Controller implements Initializable {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("KYI. will reset\n to set your theme");
+            alert.showAndWait();
             System.exit(1);
         });
 

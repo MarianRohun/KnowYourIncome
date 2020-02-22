@@ -58,6 +58,7 @@ public class EditStorageController extends Controller implements Initializable {
             errorLabel.setText("Incorrect selling price format");
         } else {
             sellingPrice = Double.parseDouble(sellingPriceTextfield.getText().replace(",","."));
+
             String update = "UPDATE products SET name = '" +nameTextfield.getText()+"',quantity ="+Integer.parseInt(quantityTextfield.getText())+",sellingPrice ="+sellingPrice
                     +" WHERE name = '"+product.getName()+"'";
 

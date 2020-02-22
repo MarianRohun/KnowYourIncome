@@ -92,8 +92,9 @@ public class AddProductController extends EmployeeController implements Initiali
 
             Product addedProduct = new Product((String) nameChoiceBox.getValue(),Integer.parseInt(quantityTextfield.getText()),pricePerUnit);
 
+            int quantity = 0;
             for (Product product : productsObservableList){
-                int quantity = product.getQuantity();
+                quantity = product.getQuantity();
                 if (product.getName().equals(addedProduct.getName())){
                     quantity += addedProduct.getQuantity();
                     product.setQuantity(quantity);

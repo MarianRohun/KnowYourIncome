@@ -2,13 +2,10 @@ package KYI.Employee;
 
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
-import KYI.Employee.SellPane.SellCardController;
 import KYI.Entits.Order;
 import KYI.Entits.Product;
 import KYI.Employee.OrdersPane.OrderCardController;
 import KYI.Employee.StoragePane.StorageCardController;
-import KYI.Entits.SellCard;
-import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +13,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -26,7 +26,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.net.PortUnreachableException;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
@@ -36,7 +35,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 
-import static KYI.Employee.SellPane.SellCardController.*;
+
 
 public class EmployeeController extends Controller implements Initializable {
     @FXML
@@ -94,7 +93,6 @@ public class EmployeeController extends Controller implements Initializable {
     Connectivity connectivity = new Connectivity();
     Connection connection = connectivity.getConnection();
 
-    public static ObservableList<Product> sellObservableList;
     public static ObservableList<Order> ordersObservableList;
     public static ObservableList<Product> productsObservableList;
 
@@ -325,7 +323,6 @@ public class EmployeeController extends Controller implements Initializable {
     public void onClickStorage(javafx.event.ActionEvent ActionEvent){
         storagePane.toFront();
         changeColor(storageButton);
-        sellButton.setText("Sell");
         ArrayList<Product> products = new ArrayList<>();
 
         String select = "SELECT p_id,name,quantity,sellingPrice FROM products GROUP BY name ORDER BY quantity";
@@ -381,41 +378,54 @@ public class EmployeeController extends Controller implements Initializable {
     }
 
     public void onClickSell(javafx.event.ActionEvent ActionEvent) throws SQLException{
-        ArrayList<Product> sellCards = new ArrayList<>();
+        sellPane.toFront();
+        changeColor(sellButton);
+
         ArrayList<Product> products = new ArrayList<>();
 
-        String select = "SELECT * FROM products GROUP BY name";
+
+
+        String select = "SELECT * FROM products GROUP BY name ORDER BY quantity";
         ResultSet resultSet = connection.prepareStatement(select).executeQuery();
 
         while (resultSet.next()){
             Product product = new Product(resultSet.getInt(1),resultSet.getString(2),resultSet.getInt(3),resultSet.getDouble(4),
                     resultSet.getDouble(5),resultSet.getDate(6));
-            products.add(product);
-
+            if (product.getQuantity() != 0) {
+                products.add(product);
+            }
         }
 
-        sellPane.toFront();
-        sellButton.setText("Sell");
-        changeColor(sellButton);
-        switchToShiftSalesButton.setOnAction(event -> {
-            ShiftSalesPane.toFront();
-            sellButton.setText("Shift Sales");
-        });
-        switchToSellButton.setOnAction(event -> {
-            sellPane.toFront();
-            sellButton.setText("Sell");
-        });
 
-            Product product = new Product();
+        ObservableList<Product> sellObservableList = FXCollections.observableArrayList();
+        sellObservableList.setAll(products);
 
-            sellCards.add(product);
+        int layoutY = 71;
 
-            sellObservableList = FXCollections.observableArrayList();
-            sellObservableList.setAll(products);
+        ArrayList<ChoiceBox> choiceBoxes = new ArrayList<>(products.size());
+        for (int i = 0; i < products.size(); i++){
+            ChoiceBox choiceBox = new ChoiceBox(FXCollections.observableArrayList(sellObservableList.get(i).getName()));
+            choiceBox.getSelectionModel().selectFirst();
+            choiceBox.setPrefWidth(150);
+            choiceBox.setLayoutX(29);
+            choiceBox.setLayoutY(layoutY);
+            choiceBoxes.add(choiceBox);
+            sellPane.getChildren().add(choiceBox);
+            layoutY += 42;
+        }
 
-            sellListView.setItems(sellObservableList);
-            sellListView.setCellFactory(sellListView -> new SellCardController(this, products));
-            addsellButton.setDisable(true);
+
+        layoutY = 71;
+
+        ArrayList<TextField> textFields = new ArrayList<>(products.size());
+        for (int i = 0; i < products.size(); i++){
+            TextField textField = new TextField();
+            textField.setLayoutX(215);
+            textField.setLayoutY(layoutY);
+            textFields.add(textField);
+            sellPane.getChildren().add(textField);
+            layoutY += 42;
+        }
 
         confirmSellButton.setOnAction(e -> {
             ArrayList<Product> soldProducts = new ArrayList<>();
@@ -424,17 +434,34 @@ public class EmployeeController extends Controller implements Initializable {
             Iterator<TextField> itText = textFields.iterator();
 
             while (itChoice.hasNext() && itText.hasNext()){
-                if (itChoice.next().getValue() != null && !itText.next().getText().isEmpty()) {
-                    Product soldProduct = new Product((String) itChoice.next().getValue(), Integer.parseInt(itText.next().getText()));
+                String productName = String.valueOf(itChoice.next().getValue());
+                String tmpquantity = itText.next().getText();
+                if (productName != null && !tmpquantity.equals("")) {
+                    if (!isNumber(tmpquantity)){
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("WARNING");
+                        alert.setHeaderText("INCORRECT QUANTITY FORMAT");
+                        alert.showAndWait();
+                        break;
+                    }
+                    int quantity = Integer.parseInt(tmpquantity);
+                    Product soldProduct = new Product(productName, quantity);
                     soldProducts.add(soldProduct);
                 }
             }
-
+            for (TextField textField : textFields){
+                textField.clear();
+            }
             for (Product soldProduct : soldProducts){
                 System.out.println(soldProduct.getName() + " " + soldProduct.getQuantity());
             }
         });
 
+        stornoButton.setOnAction(e -> {
+            for (TextField textField : textFields){
+                textField.clear();
+            }
+        });
     }
     public void onClickNote(javafx.event.ActionEvent ActionEvent){
         notePane.toFront();

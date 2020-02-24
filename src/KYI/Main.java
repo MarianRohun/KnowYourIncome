@@ -16,6 +16,7 @@ public class Main extends Application {
         primaryStage.setTitle("KnowYourIncome");
         primaryStage.getIcons().add(new Image("Logo/icon.png"));
         primaryStage.setMinWidth(900);
+        primaryStage.setResizable(false);
       //primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setMinHeight(600);
         primaryStage.setScene(new Scene(root));

@@ -12,7 +12,9 @@ public class Connectivity {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/knowyourincome?serverTimezone=Europe/Bratislava", userName, password);
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/knowyourincome?serverTimezone=" +
+                            "Europe/Bratislava",
+                    userName, password);
         } catch (Exception e) {
             e.printStackTrace();
         }

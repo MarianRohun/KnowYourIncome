@@ -61,7 +61,7 @@ public class EmployeeController extends Controller implements Initializable {
     @FXML
     private Pane storagePane;
     @FXML
-    private Pane sellPane,ShiftSalesPane;
+    private Pane sellPane, sellFooterPane, sellHeaderPane;
     @FXML
     private Pane notePane;
     @FXML
@@ -112,6 +112,8 @@ public class EmployeeController extends Controller implements Initializable {
         orderTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
         storageTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
         if (user.isentry()==true){
+            sellFooterPane.toBack();
+            sellHeaderPane.toBack();
             homePane.toFront();
             changeColor(homeButton);
             homeButton.setDisable(false);
@@ -121,6 +123,8 @@ public class EmployeeController extends Controller implements Initializable {
             noteButton.setDisable(false);
         }
         else {
+            sellFooterPane.toBack();
+            sellHeaderPane.toBack();
             settingsPane.toFront();
             changeColor(settingsButton);
             changePasswordButton.setVisible(true);
@@ -249,17 +253,21 @@ public class EmployeeController extends Controller implements Initializable {
 
     }
     public void onClickHome(javafx.event.ActionEvent ActionEvent){
+        sellFooterPane.toBack();
+        sellHeaderPane.toBack();
         homePane.toFront();
         changeColor(homeButton);
         sellButton.setText("Sell");
     }
     public void onClickOrders(javafx.event.ActionEvent ActionEvent){
+        sellFooterPane.toBack();
+        sellHeaderPane.toBack();
         ordersPane.toFront();
         changeColor(ordersButton);
-        sellButton.setText("Sell");
         ArrayList<Order> orders = new ArrayList<>();
 
-        String select = "SELECT orders.o_id,products.name,orders_has_products.orderedQuantity,products.buyingPrice,products.warranty,orders.dateInit, " +
+        String select = "SELECT orders.o_id,products.name,orders_has_products.orderedQuantity,products.buyingPrice," +
+                "products.warranty,orders.dateInit, " +
                 "products.p_id FROM orders_has_products JOIN products ON (products_p_id = p_id) " +
                 "JOIN orders ON (orders_o_id = o_id) ORDER BY dateInit ASC";
 
@@ -317,10 +325,14 @@ public class EmployeeController extends Controller implements Initializable {
         openWindow("../Employee/OrdersPane/AddOrder.fxml");
     }
     public void refreshOrdersListView(int orderID, int productID){
-        ordersObservableList.removeIf(order -> order.getId() == orderID && order.getProductId() == productID);;
+        ordersObservableList.removeIf(order -> order.getId() == orderID && order.getProductId() == productID);
+        sellFooterPane.toBack();
+        sellHeaderPane.toBack();
         ordersPane.toFront();
     }
     public void onClickStorage(javafx.event.ActionEvent ActionEvent){
+        sellFooterPane.toBack();
+        sellHeaderPane.toBack();
         storagePane.toFront();
         changeColor(storageButton);
         sellButton.setText("Sell");
@@ -371,15 +383,24 @@ public class EmployeeController extends Controller implements Initializable {
     public void onClickAddProductToStorage(javafx.event.ActionEvent actionEvent)throws Exception{
         openWindow("../Employee/StoragePane/AddProduct.fxml");
         productsObservableList.sort(Comparator.comparing(Product::getQuantity));
+        sellFooterPane.toBack();
+        sellHeaderPane.toBack();
         storagePane.toFront();
     }
     public void refreshStorageListView(int productId){
         productsObservableList.removeIf(product -> product.getId() == productId);
+        sellFooterPane.toBack();
+        sellHeaderPane.toBack();
         storagePane.toFront();
     }
 
     public void onClickSell(javafx.event.ActionEvent ActionEvent) throws SQLException{
+
+        sellPane.getChildren().clear();
         sellPane.toFront();
+
+        sellHeaderPane.toFront();
+        sellFooterPane.toFront();
         changeColor(sellButton);
 
         ArrayList<Product> products = new ArrayList<>();
@@ -396,17 +417,24 @@ public class EmployeeController extends Controller implements Initializable {
             }
         }
 
+
+        ArrayList<ChoiceBox> choiceBoxes = new ArrayList<>(products.size());
+        ArrayList<TextField> textFields = new ArrayList<>(products.size());
+
+        sellPane.getChildren().clear();
+
         ObservableList<Product> sellObservableList = FXCollections.observableArrayList();
         sellObservableList.setAll(products);
 
         int layoutY = 71;
 
-        ArrayList<ChoiceBox> choiceBoxes = new ArrayList<>(products.size());
+
+        choiceBoxes.clear();
         for (int i = 0; i < products.size(); i++){
             ChoiceBox choiceBox = new ChoiceBox(FXCollections.observableArrayList(sellObservableList.get(i).getName()));
             choiceBox.getSelectionModel().selectFirst();
             choiceBox.setPrefWidth(185);
-            choiceBox.  setLayoutX(150);
+            choiceBox.setLayoutX(150);
             choiceBox.setLayoutY(layoutY);
             choiceBox.setStyle("-fx-background-color: transparent;"+"-fx-border-width: 1 1 1 1;"+"-fx-border-color: black");
             choiceBoxes.add(choiceBox);
@@ -417,7 +445,7 @@ public class EmployeeController extends Controller implements Initializable {
 
         layoutY = 71;
 
-        ArrayList<TextField> textFields = new ArrayList<>(products.size());
+
         for (int i = 0; i < products.size(); i++){
             TextField textField = new TextField();
             textField.setLayoutX(400);
@@ -436,6 +464,7 @@ public class EmployeeController extends Controller implements Initializable {
             while (itChoice.hasNext() && itText.hasNext()){
                 String productName = String.valueOf(itChoice.next().getValue());
                 String tmpquantity = itText.next().getText();
+                System.out.println(productName + " " + tmpquantity);
                 if (productName != null && !tmpquantity.equals("")) {
                     if (!isNumber(tmpquantity)){
                         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -452,69 +481,87 @@ public class EmployeeController extends Controller implements Initializable {
             for (TextField textField : textFields){
                 textField.clear();
             }
-           for (int i = 0; i < soldProducts.size(); i++){
-                if (products.get(i).getQuantity() < soldProducts.get(i).getQuantity()){
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("WARNING");
-                    alert.setHeaderText("YOU DON'T HAVE ENOUGH " +products.get(i).getName().toUpperCase()+ " IN STOCK");
-                    alert.showAndWait();
-                    break;
-                }
-                else {
 
-                    try {
-                        Statement statement = connection.createStatement();
-                        String insert = "INSERT INTO soldunits (name,quantity,sellingPrice,date,cashier) VALUES ('"+
-                                soldProducts.get(i).getName()+"',"+soldProducts.get(i).getQuantity()+","+products.get(i).getSellingPrice()+",'"+
-                                Date.valueOf(LocalDate.now())+"','"+user.getName()+"')";
-                        statement.executeLargeUpdate(insert);
-                        products.get(i).setQuantity(products.get(i).getQuantity() - soldProducts.get(i).getQuantity());
-                        String update = "UPDATE products SET quantity = "+products.get(i).getQuantity()+" WHERE name = '"+products.get(i).getName()+"'";
-                        statement.executeLargeUpdate(update);
+           for (Product soldProduct : soldProducts) {
+               for (Product product : products) {
+                   if (product.getName().equals(soldProduct.getName())) {
+                       if (product.getQuantity() > soldProduct.getQuantity()) {
+                           try {
+                               Statement statement = connection.createStatement();
+                               String insert = "INSERT INTO soldunits (name,quantity,sellingPrice,date,cashier) VALUES ('" +
+                                       soldProduct.getName() + "'," + soldProduct.getQuantity() + "," + product.getSellingPrice() + ",'" +
+                                       Date.valueOf(LocalDate.now()) + "','" + user.getName() + "')";
+                               statement.executeLargeUpdate(insert);
+                               product.setQuantity(product.getQuantity() - soldProduct.getQuantity());
+                               String update = "UPDATE products SET quantity = " + product.getQuantity() + " WHERE name = '" + product.getName() + "'";
+                               statement.executeLargeUpdate(update);
 
-                        if (LocalDate.now().getMonth().equals(JANUARY)){
-                            OwnerController.income[0] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
-                        }
-                        if (LocalDate.now().getMonth().equals(FEBRUARY)){
-                            OwnerController.income[1] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
-                        }
-                        if (LocalDate.now().getMonth().equals(MARCH)){
-                            OwnerController.income[2] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
-                        }
-                        if (LocalDate.now().getMonth().equals(APRIL)){
-                            OwnerController.income[3] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
-                        }
-                        if (LocalDate.now().getMonth().equals(MAY)){
-                            OwnerController.income[4] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
-                        }
-                        if (LocalDate.now().getMonth().equals(JUNE)){
-                            OwnerController.income[5] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
-                        }
-                        if (LocalDate.now().getMonth().equals(JULY)){
-                            OwnerController.income[6] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
-                        }
-                        if (LocalDate.now().getMonth().equals(AUGUST)){
-                            OwnerController.income[7] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
-                        }
-                        if (LocalDate.now().getMonth().equals(SEPTEMBER)){
-                            OwnerController.income[8] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
-                        }
-                        if (LocalDate.now().getMonth().equals(OCTOBER)){
-                            OwnerController.income[9] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
-                        }
-                        if (LocalDate.now().getMonth().equals(NOVEMBER)){
-                            OwnerController.income[10] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
-                        }
-                        if (LocalDate.now().getMonth().equals(DECEMBER)){
-                            OwnerController.income[11] +=soldProducts.get(i).getQuantity()*products.get(i).getSellingPrice();
-                        }
 
-                        System.out.println("Product sold successfully");
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
-                    }
-                }
+
+                               if (LocalDate.now().getMonth().equals(JANUARY)) {
+                                   OwnerController.income[0] += soldProduct.getQuantity() * product.getSellingPrice();
+                               }
+                               if (LocalDate.now().getMonth().equals(FEBRUARY)) {
+                                   OwnerController.income[1] += soldProduct.getQuantity() * product.getSellingPrice();
+                               }
+                               if (LocalDate.now().getMonth().equals(MARCH)) {
+                                   OwnerController.income[2] += soldProduct.getQuantity() * product.getSellingPrice();
+                               }
+                               if (LocalDate.now().getMonth().equals(APRIL)) {
+                                   OwnerController.income[3] += soldProduct.getQuantity() * product.getSellingPrice();
+                               }
+                               if (LocalDate.now().getMonth().equals(MAY)) {
+                                   OwnerController.income[4] += soldProduct.getQuantity() * product.getSellingPrice();
+                               }
+                               if (LocalDate.now().getMonth().equals(JUNE)) {
+                                   OwnerController.income[5] += soldProduct.getQuantity() * product.getSellingPrice();
+                               }
+                               if (LocalDate.now().getMonth().equals(JULY)) {
+                                   OwnerController.income[6] += soldProduct.getQuantity() * product.getSellingPrice();
+                               }
+                               if (LocalDate.now().getMonth().equals(AUGUST)) {
+                                   OwnerController.income[7] += soldProduct.getQuantity() * product.getSellingPrice();
+                               }
+                               if (LocalDate.now().getMonth().equals(SEPTEMBER)) {
+                                   OwnerController.income[8] += soldProduct.getQuantity() * product.getSellingPrice();
+                               }
+                               if (LocalDate.now().getMonth().equals(OCTOBER)) {
+                                   OwnerController.income[9] += soldProduct.getQuantity() * product.getSellingPrice();
+                               }
+                               if (LocalDate.now().getMonth().equals(NOVEMBER)) {
+                                   OwnerController.income[10] += soldProduct.getQuantity() * product.getSellingPrice();
+                               }
+                               if (LocalDate.now().getMonth().equals(DECEMBER)) {
+                                   OwnerController.income[11] += soldProduct.getQuantity() * product.getSellingPrice();
+                               }
+
+                               System.out.println("Product sold successfully");
+                           } catch (SQLException ex) {
+                               ex.printStackTrace();
+                           }
+                       }
+
+                       else {
+                           Alert alert = new Alert(Alert.AlertType.ERROR);
+                           alert.setTitle("WARNING");
+                           alert.setHeaderText("YOU DON'T HAVE ENOUGH " + product.getName().toUpperCase() + " IN STOCK");
+                           alert.showAndWait();
+                           break;
+                       }
+                   }
+
+               }
            }
+               String alertContext = "";
+               for (Product sold : soldProducts){
+                   alertContext += " "+sold.getName()+ " " +sold.getQuantity()+ "\n";
+               }
+               Alert alert = new Alert(Alert.AlertType.INFORMATION);
+               alert.setTitle("SUCCESSFUL");
+               alert.setHeaderText("You have successfully sold products:");
+               alert.setContentText(alertContext);
+               alert.showAndWait();
+
 
         });
 
@@ -527,14 +574,20 @@ public class EmployeeController extends Controller implements Initializable {
 
     }
     public void onClickNote(javafx.event.ActionEvent ActionEvent){
+        sellFooterPane.toBack();
+        sellHeaderPane.toBack();
         notePane.toFront();
         changeColor(noteButton);
         sellButton.setText("Sell");
     }
     public void onClickSettings(javafx.event.ActionEvent ActionEvent) {
         changePasswordButton.setText("Change password");
+        sellFooterPane.toBack();
+        sellHeaderPane.toBack();
         settingsPane.toFront();
         changeColor(settingsButton);
+        sellFooterPane.toBack();
+        sellHeaderPane.toBack();
         settingsPane.toFront();
         changeColor(settingsButton);
 

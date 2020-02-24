@@ -42,4 +42,14 @@ public class CancelOrderController extends Controller implements Initializable {
         stage.close();
     }
 
+    public void onClickDelete(ActionEvent actionEvent) throws SQLException {
+        Statement statement = connection.createStatement();
+        String delete = "DELETE FROM orders_has_products WHERE orders_o_id = "+order.getId()+ " AND products_p_id = "+order.getProductId();
+        statement.executeLargeUpdate(delete);
+        connection.close();
+        System.out.println("Order "+order.getName()+" deleted successfully");
+        isOrderDeleted = true;
+        Stage stage = (Stage) confirmDeleteOrderPane.getScene().getWindow();
+        stage.close();
+    }
 }

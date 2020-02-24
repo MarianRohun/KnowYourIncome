@@ -54,14 +54,6 @@ public class EditStorageController extends Controller implements Initializable {
         else if (isNumber(quantityTextfield.getText()) == false){
             errorLabel.setText("Incorrect quantity format");
         }
-        else if (quantityTemp<Integer.parseInt(quantityTextfield.getText())){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setHeaderText("To add quantity use Add product button");
-            alert.showAndWait();
-            Stage stage = (Stage) confirmEditStoragePane.getScene().getWindow();
-            stage.close();
-        }
         else if (sellingPriceTextfield.getText().isEmpty()){
             errorLabel.setText("Enter selling price");
         }  else if (!isNumber(sellingPriceTextfield.getText().replace(",", "."))){

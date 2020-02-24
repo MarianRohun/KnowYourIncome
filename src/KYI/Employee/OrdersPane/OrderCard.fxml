@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="orderCardAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="708.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="orderNameLabel" layoutX="8.0" layoutY="10.0" prefHeight="20.0" prefWidth="164.0" styleClass="inputs" text="Product">
+      <Label fx:id="orderNameLabel" layoutX="19.0" layoutY="10.0" prefHeight="20.0" prefWidth="159.0" styleClass="inputs" text="Product">
          <font>
             <Font size="14.0" />
          </font>

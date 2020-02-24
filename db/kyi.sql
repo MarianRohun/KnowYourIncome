@@ -59,6 +59,14 @@ buyingPrice DOUBLE NOT NULL,
 warranty DATE NOT NULL,
 dateInit DATE NOT NULL
 ); 
+CREATE TABLE IF NOT EXISTS soldunits (
+s_id INT AUTO_INCREMENT PRIMARY KEY,
+name varchar(50) NOT NULL,
+quantity INT NULL,
+sellingPrice DOUBLE NOT NULL,
+date DATE NOT NULL,
+cashier varchar(30) NOT NULL
+);
 
 SET SQL_SAFE_UPDATES = 0;
 SET FOREIGN_KEY_CHECKS=0;
@@ -89,7 +97,7 @@ DELETE FROM orders_has_products;
 DELETE FROM orders;
 
 SELECT * FROM users;
-SELECT name, SUM(quantity) FROM products GROUP BY name;
+SELECT name, quantity* sellingPrice FROM products GROUP BY name;
 SELECT * FROM products;
 SELECT * FROM orders;
 SELECT * FROM orders_has_products;
@@ -98,8 +106,7 @@ SELECT * FROM orders_has_products;
 SELECT orders_o_id,products.name,products.buyingPrice,orders_has_products.orderedQuantity,products.warranty,orders.dateInit FROM orders_has_products JOIN products  ON (products_p_id = p_id) JOIN orders ON (orders_o_id = o_id) ORDER BY dateInit ASC;
 
 UPDATE  products SET name = "", quantity = 1;
-
+UPDATE users SET theme = "#b38b4d"; 
 
 UPDATE orders_has_products JOIN orders ON (orders_o_id = o_id) JOIN products ON (products_p_id = p_id) SET deliverStatus = TRUE WHERE orders_o_id = 1 AND products_p_id = 1;
 
-DELETE FROM orders_has_products WHERE orders_o_id = ;

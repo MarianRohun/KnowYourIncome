@@ -101,7 +101,7 @@ public class AddProductController extends EmployeeController implements Initiali
             int quantityTemp = 0;
             while (resultSet.next()) {
                 Product product = new Product(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getDouble(4), resultSet.getDouble(5), resultSet.getDate(6));
-                if (product.getName().equals(product.getName())) {
+                if (product.getName().equals(nameChoiceBox.getValue())) {
                     quantityTemp = product.getQuantity();
                     break;
                 }

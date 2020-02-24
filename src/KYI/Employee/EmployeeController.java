@@ -406,7 +406,7 @@ public class EmployeeController extends Controller implements Initializable {
             ChoiceBox choiceBox = new ChoiceBox(FXCollections.observableArrayList(sellObservableList.get(i).getName()));
             choiceBox.getSelectionModel().selectFirst();
             choiceBox.setPrefWidth(185);
-            choiceBox.setLayoutX(150);
+            choiceBox.  setLayoutX(150);
             choiceBox.setLayoutY(layoutY);
             choiceBox.setStyle("-fx-background-color: transparent;"+"-fx-border-width: 1 1 1 1;"+"-fx-border-color: black");
             choiceBoxes.add(choiceBox);

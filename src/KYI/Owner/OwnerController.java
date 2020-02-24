@@ -563,6 +563,18 @@ public class OwnerController extends Controller implements Initializable {
         });
         fromIncomeToOverAllButton.setOnAction(event -> {
             overAllPane.toFront();
+            String select = "SELECT name, quantity* sellingPrice FROM products GROUP BY name;\n";
+            double StorageValue=0.0;
+            try {
+                ResultSet resultSet = connection.prepareStatement(select).executeQuery();
+                while (resultSet.next()){
+                    StorageValue+=resultSet.getInt(2);
+                    System.out.println(StorageValue);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
             double graphExpenses=0.0;
             double graphIncome =0.0;
             for (int i = 0; i < expenses.length; i++) {
@@ -571,11 +583,11 @@ public class OwnerController extends Controller implements Initializable {
             for (int i = 0; i < income.length; i++) {
                 graphIncome+=income[i];
             }
-            double overAllIncome = graphIncome - graphExpenses;
+            double overAllIncome = graphIncome - graphExpenses + StorageValue;
             incomeLabel.setText(String.valueOf(overAllIncome)+" €");
             ObservableList<PieChart.Data> pieOverAllData =
                     FXCollections.observableArrayList(
-                            new PieChart.Data("STORAGE",  income[0]),
+                            new PieChart.Data("STORAGE",  StorageValue),
                             new PieChart.Data("EXPENSES",graphExpenses),
                             new PieChart.Data("INCOME",graphIncome));
             pieOverAll.setData(pieOverAllData);

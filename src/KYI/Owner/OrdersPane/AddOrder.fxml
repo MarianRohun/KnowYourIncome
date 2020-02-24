@@ -20,7 +20,7 @@
       <TextField fx:id="orderQuantityTextField" layoutX="113.0" layoutY="131.0" prefHeight="34.0" prefWidth="82.0" promptText="Quantity" />
       <TextField fx:id="orderPerUnitTextField" layoutX="113.0" layoutY="178.0" prefHeight="34.0" prefWidth="82.0" promptText="Per unit " />
       <Button fx:id="confirmOrderButton" layoutX="201.0" layoutY="366.0" mnemonicParsing="false" onAction="#onClickConfirmOrder" prefHeight="34.0" prefWidth="98.0" styleClass="ccButtons" text="Confirm" />
-      <Label fx:id="errorOrderLabel" layoutX="65.0" layoutY="46.0" prefHeight="26.0" prefWidth="177.0" textFill="RED" />
+      <Label fx:id="errorOrderLabel" layoutX="88.0" layoutY="40.0" prefHeight="26.0" prefWidth="177.0" textFill="RED" />
       <Button fx:id="cancelOrderButton" layoutX="9.0" layoutY="366.0" mnemonicParsing="false" onAction="#onClickCancelOrder" prefHeight="34.0" prefWidth="98.0" styleClass="ccButtons" text="Cancel">
          <font>
             <Font name="Franklin Gothic Book" size="13.0" />

@@ -359,40 +359,6 @@
                   <Button fx:id="switchToOrdersButton1" layoutX="6.0" layoutY="6.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="48.0" style="-fx-background-color: transparent;" />
                </children>
             </Pane>
-            <Pane fx:id="overAllPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
-               <children>
-                  <PieChart fx:id="pieOverAll" layoutY="39.0" prefHeight="561.0" prefWidth="750.0" />
-                  <Label layoutX="11.0" layoutY="14.0" prefHeight="33.0" prefWidth="114.0" text="Value of :" textFill="#b38b4d">
-                     <font>
-                        <Font name="System Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="captionOverAllLabel" layoutX="118.0" layoutY="17.0" prefHeight="28.0" prefWidth="217.0" textFill="#b38b4d">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="switchFromOverAllToIncomeButton" layoutX="638.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="48.0" style="-fx-background-color: transparent;">
-                     <graphic>
-                        <ImageView fitHeight="35.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../icons/left.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Label layoutX="375.0" layoutY="14.0" prefHeight="33.0" prefWidth="160.0" text="Net income :" textFill="#b38b4d">
-                     <font>
-                        <Font name="System Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="incomeLabel" layoutX="517.0" layoutY="14.0" prefHeight="33.0" prefWidth="106.0" textFill="#b38b4d">
-                     <font>
-                        <Font name="System Bold" size="22.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
             <Pane fx:id="ordersPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <HBox fx:id="orderTableHeader" alignment="CENTER_LEFT" layoutX="13.0" layoutY="90.0" prefHeight="47.0" prefWidth="706.0" styleClass="tableHeader">
@@ -570,6 +536,40 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
+               </children>
+            </Pane>
+            <Pane fx:id="overAllPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <PieChart fx:id="pieOverAll" layoutY="39.0" prefHeight="561.0" prefWidth="750.0" />
+                  <Label layoutX="11.0" layoutY="14.0" prefHeight="33.0" prefWidth="114.0" text="Value of :" textFill="#b38b4d">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="captionOverAllLabel" layoutX="118.0" layoutY="17.0" prefHeight="28.0" prefWidth="217.0" textFill="#b38b4d">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="switchFromOverAllToIncomeButton" layoutX="677.0" layoutY="9.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="48.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/left.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="375.0" layoutY="14.0" prefHeight="33.0" prefWidth="160.0" text="Net income :" textFill="#b38b4d">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="incomeLabel" layoutX="517.0" layoutY="14.0" prefHeight="33.0" prefWidth="160.0" textFill="#b38b4d">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>

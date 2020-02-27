@@ -482,6 +482,7 @@ public class EmployeeController extends Controller implements Initializable {
                 textField.clear();
             }
 
+            boolean areProductSold = true;
            for (Product soldProduct : soldProducts) {
                for (Product product : products) {
                    if (product.getName().equals(soldProduct.getName())) {
@@ -542,6 +543,7 @@ public class EmployeeController extends Controller implements Initializable {
                        }
 
                        else {
+                           areProductSold = false;
                            Alert alert = new Alert(Alert.AlertType.ERROR);
                            alert.setTitle("WARNING");
                            alert.setHeaderText("YOU DON'T HAVE ENOUGH " + product.getName().toUpperCase() + " IN STOCK");
@@ -552,17 +554,18 @@ public class EmployeeController extends Controller implements Initializable {
 
                }
            }
+
+           if (areProductSold) {
                String alertContext = "";
-               for (Product sold : soldProducts){
-                   alertContext += " "+sold.getName()+ " " +sold.getQuantity()+ "\n";
+               for (Product sold : soldProducts) {
+                   alertContext += " " + sold.getName() + " " + sold.getQuantity() + "\n";
                }
                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                alert.setTitle("SUCCESSFUL");
                alert.setHeaderText("You have successfully sold products:");
                alert.setContentText(alertContext);
                alert.showAndWait();
-
-
+           }
         });
 
 
@@ -771,7 +774,7 @@ public class EmployeeController extends Controller implements Initializable {
         String line;
 
         try {
-            reader = new BufferedReader(new FileReader("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css\\main.css"));
+            reader = new BufferedReader(new FileReader("D:\\KnowYourIncome\\src\\KYI\\Css\\Main.css"));
             inputBuffer = new StringBuffer();
 
             while ((line = reader.readLine()) != null) {
@@ -795,7 +798,7 @@ public class EmployeeController extends Controller implements Initializable {
                 }
             }
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css\\main.css", false));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("D:\\KnowYourIncome\\src\\KYI\\Css\\Main.css", false));
             for (String item : inputArray) {
                 writer.write(item);
                 writer.newLine();

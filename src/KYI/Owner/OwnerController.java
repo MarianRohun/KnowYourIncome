@@ -2,10 +2,7 @@ package KYI.Owner;
 
 import KYI.Controllers.Connectivity;
 import KYI.Controllers.Controller;
-import KYI.Entits.Order;
-import KYI.Entits.Product;
-import KYI.Entits.SoldUnit;
-import KYI.Entits.User;
+import KYI.Entits.*;
 import KYI.Owner.EmployeesPane.UserCardController;
 import KYI.Owner.OrdersPane.HistoryOrderCardController;
 import KYI.Owner.OrdersPane.OrderCardController;
@@ -95,7 +92,7 @@ public class OwnerController extends Controller implements Initializable {
     private Label imagePath, errorLabel,captionExpensesLabel,captionIncomeLabel,captionOverAllLabel;
     @FXML
     private PasswordField oldPasswordField, newPasswordField, confirmPasswordField;
-    @FXML
+    @FXML//
     private ColorPicker themePicker;
     @FXML
     private Button saveColorButton;
@@ -413,10 +410,75 @@ public class OwnerController extends Controller implements Initializable {
     //============================================================
     //HOMESCREEN PANE
     //============================================================
-    public void onClickHome(javafx.event.ActionEvent ActionEvent){
+    public void onClickHome(javafx.event.ActionEvent ActionEvent) throws SQLException {
         homePane.toFront();
+
         changeColor(homeButton);
         ordersButton.setText("Orders");
+
+        ArrayList<String> surnames = new ArrayList<>();
+
+        String select = "SELECT surname FROM users WHERE position = 0";
+
+
+        ResultSet result = connection.prepareStatement(select).executeQuery();
+
+            while (result.next()) {
+                User user = new User(result.getString(1));
+                surnames.add(user.getSurname());
+            }
+
+
+            int layoutY = 83;
+            for (int i = 0; i < surnames.size(); i++){
+                ArrayList<Button> shifts = new ArrayList<>();
+                Button surname = new Button();
+                surname.setText(surnames.get(i));
+                surname.setLayoutX(0);
+                surname.setLayoutY(layoutY);
+
+                Button monShift = new Button();
+                monShift.setLayoutX(63);
+                monShift.setLayoutY(layoutY);
+                shifts.add(monShift);
+
+                Button tueShift = new Button();
+                tueShift.setLayoutX(157);
+                tueShift.setLayoutY(layoutY);
+                shifts.add(tueShift);
+
+                Button wedShift = new Button();
+                wedShift.setLayoutX(251);
+                wedShift.setLayoutY(layoutY);
+                shifts.add(wedShift);
+
+                Button thuShift = new Button();
+                thuShift.setLayoutX(345);
+                thuShift.setLayoutY(layoutY);
+                shifts.add(thuShift);
+
+                Button friShift = new Button();
+                friShift.setLayoutX(439);
+                friShift.setLayoutY(layoutY);
+                shifts.add(friShift);
+
+                Button satShift = new Button();
+                satShift.setLayoutX(533);
+                satShift.setLayoutY(layoutY);
+                shifts.add(satShift);
+
+                Button sunShift = new Button();
+                sunShift.setLayoutX(627);
+                sunShift.setLayoutY(layoutY);
+                shifts.add(sunShift);
+
+                layoutY += 25;
+                homePane.getChildren().add(surname);
+                homePane.getChildren().addAll(shifts);
+
+
+                EmployeeShift employeeShift = new EmployeeShift(surname,shifts);
+            }
     }
 
     public void onClickSoldunits(javafx.event.ActionEvent ActionEvent) throws SQLException {

@@ -46,6 +46,10 @@ public class User {
         this.password = password;
     }
 
+    public User(String surname) {
+        this.surname = surname;
+    }
+
 
     public int getId() { return id; }
 

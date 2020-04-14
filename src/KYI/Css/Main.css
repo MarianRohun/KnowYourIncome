@@ -30,7 +30,7 @@
 }
 .buttons:hover{
     /*buttons hover*/
--fx-border-color: #b38b4d;
+-fx-border-color: #990000;
     -fx-border-width: 0 0 2 0;
 }
 .buttons:pressed{
@@ -91,7 +91,12 @@
 }
 .colorlabel{
     /*label text*/
- -fx-text-fill: #b38b4d;
+ -fx-text-fill: #990000;
+}
+.TimeTableVboxes{
+    -fx-border-width: 0 1 0 1;
+    -fx-border-color: black;
+    
 }
 #sidebarPane{
     -fx-background-color: white;
@@ -101,7 +106,7 @@
 }
 #usercardAnchorPane,#orderHistoryCardAnchorPane,#storageCardAnchorPane,#SoldUnitsAnchorPane{
     /*card dots*/
--fx-border-color: #b38b4d;
+-fx-border-color: #990000;
     -fx-border-width: 0 4 0 4;
     -fx-border-style: dotted;
     -fx-border-radius: 1%;
@@ -150,7 +155,7 @@
 }
 #confirmDeletePane,#confirmDeleteOrderPane,#confirmDeleteStoragePane,#confirmEditStoragePane,#CreateProductPane,#addProductPane,#addingPane,#addingOrderPane{
      /*window border*/
--fx-border-color: #b38b4d;
+-fx-border-color: #990000;
     -fx-border-width: 4 4 4 4;
     -fx-background-color: white;
 }
@@ -212,4 +217,8 @@
 }
 #confirmSellButton,#confirmShiftButton{
     -fx-cursor: hand;
+}
+#timeTableHbox{
+    -fx-border-color: black;
+    -fx-border-width: 2 2 2 2;
 }

@@ -702,7 +702,7 @@ public class EmployeeController extends Controller implements Initializable {
 
         saveColorButton.setOnAction(event -> {
             pickedTheme = themePicker.getValue();
-            String update = "UPDATE users SET theme = '"+parseColor(pickedTheme)+"' WHERE u_id ="+user.getId()+";";
+            String update = "UPDATE users SET theme = '"+parseColor(pickedTheme)+"';";
             changeHoverColor(pickedTheme);
             try {
                 Statement statement = connection.createStatement();
@@ -774,7 +774,7 @@ public class EmployeeController extends Controller implements Initializable {
         String line;
 
         try {
-            reader = new BufferedReader(new FileReader("D:\\KnowYourIncome\\src\\KYI\\Css\\Main.css"));
+            reader = new BufferedReader(new FileReader("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css\\Main.css"));
             inputBuffer = new StringBuffer();
 
             while ((line = reader.readLine()) != null) {
@@ -798,7 +798,7 @@ public class EmployeeController extends Controller implements Initializable {
                 }
             }
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter("D:\\KnowYourIncome\\src\\KYI\\Css\\Main.css", false));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css\\Main.css",false));
             for (String item : inputArray) {
                 writer.write(item);
                 writer.newLine();

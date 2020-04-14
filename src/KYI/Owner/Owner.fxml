@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -71,15 +72,6 @@
       </Pane>
       <AnchorPane layoutX="203.0" prefHeight="600.0" prefWidth="750.0">
          <children>
-            <Pane fx:id="homePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
-               <children>
-                  <Label layoutX="302.0" layoutY="168.0" prefHeight="152.0" prefWidth="217.0" text="HOME">
-                     <font>
-                        <Font size="69.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
             <Pane fx:id="notePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <Label layoutX="302.0" layoutY="168.0" prefHeight="152.0" prefWidth="217.0" text="Note">
@@ -570,6 +562,84 @@
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="homePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <HBox id="timeTableHbox" layoutX="63.0" layoutY="23.0" prefHeight="60.0" prefWidth="640.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="TimeTableVboxes">
+                           <children>
+                              <Label prefHeight="46.0" prefWidth="104.0" text="       Monday">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="monDate" prefHeight="41.0" prefWidth="102.0" text="       date" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="TimeTableVboxes">
+                           <children>
+                              <Label prefHeight="46.0" prefWidth="104.0" text="       Tuesday">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="tueDate" prefHeight="41.0" prefWidth="102.0" text="      date" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="TimeTableVboxes">
+                           <children>
+                              <Label prefHeight="46.0" prefWidth="104.0" text="     Wednesday">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="wedDate" prefHeight="41.0" prefWidth="102.0" text="      date" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="TimeTableVboxes">
+                           <children>
+                              <Label prefHeight="46.0" prefWidth="104.0" text="       Thursday">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="thuDate" prefHeight="41.0" prefWidth="102.0" text="      date" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="TimeTableVboxes">
+                           <children>
+                              <Label prefHeight="46.0" prefWidth="104.0" text="        Friday">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="friDate" prefHeight="41.0" prefWidth="102.0" text="      date" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="TimeTableVboxes">
+                           <children>
+                              <Label prefHeight="46.0" prefWidth="104.0" text="       Saturday">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="satDate" prefHeight="41.0" prefWidth="102.0" text="      date" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="55.0" prefWidth="82.0" styleClass="TimeTableVboxes">
+                           <children>
+                              <Label prefHeight="38.0" prefWidth="70.0" text="      Sunday" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="sunDate" prefHeight="26.0" prefWidth="73.0" text="      date" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children>
             </Pane>
          </children>

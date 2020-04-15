@@ -47,6 +47,7 @@
     -fx-text-fill: black;
     -fx-border-radius: 10%;
     -fx-background-color: white;
+    -fx-cursor: hand;
 }
 .blackButtons:hover{
     -fx-border-radius: 10%;
@@ -94,9 +95,9 @@
  -fx-text-fill: #990000;
 }
 .TimeTableVboxes{
-    -fx-border-width: 0 1 0 1;
+    -fx-border-width: 0 2 0 2;
     -fx-border-color: black;
-    
+
 }
 #sidebarPane{
     -fx-background-color: white;

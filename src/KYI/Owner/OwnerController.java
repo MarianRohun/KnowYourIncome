@@ -429,50 +429,66 @@ public class OwnerController extends Controller implements Initializable {
             }
 
 
-            int layoutY = 83;
+            int layoutY = 88;
             for (int i = 0; i < surnames.size(); i++){
                 ArrayList<Button> shifts = new ArrayList<>();
                 Button surname = new Button();
                 surname.setText(surnames.get(i));
-                surname.setLayoutX(0);
+                surname.setLayoutX(4.5);
                 surname.setLayoutY(layoutY);
+                surname.setPrefWidth(80);
+                surname.setStyle("-fx-font-size: 14;"+"-fx-border-width: 2 2 2 2;"+"-fx-border-radius: 5%;"+"-fx-border-color: black;"+"-fx-text-fill: black;"+"-fx-background-color: white;"+"-fx-cursor: hand");
 
                 Button monShift = new Button();
-                monShift.setLayoutX(63);
-                monShift.setLayoutY(layoutY);
+                monShift.setLayoutX(88);
+                monShift.setLayoutY(layoutY+1);
+                monShift.setPrefWidth(88);
+                monShift.setStyle("-fx-background-color: transparent;\n"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
                 shifts.add(monShift);
 
                 Button tueShift = new Button();
-                tueShift.setLayoutX(157);
-                tueShift.setLayoutY(layoutY);
+                tueShift.setLayoutX(180);
+                tueShift.setLayoutY(layoutY+1);
+                tueShift.setPrefWidth(88);
+                tueShift.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
                 shifts.add(tueShift);
 
                 Button wedShift = new Button();
-                wedShift.setLayoutX(251);
-                wedShift.setLayoutY(layoutY);
+                wedShift.setLayoutX(273);
+                wedShift.setLayoutY(layoutY+1);
+                wedShift.setPrefWidth(88);
+                wedShift.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
                 shifts.add(wedShift);
 
                 Button thuShift = new Button();
-                thuShift.setLayoutX(345);
-                thuShift.setLayoutY(layoutY);
+                thuShift.setLayoutX(366);
+                thuShift.setLayoutY(layoutY+1);
+                thuShift.setPrefWidth(88);
+                thuShift.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
                 shifts.add(thuShift);
 
                 Button friShift = new Button();
-                friShift.setLayoutX(439);
-                friShift.setLayoutY(layoutY);
+                friShift.setLayoutX(459);
+                friShift.setLayoutY(layoutY+1);
+                friShift.setPrefWidth(88);
+                friShift.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
                 shifts.add(friShift);
 
                 Button satShift = new Button();
-                satShift.setLayoutX(533);
-                satShift.setLayoutY(layoutY);
+                satShift.setLayoutX(551);
+                satShift.setLayoutY(layoutY+1);
+                satShift.setPrefWidth(88);
+                satShift.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
                 shifts.add(satShift);
 
                 Button sunShift = new Button();
-                sunShift.setLayoutX(627);
-                sunShift.setLayoutY(layoutY);
+                sunShift.setLayoutX(644);
+                sunShift.setLayoutY(layoutY+1);
+                sunShift.setPrefWidth(88);
+                sunShift.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
                 shifts.add(sunShift);
 
-                layoutY += 25;
+                layoutY += 40;
                 homePane.getChildren().add(surname);
                 homePane.getChildren().addAll(shifts);
 

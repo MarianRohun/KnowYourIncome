@@ -11,6 +11,7 @@ import KYI.Owner.StoragePane.StorageCardController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,6 +28,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.*;
 import javafx.scene.layout.Pane;
+import org.omg.CORBA.Any;
+
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
@@ -100,6 +103,8 @@ public class OwnerController extends Controller implements Initializable {
     private HBox orderTableHeader,storageTableHeader,orderHistoryTableHeader,employeeTableHeader,soldunitsTableHeader;
     @FXML
     private PieChart pieExpenses,pieIncome,pieOverAll;
+    @FXML
+    private Label monDate, tueDate, wedDate, thuDate, friDate, satDate, sunDate;
 
 
     public static Color pickedTheme ;
@@ -130,7 +135,7 @@ public class OwnerController extends Controller implements Initializable {
         settingsButton.setStyle("-fx-text-fill:" +parseColor(pickedTheme));
         sidebarPane.setStyle("-fx-border-color: "+parseColor(pickedTheme));
         homeButton.setStyle("-fx-background-color:"+parseColor(pickedTheme)+";");
-        homePane.toFront();
+        homePane.toFront();//toto nahradit onclickhome
         orderTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
         storageTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
         orderHistoryTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
@@ -319,7 +324,7 @@ public class OwnerController extends Controller implements Initializable {
                         }
                         if (ordersHistoryObservableList.isEmpty()) {
                             Alert alert = new Alert(Alert.AlertType.WARNING);
-                            alert.setTitle("VAROVANIE");
+                            alert.setTitle("Warning");
                             alert.setHeaderText("There is no such an Order");
                             alert.showAndWait();
                             ordersHistoryObservableList.addAll(ordersHistory);
@@ -389,7 +394,7 @@ public class OwnerController extends Controller implements Initializable {
                     }
                     if (employeesObservableList.isEmpty()) {
                         Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("VAROVANIE");
+                        alert.setTitle("Warning");
                         alert.setHeaderText("There is no such an employee");
                         alert.showAndWait();
                         employeesObservableList.addAll(employees);
@@ -408,87 +413,91 @@ public class OwnerController extends Controller implements Initializable {
         openWindow("../Owner/EmployeesPane/AddingEmployee.fxml");
     }
     //============================================================
-    //HOMESCREEN PANE
+    //HOME PANE
     //============================================================
     public void onClickHome(javafx.event.ActionEvent ActionEvent) throws SQLException {
         homePane.toFront();
-
         changeColor(homeButton);
         ordersButton.setText("Orders");
 
         ArrayList<String> surnames = new ArrayList<>();
 
         String select = "SELECT surname FROM users WHERE position = 0";
-
-
         ResultSet result = connection.prepareStatement(select).executeQuery();
 
             while (result.next()) {
                 User user = new User(result.getString(1));
                 surnames.add(user.getSurname());
             }
+            int layoutY = 84;
 
-
-            int layoutY = 88;
             for (int i = 0; i < surnames.size(); i++){
                 ArrayList<Button> shifts = new ArrayList<>();
                 Button surname = new Button();
                 surname.setText(surnames.get(i));
-                surname.setLayoutX(4.5);
+                surname.setLayoutX(2);
                 surname.setLayoutY(layoutY);
-                surname.setPrefWidth(80);
-                surname.setStyle("-fx-font-size: 14;"+"-fx-border-width: 2 2 2 2;"+"-fx-border-radius: 5%;"+"-fx-border-color: black;"+"-fx-text-fill: black;"+"-fx-background-color: white;"+"-fx-cursor: hand");
+                surname.setPrefWidth(87);
+                surname.setPrefHeight(60);
+                surname.setStyle("-fx-font-size: 14;"+"-fx-border-width: 2 2 2 2;"+"-fx-border-color: black;"+"-fx-text-fill: black;"+"-fx-background-color: white;"+"-fx-cursor: hand");
 
                 Button monShift = new Button();
-                monShift.setLayoutX(88);
-                monShift.setLayoutY(layoutY+1);
-                monShift.setPrefWidth(88);
+                monShift.setLayoutX(87);
+                monShift.setLayoutY(layoutY);
+                monShift.setPrefWidth(93);
+                monShift.setPrefHeight(60);
                 monShift.setStyle("-fx-background-color: transparent;\n"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
                 shifts.add(monShift);
 
                 Button tueShift = new Button();
                 tueShift.setLayoutX(180);
-                tueShift.setLayoutY(layoutY+1);
-                tueShift.setPrefWidth(88);
+                tueShift.setLayoutY(layoutY);
+                tueShift.setPrefWidth(93);
+                tueShift.setPrefHeight(60);
                 tueShift.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
                 shifts.add(tueShift);
 
                 Button wedShift = new Button();
-                wedShift.setLayoutX(273);
-                wedShift.setLayoutY(layoutY+1);
-                wedShift.setPrefWidth(88);
+                wedShift.setLayoutX(272);
+                wedShift.setLayoutY(layoutY);
+                wedShift.setPrefWidth(93);
+                wedShift.setPrefHeight(60);
                 wedShift.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
                 shifts.add(wedShift);
 
                 Button thuShift = new Button();
-                thuShift.setLayoutX(366);
-                thuShift.setLayoutY(layoutY+1);
-                thuShift.setPrefWidth(88);
+                thuShift.setLayoutX(364);
+                thuShift.setLayoutY(layoutY);
+                thuShift.setPrefWidth(93);
+                thuShift.setPrefHeight(60);
                 thuShift.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
                 shifts.add(thuShift);
 
                 Button friShift = new Button();
-                friShift.setLayoutX(459);
-                friShift.setLayoutY(layoutY+1);
-                friShift.setPrefWidth(88);
+                friShift.setLayoutX(457);
+                friShift.setLayoutY(layoutY);
+                friShift.setPrefWidth(93);
+                friShift.setPrefHeight(60);
                 friShift.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
                 shifts.add(friShift);
 
                 Button satShift = new Button();
-                satShift.setLayoutX(551);
-                satShift.setLayoutY(layoutY+1);
-                satShift.setPrefWidth(88);
+                satShift.setLayoutX(548);
+                satShift.setLayoutY(layoutY);
+                satShift.setPrefWidth(93);
+                satShift.setPrefHeight(60);
                 satShift.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
                 shifts.add(satShift);
 
                 Button sunShift = new Button();
-                sunShift.setLayoutX(644);
-                sunShift.setLayoutY(layoutY+1);
-                sunShift.setPrefWidth(88);
+                sunShift.setLayoutX(640);
+                sunShift.setLayoutY(layoutY);
+                sunShift.setPrefWidth(93);
+                sunShift.setPrefHeight(60);
                 sunShift.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
                 shifts.add(sunShift);
 
-                layoutY += 40;
+                layoutY += 60.01;
                 homePane.getChildren().add(surname);
                 homePane.getChildren().addAll(shifts);
 
@@ -647,7 +656,6 @@ public class OwnerController extends Controller implements Initializable {
                 ResultSet resultSet = connection.prepareStatement(select).executeQuery();
                 while (resultSet.next()){
                     StorageValue+=resultSet.getInt(2);
-                    System.out.println(StorageValue);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

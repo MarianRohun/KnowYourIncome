@@ -6,7 +6,7 @@ import KYI.Entits.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -36,6 +36,11 @@ public class Controller {
 
     public Product getProduct() {return product;}
     public void setProduct(Product product) {this.product = product;}
+
+    public static Button button = new Button();
+
+    public Button getButton() {return button;}
+    public void setButton(Button button) {this.button = button;}
 
 
     public static void changeScene(Stage stage, FXMLLoader loader, String title) throws IOException {
@@ -94,6 +99,19 @@ public class Controller {
         newstage.initModality(Modality.APPLICATION_MODAL);
         newstage.showAndWait();
     }
+
+    public static void openWindowButton(String stage, Button button) throws Exception {
+        Stage newstage = new Stage();
+        Parent root = FXMLLoader.load(Controller.class.getResource(stage));
+        Scene scene = new Scene(root);
+        newstage.setScene(scene);
+        Controller controller = new Controller();
+        controller.setButton(button);
+        newstage.setResizable(false);
+        newstage.initStyle(StageStyle.TRANSPARENT);
+        newstage.initModality(Modality.APPLICATION_MODAL);
+        newstage.showAndWait();
+    }
     public static void openWindowProduct(String stage,Product product) throws Exception {
         Stage newstage = new Stage();
         Parent root = FXMLLoader.load(Controller.class.getResource(stage));
@@ -141,6 +159,15 @@ public class Controller {
         Matcher matcher = VALIDEMAIL.matcher(emailStr);
         return matcher.find();
     }
+
+    private static final Pattern TIME24HOURS_PATTERN =
+            Pattern.compile("([01]?[0-9]|2[0-3]):[0-5][0-9]", Pattern.CASE_INSENSITIVE);
+
+    public static boolean validateTime(String timeStr){
+        Matcher matcher = TIME24HOURS_PATTERN.matcher(timeStr);
+        return matcher.find();
+    }
+
     public static String sha256(String base) {
         try{
             MessageDigest digest = MessageDigest.getInstance("SHA-256");

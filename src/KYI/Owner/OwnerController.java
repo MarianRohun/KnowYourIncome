@@ -11,7 +11,7 @@ import KYI.Owner.StoragePane.StorageCardController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,14 +28,15 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.*;
 import javafx.scene.layout.Pane;
-import org.omg.CORBA.Any;
 
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.sql.*;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.ResourceBundle;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class OwnerController extends Controller implements Initializable {
 
@@ -135,7 +136,12 @@ public class OwnerController extends Controller implements Initializable {
         settingsButton.setStyle("-fx-text-fill:" +parseColor(pickedTheme));
         sidebarPane.setStyle("-fx-border-color: "+parseColor(pickedTheme));
         homeButton.setStyle("-fx-background-color:"+parseColor(pickedTheme)+";");
-        homePane.toFront();//toto nahradit onclickhome
+        ActionEvent actionEvent = null;
+        try {
+            onClickHome(actionEvent);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         orderTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
         storageTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
         orderHistoryTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
@@ -210,8 +216,6 @@ public class OwnerController extends Controller implements Initializable {
         productsObservableList.removeIf(product -> product.getId() == productId);
         storagePane.toFront();
     }
-
-
 
 
     public void onClickOrders(javafx.event.ActionEvent ActionEvent)throws SQLException{
@@ -420,21 +424,74 @@ public class OwnerController extends Controller implements Initializable {
         changeColor(homeButton);
         ordersButton.setText("Orders");
 
-        ArrayList<String> surnames = new ArrayList<>();
+        Calendar cal = Calendar.getInstance();
+        ArrayList<Calendar> calendars = new ArrayList<>();
+
+        ArrayList<String> output =  new ArrayList<>();
+
+            switch (cal.get(Calendar.DAY_OF_WEEK))
+            {
+                case Calendar.SUNDAY:
+                    cal.add(Calendar.DATE, -6);
+                    break;
+
+                case Calendar.TUESDAY:
+                    cal.add(Calendar.DATE,-1);
+                    break;
+
+                case Calendar.WEDNESDAY:
+                    cal.add(Calendar.DATE, -2);
+                    break;
+
+                case Calendar.THURSDAY:
+                    cal.add(Calendar.DATE,-3);
+                    break;
+
+                case Calendar.FRIDAY:
+                    cal.add(Calendar.DATE,-4);
+                    break;
+
+                case Calendar.SATURDAY:
+                    cal.add(Calendar.DATE,-5);
+                    break;
+            }
+        output.add(cal.getTime().toString());
+        for (int x = 1; x < 7; x++)
+        {
+            calendars.add(cal);
+            cal.add(Calendar.DATE,1);
+            output.add(cal.getTime().toString());
+        }
+
+        monDate.setText("\t" + output.get(0).substring(4,10));
+        tueDate.setText("\t" + output.get(1).substring(4,10));
+        wedDate.setText("\t" + output.get(2).substring(4,10));
+        thuDate.setText("\t" + output.get(3).substring(4,10));
+        friDate.setText("\t" + output.get(4).substring(4,10));
+        satDate.setText("\t" + output.get(5).substring(4,10));
+        sunDate.setText("\t" + output.get(6).substring(4,10));
+
+        for (Calendar c : calendars){
+            LocalDate localDate = LocalDateTime.ofInstant(c.toInstant(), c.getTimeZone().toZoneId()).toLocalDate();
+            System.out.println(localDate);
+        }
+
+        ArrayList<User> workers = new ArrayList<>();
 
         String select = "SELECT surname FROM users WHERE position = 0";
         ResultSet result = connection.prepareStatement(select).executeQuery();
 
             while (result.next()) {
                 User user = new User(result.getString(1));
-                surnames.add(user.getSurname());
+                workers.add(user);
             }
             int layoutY = 84;
 
-            for (int i = 0; i < surnames.size(); i++){
+            for (User worker : workers){
+
                 ArrayList<Button> shifts = new ArrayList<>();
                 Button surname = new Button();
-                surname.setText(surnames.get(i));
+                surname.setText(worker.getSurname());
                 surname.setLayoutX(2);
                 surname.setLayoutY(layoutY);
                 surname.setPrefWidth(87);
@@ -447,6 +504,16 @@ public class OwnerController extends Controller implements Initializable {
                 monShift.setPrefWidth(93);
                 monShift.setPrefHeight(60);
                 monShift.setStyle("-fx-background-color: transparent;\n"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
+                monShift.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+                    @Override
+                    public void handle(javafx.event.ActionEvent actionEvent) {
+                        try {
+                            openWindowButton("../Owner/HomePane/CreatingShift.fxml",monShift);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
                 shifts.add(monShift);
 
                 Button tueShift = new Button();
@@ -455,6 +522,16 @@ public class OwnerController extends Controller implements Initializable {
                 tueShift.setPrefWidth(93);
                 tueShift.setPrefHeight(60);
                 tueShift.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
+                tueShift.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+                    @Override
+                    public void handle(javafx.event.ActionEvent actionEvent) {
+                        try {
+                            openWindowButton("../Owner/HomePane/CreatingShift.fxml",tueShift);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
                 shifts.add(tueShift);
 
                 Button wedShift = new Button();
@@ -463,6 +540,16 @@ public class OwnerController extends Controller implements Initializable {
                 wedShift.setPrefWidth(93);
                 wedShift.setPrefHeight(60);
                 wedShift.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
+                wedShift.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+                    @Override
+                    public void handle(javafx.event.ActionEvent actionEvent) {
+                        try {
+                            openWindowButton("../Owner/HomePane/CreatingShift.fxml",wedShift);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
                 shifts.add(wedShift);
 
                 Button thuShift = new Button();
@@ -471,6 +558,16 @@ public class OwnerController extends Controller implements Initializable {
                 thuShift.setPrefWidth(93);
                 thuShift.setPrefHeight(60);
                 thuShift.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
+                thuShift.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+                    @Override
+                    public void handle(javafx.event.ActionEvent actionEvent) {
+                        try {
+                            openWindowButton("../Owner/HomePane/CreatingShift.fxml",thuShift);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
                 shifts.add(thuShift);
 
                 Button friShift = new Button();
@@ -479,6 +576,16 @@ public class OwnerController extends Controller implements Initializable {
                 friShift.setPrefWidth(93);
                 friShift.setPrefHeight(60);
                 friShift.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
+                friShift.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+                    @Override
+                    public void handle(javafx.event.ActionEvent actionEvent) {
+                        try {
+                            openWindowButton("../Owner/HomePane/CreatingShift.fxml",friShift);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
                 shifts.add(friShift);
 
                 Button satShift = new Button();
@@ -487,6 +594,16 @@ public class OwnerController extends Controller implements Initializable {
                 satShift.setPrefWidth(93);
                 satShift.setPrefHeight(60);
                 satShift.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
+                satShift.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+                    @Override
+                    public void handle(javafx.event.ActionEvent actionEvent) {
+                        try {
+                            openWindowButton("../Owner/HomePane/CreatingShift.fxml",satShift);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
                 shifts.add(satShift);
 
                 Button sunShift = new Button();
@@ -495,15 +612,30 @@ public class OwnerController extends Controller implements Initializable {
                 sunShift.setPrefWidth(93);
                 sunShift.setPrefHeight(60);
                 sunShift.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
+                sunShift.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+                    @Override
+                    public void handle(javafx.event.ActionEvent actionEvent) {
+                        try {
+                            openWindowButton("../Owner/HomePane/CreatingShift.fxml",sunShift);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
                 shifts.add(sunShift);
 
                 layoutY += 60.01;
                 homePane.getChildren().add(surname);
                 homePane.getChildren().addAll(shifts);
 
+                for (Button shift : shifts){
+                    System.out.println(shift.getLayoutX());
+                    System.out.println(shift.getLayoutY());
+                    System.out.println("----------------------");
+                }
 
-                EmployeeShift employeeShift = new EmployeeShift(surname,shifts);
             }
+
     }
 
     public void onClickSoldunits(javafx.event.ActionEvent ActionEvent) throws SQLException {

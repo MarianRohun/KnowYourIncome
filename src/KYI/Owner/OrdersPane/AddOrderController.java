@@ -5,6 +5,7 @@ import KYI.Controllers.Controller;
 import KYI.Entits.Order;
 import KYI.Entits.Product;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -14,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 import java.math.RoundingMode;
 import java.net.URL;
 import java.sql.*;
@@ -160,11 +160,9 @@ public class AddOrderController extends Controller implements Initializable {
            }
 
 
-
         public void onClickCancelOrder (javafx.event.ActionEvent ActionEvent){
             Stage stage = (Stage) addingOrderPane.getScene().getWindow();
             stage.close();
         }
-
-    }
+}
 

@@ -640,6 +640,11 @@
                         </VBox>
                      </children>
                   </HBox>
+                  <AnchorPane layoutY="540.0" prefHeight="60.0" prefWidth="750.0">
+                     <children>
+                        <Button fx:id="saveShiftButton" layoutX="674.0" layoutY="17.0" mnemonicParsing="false" text="Save" />
+                     </children>
+                  </AnchorPane>
                </children>
             </Pane>
          </children>

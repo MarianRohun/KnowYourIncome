@@ -85,7 +85,7 @@ public class OwnerController extends Controller implements Initializable {
     @FXML
     private TextField searchEmployeeTextfield,searchOrderTextfield,searchOrderHistoryTextfield,searchStorageTextfield,searchSoldUnitTextfield;
     @FXML
-    private Button noteButton;
+    private Button noteButton, saveShiftButton;
     @FXML
     private Button switchToHistoryButton,switchToOrdersButton,fromExpensesToIncomeButton,switchToExpensesButton,fromIncomeToOverAllButton,switchFromOverAllToIncomeButton;
     @FXML
@@ -487,9 +487,12 @@ public class OwnerController extends Controller implements Initializable {
             }
             int layoutY = 84;
 
-            for (User worker : workers){
 
-                ArrayList<Button> shifts = new ArrayList<>();
+        ArrayList<Button> buttons = new ArrayList<>();
+        ArrayList<Button> surbuttons = new ArrayList<>();
+
+        for (User worker : workers){
+
                 Button surname = new Button();
                 surname.setText(worker.getSurname());
                 surname.setLayoutX(2);
@@ -497,6 +500,7 @@ public class OwnerController extends Controller implements Initializable {
                 surname.setPrefWidth(87);
                 surname.setPrefHeight(60);
                 surname.setStyle("-fx-font-size: 14;"+"-fx-border-width: 2 2 2 2;"+"-fx-border-color: black;"+"-fx-text-fill: black;"+"-fx-background-color: white;"+"-fx-cursor: hand");
+                surbuttons.add(surname);
 
                 Button monShift = new Button();
                 monShift.setLayoutX(87);
@@ -514,7 +518,8 @@ public class OwnerController extends Controller implements Initializable {
                         }
                     }
                 });
-                shifts.add(monShift);
+                homePane.getChildren().add(monShift);
+                buttons.add(monShift);
 
                 Button tueShift = new Button();
                 tueShift.setLayoutX(180);
@@ -532,7 +537,8 @@ public class OwnerController extends Controller implements Initializable {
                         }
                     }
                 });
-                shifts.add(tueShift);
+                homePane.getChildren().add(tueShift);
+                buttons.add(tueShift);
 
                 Button wedShift = new Button();
                 wedShift.setLayoutX(272);
@@ -550,7 +556,8 @@ public class OwnerController extends Controller implements Initializable {
                         }
                     }
                 });
-                shifts.add(wedShift);
+                homePane.getChildren().add(wedShift);
+                buttons.add(wedShift);
 
                 Button thuShift = new Button();
                 thuShift.setLayoutX(364);
@@ -568,7 +575,8 @@ public class OwnerController extends Controller implements Initializable {
                         }
                     }
                 });
-                shifts.add(thuShift);
+                homePane.getChildren().add(thuShift);
+                buttons.add(thuShift);
 
                 Button friShift = new Button();
                 friShift.setLayoutX(457);
@@ -586,7 +594,8 @@ public class OwnerController extends Controller implements Initializable {
                         }
                     }
                 });
-                shifts.add(friShift);
+                homePane.getChildren().add(friShift);
+                buttons.add(friShift);
 
                 Button satShift = new Button();
                 satShift.setLayoutX(548);
@@ -604,7 +613,8 @@ public class OwnerController extends Controller implements Initializable {
                         }
                     }
                 });
-                shifts.add(satShift);
+                homePane.getChildren().add(satShift);
+                buttons.add(satShift);
 
                 Button sunShift = new Button();
                 sunShift.setLayoutX(640);
@@ -622,17 +632,50 @@ public class OwnerController extends Controller implements Initializable {
                         }
                     }
                 });
-                shifts.add(sunShift);
+                homePane.getChildren().add(sunShift);
+                buttons.add(sunShift);
 
                 layoutY += 60.01;
                 homePane.getChildren().add(surname);
-                homePane.getChildren().addAll(shifts);
 
-                for (Button shift : shifts){
-                    System.out.println(shift.getLayoutX());
-                    System.out.println(shift.getLayoutY());
-                    System.out.println("----------------------");
-                }
+
+                saveShiftButton.setOnAction(e ->{
+                    ArrayList<Shift> shifts = new ArrayList<>();
+
+                    for (Button surbutton : surbuttons){
+                        for (Button button : buttons){
+                            if (!button.getText().isEmpty()){
+                                if (surbutton.getLayoutY() == button.getLayoutY()){
+                                    Shift shift = new Shift(surbutton.getText(),button.getLayoutX(),button.getLayoutY(),"white");
+                                    shifts.add(shift);
+                                    saveShiftButton.setDisable(true);
+
+                                }
+                            }
+                        }
+                    }
+
+                    String insert = "INSERT INTO shifts (worker,layoutX,layoutY,shiftColor) VALUES (?,?,?,?)";
+                    try {
+                        PreparedStatement ps = connection.prepareStatement(insert);
+                        for (Shift shift : shifts){
+                            ps.setString(1,shift.getWorker());
+                            ps.setDouble(2,shift.getLayoutX());
+                            ps.setDouble(3,shift.getLayoutY());
+                            ps.setString(4,shift.getShiftColor());
+                            ps.executeLargeUpdate();
+                        }
+
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+
+
+                });
+
+
+
+
 
             }
 

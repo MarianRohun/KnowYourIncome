@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="createShiftPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="311.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.HomePane.CreatingShiftController">
    <children>
-      <Label layoutX="86.0" prefHeight="46.0" prefWidth="134.0" styleClass="colorlabel" text="Add new Shift" textFill="#b38b4d">
+      <Label layoutX="71.0" prefHeight="46.0" prefWidth="170.0" styleClass="colorlabel" text="Add new Shift" textFill="#b38b4d">
          <font>
             <Font size="21.0" />
          </font>

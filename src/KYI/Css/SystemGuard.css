@@ -1,8 +1,9 @@
 
 #insertKeyField{
-    -fx-text-fill: #f50606;
+    -fx-font-size: 17;
     -fx-border-radius: 2%;
     -fx-background-color: none;
+    -fx-border-width: 2 2 2 2;
     -fx-border-color: black;
     -fx-prompt-text-fill: black;
     -fx-text-alignment: middle;
@@ -38,6 +39,7 @@
 }
 #cancelButton:pressed {
     -fx-text-fill:#f50606 ;
+    -fx-border-color: #f50606;
 }
 #guardPane{
     -fx-border-width: 4 4 4 4;

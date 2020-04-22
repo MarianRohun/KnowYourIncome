@@ -16,7 +16,7 @@
             <Insets left="70.0" />
          </padding>
       </Label>
-      <Label fx:id="surnameLabel" layoutX="89.0" layoutY="10.0" prefHeight="20.0" prefWidth="166.0" styleClass="inputs" text="Employee">
+      <Label fx:id="surnameLabel" layoutX="94.0" layoutY="10.0" prefHeight="20.0" prefWidth="166.0" styleClass="inputs" text="Employee">
          <font>
             <Font size="14.0" />
          </font>
@@ -24,7 +24,7 @@
             <Insets left="70.0" />
          </padding>
       </Label>
-      <Label fx:id="emailLabel" layoutX="192.0" layoutY="10.0" prefHeight="20.0" prefWidth="268.0" styleClass="inputs" text="marian.rohun@gmail.com">
+      <Label fx:id="emailLabel" layoutX="215.0" layoutY="10.0" prefHeight="20.0" prefWidth="268.0" styleClass="inputs" text="marian.rohun@gmail.com">
          <font>
             <Font size="14.0" />
          </font>

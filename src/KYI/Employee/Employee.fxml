@@ -92,70 +92,6 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="storagePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
-               <children>
-                  <TextField fx:id="searchStorageTextfield" layoutX="20.0" layoutY="46.0" prefHeight="37.0" prefWidth="217.0" promptText="search order" styleClass="search" text="Search products">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <ListView fx:id="storageListView" layoutX="8.0" layoutY="142.0" prefHeight="456.0" prefWidth="737.0" />
-                  <Button fx:id="addProductToStorage" layoutX="596.0" layoutY="50.0" mnemonicParsing="false" onAction="#onClickAddProductToStorage" prefHeight="33.0" prefWidth="124.0" styleClass="blackButtons" text="Add product">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <HBox fx:id="storageTableHeader" alignment="CENTER_LEFT" layoutX="20.0" layoutY="94.0" prefHeight="47.0" prefWidth="700.0" styleClass="tableHeader">
-                     <children>
-                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="203.0" styleClass="headerLabel" text="Name" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="177.0" styleClass="headerLabel" text="Quantity" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="15.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label prefHeight="20.0" prefWidth="137.0" styleClass="headerLabel" text="Selling price">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="25.0" right="41.0" />
-                           </HBox.margin>
-                        </Label>
-                        <ImageView fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <HBox.margin>
-                              <Insets left="5.0" right="5.0" />
-                           </HBox.margin>
-                           <image>
-                              <Image url="@../../icons/editHeader.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="41.0" fitWidth="50.0">
-                           <image>
-                              <Image url="@../../icons/delete.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </ImageView>
-                     </children>
-                  </HBox>
-                  <Button fx:id="createProductButton" layoutX="596.0" layoutY="7.0" mnemonicParsing="false" onAction="#onClickCreateProduct" prefHeight="28.0" prefWidth="124.0" styleClass="blackButtons" text="Create product">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-               </children>
-            </Pane>
             <Pane fx:id="ordersPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <HBox fx:id="orderTableHeader" alignment="CENTER_LEFT" layoutX="15.0" layoutY="90.0" prefHeight="47.0" prefWidth="706.0" styleClass="tableHeader">
@@ -287,6 +223,70 @@
             <Pane fx:id="sellPane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
                <children>
                   <Button fx:id="switchToShiftSalesButton" layoutX="696.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="48.0" style="-fx-background-color: transparent;" />
+               </children>
+            </Pane>
+            <Pane fx:id="storagePane" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: white;">
+               <children>
+                  <TextField fx:id="searchStorageTextfield" layoutX="20.0" layoutY="46.0" prefHeight="37.0" prefWidth="217.0" promptText="search order" styleClass="search" text="Search products">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <ListView fx:id="storageListView" layoutX="8.0" layoutY="142.0" prefHeight="456.0" prefWidth="744.0" />
+                  <Button fx:id="addProductToStorage" layoutX="596.0" layoutY="50.0" mnemonicParsing="false" onAction="#onClickAddProductToStorage" prefHeight="33.0" prefWidth="124.0" styleClass="blackButtons" text="Add product">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <HBox fx:id="storageTableHeader" alignment="CENTER_LEFT" layoutX="20.0" layoutY="94.0" prefHeight="47.0" prefWidth="700.0" styleClass="tableHeader">
+                     <children>
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="203.0" styleClass="headerLabel" text="Name" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label accessibleRole="BUTTON" alignment="CENTER" prefHeight="20.0" prefWidth="177.0" styleClass="headerLabel" text="Quantity" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="20.0" prefWidth="137.0" styleClass="headerLabel" text="Selling price">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" right="41.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ImageView fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                           <image>
+                              <Image url="@../../icons/editHeader.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="41.0" fitWidth="50.0">
+                           <image>
+                              <Image url="@../../icons/delete.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Button fx:id="createProductButton" layoutX="596.0" layoutY="7.0" mnemonicParsing="false" onAction="#onClickCreateProduct" prefHeight="28.0" prefWidth="124.0" styleClass="blackButtons" text="Create product">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>

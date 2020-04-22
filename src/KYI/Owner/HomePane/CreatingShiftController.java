@@ -48,8 +48,8 @@ public class CreatingShiftController extends OwnerController implements Initiali
             errorShiftLabel.setText("Wrong TO time format");
         }
         else {
-            button.setText(sinceTextField.getText() + "\n   -\n" + toTextField.getText());
-            button.setStyle("-fx-background-color: "+parseColor(colorPicker.getValue())+";\n"+"-fx-border-color: black;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
+            button.setText(sinceTextField.getText() + "-" + toTextField.getText());
+            button.setStyle("-fx-background-color: "+parseColor(colorPicker.getValue())+";\n"+"-fx-border-color: black;"+"-fx-font-size:13;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
             Stage stage = (Stage) createShiftPane.getScene().getWindow();
             stage.close();
         }

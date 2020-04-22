@@ -29,16 +29,19 @@ public class SystemGuardController extends Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+    private int counter =0;
     public void verifyKey(javafx.event.ActionEvent actionEvent)  throws IOException {
 
                 if (key.equals(insertKeyField.getText())){
                     user.setloginStatus(1);
                     close();
                 }
-
+                 if(counter>=4){
+                    close();
+                }
                 else {
+                    counter++;
                     errorField.setText("Wrong key");
-                    System.out.println("Wrong key");
                 }
             }
         public void close (){

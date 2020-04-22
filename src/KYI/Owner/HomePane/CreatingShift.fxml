@@ -7,23 +7,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="createShiftPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="311.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.HomePane.CreatingShiftController">
+<AnchorPane fx:id="createShiftPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="248.0" prefWidth="282.0" stylesheets="@../../Css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.Owner.HomePane.CreatingShiftController">
    <children>
-      <Label layoutX="71.0" prefHeight="46.0" prefWidth="170.0" styleClass="colorlabel" text="Add new Shift" textFill="#b38b4d">
+      <Label layoutX="72.0" prefHeight="46.0" prefWidth="170.0" styleClass="colorlabel" text="Add new Shift" textFill="#b38b4d">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <TextField fx:id="sinceTextField" layoutX="115.0" layoutY="83.0" prefHeight="34.0" prefWidth="82.0" promptText="Since" />
-      <TextField fx:id="toTextField" layoutX="115.0" layoutY="169.0" prefHeight="34.0" prefWidth="82.0" promptText="To" />
-      <Button fx:id="confirmShiftButton" layoutX="201.0" layoutY="366.0" mnemonicParsing="false" onAction="#onClickConfirmShift" prefHeight="34.0" prefWidth="98.0" styleClass="ccButtons" text="Confirm" />
+      <TextField fx:id="sinceTextField" layoutX="26.0" layoutY="79.0" prefHeight="34.0" prefWidth="98.0" promptText=" Start time" />
+      <TextField fx:id="toTextField" layoutX="157.0" layoutY="79.0" prefHeight="34.0" prefWidth="98.0" promptText=" Finish time" />
+      <Button fx:id="confirmShiftButton" layoutX="175.0" layoutY="206.0" mnemonicParsing="false" onAction="#onClickConfirmShift" prefHeight="34.0" prefWidth="98.0" styleClass="ccButtons" text="Confirm" />
       <Label fx:id="errorShiftLabel" layoutX="68.0" layoutY="46.0" prefHeight="26.0" prefWidth="177.0" textFill="RED" />
-      <Button fx:id="cancelShiftButton" layoutX="9.0" layoutY="366.0" mnemonicParsing="false" onAction="#onClickCancelShift" prefHeight="34.0" prefWidth="98.0" styleClass="ccButtons" text="Cancel">
+      <Button fx:id="cancelShiftButton" layoutX="8.0" layoutY="206.0" mnemonicParsing="false" onAction="#onClickCancelShift" prefHeight="34.0" prefWidth="98.0" styleClass="ccButtons" text="Cancel">
          <font>
             <Font name="Franklin Gothic Book" size="13.0" />
          </font>
       </Button>
-      <ColorPicker fx:id="colorPicker" layoutX="93.0" layoutY="237.0" />
-      <Label layoutX="153.0" layoutY="133.0" text="-" />
+      <ColorPicker fx:id="colorPicker" layoutX="92.0" layoutY="143.0" prefHeight="34.0" prefWidth="98.0" />
+      <Label layoutX="136.0" layoutY="83.0" prefHeight="26.0" prefWidth="10.0" text=":">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
    </children>
 </AnchorPane>

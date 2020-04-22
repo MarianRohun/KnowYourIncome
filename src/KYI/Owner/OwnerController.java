@@ -495,11 +495,11 @@ public class OwnerController extends Controller implements Initializable {
 
                 Button surname = new Button();
                 surname.setText(worker.getSurname());
-                surname.setLayoutX(2);
+                surname.setLayoutX(1);
                 surname.setLayoutY(layoutY);
                 surname.setPrefWidth(87);
                 surname.setPrefHeight(60);
-                surname.setStyle("-fx-font-size: 14;"+"-fx-border-width: 2 2 2 2;"+"-fx-border-color: black;"+"-fx-text-fill: black;"+"-fx-background-color: white;"+"-fx-cursor: hand");
+                surname.setStyle("-fx-font-size: 14;"+"-fx-border-width: 2 2 2 2;"+"-fx-border-color: black;"+"-fx-text-fill: black;"+"-fx-background-color: white;");
                 surbuttons.add(surname);
 
                 Button monShift = new Button();

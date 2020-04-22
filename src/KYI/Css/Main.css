@@ -30,7 +30,7 @@
 }
 .buttons:hover{
     /*buttons hover*/
--fx-border-color: #990000;
+-fx-border-color: #1a0068;
     -fx-border-width: 0 0 2 0;
 }
 .buttons:pressed{
@@ -92,7 +92,7 @@
 }
 .colorlabel{
     /*label text*/
- -fx-text-fill: #990000;
+ -fx-text-fill: #1a0068;
 }
 .TimeTableVboxes{
     -fx-border-width: 0 2 0 2;
@@ -107,7 +107,7 @@
 }
 #usercardAnchorPane,#orderHistoryCardAnchorPane,#storageCardAnchorPane,#SoldUnitsAnchorPane{
     /*card dots*/
--fx-border-color: #990000;
+-fx-border-color: #1a0068;
     -fx-border-width: 0 4 0 4;
     -fx-border-style: dotted;
     -fx-border-radius: 1%;
@@ -154,9 +154,9 @@
     -fx-prompt-text-fill: black;
     -fx-text-alignment: middle;
 }
-#confirmDeletePane,#confirmDeleteOrderPane,#confirmDeleteStoragePane,#confirmEditStoragePane,#CreateProductPane,#addProductPane,#addingPane,#addingOrderPane{
+#confirmDeletePane,#confirmDeleteOrderPane,#confirmDeleteStoragePane,#confirmEditStoragePane,#CreateProductPane,#addProductPane,#addingPane,#addingOrderPane,#createShiftPane{
      /*window border*/
--fx-border-color: #990000;
+-fx-border-color: #1a0068;
     -fx-border-width: 4 4 4 4;
     -fx-background-color: white;
 }
@@ -180,11 +180,15 @@
     -fx-border-width: 2 2 2 2;
     -fx-border-color: black;
 }
-#themePicker{
+#themePicker,#colorPicker{
     -fx-border-width: 2 2 2 2;
     -fx-border-color: black;
     -fx-background-color: transparent;
     -fx-font-size: 14;
+}
+#colorPicker{
+    -fx-font-size: 12;
+    -fx-border-radius: 4%;
 }
 #nameChoiceBox,#productChoiceBox{
     -fx-border-width: 1 1 1 1;
@@ -202,7 +206,7 @@
     -fx-text-fill: white;
     -fx-background-radius: 12%;
 }
-#confirmSellButton,#confirmShiftButton{
+#confirmSellButton{
     -fx-background-color: green;
     -fx-text-fill: white;
     -fx-background-radius: 12%;

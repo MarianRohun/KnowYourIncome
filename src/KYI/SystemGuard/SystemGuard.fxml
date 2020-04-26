@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="guardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="352.0" style="-fx-background-color: transparent;" stylesheets="@../Css/SystemGuard.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.SystemGuard.SystemGuardController">
+<AnchorPane fx:id="guardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="352.0" style="-fx-background-color: white;" stylesheets="@../Css/SystemGuard.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KYI.SystemGuard.SystemGuardController">
     <children>
         <Label layoutX="24.0" layoutY="15.0" prefHeight="20.0" prefWidth="314.0" text="Key was sent to you on your email " textFill="#b38b4d">
             <font>

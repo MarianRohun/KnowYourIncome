@@ -30,7 +30,7 @@
 }
 .buttons:hover{
     /*buttons hover*/
--fx-border-color: #1a0068;
+-fx-border-color: #330033;
     -fx-border-width: 0 0 2 0;
 }
 .buttons:pressed{
@@ -92,7 +92,7 @@
 }
 .colorlabel{
     /*label text*/
- -fx-text-fill: #1a0068;
+ -fx-text-fill: #330033;
 }
 .TimeTableVboxes{
     -fx-border-width: 0 2 0 2;
@@ -107,7 +107,7 @@
 }
 #usercardAnchorPane,#orderHistoryCardAnchorPane,#storageCardAnchorPane,#SoldUnitsAnchorPane{
     /*card dots*/
--fx-border-color: #1a0068;
+-fx-border-color: #330033;
     -fx-border-width: 0 4 0 4;
     -fx-border-style: dotted;
     -fx-border-radius: 1%;
@@ -120,7 +120,7 @@
     -fx-background-color: none;
 }
 #logoutButton:pressed{
-    -fx-font-size: 12;
+     -fx-font-size: 12;
 }
 #homeButton{
     -fx-text-fill: white;
@@ -156,7 +156,7 @@
 }
 #confirmDeletePane,#confirmDeleteOrderPane,#confirmDeleteStoragePane,#confirmEditStoragePane,#CreateProductPane,#addProductPane,#addingPane,#addingOrderPane,#createShiftPane{
      /*window border*/
--fx-border-color: #1a0068;
+-fx-border-color: #330033;
     -fx-border-width: 4 4 4 4;
     -fx-background-color: white;
 }
@@ -226,4 +226,14 @@
 #timeTableHbox{
     -fx-border-color: black;
     -fx-border-width: 2 2 2 2;
+}
+#saveShiftButton{
+    -fx-font-size: 17;
+    -fx-border-width: 0 0 3 0;
+    -fx-border-color: transparent;
+    -fx-text-fill: #b38b4d;
+    -fx-background-color: none;
+}
+#saveShiftButton:pressed{
+    -fx-font-size: 14;
 }

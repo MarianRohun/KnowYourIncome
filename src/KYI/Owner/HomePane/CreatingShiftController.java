@@ -31,9 +31,8 @@ public class CreatingShiftController extends OwnerController implements Initiali
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
-
+    public String startShift,endShift;
     public void onClickConfirmShift(ActionEvent actionEvent) {
         if (sinceTextField.getText().isEmpty()){
             errorShiftLabel.setText("Insert SINCE time");

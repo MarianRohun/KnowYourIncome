@@ -28,12 +28,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.*;
 import javafx.scene.layout.Pane;
-
-import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.sql.*;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -84,8 +81,6 @@ public class OwnerController extends Controller implements Initializable {
     private Button addUserButton,addOrdersButton,addProductToStorage,createProductButton;
     @FXML
     private TextField searchEmployeeTextfield,searchOrderTextfield,searchOrderHistoryTextfield,searchStorageTextfield,searchSoldUnitTextfield;
-    @FXML
-    private Button noteButton, saveShiftButton;
     @FXML
     private Button switchToHistoryButton,switchToOrdersButton,fromExpensesToIncomeButton,switchToExpensesButton,fromIncomeToOverAllButton,switchFromOverAllToIncomeButton;
     @FXML
@@ -146,7 +141,6 @@ public class OwnerController extends Controller implements Initializable {
         storageTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
         orderHistoryTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
         soldunitsTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
-        saveShiftButton.setStyle("-fx-border-color:"+parseColor(pickedTheme)+";-fx-text-fill:"+parseColor(pickedTheme));
         employeeTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";"+"-fx-border-color:"+parseColor(pickedTheme)+";");
         nameLabel.setText(user.getName()+" "+user.getSurname());
         if (user.getProfilePicture() != null) {
@@ -635,61 +629,29 @@ public class OwnerController extends Controller implements Initializable {
 
             layoutY += 60.01;
             homePane.getChildren().add(surname);
-
-            String selectShifts = "SELECT * FROM shifts";
-
-            ResultSet resultSet = connection.prepareStatement(selectShifts).executeQuery();
-            ArrayList<Shift> selectedshifts = new ArrayList<>();
-            while (resultSet.next()) {
-                Shift shift = new Shift(resultSet.getString(2), resultSet.getDouble(3), resultSet.getDouble(4), resultSet.getString(5),
-                        resultSet.getString(6));
-                selectedshifts.add(shift);
-            }
-            for (Button stlpecbutton : surbuttons) {
-                for (Button riadokButton : buttons) {
-                    for (Shift shift : selectedshifts) {
-                        if (stlpecbutton.getLayoutY() == riadokButton.getLayoutY()) {
-                            if ((riadokButton.getLayoutX() == shift.getLayoutX()) && riadokButton.getLayoutY() == shift.getLayoutY()) {
-                                riadokButton.setText(shift.getShiftTime());
-                                riadokButton.setStyle("-fx-background-color: " + shift.getShiftColor() + ";\n" + "-fx-border-color: black;" + "-fx-font-size:13;" + "-fx-border-width: 1 1 1 1;" + "-fx-cursor: hand;");
-                            }
-                        }
-                    }
-                }
-            }
-            saveShiftButton.setOnAction(e -> {
-                ArrayList<Shift> shifts = new ArrayList<>();
-
-                for (Button surbutton : surbuttons) {
-                    for (Button button : buttons) {
-                        if (!button.getText().isEmpty()) {
-                            if (surbutton.getLayoutY() == button.getLayoutY()) {
-                           //     for (Shift shiftt : selectedshifts) {
-                                  //  if (!button.getText().equals(shiftt.getShiftTime())) {
-                                        Shift shift = new Shift(surbutton.getText(), button.getLayoutX(), button.getLayoutY(), "white", button.getText());
-                                        shifts.add(shift);
-                                  //  }
-                                //}
-                            }
-                        }
-                    }
-                }
-                String insert = "INSERT INTO shifts (worker,layoutX,layoutY,shiftColor,shiftTime) VALUES (?,?,?,?,?)";
-                try {
-                    PreparedStatement ps = connection.prepareStatement(insert);
-                    for (Shift shift : shifts) {
-                        ps.setString(1, shift.getWorker());
-                        ps.setDouble(2, shift.getLayoutX());
-                        ps.setDouble(3, shift.getLayoutY());
-                        ps.setString(4, shift.getShiftColor());
-                        ps.setString(5, shift.getShiftTime());
-                        ps.executeLargeUpdate();
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            });
         }
+        String selectShifts = "SELECT * FROM shifts";
+
+        ResultSet resultSet = connection.prepareStatement(selectShifts).executeQuery();
+        ArrayList<Shift> selectedshifts = new ArrayList<>();
+        while (resultSet.next()) {
+            Shift shift = new Shift(resultSet.getDouble(2), resultSet.getDouble(3), resultSet.getString(4),
+                    resultSet.getString(5));
+            selectedshifts.add(shift);
+        }
+        for (Button stlpecbutton : surbuttons) {
+            for (Button riadokButton : buttons) {
+                for (Shift shift : selectedshifts) {
+                    if (stlpecbutton.getLayoutY() == riadokButton.getLayoutY()) {
+                        if ((riadokButton.getLayoutX() == shift.getLayoutX()) && riadokButton.getLayoutY() == shift.getLayoutY()) {
+                            riadokButton.setText(shift.getShiftTime());
+                            riadokButton.setStyle("-fx-background-color: " +parseColor(shift.getShiftColor())+ ";\n" + "-fx-border-color: black;" + "-fx-font-size:13;" + "-fx-border-width: 1 1 1 1;" + "-fx-cursor: hand;");
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     public void onClickSoldunits(javafx.event.ActionEvent ActionEvent) throws SQLException {
@@ -921,12 +883,7 @@ public class OwnerController extends Controller implements Initializable {
             }
         });
     }
-    public void onClickNote(javafx.event.ActionEvent ActionEvent){
-        notePane.toFront();
-        changeColor(noteButton);
-        ordersButton.setText("Orders");
 
-    }
     //================================================================
     //SETTINGS PANE
     //===============================================================
@@ -1007,7 +964,6 @@ public class OwnerController extends Controller implements Initializable {
                             String update = "UPDATE users SET password = '" + newPasswordField.getText() +
                                     "' WHERE u_id =" + user.getId();
                             statement.executeLargeUpdate(update);
-
                             errorLabel.setText("");
                             oldPasswordField.clear();
                             newPasswordField.clear();
@@ -1111,7 +1067,12 @@ public class OwnerController extends Controller implements Initializable {
         c =""+a[0]+a[1]+a[2]+a[3]+a[4]+a[5]+a[6]+"";
         return c;
     }
-
+    public String parseColor(String _c){
+        String c=_c.toString().replace("0x","#");
+        char[] a = c.toCharArray();
+        c =""+a[0]+a[1]+a[2]+a[3]+a[4]+a[5]+a[6]+"";
+        return c;
+    }
     public void changeHoverColor(Color color){
         BufferedReader reader = null;
         StringBuffer inputBuffer = null;

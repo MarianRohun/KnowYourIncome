@@ -1,6 +1,8 @@
 package KYI.Owner.HomePane;
 
 
+import KYI.Controllers.Connectivity;
+import KYI.Entits.Shift;
 import KYI.Owner.OwnerController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +15,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class CreatingShiftController extends OwnerController implements Initializable {
@@ -33,7 +40,11 @@ public class CreatingShiftController extends OwnerController implements Initiali
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
     public String startShift,endShift;
-    public void onClickConfirmShift(ActionEvent actionEvent) {
+    public void onClickConfirmShift(ActionEvent actionEvent) throws SQLException {
+        Connectivity connectivity = new Connectivity();
+        Connection connection = connectivity.getConnection();
+        Statement statement = connection.createStatement();
+
         if (sinceTextField.getText().isEmpty()){
             errorShiftLabel.setText("Insert SINCE time");
         }
@@ -47,8 +58,32 @@ public class CreatingShiftController extends OwnerController implements Initiali
             errorShiftLabel.setText("Wrong TO time format");
         }
         else {
-            button.setText(sinceTextField.getText() + "-" + toTextField.getText());
+            if (button.getText().isEmpty()) {
+                button.setText(sinceTextField.getText() + "-" + toTextField.getText());
             button.setStyle("-fx-background-color: "+parseColor(colorPicker.getValue())+";\n"+"-fx-border-color: black;"+"-fx-font-size:13;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
+
+                ArrayList<Shift> shifts = new ArrayList<>();
+                Shift shift = new Shift(button.getLayoutX(), button.getLayoutY(), colorPicker.getValue().toString(), button.getText());
+                shifts.add(shift);
+                String insert = "INSERT INTO shifts (layoutX,layoutY,shiftColor,shiftTime) VALUES (?,?,?,?)";
+                try {
+                    PreparedStatement ps = connection.prepareStatement(insert);
+                    ps.setDouble(1, shift.getLayoutX());
+                    ps.setDouble(2, shift.getLayoutY());
+                    ps.setString(3, shift.getShiftColor());
+                    ps.setString(4, shift.getShiftTime());
+                    ps.executeLargeUpdate();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            else {
+                String update = "UPDATE shifts SET shiftTime = '" +sinceTextField.getText() + "-" +toTextField.getText() +"',shiftColor = '"+colorPicker.getValue()+
+                        "' WHERE layoutY = '" +button.getLayoutY() +"' AND layoutX = '"+button.getLayoutX() +"'";
+                statement.executeLargeUpdate(update);
+                button.setText(sinceTextField.getText() + "-" + toTextField.getText());
+                button.setStyle("-fx-background-color: "+parseColor(colorPicker.getValue())+";\n"+"-fx-border-color: black;"+"-fx-font-size:13;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
+            }
             Stage stage = (Stage) createShiftPane.getScene().getWindow();
             stage.close();
         }

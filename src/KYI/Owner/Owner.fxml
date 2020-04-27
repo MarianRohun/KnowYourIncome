@@ -635,15 +635,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <AnchorPane layoutY="540.0" prefHeight="60.0" prefWidth="750.0">
-                     <children>
-                        <Button fx:id="saveShiftButton" layoutX="657.0" layoutY="8.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="70.0" styleClass="buttons" text="Save">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
+                  <AnchorPane layoutY="540.0" prefHeight="60.0" prefWidth="750.0" />
                </children>
             </Pane>
          </children>

@@ -904,12 +904,10 @@ public class OwnerController extends Controller implements Initializable {
             sampleImage.setImage(image);
             imagePath.setText(user.getProfilePicture());
         }
-
         else {
             Image questionmark = new Image("@../../icons/question.png");
             sampleImage.setImage(questionmark);
         }
-
         changePasswordButton.setOnAction(actionEvent -> {
             oldPasswordField.setVisible(true);
             newPasswordField.setVisible(true);

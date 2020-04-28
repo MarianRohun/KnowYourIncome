@@ -30,7 +30,7 @@
 }
 .buttons:hover{
     /*buttons hover*/
--fx-border-color: #330033;
+-fx-border-color: #e6804d;
     -fx-border-width: 0 0 2 0;
 }
 .buttons:pressed{
@@ -92,7 +92,7 @@
 }
 .colorlabel{
     /*label text*/
- -fx-text-fill: #330033;
+ -fx-text-fill: #e6804d;
 }
 .TimeTableVboxes{
     -fx-border-width: 0 2 0 2;
@@ -107,7 +107,7 @@
 }
 #usercardAnchorPane,#orderHistoryCardAnchorPane,#storageCardAnchorPane,#SoldUnitsAnchorPane{
     /*card dots*/
--fx-border-color: #330033;
+-fx-border-color: #e6804d;
     -fx-border-width: 0 4 0 4;
     -fx-border-style: dotted;
     -fx-border-radius: 1%;
@@ -156,7 +156,7 @@
 }
 #confirmDeletePane,#confirmDeleteOrderPane,#confirmDeleteStoragePane,#confirmEditStoragePane,#CreateProductPane,#addProductPane,#addingPane,#addingOrderPane,#createShiftPane{
      /*window border*/
--fx-border-color: #330033;
+-fx-border-color: #e6804d;
     -fx-border-width: 4 4 4 4;
     -fx-background-color: white;
 }

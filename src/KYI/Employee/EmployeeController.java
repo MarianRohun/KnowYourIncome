@@ -51,8 +51,6 @@ public class EmployeeController extends Controller implements Initializable {
     @FXML
     private Button sellButton;
     @FXML
-    private Button noteButton;
-    @FXML
     private Button settingsButton;
     @FXML
     private Pane homePane,sidebarPane;
@@ -62,8 +60,6 @@ public class EmployeeController extends Controller implements Initializable {
     private Pane storagePane;
     @FXML
     private Pane sellPane, sellFooterPane, sellHeaderPane;
-    @FXML
-    private Pane notePane;
     @FXML
     private Pane settingsPane;
     @FXML
@@ -102,7 +98,6 @@ public class EmployeeController extends Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         pickedTheme = Color.valueOf(parseColor(Color.valueOf(user.getTheme())));
         logoutButton.setStyle("-fx-border-color:"+parseColor(pickedTheme)+";-fx-text-fill:"+parseColor(pickedTheme));
-        noteButton.setStyle("-fx-text-fill:"+parseColor(pickedTheme));
         homeButton.setStyle("-fx-text-fill:" +parseColor(pickedTheme));
         ordersButton.setStyle("-fx-text-fill:" +parseColor(pickedTheme));
         storageButton.setStyle("-fx-text-fill:"+parseColor(pickedTheme));
@@ -111,6 +106,7 @@ public class EmployeeController extends Controller implements Initializable {
         sidebarPane.setStyle("-fx-border-color: "+parseColor(pickedTheme));
         orderTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
         storageTableHeader.setStyle("-fx-background-color: "+parseColor(pickedTheme)+";");
+        System.out.println(user.isentry());
         if (user.isentry()==true){
             sellFooterPane.toBack();
             sellHeaderPane.toBack();
@@ -120,7 +116,6 @@ public class EmployeeController extends Controller implements Initializable {
             ordersButton.setDisable(false);
             storageButton.setDisable(false);
             sellButton.setDisable(false);
-            noteButton.setDisable(false);
         }
         else {
             sellFooterPane.toBack();
@@ -141,7 +136,6 @@ public class EmployeeController extends Controller implements Initializable {
             ordersButton.setDisable(true);
             storageButton.setDisable(true);
             sellButton.setDisable(true);
-            noteButton.setDisable(true);
 
             changePasswordButton.setOnAction(actionEvent -> {
                 oldPasswordField.setVisible(true);
@@ -199,6 +193,10 @@ public class EmployeeController extends Controller implements Initializable {
                                     "' WHERE u_id =" + user.getId();
                             statement.executeLargeUpdate(update);
 
+                            String updateUser = "UPDATE users SET isEntry = 1 WHERE u_id = "+user.getId();
+                                Statement statement2 = connection.createStatement();
+                                statement2.executeLargeUpdate(updateUser);
+
                             errorLabel.setText("");
                             oldPasswordField.clear();
                             newPasswordField.clear();
@@ -221,8 +219,10 @@ public class EmployeeController extends Controller implements Initializable {
                             confirmPasswordButton.setVisible(false);
                             changePasswordButton.setDisable(false);
                             errorLabel.setVisible(false);
-
                             user.setentry(true);
+
+
+
                             System.out.println("pass updated");
                             changePassLabel.setText("Password successfully updated");
                             changePasswordButton.setText("Change password");
@@ -230,7 +230,6 @@ public class EmployeeController extends Controller implements Initializable {
                             ordersButton.setDisable(false);
                             storageButton.setDisable(false);
                             sellButton.setDisable(false);
-                            noteButton.setDisable(false);
 
                         }
                     } catch (SQLException e) {
@@ -441,10 +440,7 @@ public class EmployeeController extends Controller implements Initializable {
             sellPane.getChildren().add(choiceBox);
             layoutY += 42;
         }
-
-
         layoutY = 71;
-
 
         for (int i = 0; i < products.size(); i++){
             TextField textField = new TextField();
@@ -568,7 +564,6 @@ public class EmployeeController extends Controller implements Initializable {
            }
         });
 
-
         stornoButton.setOnAction(e -> {
             for (TextField textField : textFields){
                 textField.clear();
@@ -576,13 +571,7 @@ public class EmployeeController extends Controller implements Initializable {
         });
 
     }
-    public void onClickNote(javafx.event.ActionEvent ActionEvent){
-        sellFooterPane.toBack();
-        sellHeaderPane.toBack();
-        notePane.toFront();
-        changeColor(noteButton);
-        sellButton.setText("Sell");
-    }
+
     public void onClickSettings(javafx.event.ActionEvent ActionEvent) {
         changePasswordButton.setText("Change password");
         sellFooterPane.toBack();
@@ -685,20 +674,19 @@ public class EmployeeController extends Controller implements Initializable {
                         changePasswordButton.setDisable(false);
                         errorLabel.setVisible(false);
                     }
-                    if (user.getProfilePicture() != null) {
-                        Image image = new Image(user.getProfilePicture());
-                        sampleImage.setImage(image);
-                        imagePath.setText(user.getProfilePicture());
-                    }
-                    else {
-                        Image questionmark = new Image("@../../icons/question.png");
-                        sampleImage.setImage(questionmark);
-                    }
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
         });
+        if (user.getProfilePicture() != null) {
+            Image image = new Image(user.getProfilePicture());
+            sampleImage.setImage(image);
+            imagePath.setText(user.getProfilePicture());
+        } else {
+            Image questionmark = new Image("@../../icons/question.png");
+            sampleImage.setImage(questionmark);
+        }
 
         saveColorButton.setOnAction(event -> {
             pickedTheme = themePicker.getValue();
@@ -757,7 +745,6 @@ public class EmployeeController extends Controller implements Initializable {
         sellButton.setStyle("-fx-background-color:white;-fx-text-fill:"+parseColor(pickedTheme));
         ordersButton.setStyle("-fx-background-color:white;-fx-text-fill:"+parseColor(pickedTheme));
         storageButton.setStyle("-fx-background-color:white;-fx-text-fill:"+parseColor(pickedTheme));
-        noteButton.setStyle("-fx-background-color:white;-fx-text-fill:"+parseColor(pickedTheme));
         settingsButton.setStyle("-fx-background-color:white;-fx-text-fill:"+parseColor(pickedTheme));
         t.setStyle("-fx-background-color:"+parseColor(pickedTheme)+"; -fx-text-fill: white;");
     }

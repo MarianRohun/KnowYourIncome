@@ -44,18 +44,37 @@ public class CreatingShiftController extends OwnerController implements Initiali
         Connectivity connectivity = new Connectivity();
         Connection connection = connectivity.getConnection();
         Statement statement = connection.createStatement();
+        String [] A =sinceTextField.getText().split(":",2);
+        String [] B = toTextField.getText().split(":",2);
+        System.out.println(button.getText()+"skre");
 
         if (sinceTextField.getText().isEmpty()){
             errorShiftLabel.setText("Insert SINCE time");
         }
-        if (toTextField.getText().isEmpty()){
+        else if (sinceTextField.getText().equals(toTextField)){
+            errorShiftLabel.setText("Insert valid shift");
+        }
+        else if(toTextField.getText().isEmpty()){
             errorShiftLabel.setText("Insert TO time");
         }
-        if (!validateTime(sinceTextField.getText())){
+        else if (!validateTime(sinceTextField.getText())){
             errorShiftLabel.setText("Wrong SINCE time format");
         }
-        if (!validateTime(toTextField.getText())){
+        else if (!validateTime(toTextField.getText())){
             errorShiftLabel.setText("Wrong TO time format");
+        }
+        else if ((Integer.parseInt(A[0]) > Integer.parseInt(B[0]))){
+            errorShiftLabel.setText("Insert valid shift");
+            System.out.println("esketit");
+        }
+        else if ((Integer.parseInt(A[0])>24 || Integer.parseInt(B[0])>24)){
+            errorShiftLabel.setText("Insert valid shift");
+        }
+        else if (B[0].equals("24") && !B[1].equals("00")){
+            errorShiftLabel.setText("Insert valid shift");
+        }
+        else  if (A[1].equals("24") && !A[2].equals("00")){
+            errorShiftLabel.setText("Insert valid shift");
         }
         else {
             if (button.getText().isEmpty()) {

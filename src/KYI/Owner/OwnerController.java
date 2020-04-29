@@ -713,8 +713,8 @@ public class OwnerController extends Controller implements Initializable {
         expenses[0]=100;
         expenses[1]=100;
         expenses[2]=100;
+        expenses[3]=100;
         expenses[4]=100;
-        expenses[5]=100;
         expenses[6]=100;
         expenses[7]=100;
         expenses[8]=100;
@@ -755,8 +755,8 @@ public class OwnerController extends Controller implements Initializable {
             income[0]=200;
             income[1]=200;
             income[2]=200;
+            income[3]=200;
             income[4]=200;
-            income[5]=200;
             income[6]=200;
             income[7]=200;
             income[8]=200;
@@ -1077,7 +1077,7 @@ public class OwnerController extends Controller implements Initializable {
         String line;
 
         try {
-            reader = new BufferedReader(new FileReader("D:\\KnowYourIncome\\src\\KYI\\Css\\Main.css"));
+            reader = new BufferedReader(new FileReader("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css"));
              inputBuffer = new StringBuffer();
 
             while ((line = reader.readLine()) != null) {
@@ -1102,7 +1102,7 @@ public class OwnerController extends Controller implements Initializable {
                 }
             }
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter("D:\\KnowYourIncome\\src\\KYI\\Css\\Main.css"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css",false));
             for (String item : inputArray) {
                 writer.write(item);
                 writer.newLine();

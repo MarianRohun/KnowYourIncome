@@ -17,7 +17,7 @@
       <TextField fx:id="sinceTextField" layoutX="26.0" layoutY="79.0" prefHeight="34.0" prefWidth="98.0" promptText=" Start time" />
       <TextField fx:id="toTextField" layoutX="157.0" layoutY="79.0" prefHeight="34.0" prefWidth="98.0" promptText=" Finish time" />
       <Button fx:id="confirmShiftButton" layoutX="175.0" layoutY="206.0" mnemonicParsing="false" onAction="#onClickConfirmShift" prefHeight="34.0" prefWidth="98.0" styleClass="ccButtons" text="Confirm" />
-      <Label fx:id="errorShiftLabel" layoutX="68.0" layoutY="46.0" prefHeight="26.0" prefWidth="177.0" textFill="RED" />
+      <Label fx:id="errorShiftLabel" layoutX="75.0" layoutY="46.0" prefHeight="26.0" prefWidth="177.0" textFill="RED" />
       <Button fx:id="cancelShiftButton" layoutX="8.0" layoutY="206.0" mnemonicParsing="false" onAction="#onClickCancelShift" prefHeight="34.0" prefWidth="98.0" styleClass="ccButtons" text="Cancel">
          <font>
             <Font name="Franklin Gothic Book" size="13.0" />

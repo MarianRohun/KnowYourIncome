@@ -846,7 +846,7 @@ public class EmployeeController extends Controller implements Initializable {
         String line;
 
         try {
-            reader = new BufferedReader(new FileReader("D:\\KnowYourIncome\\src\\KYI\\Css\\Main.css"));
+            reader = new BufferedReader(new FileReader("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css"));
             inputBuffer = new StringBuffer();
 
             while ((line = reader.readLine()) != null) {

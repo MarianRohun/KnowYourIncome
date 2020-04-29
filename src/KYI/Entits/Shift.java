@@ -8,11 +8,13 @@ public class Shift {
     private String shiftTime;
 
     public Shift(String worker,Double layoutX, Double layoutY, String shiftColor, String shiftTime) {
+        this.worker = worker;
         this.layoutX = layoutX;
         this.layoutY = layoutY;
         this.shiftColor = shiftColor;
         this.shiftTime = shiftTime;
     }
+
 
     public String getWorker() {
         return worker;

@@ -6,6 +6,7 @@ import KYI.Entits.Order;
 import KYI.Entits.Product;
 import KYI.Employee.OrdersPane.OrderCardController;
 import KYI.Employee.StoragePane.StorageCardController;
+import KYI.Entits.Shift;
 import KYI.Owner.OwnerController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,16 +24,13 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import javax.swing.plaf.nimbus.State;
 import java.io.*;
 import java.net.URL;
 import java.sql.*;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
-
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.ResourceBundle;
+import java.time.LocalDateTime;
+import java.util.*;
 
 import static java.time.Month.*;
 import static java.time.Month.DECEMBER;
@@ -82,6 +80,8 @@ public class EmployeeController extends Controller implements Initializable {
     private TextField searchOrderTextfield,searchStorageTextfield;
     @FXML
     private HBox orderTableHeader,storageTableHeader;
+    @FXML
+    private Label monDate, tueDate, wedDate, thuDate, friDate, satDate, sunDate;
 
 
     public static Color pickedTheme ;
@@ -110,7 +110,12 @@ public class EmployeeController extends Controller implements Initializable {
         if (user.isentry()==true){
             sellFooterPane.toBack();
             sellHeaderPane.toBack();
-            homePane.toFront();
+            ActionEvent actionEvent = null;
+            try {
+                onClickHome(actionEvent);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             changeColor(homeButton);
             homeButton.setDisable(false);
             ordersButton.setDisable(false);
@@ -251,15 +256,93 @@ public class EmployeeController extends Controller implements Initializable {
         }
 
     }
-    public void onClickHome(javafx.event.ActionEvent ActionEvent){
+    public void onClickHome(javafx.event.ActionEvent ActionEvent) throws SQLException {
         sellFooterPane.toBack();
         sellHeaderPane.toBack();
         homePane.toFront();
         changeColor(homeButton);
         sellButton.setText("Sell");
 
+        Calendar cal = Calendar.getInstance();
+        ArrayList<Calendar> calendars = new ArrayList<>();
 
+        ArrayList<String> output = new ArrayList<>();
+
+        switch (cal.get(Calendar.DAY_OF_WEEK)) {
+            case Calendar.SUNDAY:
+                cal.add(Calendar.DATE, -6);
+                break;
+
+            case Calendar.TUESDAY:
+                cal.add(Calendar.DATE, -1);
+                break;
+
+            case Calendar.WEDNESDAY:
+                cal.add(Calendar.DATE, -2);
+                break;
+
+            case Calendar.THURSDAY:
+                cal.add(Calendar.DATE, -3);
+                break;
+
+            case Calendar.FRIDAY:
+                cal.add(Calendar.DATE, -4);
+                break;
+
+            case Calendar.SATURDAY:
+                cal.add(Calendar.DATE, -5);
+                break;
+        }
+        output.add(cal.getTime().toString());
+        for (int x = 1; x < 7; x++) {
+            calendars.add(cal);
+            cal.add(Calendar.DATE, 1);
+            output.add(cal.getTime().toString());
+        }
+
+        monDate.setText("      " + output.get(0).substring(4, 10));
+        tueDate.setText("      " + output.get(1).substring(4, 10));
+        wedDate.setText("      " + output.get(2).substring(4, 10));
+        thuDate.setText("      " + output.get(3).substring(4, 10));
+        friDate.setText("      " + output.get(4).substring(4, 10));
+        satDate.setText("      " + output.get(5).substring(4, 10));
+        sunDate.setText("      " + output.get(6).substring(4, 10));
+
+        for (Calendar c : calendars) {
+            LocalDate localDate = LocalDateTime.ofInstant(c.toInstant(), c.getTimeZone().toZoneId()).toLocalDate();
+        }
+
+        ArrayList<Shift> shifts = new ArrayList<>();
+
+        String select = "SELECT * FROM shifts WHERE worker = '" + user.getSurname() + "'";
+
+        ResultSet result = connection.prepareStatement(select).executeQuery();
+
+        while (result.next()) {
+            Shift shift = new Shift(result.getString(2), result.getDouble(3), result.getDouble(4), result.getString(5), result.getString(6));
+            shifts.add(shift);
+        }
+        int layoutX = 87;
+        for (int i = 0; i < 7; i++) {
+            for (Shift shift : shifts) {
+                Button button = new Button();
+                button.setStyle("-fx-background-color: transparent;" + "-fx-border-color: black;" + "-fx-border-width: 1 1 1 1;" + "-fx-cursor: hand;");
+                button.setPrefWidth(93);
+                button.setPrefHeight(60);
+                button.setLayoutX(layoutX);
+                button.setLayoutY(84);
+                if (layoutX == shift.getLayoutX()) {
+                    button.setText(shift.getShiftTime());
+                    button.setStyle("-fx-background-color: " + shift.getShiftColor() + ";" + "-fx-border-color: black;" + "-fx-border-width: 1 1 1 1;" + "-fx-cursor: hand;");
+                }
+                homePane.getChildren().add(button);
+            }
+
+            layoutX += 92;
+        }
     }
+
+
     public void onClickOrders(javafx.event.ActionEvent ActionEvent){
         sellFooterPane.toBack();
         sellHeaderPane.toBack();
@@ -763,7 +846,7 @@ public class EmployeeController extends Controller implements Initializable {
         String line;
 
         try {
-            reader = new BufferedReader(new FileReader("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css\\Main.css"));
+            reader = new BufferedReader(new FileReader("D:\\KnowYourIncome\\src\\KYI\\Css\\Main.css"));
             inputBuffer = new StringBuffer();
 
             while ((line = reader.readLine()) != null) {

@@ -514,7 +514,7 @@ public class OwnerController extends Controller implements Initializable {
             buttons.add(monShift);
 
             Button tueShift = new Button();
-            tueShift.setLayoutX(180);
+            tueShift.setLayoutX(179);
             tueShift.setLayoutY(layoutY);
             tueShift.setPrefWidth(93);
             tueShift.setPrefHeight(60);
@@ -533,7 +533,7 @@ public class OwnerController extends Controller implements Initializable {
             buttons.add(tueShift);
 
             Button wedShift = new Button();
-            wedShift.setLayoutX(272);
+            wedShift.setLayoutX(271);
             wedShift.setLayoutY(layoutY);
             wedShift.setPrefWidth(93);
             wedShift.setPrefHeight(60);
@@ -552,7 +552,7 @@ public class OwnerController extends Controller implements Initializable {
             buttons.add(wedShift);
 
             Button thuShift = new Button();
-            thuShift.setLayoutX(364);
+            thuShift.setLayoutX(363);
             thuShift.setLayoutY(layoutY);
             thuShift.setPrefWidth(93);
             thuShift.setPrefHeight(60);
@@ -571,7 +571,7 @@ public class OwnerController extends Controller implements Initializable {
             buttons.add(thuShift);
 
             Button friShift = new Button();
-            friShift.setLayoutX(457);
+            friShift.setLayoutX(455);
             friShift.setLayoutY(layoutY);
             friShift.setPrefWidth(93);
             friShift.setPrefHeight(60);
@@ -590,7 +590,7 @@ public class OwnerController extends Controller implements Initializable {
             buttons.add(friShift);
 
             Button satShift = new Button();
-            satShift.setLayoutX(548);
+            satShift.setLayoutX(547);
             satShift.setLayoutY(layoutY);
             satShift.setPrefWidth(93);
             satShift.setPrefHeight(60);
@@ -609,7 +609,7 @@ public class OwnerController extends Controller implements Initializable {
             buttons.add(satShift);
 
             Button sunShift = new Button();
-            sunShift.setLayoutX(640);
+            sunShift.setLayoutX(639);
             sunShift.setLayoutY(layoutY);
             sunShift.setPrefWidth(93);
             sunShift.setPrefHeight(60);
@@ -1077,7 +1077,7 @@ public class OwnerController extends Controller implements Initializable {
         String line;
 
         try {
-            reader = new BufferedReader(new FileReader("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css\\Main.css"));
+            reader = new BufferedReader(new FileReader("D:\\KnowYourIncome\\src\\KYI\\Css\\Main.css"));
              inputBuffer = new StringBuffer();
 
             while ((line = reader.readLine()) != null) {
@@ -1102,7 +1102,7 @@ public class OwnerController extends Controller implements Initializable {
                 }
             }
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Marian\\Desktop\\KnowYourIncome\\src\\KYI\\Css\\Main.css", false));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("D:\\KnowYourIncome\\src\\KYI\\Css\\Main.css"));
             for (String item : inputArray) {
                 writer.write(item);
                 writer.newLine();
@@ -1113,4 +1113,4 @@ public class OwnerController extends Controller implements Initializable {
             e.printStackTrace();
         }
     }
-}//
+}

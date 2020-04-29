@@ -63,7 +63,7 @@ public class CreatingShiftController extends OwnerController implements Initiali
             button.setStyle("-fx-background-color: "+parseColor(colorPicker.getValue())+";\n"+"-fx-border-color: black;"+"-fx-font-size:13;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
 
                 ArrayList<Shift> shifts = new ArrayList<>();
-                Shift shift = new Shift(surname.getText(),button.getLayoutX(), button.getLayoutY(), colorPicker.getValue().toString(), button.getText());
+                Shift shift = new Shift(surname.getText(),button.getLayoutX(), button.getLayoutY(), parseColor(colorPicker.getValue()), button.getText());
                 shifts.add(shift);
                 String insert = "INSERT INTO shifts (worker,layoutX,layoutY,shiftColor,shiftTime) VALUES (?,?,?,?,?)";
                 try {

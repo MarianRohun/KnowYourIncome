@@ -114,6 +114,7 @@ public class Controller {
         newstage.setScene(scene);
         Controller controller = new Controller();
         controller.setButton(button);
+        controller.setSurname(surname);
         newstage.setResizable(false);
         newstage.initStyle(StageStyle.TRANSPARENT);
         newstage.initModality(Modality.APPLICATION_MODAL);

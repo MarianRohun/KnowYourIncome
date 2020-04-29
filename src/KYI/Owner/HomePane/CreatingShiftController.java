@@ -63,15 +63,16 @@ public class CreatingShiftController extends OwnerController implements Initiali
             button.setStyle("-fx-background-color: "+parseColor(colorPicker.getValue())+";\n"+"-fx-border-color: black;"+"-fx-font-size:13;"+"-fx-border-width: 1 1 1 1;"+"-fx-cursor: hand;");
 
                 ArrayList<Shift> shifts = new ArrayList<>();
-                Shift shift = new Shift(button.getLayoutX(), button.getLayoutY(), colorPicker.getValue().toString(), button.getText());
+                Shift shift = new Shift(surname.getText(),button.getLayoutX(), button.getLayoutY(), colorPicker.getValue().toString(), button.getText());
                 shifts.add(shift);
-                String insert = "INSERT INTO shifts (layoutX,layoutY,shiftColor,shiftTime) VALUES (?,?,?,?)";
+                String insert = "INSERT INTO shifts (worker,layoutX,layoutY,shiftColor,shiftTime) VALUES (?,?,?,?,?)";
                 try {
                     PreparedStatement ps = connection.prepareStatement(insert);
-                    ps.setDouble(1, shift.getLayoutX());
-                    ps.setDouble(2, shift.getLayoutY());
-                    ps.setString(3, shift.getShiftColor());
-                    ps.setString(4, shift.getShiftTime());
+                    ps.setString(1,shift.getWorker());
+                    ps.setDouble(2, shift.getLayoutX());
+                    ps.setDouble(3, shift.getLayoutY());
+                    ps.setString(4, shift.getShiftColor());
+                    ps.setString(5, shift.getShiftTime());
                     ps.executeLargeUpdate();
                 } catch (SQLException ex) {
                     ex.printStackTrace();

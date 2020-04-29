@@ -257,6 +257,8 @@ public class EmployeeController extends Controller implements Initializable {
         homePane.toFront();
         changeColor(homeButton);
         sellButton.setText("Sell");
+
+
     }
     public void onClickOrders(javafx.event.ActionEvent ActionEvent){
         sellFooterPane.toBack();

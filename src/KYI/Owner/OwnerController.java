@@ -504,7 +504,7 @@ public class OwnerController extends Controller implements Initializable {
                 @Override
                 public void handle(javafx.event.ActionEvent actionEvent) {
                     try {
-                        openWindowButton("../Owner/HomePane/CreatingShift.fxml", monShift);
+                        openWindowButton("../Owner/HomePane/CreatingShift.fxml", monShift, surname);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -523,7 +523,7 @@ public class OwnerController extends Controller implements Initializable {
                 @Override
                 public void handle(javafx.event.ActionEvent actionEvent) {
                     try {
-                        openWindowButton("../Owner/HomePane/CreatingShift.fxml", tueShift);
+                        openWindowButton("../Owner/HomePane/CreatingShift.fxml", tueShift,surname );
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -542,7 +542,7 @@ public class OwnerController extends Controller implements Initializable {
                 @Override
                 public void handle(javafx.event.ActionEvent actionEvent) {
                     try {
-                        openWindowButton("../Owner/HomePane/CreatingShift.fxml", wedShift);
+                        openWindowButton("../Owner/HomePane/CreatingShift.fxml", wedShift,surname);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -561,7 +561,7 @@ public class OwnerController extends Controller implements Initializable {
                 @Override
                 public void handle(javafx.event.ActionEvent actionEvent) {
                     try {
-                        openWindowButton("../Owner/HomePane/CreatingShift.fxml", thuShift);
+                        openWindowButton("../Owner/HomePane/CreatingShift.fxml", thuShift,surname);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -580,7 +580,7 @@ public class OwnerController extends Controller implements Initializable {
                 @Override
                 public void handle(javafx.event.ActionEvent actionEvent) {
                     try {
-                        openWindowButton("../Owner/HomePane/CreatingShift.fxml", friShift);
+                        openWindowButton("../Owner/HomePane/CreatingShift.fxml", friShift,surname);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -599,7 +599,7 @@ public class OwnerController extends Controller implements Initializable {
                 @Override
                 public void handle(javafx.event.ActionEvent actionEvent) {
                     try {
-                        openWindowButton("../Owner/HomePane/CreatingShift.fxml", satShift);
+                        openWindowButton("../Owner/HomePane/CreatingShift.fxml", satShift,surname);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -618,7 +618,7 @@ public class OwnerController extends Controller implements Initializable {
                 @Override
                 public void handle(javafx.event.ActionEvent actionEvent) {
                     try {
-                        openWindowButton("../Owner/HomePane/CreatingShift.fxml", sunShift);
+                        openWindowButton("../Owner/HomePane/CreatingShift.fxml", sunShift,surname);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -635,8 +635,8 @@ public class OwnerController extends Controller implements Initializable {
         ResultSet resultSet = connection.prepareStatement(selectShifts).executeQuery();
         ArrayList<Shift> selectedshifts = new ArrayList<>();
         while (resultSet.next()) {
-            Shift shift = new Shift(resultSet.getDouble(2), resultSet.getDouble(3), resultSet.getString(4),
-                    resultSet.getString(5));
+            Shift shift = new Shift(resultSet.getString(2),resultSet.getDouble(3), resultSet.getDouble(4), resultSet.getString(5),
+                    resultSet.getString(6));
             selectedshifts.add(shift);
         }
         for (Button stlpecbutton : surbuttons) {

@@ -38,6 +38,13 @@ public class Controller {
     public void setProduct(Product product) {this.product = product;}
 
     public static Button button = new Button();
+    public static Button surname = new Button();
+
+    public static Button getSurname() {
+        return surname;
+    }
+
+    public void setSurname(Button surname) {this.surname = surname;}
 
     public Button getButton() {return button;}
     public void setButton(Button button) {this.button = button;}
@@ -100,7 +107,7 @@ public class Controller {
         newstage.showAndWait();
     }
 
-    public static void openWindowButton(String stage, Button button) throws Exception {
+    public static void openWindowButton(String stage, Button button, Button surname) throws Exception {
         Stage newstage = new Stage();
         Parent root = FXMLLoader.load(Controller.class.getResource(stage));
         Scene scene = new Scene(root);
